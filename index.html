@@ -3,263 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VitaPals — B Vitamins Made Easy</title>
-<meta name="description" content="A friendly, simple guide to B vitamins: B1, B2, B3, B5, B6, B7, B9 and B12. What they do, where to find them, and fun facts.">
+<title>VitaPals — Vitamins Made Easy (and a Little Fun)</title>
+<meta name="description" content="A friendly, simple guide to vitamins A, B, C, D, E and K: what they do, where to find them, and fun facts for all ages.">
+<link rel="canonical" href="https://myvitapals.com/">
+<meta name="theme-color" content="#fffaf2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VitaPals">
+<meta property="og:title" content="VitaPals — Vitamins Made Easy (and a Little Fun)">
+<meta property="og:description" content="A friendly, simple guide to vitamins A, B, C, D, E and K: what they do, where to find them, and fun facts for all ages.">
+<meta property="og:url" content="https://myvitapals.com/">
+<meta property="og:image" content="https://myvitapals.com/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#fffaf2;--card:#fff;--ink:#2b2340;--muted:#6b6380;--line:#efe4d3;--accent:#ff7a59;--shadow:0 6px 20px rgba(60,40,20,.08)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;line-height:1.6;font-size:17px}
-h1,h2,h3,.brand{font-family:Fredoka,Nunito,sans-serif;line-height:1.2;margin:0}
-a{color:inherit}
-header{position:sticky;top:0;z-index:10;background:rgba(255,250,242,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top{display:flex;align-items:center;gap:10px;padding:10px 16px 6px;max-width:960px;margin:auto}
-.brand{font-size:26px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px}
-.brand b{color:var(--accent)}
-.tag{font-size:13px;color:var(--muted);margin-left:auto;text-align:right}
-nav{display:flex;gap:8px;overflow-x:auto;padding:6px 16px 12px;max-width:960px;margin:auto;scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-nav a{flex:0 0 auto;text-decoration:none;background:var(--card);border:2px solid var(--line);padding:6px 14px;border-radius:999px;font-weight:700;font-size:15px;transition:.15s}
-nav a.on{background:var(--c);border-color:var(--c);color:var(--t,#fff)}
-nav a:focus-visible,.vcard:focus-visible,.pager a:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-main{max-width:960px;margin:auto;padding:20px 16px 40px}
-.hero{display:flex;align-items:center;gap:18px;background:var(--card);border-radius:24px;padding:22px;box-shadow:var(--shadow);border-top:6px solid var(--c,var(--accent))}
-.hero h1{font-size:32px}
-.kicker{margin:0 0 4px;font-weight:700;color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:.04em}
-.lead{margin:8px 0 0;font-size:18px}
-.hero svg{flex:0 0 auto}
-.home-hero{text-align:center;display:block;border-top-color:#ffb703}
-.home-hero h1{font-size:34px}
-.squad{display:flex;justify-content:center;flex-wrap:wrap;gap:2px;margin:14px 0 4px}
-.squad svg{animation:bob 2.6s ease-in-out infinite}
-.squad svg:nth-child(even){animation-delay:.5s}
-@keyframes bob{50%{transform:translateY(-6px)}}
-@media (prefers-reduced-motion:reduce){.squad svg{animation:none}}
-h2.sec{font-size:24px;margin:30px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
-.vcard{display:block;text-decoration:none;background:var(--card);border-radius:20px;padding:14px 12px;text-align:center;box-shadow:var(--shadow);border-bottom:5px solid var(--c);transition:transform .15s}
-.vcard:active,.vcard:hover{transform:translateY(-3px)}
-.vcard h3{font-size:22px;margin-top:4px}
-.vcard p{margin:2px 0 0;font-size:14px;color:var(--muted)}
-.vcard .nick{color:var(--ink);font-weight:700;font-size:15px}
-.perks{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
-.perk{background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:flex-start}
-.perk .e{font-size:30px;line-height:1}
-.perk h3{font-size:17px}
-.perk p{margin:2px 0 0;font-size:15px;color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:16px}
-.card{background:var(--card);border-radius:20px;padding:16px 18px;box-shadow:var(--shadow)}
-.card h2{font-size:20px;margin-bottom:8px}
-.card ul{margin:0;padding-left:20px}
-.card li{margin:4px 0}
-.card p{margin:0}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-weight:600;font-size:15px}
-.chip span{font-size:22px}
-.fun{background:#fff4c7}
-.warn{background:#ffe6e0}
-.note{background:#e6f6ef}
-.pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
-.pager a{flex:1;text-decoration:none;background:var(--card);border-radius:16px;padding:12px 14px;font-weight:700;box-shadow:var(--shadow)}
-.pager a:last-child{text-align:right}
-.pager small{display:block;color:var(--muted);font-weight:600}
-footer{max-width:960px;margin:auto;padding:0 16px 40px;color:var(--muted);font-size:14px;text-align:center}
-footer .soon{display:inline-block;background:var(--card);border:2px dashed var(--line);border-radius:999px;padding:6px 14px;margin-bottom:10px;font-weight:700;color:var(--ink)}
-@media (max-width:520px){.hero{flex-direction:column;text-align:center}.hero h1{font-size:28px}.tag{display:none}}
-</style>
+<link rel="stylesheet" href="/assets/style.css?v=3">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="top">
-    <a class="brand" href="#home" aria-label="VitaPals home">💊 Vita<b>Pals</b></a>
+    <a class="brand" href="/" aria-label="VitaPals home">💊 Vita<b>Pals</b></a>
     <div class="tag">Tiny helpers.<br>Big jobs.</div>
   </div>
-  <nav id="tabs" aria-label="Vitamins"></nav>
+  <nav class="tabs" aria-label="Vitamins"><a href="/" style="--c:var(--accent)" class=on aria-current=page>🏠 Home</a><a href="/vitamin-a/" style="--c:#ff8c42;--t:#2b2340">A</a><a href="/vitamin-b/" style="--c:#ef476f;--t:#fff">B</a><a href="/vitamin-c/" style="--c:#ffbe0b;--t:#2b2340">C</a><a href="/vitamin-d/" style="--c:#00a6d6;--t:#fff">D</a><a href="/vitamin-e/" style="--c:#6a994e;--t:#fff">E</a><a href="/vitamin-k/" style="--c:#2d6a4f;--t:#fff">K</a></nav>
 </header>
+<main id="main">
+<section class="hero center">
+  <p class="kicker">Welcome to VitaPals</p>
+  <h1>Meet your VitaPals 👋</h1>
+  <div class="squad"><svg viewBox="0 0 120 160" width="58" height="77" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#ff8c42" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#ff8c42" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#ff8c42"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#2b2340">A</text><text x="96" y="22" font-size="24" text-anchor="middle">👀</text></svg><svg viewBox="0 0 120 160" width="58" height="77" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#ef476f" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#ef476f" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#ef476f"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#fff">B</text><text x="96" y="22" font-size="24" text-anchor="middle">🐝</text></svg><svg viewBox="0 0 120 160" width="58" height="77" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#ffbe0b" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#ffbe0b" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#ffbe0b"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#2b2340">C</text><text x="96" y="22" font-size="24" text-anchor="middle">🦸</text></svg><svg viewBox="0 0 120 160" width="58" height="77" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#00a6d6" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#00a6d6" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#00a6d6"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#fff">D</text><text x="96" y="22" font-size="24" text-anchor="middle">☀️</text></svg><svg viewBox="0 0 120 160" width="58" height="77" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#6a994e" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#6a994e" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#6a994e"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#fff">E</text><text x="96" y="22" font-size="24" text-anchor="middle">💪</text></svg><svg viewBox="0 0 120 160" width="58" height="77" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#2d6a4f" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#2d6a4f" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#2d6a4f"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#fff">K</text><text x="96" y="22" font-size="24" text-anchor="middle">🩹</text></svg></div>
+  <p class="lead">13 tiny vitamins with very big jobs. They power you up, protect your cells, build your bones and help you see in the dark. Tap one to say hi!</p>
+</section>
 
-<main id="app" tabindex="-1"></main>
+<h2 class="sec">Pick a pal 👇</h2>
+<div class="grid"><a class="vcard" href="/vitamin-a/" style="--c:#ff8c42"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#ff8c42" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#ff8c42" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#ff8c42"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#2b2340">A</text><text x="96" y="22" font-size="24" text-anchor="middle">👀</text></svg><h3>Vitamin A</h3><p class="nick">The Night Watcher</p><p>Retinol &amp; beta-carotene</p></a><a class="vcard" href="/vitamin-b/" style="--c:#ef476f"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#ef476f" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#ef476f" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#ef476f"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#fff">B</text><text x="96" y="22" font-size="24" text-anchor="middle">🐝</text></svg><h3>Vitamin B</h3><p class="nick">The B-Team</p><p>8 B vitamins</p></a><a class="vcard" href="/vitamin-c/" style="--c:#ffbe0b"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#ffbe0b" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#ffbe0b" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#ffbe0b"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#2b2340">C</text><text x="96" y="22" font-size="24" text-anchor="middle">🦸</text></svg><h3>Vitamin C</h3><p class="nick">The Citrus Superhero</p><p>Ascorbic acid</p></a><a class="vcard" href="/vitamin-d/" style="--c:#00a6d6"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#00a6d6" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#00a6d6" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#00a6d6"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#fff">D</text><text x="96" y="22" font-size="24" text-anchor="middle">☀️</text></svg><h3>Vitamin D</h3><p class="nick">The Sunshine Buddy</p><p>Calciferol</p></a><a class="vcard" href="/vitamin-e/" style="--c:#6a994e"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#6a994e" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#6a994e" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#6a994e"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#fff">E</text><text x="96" y="22" font-size="24" text-anchor="middle">💪</text></svg><h3>Vitamin E</h3><p class="nick">The Bodyguard</p><p>Tocopherol</p></a><a class="vcard" href="/vitamin-k/" style="--c:#2d6a4f"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#2d6a4f" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#2d6a4f" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#2d6a4f"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="128" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="40" fill="#fff">K</text><text x="96" y="22" font-size="24" text-anchor="middle">🩹</text></svg><h3>Vitamin K</h3><p class="nick">The Patch-Up Pro</p><p>Phylloquinone &amp; menaquinone</p></a></div>
 
+<h2 class="sec">Meet the B-Team 🐝</h2>
+<p class="sub">Vitamin B is actually a squad of eight. Each one has its own job.</p>
+<div class="grid"><a class="vcard" href="/vitamin-b1/" style="--c:#f4a261"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#f4a261" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#f4a261" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#f4a261"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="28" fill="#fff">B1</text><text x="96" y="22" font-size="24" text-anchor="middle">⚡</text></svg><h3>B1</h3><p class="nick">The Spark Plug</p><p>Thiamine</p></a><a class="vcard" href="/vitamin-b2/" style="--c:#f9c74f"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#f9c74f" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#f9c74f" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#f9c74f"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="28" fill="#2b2340">B2</text><text x="96" y="22" font-size="24" text-anchor="middle">✨</text></svg><h3>B2</h3><p class="nick">The Glow-Getter</p><p>Riboflavin</p></a><a class="vcard" href="/vitamin-b3/" style="--c:#e76f51"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#e76f51" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#e76f51" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#e76f51"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="28" fill="#fff">B3</text><text x="96" y="22" font-size="24" text-anchor="middle">🔥</text></svg><h3>B3</h3><p class="nick">The Fire Starter</p><p>Niacin</p></a><a class="vcard" href="/vitamin-b5/" style="--c:#90be6d"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#90be6d" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#90be6d" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#90be6d"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="28" fill="#2b2340">B5</text><text x="96" y="22" font-size="24" text-anchor="middle">🌍</text></svg><h3>B5</h3><p class="nick">Mr. Everywhere</p><p>Pantothenic acid</p></a><a class="vcard" href="/vitamin-b6/" style="--c:#4d908e"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#4d908e" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#4d908e" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#4d908e"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="28" fill="#fff">B6</text><text x="96" y="22" font-size="24" text-anchor="middle">🧑‍🍳</text></svg><h3>B6</h3><p class="nick">The Mood Chef</p><p>Pyridoxine</p></a><a class="vcard" href="/vitamin-b7/" style="--c:#f28482"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#f28482" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#f28482" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#f28482"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="28" fill="#fff">B7</text><text x="96" y="22" font-size="24" text-anchor="middle">💇</text></svg><h3>B7</h3><p class="nick">The Hair Hype</p><p>Biotin</p></a><a class="vcard" href="/vitamin-b9/" style="--c:#43aa8b"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#43aa8b" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#43aa8b" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#43aa8b"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="28" fill="#fff">B9</text><text x="96" y="22" font-size="24" text-anchor="middle">🧱</text></svg><h3>B9</h3><p class="nick">The Builder</p><p>Folate (folic acid)</p></a><a class="vcard" href="/vitamin-b12/" style="--c:#7b6cd9"><svg viewBox="0 0 120 160" width="70" height="93" aria-hidden="true"><ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/><path d="M22 88q-16-2-18-20" stroke="#7b6cd9" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M98 88q16-6 16-26" stroke="#7b6cd9" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="22" y="12" width="76" height="136" rx="38" fill="#7b6cd9"/><path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/><ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/><circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/><circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/><circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/><text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="24" fill="#fff">B12</text><text x="96" y="22" font-size="24" text-anchor="middle">🛡️</text></svg><h3>B12</h3><p class="nick">The Nerve Guardian</p><p>Cobalamin</p></a></div>
+
+<h2 class="sec">Two teams, two styles</h2>
+<div class="teams">
+  <div class="team water"><h3>💧 Water-soluble</h3><p>They dissolve in water, so your body flushes out extras. You need a steady supply from food, and too much from food is rarely a worry.</p>
+    <div class="mini"><a href="/vitamin-b1/" style="--c:#f4a261;--t:#fff">B1</a><a href="/vitamin-b2/" style="--c:#f9c74f;--t:#2b2340">B2</a><a href="/vitamin-b3/" style="--c:#e76f51;--t:#fff">B3</a><a href="/vitamin-b5/" style="--c:#90be6d;--t:#2b2340">B5</a><a href="/vitamin-b6/" style="--c:#4d908e;--t:#fff">B6</a><a href="/vitamin-b7/" style="--c:#f28482;--t:#fff">B7</a><a href="/vitamin-b9/" style="--c:#43aa8b;--t:#fff">B9</a><a href="/vitamin-b12/" style="--c:#7b6cd9;--t:#fff">B12</a><a href="/vitamin-c/" style="--c:#ffbe0b;--t:#2b2340">C</a></div></div>
+  <div class="team fat"><h3>🧈 Fat-soluble</h3><p>They're stored in your body's fat and liver, so they stick around. That's handy, but too much from supplements can build up and cause trouble.</p>
+    <div class="mini"><a href="/vitamin-a/" style="--c:#ff8c42;--t:#2b2340">A</a><a href="/vitamin-d/" style="--c:#00a6d6;--t:#fff">D</a><a href="/vitamin-e/" style="--c:#6a994e;--t:#fff">E</a><a href="/vitamin-k/" style="--c:#2d6a4f;--t:#fff">K</a></div></div>
+</div>
+
+<h2 class="sec">What vitamins do for you</h2>
+<div class="perks"><div class="perk"><div class="e" aria-hidden="true">⚡</div><div><h3>Energy from food</h3><p>The B-Team turns breakfast into get-up-and-go.</p></div></div><div class="perk"><div class="e" aria-hidden="true">👀</div><div><h3>Eyes that see in the dark</h3><p>Vitamin A keeps your eyes working in dim light.</p></div></div><div class="perk"><div class="e" aria-hidden="true">🛡️</div><div><h3>Germ fighting</h3><p>Vitamins A, C and D help your immune system.</p></div></div><div class="perk"><div class="e" aria-hidden="true">🦴</div><div><h3>Strong bones</h3><p>Vitamins D and K help build and protect bones.</p></div></div><div class="perk"><div class="e" aria-hidden="true">🩹</div><div><h3>Healing cuts</h3><p>Vitamin K stops bleeding; vitamin C rebuilds skin.</p></div></div><div class="perk"><div class="e" aria-hidden="true">🧠</div><div><h3>Brain &amp; nerves</h3><p>B6 and B12 keep your body&#x27;s wiring humming.</p></div></div><div class="perk"><div class="e" aria-hidden="true">🧬</div><div><h3>New cells</h3><p>Folate (B9) and B12 are your body&#x27;s builders.</p></div></div><div class="perk"><div class="e" aria-hidden="true">🔰</div><div><h3>Cell protection</h3><p>Vitamins C and E guard cells from damage.</p></div></div></div>
+
+<div class="cards">
+  <div class="card note"><h2>🌈 Eat the rainbow</h2><p>Most people get the vitamins they need from a mix of colorful foods: fruits, veggies, whole grains, beans, nuts, seeds and dairy. Different colors bring different pals!</p></div>
+  <div class="card fun"><h2>🤔 Why A, B, C, D, E… then K?</h2><p>F, G, H and friends were once on the list, but scientists later found they weren't true vitamins and kicked them off. K got its letter from the German word for clotting. Alphabet drama!</p></div>
+  <div class="card warn"><h2>⚠️ More isn't always better</h2><p>Supplements can help some people, but big doses can cause problems. Always check with a doctor or pharmacist first.</p></div>
+</div>
+
+</main>
 <footer>
-  <div class="soon">🚧 Coming soon: Vitamins A, C, D, E &amp; K</div>
+  <nav aria-label="Footer"><a href="/">Home</a><a href="/vitamin-b/">B-Team</a><a href="/about/">About</a></nav>
   <p>VitaPals is for friendly learning, not medical advice. Please talk to a doctor or pharmacist before starting any supplement.</p>
-  <p>© <span id="yr"></span> VitaPals</p>
+  <p>© 2026 VitaPals</p>
 </footer>
-
-<script>
-/* ===== Add new vitamins here later (C, D, etc.) — the site builds itself from this list ===== */
-const VITAMINS = [
- {id:"B1", name:"Thiamine", nick:"The Spark Plug", color:"#f4a261", prop:"⚡",
-  job:"Turns the food you eat into fuel your body can actually use, especially carbs.",
-  powers:["Turns bread, rice and pasta into energy","Keeps your nerves sending messages properly","Supports a steady, happy heart"],
-  foods:[["🌾","Whole grains"],["🫘","Beans & lentils"],["🌻","Sunflower seeds"],["🥜","Peanuts"],["🍞","Fortified bread & cereal"],["🐟","Fish"]],
-  low:["Feeling tired and grumpy","Not feeling hungry","Tingly or weak legs"],
-  amount:"Adults need about 1.1–1.2 mg a day. A bowl of fortified cereal can cover a big chunk of it.",
-  fun:"B1 was the first B vitamin ever discovered. Scientists noticed that people eating mostly polished white rice got sick, while people eating brown rice stayed healthy. The secret was hiding in the brown part!",
-  warn:"Drinking a lot of alcohol drains your B1. Your body would like a word."},
- {id:"B2", name:"Riboflavin", nick:"The Glow-Getter", color:"#f9c74f", text:"#2b2340", prop:"✨",
-  job:"Helps every cell make energy and keeps your skin, eyes and mouth in good shape.",
-  powers:["Powers energy-making inside your cells","Helps keep skin and eyes healthy","Helps other B vitamins do their jobs (team player!)"],
-  foods:[["🥛","Milk"],["🥣","Yogurt"],["🥚","Eggs"],["🌰","Almonds"],["🍄","Mushrooms"],["🥬","Spinach"]],
-  low:["Cracks at the corners of your mouth","Sore, red tongue or throat","Itchy eyes that dislike bright light"],
-  amount:"Adults need about 1.1–1.3 mg a day. Dairy, eggs and greens make that easy.",
-  fun:"Ever taken a multivitamin and then seen neon-yellow pee? Don't panic! That's B2 waving goodbye on its way out. Totally harmless.",
-  warn:"B2 hates sunlight, which breaks it down. That's one reason milk often comes in cartons you can't see through.", warnTitle:"🧠 Pro tip"},
- {id:"B3", name:"Niacin", nick:"The Fire Starter", color:"#e76f51", prop:"🔥",
-  job:"Helps turn food into energy and keeps your skin, tummy and brain running smoothly.",
-  powers:["Helps hundreds of enzymes do their jobs","Supports healthy skin","Keeps digestion and nerves working well"],
-  foods:[["🥜","Peanuts"],["🍄","Mushrooms"],["🍚","Brown rice"],["🍗","Chicken"],["🐟","Tuna"],["🥣","Fortified cereal"]],
-  low:["Rough skin rash that gets worse in the sun","Upset tummy","Feeling foggy or confused"],
-  amount:"Adults need about 14–16 mg a day. Your body can even make some of it by itself!",
-  fun:"Your body can build its own niacin from tryptophan, the protein piece famous (unfairly!) for making people sleepy after big holiday dinners.",
-  warn:"Big supplement doses can cause a 'niacin flush': red, hot, tingly skin. Don't take high doses unless your doctor says so."},
- {id:"B5", name:"Pantothenic acid", nick:"Mr. Everywhere", color:"#90be6d", text:"#2b2340", prop:"🌍",
-  job:"Helps your body break down fats, carbs and protein, and helps make some hormones.",
-  powers:["Releases energy from food","Helps build the fats your cells need","Helps make some important hormones"],
-  foods:[["🥑","Avocado"],["🍄","Mushrooms"],["🌻","Sunflower seeds"],["🥦","Broccoli"],["🍠","Sweet potato"],["🥚","Eggs"]],
-  low:["Very rare! Almost everyone gets enough","Tiredness","A 'burning feet' feeling (only in extreme cases)"],
-  amount:"Adults need about 5 mg a day, and a normal diet usually delivers.",
-  fun:"'Pantothen' is Greek for 'from everywhere'. B5 is in so many foods that running low is super rare.",
-  warn:"If you eat a mix of real foods, you're almost certainly fine. B5 is the chill one of the group.", warnTitle:"😎 Good news"},
- {id:"B6", name:"Pyridoxine", nick:"The Mood Chef", color:"#4d908e", prop:"🧑‍🍳",
-  job:"Helps your body use protein and cooks up brain chemicals that affect mood and sleep.",
-  powers:["Helps make serotonin and dopamine, your mood messengers","Helps make melatonin (hello, sleep!)","Supports your immune system and red blood cells"],
-  foods:[["🧆","Chickpeas (hi, hummus!)"],["🍌","Bananas"],["🥔","Potatoes"],["🐟","Salmon"],["🍗","Chicken"],["🥣","Fortified cereal"]],
-  low:["Itchy, scaly rash","Cracked lips and sore tongue","Feeling low or confused"],
-  amount:"Adults need about 1.3–1.7 mg a day. One banana gives you roughly a quarter of that.",
-  fun:"B6 isn't just one thing. It's a family of six closely related compounds. Overachiever!",
-  warn:"More is NOT better. Taking very high-dose B6 supplements for a long time can cause numbness and nerve damage. B6 from food is safe."},
- {id:"B7", name:"Biotin", nick:"The Hair Hype", color:"#f28482", prop:"💇",
-  job:"Helps turn food into energy, and is famous (maybe too famous) for hair, skin and nails.",
-  powers:["Helps break down fats, carbs and protein","Supports healthy hair, skin and nails","Works with enzymes that build and burn fuel"],
-  foods:[["🍳","Cooked eggs"],["🌰","Almonds"],["🍠","Sweet potato"],["🌻","Sunflower seeds"],["🥬","Spinach"],["🐟","Salmon"]],
-  low:["Thinning hair","Red, scaly rash around eyes, nose or mouth","Brittle nails"],
-  amount:"Adults need only about 30 mcg a day, and most people get plenty.",
-  fun:"Raw egg whites contain a protein that grabs biotin and won't let go. Cook your eggs and the problem disappears. Sorry, raw-egg smoothie fans!",
-  warn:"Biotin supplements can mess up some blood tests, including heart and thyroid tests. Tell your doctor if you take them. And unless you're actually low, the hair-growth claims are mostly hype."},
- {id:"B9", name:"Folate (folic acid)", nick:"The Builder", color:"#43aa8b", prop:"🧱",
-  job:"Helps make and repair DNA and build brand-new cells, including red blood cells.",
-  powers:["Builds new, healthy cells","Helps make red blood cells","Very important before and during pregnancy for a baby's brain and spine"],
-  foods:[["🥬","Leafy greens"],["🫘","Lentils & beans"],["🥦","Broccoli"],["🥑","Avocado"],["🍊","Oranges"],["🍞","Fortified bread & cereal"]],
-  low:["Tiredness and weakness","Sore tongue or mouth ulcers","Feeling irritable"],
-  amount:"Adults need about 400 mcg a day. Pregnant people need about 600 mcg.",
-  fun:"'Folate' comes from the Latin word 'folium', meaning leaf. The name is literally telling you to eat your greens!",
-  warn:"Planning a pregnancy? Doctors usually recommend a folic acid supplement. Ask yours."},
- {id:"B12", name:"Cobalamin", nick:"The Nerve Guardian", color:"#7b6cd9", prop:"🛡️",
-  job:"Keeps your nerves healthy and helps make red blood cells and DNA.",
-  powers:["Protects nerves and supports memory","Helps make red blood cells","Teams up with folate (B9) to build DNA"],
-  foods:[["🥚","Eggs"],["🧀","Milk & cheese"],["🐟","Fish"],["🍖","Meat"],["🥛","Fortified plant milks"],["🥣","Fortified cereal"]],
-  low:["Feeling very tired","Pins and needles in hands and feet","Memory or mood changes","Pale skin"],
-  amount:"Adults need just 2.4 mcg a day, which weighs less than a single grain of salt!",
-  fun:"B12 is the only vitamin with a metal inside it: cobalt! And your liver can store several years' worth.",
-  warn:"Vegans, vegetarians and adults over 50 are more likely to run low. Plants don't make B12, so fortified foods or a supplement may be needed. Ask your doctor."}
-];
-
-const PERKS = [
- ["⚡","Energy from food","They turn breakfast into get-up-and-go."],
- ["🧠","Brain & nerves","They keep your body's wiring humming."],
- ["🩸","Healthy blood","B9 and B12 help build red blood cells."],
- ["😊","Mood & sleep","B6 helps make feel-good brain chemicals."],
- ["✨","Skin, hair & eyes","B2, B3 and B7 help you glow."],
- ["🧬","DNA & new cells","B9 and B12 are your body's builders."],
- ["👶","Healthy pregnancies","Folate helps babies grow strong."]
-];
-
-function pal(v, w){
-  const t = v.text || "#fff";
-  return `<svg viewBox="0 0 120 160" width="${w}" height="${w*4/3}" role="img" aria-label="Vitamin ${v.id} mascot">
-  <ellipse cx="60" cy="153" rx="34" ry="5" fill="#000" opacity=".08"/>
-  <path d="M22 88q-16-2-18-20" stroke="${v.color}" stroke-width="7" fill="none" stroke-linecap="round"/>
-  <path d="M98 88q16-6 16-26" stroke="${v.color}" stroke-width="7" fill="none" stroke-linecap="round"/>
-  <rect x="22" y="12" width="76" height="136" rx="38" fill="${v.color}"/>
-  <path d="M22 80H98V110A38 38 0 0 1 22 110Z" fill="#fff" opacity=".22"/>
-  <ellipse cx="40" cy="36" rx="6" ry="13" fill="#fff" opacity=".35"/>
-  <circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/>
-  <circle cx="48" cy="57" r="3.8" fill="#2b2340"/><circle cx="74" cy="57" r="3.8" fill="#2b2340"/>
-  <circle cx="37" cy="69" r="5" fill="#ff8fa3" opacity=".6"/><circle cx="83" cy="69" r="5" fill="#ff8fa3" opacity=".6"/>
-  <path d="M50 68q10 10 20 0" stroke="#2b2340" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <text x="60" y="122" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="${v.id.length>2?24:28}" fill="${t}">${v.id}</text>
-  <text x="96" y="22" font-size="24" text-anchor="middle">${v.prop}</text>
-</svg>`;
-}
-
-const app = document.getElementById("app");
-const tabs = document.getElementById("tabs");
-
-function buildTabs(cur){
-  tabs.innerHTML = `<a href="#home" style="--c:var(--accent)" class="${cur==='home'?'on':''}">🏠 Home</a>` +
-   VITAMINS.map(v=>`<a href="#${v.id.toLowerCase()}" style="--c:${v.color};--t:${v.text||'#fff'}" class="${cur===v.id.toLowerCase()?'on':''}">${v.id}</a>`).join("");
-  const on = tabs.querySelector(".on");
-  if(on) on.scrollIntoView({inline:"center",block:"nearest"});
-}
-
-function home(){
-  document.title = "VitaPals — B Vitamins Made Easy";
-  return `
-  <section class="hero home-hero">
-    <p class="kicker">Welcome to VitaPals</p>
-    <h1>Meet the B-Team 🐝</h1>
-    <div class="squad">${VITAMINS.map(v=>pal(v,58)).join("")}</div>
-    <p class="lead">Eight tiny vitamins with very big jobs. They turn food into energy, keep your brain sharp and help build your blood. Tap one to meet it!</p>
-  </section>
-
-  <h2 class="sec">Pick a pal 👇</h2>
-  <div class="grid">
-    ${VITAMINS.map(v=>`<a class="vcard" href="#${v.id.toLowerCase()}" style="--c:${v.color}">
-      ${pal(v,70)}<h3>${v.id}</h3><p class="nick">${v.nick}</p><p>${v.name}</p></a>`).join("")}
-  </div>
-
-  <h2 class="sec">What the B-Team does for you</h2>
-  <div class="perks">
-    ${PERKS.map(p=>`<div class="perk"><div class="e">${p[0]}</div><div><h3>${p[1]}</h3><p>${p[2]}</p></div></div>`).join("")}
-  </div>
-
-  <div class="cards">
-    <div class="card note"><h2>🥗 Good news</h2><p>Most people get enough B vitamins from a varied diet. Whole grains, beans, leafy greens, nuts, eggs and dairy are the all-stars.</p></div>
-    <div class="card fun"><h2>🤔 Wait, where's B4? B8?</h2><p>Some numbers were once called B vitamins, but scientists later found they weren't truly vitamins after all. They got kicked off the team. Harsh, but fair.</p></div>
-    <div class="card"><h2>💧 Use it or lose it</h2><p>B vitamins dissolve in water, so your body flushes out extras instead of storing them (B12 is the exception). That's why you need a steady supply from food.</p></div>
-  </div>`;
-}
-
-function page(v){
-  document.title = `Vitamin ${v.id} (${v.name}) — VitaPals`;
-  const i = VITAMINS.indexOf(v);
-  const prev = VITAMINS[i-1], next = VITAMINS[i+1];
-  return `
-  <section class="hero" style="--c:${v.color}">
-    ${pal(v,130)}
-    <div>
-      <p class="kicker">Vitamin ${v.id} · ${v.name}</p>
-      <h1>${v.nick}</h1>
-      <p class="lead">${v.job}</p>
-    </div>
-  </section>
-  <div class="cards">
-    <div class="card"><h2>💪 Superpowers</h2><ul>${v.powers.map(x=>`<li>${x}</li>`).join("")}</ul></div>
-    <div class="card"><h2>🍽️ Find me in</h2><div class="chips">${v.foods.map(f=>`<div class="chip"><span>${f[0]}</span>${f[1]}</div>`).join("")}</div></div>
-    <div class="card"><h2>🪫 Running low? You might notice</h2><ul>${v.low.map(x=>`<li>${x}</li>`).join("")}</ul></div>
-    <div class="card"><h2>📏 How much do I need?</h2><p>${v.amount}</p></div>
-    <div class="card fun"><h2>🤓 Fun fact</h2><p>${v.fun}</p></div>
-    <div class="card ${v.warnTitle?'note':'warn'}"><h2>${v.warnTitle||'⚠️ Heads-up'}</h2><p>${v.warn}</p></div>
-  </div>
-  <div class="pager">
-    ${prev?`<a href="#${prev.id.toLowerCase()}"><small>← Previous</small>${prev.id} ${prev.nick}</a>`:`<a href="#home"><small>← Back</small>Home</a>`}
-    ${next?`<a href="#${next.id.toLowerCase()}"><small>Next →</small>${next.id} ${next.nick}</a>`:`<a href="#home"><small>Done! →</small>Home</a>`}
-  </div>`;
-}
-
-function render(){
-  const key = (location.hash.slice(1) || "home").toLowerCase();
-  const v = VITAMINS.find(x=>x.id.toLowerCase()===key);
-  app.innerHTML = v ? page(v) : home();
-  buildTabs(v ? key : "home");
-  window.scrollTo(0,0);
-}
-
-document.getElementById("yr").textContent = new Date().getFullYear();
-window.addEventListener("hashchange", render);
-render();
-</script>
 </body>
 </html>
