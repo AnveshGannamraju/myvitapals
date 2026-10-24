@@ -96,3 +96,18 @@ footer nav{margin-bottom:6px}
 footer nav a{font-weight:700;color:var(--ink);text-decoration:none;margin:0 8px}
 
 @media (max-width:520px){.squad svg{width:44px;height:59px}.hero{flex-direction:column;text-align:center}.hero h1{font-size:28px}.center h1{font-size:30px}.tag{display:none}}
+
+/* Forms ("Meet the family") */
+.card.wide{grid-column:1/-1}
+.forms{list-style:none;padding:0!important;margin:12px 0 0!important;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.forms li{margin:0!important;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.forms .fh{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.forms strong{font-family:Fredoka,Nunito,sans-serif;font-weight:600;font-size:16px}
+.forms p{margin:4px 0 0!important;font-size:15px;color:var(--muted)}
+.ftag{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:#eee;color:var(--ink);white-space:nowrap}
+.t-in-food{background:#dff3e4}
+.t-active-form{background:#e3dcff}
+.t-supplements{background:#ffe8c7}
+.t-made-by-your-body{background:#d9f0fb}
+.t-not-vitamin-a,.t-retired{background:#f1e9e9}
+.t-personal-care{background:#ffe0ec}
