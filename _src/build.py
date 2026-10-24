@@ -13,7 +13,7 @@ SITE = "https://myvitapals.com"
 REVIEWED = "October 2026"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-CSS_VERSION = "4"
+CSS_VERSION = "5"
 
 V = json.loads((ROOT / "_src" / "vitamins.json").read_text(encoding="utf-8"))
 BYID = {v["id"]: v for v in V}
@@ -25,6 +25,8 @@ e = lambda s: html.escape(str(s), quote=True)
 slug = lambda v: f"vitamin-{v['id'].lower()}"
 url = lambda v: f"/{slug(v)}/"
 txt = lambda v: v.get("text", "#fff")
+suburl = lambda pv, s: f"{url(pv)}{s['slug']}/"
+subpal = lambda s: {"id": s["label"], "color": s["color"], "text": txt(s), "prop": s["prop"]}
 
 
 def pal(v, w, decorative=True):
@@ -86,6 +88,11 @@ def tabs(cur, sub=None):
     if cur == "B":
         s = [f'<a href="{url(b)}" style="--c:{b["color"]};--t:{txt(b)}"{" class=on aria-current=page" if sub == b["id"] else ""}>{e(b["id"])}</a>' for b in BS]
         nav += f'<nav class="tabs subtabs" aria-label="B vitamins">{"".join(s)}</nav>'
+    elif cur in BYID and BYID[cur].get("subs"):
+        pv = BYID[cur]
+        s = [f'<a href="{url(pv)}" style="--c:{pv["color"]};--t:{txt(pv)}"{" class=on aria-current=page" if sub == "_overview" else ""}>Overview</a>']
+        s += [f'<a href="{suburl(pv, x)}" style="--c:{x["color"]};--t:{txt(x)}"{" class=on aria-current=page" if sub == x["slug"] else ""}>{e(x["tab"])}</a>' for x in pv["subs"]]
+        nav += f'<nav class="tabs subtabs" aria-label="Types of vitamin {e(cur)}">{"".join(s)}</nav>'
     return f"""
 <header>
   <div class="top">
@@ -224,7 +231,13 @@ for i, v in enumerate(V):
     crumbs = f'<a href="/">Home</a> › ' + (f'<a href="/vitamin-b/">The B-Team</a> › ' if isb else "") + f"Vitamin {e(v['id'])}"
     badge = "💧 Water-soluble" if v["type"] == "water" else "🧈 Fat-soluble"
     warn_cls = "note" if v.get("warnTitle") else "warn"
-    p = head(title, desc, url(v), slug(v)) + tabs("B" if isb else v["id"], v["id"] if isb else None) + f"""
+    subs = v.get("subs") or []
+    pick = ""
+    if subs:
+        pick = f'<h2 class="sec">Pick a type 👇</h2><div class="grid">' + "".join(
+            f'<a class="vcard" href="{suburl(v, s)}" style="--c:{s["color"]}">{pal(subpal(s), 70)}<h3>{e(s["tab"])}</h3>'
+            f'<p class="nick">{e(s["nick"])}</p><p>{e(s["name"])}</p></a>' for s in subs) + "</div>"
+    p = head(title, desc, url(v), slug(v)) + tabs("B" if isb else v["id"], v["id"] if isb else ("_overview" if subs else None)) + f"""
 <p class="crumbs">{crumbs}</p>
 <section class="hero" style="--c:{v['color']}">
   {pal(v, 130, decorative=False)}
@@ -235,6 +248,7 @@ for i, v in enumerate(V):
     <span class="badge">{badge}</span>
   </div>
 </section>
+{pick}
 <div class="cards">
   <div class="card"><h2>💪 Superpowers</h2><ul>{"".join(f"<li>{e(x)}</li>" for x in v['powers'])}</ul></div>
   <div class="card"><h2>🍽️ Find me in</h2><div class="chips">{"".join(f'<div class="chip"><span aria-hidden="true">{f[0]}</span>{e(f[1])}</div>' for f in v['foods'])}</div></div>
@@ -252,6 +266,41 @@ for i, v in enumerate(V):
 </div>
 """ + FOOT
     write(f"{slug(v)}/index.html", p)
+
+    # ----- Sub-type pages (e.g. /vitamin-d/d3/) -----
+    for j, s in enumerate(subs):
+        sp = subs[j - 1] if j > 0 else None
+        sn = subs[j + 1] if j < len(subs) - 1 else None
+        stitle = (f"Vitamin {s['tab']} ({s['name']}): What It Is, Foods & Fun Facts | VitaPals" if s["tab"].startswith(v["id"])
+                  else f"{s['tab']}, a Form of Vitamin {v['id']}: Foods & Fun Facts | VitaPals")
+        sdesc = f"{s['nick']}: {s['job']} Where to find it, how to read supplement labels, and a fun fact."
+        back = f'<a href="{url(v)}"><small>← Back to</small>Vitamin {e(v["id"])} overview</a>'
+        sp_html = head(stitle, sdesc, suburl(v, s), f"{slug(v)}-{s['slug']}") + tabs(v["id"], s["slug"]) + f"""
+<p class="crumbs"><a href="/">Home</a> › <a href="{url(v)}">Vitamin {e(v['id'])}</a> › {e(s['tab'])}</p>
+<section class="hero" style="--c:{s['color']}">
+  {pal(subpal(s), 130, decorative=False)}
+  <div>
+    <p class="kicker">Vitamin {e(v['id'])} · {e(s['tab'])} · {e(s['name'])}</p>
+    <h1>{e(s['nick'])}</h1>
+    <p class="lead">{e(s['job'])}</p>
+    <span class="badge">{badge}</span>
+  </div>
+</section>
+<div class="cards">
+  <div class="card"><h2>🔍 What makes it special</h2><ul>{"".join(f"<li>{e(x)}</li>" for x in s['what'])}</ul></div>
+  <div class="card"><h2>🍽️ Find me in</h2><div class="chips">{"".join(f'<div class="chip"><span aria-hidden="true">{f[0]}</span>{e(f[1])}</div>' for f in s['foods'])}</div></div>
+  <div class="card note"><h2>🏷️ Label decoder</h2><p>{e(s['labelTip'])}</p></div>
+  <div class="card fun"><h2>🤓 Fun fact</h2><p>{e(s['fun'])}</p></div>
+  <div class="card warn"><h2>⚠️ Heads-up</h2><p>{e(s['warn'])}</p></div>
+  <div class="card"><h2>📏 How much do I need?</h2><p>{e(v['amount'])}</p><p><a href="{url(v)}">See the full vitamin {e(v['id'])} page →</a></p></div>
+</div>
+<p class="sources">📚 Sources: NIH Office of Dietary Supplements — <a href="https://ods.od.nih.gov/factsheets/{v['nih'].replace('Consumer', 'HealthProfessional')}/" rel="noopener">Vitamin {e(v['id'])} health professional fact sheet</a>. Last reviewed {REVIEWED}.</p>
+<div class="pager">
+  {f'<a href="{suburl(v, sp)}"><small>← Previous</small>{e(sp["tab"])} {e(sp["nick"])}</a>' if sp else back}
+  {f'<a href="{suburl(v, sn)}"><small>Next →</small>{e(sn["tab"])} {e(sn["nick"])}</a>' if sn else back.replace("← Back to", "Back to →")}
+</div>
+""" + FOOT
+        write(f"{slug(v)}/{s['slug']}/index.html", sp_html)
 
 # ---------- About ----------
 about = head("About VitaPals", "VitaPals is a friendly, simple guide to vitamins for all ages: what they do, where to find them, and why they matter.",
@@ -282,7 +331,7 @@ nf = head("Page not found | VitaPals", "Oops, this page wandered off.", "/404.ht
 write("404.html", nf)
 
 # ---------- sitemap + robots ----------
-paths = ["/", "/vitamin-b/"] + [url(v) for v in V] + ["/about/"]
+paths = ["/", "/vitamin-b/"] + [p for v in V for p in [url(v)] + [suburl(v, s) for s in v.get("subs", [])]] + ["/about/"]
 write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       "".join(f"  <url><loc>{SITE}{p}</loc><lastmod>{TODAY}</lastmod></url>\n" for p in paths) + "</urlset>\n")
 write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
@@ -304,6 +353,9 @@ og_items = [("home", None), ("vitamin-b", B_HUB)] + [(slug(v), v) for v in V]
      "title": v["nick"] if v else "Meet your VitaPals 👋",
      "color": v["color"] if v else "#ff7a59",
      "lead": (v.get("job") or "Eight tiny vitamins with very big jobs.") if v else "13 tiny vitamins with very big jobs. Simple, friendly and a little bit funny."}
-    for n, v in og_items], ensure_ascii=False), encoding="utf-8")
+    for n, v in og_items] + [
+    {"name": f"{slug(v)}-{s['slug']}", "svg": pal(subpal(s), 300),
+     "kicker": f"Vitamin {v['id']} · {s['tab']}", "title": s["nick"], "color": s["color"], "lead": s["job"]}
+    for v in V for s in v.get("subs", [])], ensure_ascii=False), encoding="utf-8")
 
 print(f"Built {len(paths)} pages + 404, sitemap, robots, favicon.")
