@@ -13,7 +13,7 @@ SITE = "https://myvitapals.com"
 REVIEWED = "October 2026"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-CSS_VERSION = "3"
+CSS_VERSION = "4"
 
 V = json.loads((ROOT / "_src" / "vitamins.json").read_text(encoding="utf-8"))
 BYID = {v["id"]: v for v in V}
@@ -171,7 +171,7 @@ home = head("VitaPals — Vitamins Made Easy (and a Little Fun)",
 
 <div class="cards">
   <div class="card note"><h2>🌈 Eat the rainbow</h2><p>Most people get the vitamins they need from a mix of colorful foods: fruits, veggies, whole grains, beans, nuts, seeds and dairy. Different colors bring different pals!</p></div>
-  <div class="card fun"><h2>🤔 Why A, B, C, D, E… then K?</h2><p>F, G, H and friends were once on the list, but scientists later found they weren't true vitamins and kicked them off. K got its letter from the German word for clotting. Alphabet drama!</p></div>
+  <div class="card fun"><h2>🤔 Why A, B, C, D, E… then K?</h2><p>F, G, H and friends were once on the list. Some turned out not to be vitamins at all, and others got renamed (vitamin H is now biotin, B7). K got its letter from the German word for clotting. Alphabet drama!</p></div>
   <div class="card warn"><h2>⚠️ More isn't always better</h2><p>Supplements can help some people, but big doses can cause problems. Always check with a doctor or pharmacist first.</p></div>
 </div>
 """ + FOOT
@@ -242,8 +242,10 @@ for i, v in enumerate(V):
   <div class="card"><h2>📏 How much do I need?</h2><p>{e(v['amount'])}</p></div>
   <div class="card fun"><h2>🤓 Fun fact</h2><p>{e(v['fun'])}</p></div>
   <div class="card {warn_cls}"><h2>{e(v.get('warnTitle', '⚠️ Heads-up'))}</h2><p>{e(v['warn'])}</p></div>
+  <div class="card wide" id="forms"><h2>🧩 Meet the family: forms of vitamin {e(v['id'])}</h2><p>{e(v['formsIntro'])}</p>
+    <ul class="forms">{"".join(f'<li><div class="fh"><strong>{e(f[0])}</strong><span class="ftag t-{f[2].lower().replace(" ", "-")}">{e(f[2])}</span></div><p>{e(f[1])}</p></li>' for f in v['forms'])}</ul></div>
 </div>
-<p class="sources">📚 Source: <a href="https://ods.od.nih.gov/factsheets/{v['nih']}/" rel="noopener">NIH Office of Dietary Supplements — Vitamin {e(v['id'])} fact sheet</a>. Amounts are general daily needs for healthy adults. Last reviewed {REVIEWED}.</p>
+<p class="sources">📚 Sources: NIH Office of Dietary Supplements — <a href="https://ods.od.nih.gov/factsheets/{v['nih']}/" rel="noopener">Vitamin {e(v['id'])} fact sheet</a> and <a href="https://ods.od.nih.gov/factsheets/{v['nih'].replace('Consumer', 'HealthProfessional')}/" rel="noopener">health professional fact sheet</a>. Amounts are general daily needs for healthy adults. Last reviewed {REVIEWED}.</p>
 <div class="pager">
   {f'<a href="{url(prev)}"><small>← Previous</small>{e(prev["id"])} {e(prev["nick"])}</a>' if prev else '<a href="/"><small>← Back</small>Home</a>'}
   {f'<a href="{url(nxt)}"><small>Next →</small>{e(nxt["id"])} {e(nxt["nick"])}</a>' if nxt else '<a href="/"><small>Done! →</small>Home</a>'}
