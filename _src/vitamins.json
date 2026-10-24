@@ -76,6 +76,97 @@
     "Lookalikes! These carotenoids never become vitamin A, but they're still good for you.",
     "Not vitamin A"
    ]
+  ],
+  "subs": [
+   {
+    "slug": "retinol",
+    "tab": "Retinol",
+    "label": "A",
+    "name": "Preformed vitamin A",
+    "nick": "The Ready-Made",
+    "color": "#f77f00",
+    "prop": "🥚",
+    "job": "Vitamin A that's ready to use the moment you eat it. It comes from animal foods.",
+    "what": [
+     "Comes from animal foods, mostly as retinyl esters, which your body turns into retinol",
+     "Your liver stores the extra for later",
+     "Your body turns it into retinal (for seeing in dim light) and retinoic acid (for growth and healthy skin)"
+    ],
+    "foods": [
+     [
+      "🥚",
+      "Eggs"
+     ],
+     [
+      "🥛",
+      "Milk"
+     ],
+     [
+      "🧀",
+      "Cheese"
+     ],
+     [
+      "🐟",
+      "Fish"
+     ],
+     [
+      "🧈",
+      "Butter"
+     ],
+     [
+      "🥣",
+      "Fortified cereal"
+     ]
+    ],
+    "labelTip": "Supplement labels usually say 'retinyl acetate' or 'retinyl palmitate'. Those are both preformed vitamin A.",
+    "fun": "Polar bear liver is so packed with vitamin A that eating it can make people seriously sick. Arctic explorers learned this the hard way!",
+    "warn": "This is the form that can build up to harmful levels from high-dose supplements. That's especially risky during pregnancy. Some acne medicines are made from vitamin A too, and they need a doctor's care."
+   },
+   {
+    "slug": "carotenoids",
+    "tab": "Carotenoids",
+    "label": "A",
+    "name": "Provitamin A carotenoids",
+    "nick": "The Plant Power",
+    "color": "#ff9f1c",
+    "text": "#2b2340",
+    "prop": "🥕",
+    "job": "Colorful plant pigments that your body turns into vitamin A only when it needs it.",
+    "what": [
+     "Beta-carotene is the big one. Alpha-carotene and beta-cryptoxanthin count too",
+     "Your gut converts them into vitamin A as needed",
+     "Some carotenoids, like lutein, zeaxanthin and lycopene, never become vitamin A, but they're still good for you"
+    ],
+    "foods": [
+     [
+      "🥕",
+      "Carrots"
+     ],
+     [
+      "🍠",
+      "Sweet potato"
+     ],
+     [
+      "🎃",
+      "Pumpkin"
+     ],
+     [
+      "🥬",
+      "Spinach"
+     ],
+     [
+      "🍈",
+      "Cantaloupe"
+     ],
+     [
+      "🥭",
+      "Mango"
+     ]
+    ],
+    "labelTip": "Look for 'beta-carotene' or 'mixed carotenoids'. Some multivitamins use a mix of beta-carotene and retinyl esters.",
+    "fun": "Eat LOTS of carrots and your skin can turn a little orange. It's harmless and fades when you cut back. Basically, you become a carrot. Temporarily.",
+    "warn": "In big studies, high-dose beta-carotene supplements raised lung cancer risk in smokers, so smokers should skip them. Beta-carotene from fruits and veggies is fine."
+   }
   ]
  },
  {
@@ -779,6 +870,85 @@
     "Step 2: your kidneys make this active hormone form. It's the one that helps you absorb calcium.",
     "Active form"
    ]
+  ],
+  "subs": [
+   {
+    "slug": "d3",
+    "tab": "D3",
+    "label": "D3",
+    "name": "Cholecalciferol",
+    "nick": "The Sun Maker",
+    "color": "#0096c7",
+    "prop": "☀️",
+    "job": "The kind your skin makes from sunshine. It's also the most common kind in supplements.",
+    "what": [
+     "Your skin makes it when sunlight (UVB rays) hits it",
+     "Found in animal foods like fatty fish and egg yolks",
+     "Your liver and kidneys turn it into the active form"
+    ],
+    "foods": [
+     [
+      "☀️",
+      "Sunshine"
+     ],
+     [
+      "🐟",
+      "Salmon & trout"
+     ],
+     [
+      "🥚",
+      "Egg yolks"
+     ],
+     [
+      "🥛",
+      "Fortified milk"
+     ],
+     [
+      "🧀",
+      "Cheese (a little)"
+     ],
+     [
+      "🥣",
+      "Fortified cereal"
+     ]
+    ],
+    "labelTip": "Labels say 'vitamin D3' or 'cholecalciferol'. Most D3 is made from lanolin (the natural grease in sheep's wool). Looking for vegan? Find D3 made from lichen.",
+    "fun": "Window glass blocks the UVB rays your skin needs, so sitting in a sunny window won't make vitamin D. Your skin also makes less in winter and as you get older.",
+    "warn": "Too much from supplements can raise the calcium in your blood. Don't skip sunscreen to chase vitamin D. Ask a doctor before taking high doses."
+   },
+   {
+    "slug": "d2",
+    "tab": "D2",
+    "label": "D2",
+    "name": "Ergocalciferol",
+    "nick": "The Mushroom Kind",
+    "color": "#48cae4",
+    "text": "#2b2340",
+    "prop": "🍄",
+    "job": "The plant-and-fungus kind of vitamin D, made by mushrooms and yeast in UV light.",
+    "what": [
+     "Made when mushrooms or yeast get UV light",
+     "Used in some supplements, prescription vitamin D and fortified foods",
+     "Your body turns it into the active form, just like D3"
+    ],
+    "foods": [
+     [
+      "🍄",
+      "UV-exposed mushrooms"
+     ],
+     [
+      "🥛",
+      "Some fortified plant milks"
+     ],
+     [
+      "🥣",
+      "Some fortified cereals"
+     ]
+    ],
+    "labelTip": "Labels say 'vitamin D2' or 'ergocalciferol'. It's always vegan.",
+    "fun": "Mushrooms are little sunbathers! Mushrooms grown or set out in UV light make extra vitamin D.",
+    "warn": "Both kinds work, but studies suggest D3 raises blood vitamin D levels a bit more than D2. If a doctor prescribed vitamin D, follow their instructions."
+   }
   ]
  },
  {
@@ -852,6 +1022,85 @@
     "'d-alpha-tocopherol' is natural. 'dl-alpha-tocopherol' is lab-made and only about half as strong per milligram.",
     "Supplements"
    ]
+  ],
+  "subs": [
+   {
+    "slug": "tocopherols",
+    "tab": "Tocopherols",
+    "label": "E",
+    "name": "Alpha, beta, gamma & delta",
+    "nick": "The Main Guards",
+    "color": "#6a994e",
+    "prop": "🌻",
+    "job": "Four forms of vitamin E, and alpha-tocopherol is the one your body keeps.",
+    "what": [
+     "Come in alpha, beta, gamma and delta forms",
+     "Your liver holds on to alpha-tocopherol and sends it around your body. It breaks the others down faster",
+     "Only alpha-tocopherol counts toward your daily 15 mg"
+    ],
+    "foods": [
+     [
+      "🌻",
+      "Sunflower seeds & oil"
+     ],
+     [
+      "🌰",
+      "Almonds & hazelnuts"
+     ],
+     [
+      "🥜",
+      "Peanut butter"
+     ],
+     [
+      "🥬",
+      "Spinach"
+     ],
+     [
+      "🌽",
+      "Corn & soybean oil (gamma)"
+     ],
+     [
+      "🥑",
+      "Avocado"
+     ]
+    ],
+    "labelTip": "'d-alpha-tocopherol' is natural. 'dl-alpha-tocopherol' is lab-made and only about half as strong per milligram. 'Mixed tocopherols' means all four.",
+    "fun": "Food makers add tocopherols to oils and snacks to stop them going stale. If you see it on an ingredient list, it's working as a natural preservative!",
+    "warn": "High-dose vitamin E supplements can raise the risk of bleeding, especially for people on blood thinners. Nuts and seeds are totally fine."
+   },
+   {
+    "slug": "tocotrienols",
+    "tab": "Tocotrienols",
+    "label": "E",
+    "name": "Alpha, beta, gamma & delta",
+    "nick": "The Cousins",
+    "color": "#a7c957",
+    "text": "#2b2340",
+    "prop": "🌴",
+    "job": "Four lesser-known forms of vitamin E, found mainly in certain oils and grains.",
+    "what": [
+     "Come in alpha, beta, gamma and delta forms, just like tocopherols",
+     "Shaped a little differently: their 'tail' is bendier",
+     "They don't count toward your daily vitamin E needs. Scientists are still studying what they do"
+    ],
+    "foods": [
+     [
+      "🌴",
+      "Palm oil"
+     ],
+     [
+      "🍚",
+      "Rice bran oil"
+     ],
+     [
+      "🌾",
+      "Barley & oats"
+     ]
+    ],
+    "labelTip": "Usually sold as 'tocotrienol complex', often made from palm or annatto.",
+    "fun": "Tocotrienols were first found in 1964, in rubber tree sap. That's more than 40 years after vitamin E was discovered. Fashionably late!",
+    "warn": "Research on tocotrienol supplements is still early. Like other vitamin E supplements, they may affect bleeding, so check with a doctor first."
+   }
   ]
  },
  {
@@ -928,6 +1177,89 @@
     "A lab-made form. It's no longer used in supplements because it harmed liver cells in lab studies.",
     "Retired"
    ]
+  ],
+  "subs": [
+   {
+    "slug": "k1",
+    "tab": "K1",
+    "label": "K1",
+    "name": "Phylloquinone",
+    "nick": "The Leafy One",
+    "color": "#2d6a4f",
+    "prop": "🥬",
+    "job": "The main kind of vitamin K in food, made by green plants.",
+    "what": [
+     "Made by green plants as part of photosynthesis",
+     "Your liver uses it to make the proteins that help blood clot",
+     "Your body turns some of it into K2 (MK-4)"
+    ],
+    "foods": [
+     [
+      "🥬",
+      "Kale & spinach"
+     ],
+     [
+      "🌿",
+      "Collard & turnip greens"
+     ],
+     [
+      "🥦",
+      "Broccoli"
+     ],
+     [
+      "🥗",
+      "Lettuce"
+     ],
+     [
+      "🫒",
+      "Soybean & canola oil"
+     ]
+    ],
+    "labelTip": "Labels say 'phylloquinone' or 'phytonadione'. Phytonadione is the medicine name, and it's the kind in the vitamin K shot newborns get.",
+    "fun": "Vitamin K is fat-soluble, so a drizzle of oil on your greens helps you absorb more of it. Salad dressing, you're actually helping!",
+    "warn": "On a blood thinner like warfarin? Keep the amount of leafy greens you eat steady from day to day, and talk to your doctor before making big changes."
+   },
+   {
+    "slug": "k2",
+    "tab": "K2",
+    "label": "K2",
+    "name": "Menaquinones",
+    "nick": "The Fermented One",
+    "color": "#52b788",
+    "text": "#2b2340",
+    "prop": "🧀",
+    "job": "A family of vitamin K forms made by bacteria. Find them in fermented foods and some animal foods.",
+    "what": [
+     "Named MK-4 through MK-13, after the length of their tail",
+     "MK-4 comes from animal foods and is made by your body from K1. Longer ones like MK-7 come from bacteria, including the ones in your gut",
+     "The longer forms stay in your blood longer than K1"
+    ],
+    "foods": [
+     [
+      "🫘",
+      "Natto (fermented soybeans)"
+     ],
+     [
+      "🧀",
+      "Cheese"
+     ],
+     [
+      "🥚",
+      "Egg yolks"
+     ],
+     [
+      "🍗",
+      "Chicken"
+     ],
+     [
+      "🧈",
+      "Butter"
+     ]
+    ],
+    "labelTip": "Labels say 'menaquinone-7 (MK-7)' or 'menatetrenone (MK-4)'.",
+    "fun": "Natto has more vitamin K2 than almost any other food: about 850 mcg in a 3-ounce serving! It's also famous for being super sticky and stringy.",
+    "warn": "K2 supplements can also interfere with blood thinners like warfarin. Check with your doctor before taking them."
+   }
   ]
  }
 ]
