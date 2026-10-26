@@ -101,11 +101,7 @@
     "Such as cystic fibrosis, celiac disease or Crohn's disease."
    ],
    [
-    "Premature babies",
-    "They're born with low stores."
-   ],
-   [
-    "Young children and pregnant women in low-income regions",
+    "Pregnant and breastfeeding women in low-income regions",
     "Where diets have little variety."
    ]
   ],
@@ -853,10 +849,6 @@
    [
     "Pregnancy and breastfeeding",
     "Biotin levels can drop slightly."
-   ],
-   [
-    "A rare inherited condition (biotinidase deficiency)",
-    "It's picked up by newborn screening."
    ]
   ],
   "lowNote": "Real deficiency is uncommon. Thinning hair has many other causes.",
@@ -1128,8 +1120,8 @@
     "The body can't absorb B12 normally."
    ],
    [
-    "Babies of vegan mothers who breastfeed",
-    "Low B12 in breast milk can harm a baby's development."
+    "Vegan mothers who breastfeed",
+    "Low B12 in breast milk can harm a baby's development, so mothers need enough."
    ]
   ],
   "lowNote": "Low B12 can cause permanent nerve damage if untreated, sometimes before anemia shows up. A simple blood test can check.",
@@ -1312,7 +1304,7 @@
   "unit": "IU",
   "needs": [
    [
-    "Ages 1–70",
+    "Adults 20–70",
     "600 IU (15 mcg)"
    ],
    [
@@ -1322,10 +1314,6 @@
    [
     "Pregnancy & breastfeeding",
     "600 IU (15 mcg)"
-   ],
-   [
-    "Babies under 1",
-    "400 IU (10 mcg)"
    ]
   ],
   "needShort": "600–800 IU a day",
@@ -1413,10 +1401,6 @@
    [
     "Darker skin tones",
     "More melanin means less vitamin D made from the same sun."
-   ],
-   [
-    "Breastfed babies",
-    "Breast milk is low in vitamin D."
    ],
    [
     "Obesity or gastric bypass",
@@ -1556,10 +1540,6 @@
    [
     "Very low-fat diets",
     "Vitamin E comes mostly from fats and oils."
-   ],
-   [
-    "Premature babies",
-    "Born with low stores."
    ]
   ],
   "lowNote": "True deficiency is rare in healthy adults.",
@@ -1680,8 +1660,8 @@
   ],
   "risk": [
    [
-    "Newborns who didn't get the vitamin K shot",
-    "Babies are born with very little."
+    "Long courses of certain antibiotics",
+    "They can reduce the vitamin K made by gut bacteria."
    ],
    [
     "Gut conditions that limit absorption",

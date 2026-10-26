@@ -11,9 +11,9 @@
   "job": "Helps you see in the dark, keeps your skin and eyes healthy, and helps your body fight germs.",
   "powers": [
    "Helps your eyes see in dim light",
-   "Keeps your skin and the lining of your nose and tummy healthy",
+   "Keeps your skin and the lining of your nose and gut healthy",
    "Helps your immune system fight germs",
-   "Helps kids grow"
+   "Helps your body make and repair cells"
   ],
   "foods": [
    [
@@ -313,7 +313,7 @@
   "prop": "🔥",
   "type": "water",
   "nih": "Niacin-Consumer",
-  "job": "Helps turn food into energy and keeps your skin, tummy and brain running smoothly.",
+  "job": "Helps turn food into energy and keeps your skin, gut and brain running smoothly.",
   "powers": [
    "Helps hundreds of enzymes do their jobs",
    "Supports healthy skin",
@@ -347,7 +347,7 @@
   ],
   "low": [
    "Rough skin rash that gets worse in the sun",
-   "Upset tummy",
+   "Upset stomach",
    "Feeling foggy or confused"
   ],
   "amount": "Adults need about 14–16 mg a day. Your body can even make some of it by itself!",
@@ -780,7 +780,7 @@
   ],
   "amount": "Adults need about 75–90 mg a day (smokers need a bit more). One orange gets you most of the way. Half a cup of red bell pepper gets you all the way!",
   "fun": "Most animals make their own vitamin C, but humans can't. Neither can guinea pigs or fruit bats. Old-time sailors got sick on long trips until they packed limes, which is how British sailors got the nickname 'limeys'.",
-  "warn": "Very high doses from supplements can cause tummy aches and diarrhea, and may raise the chance of kidney stones in some people. Fruits and veggies? Always fine. And sorry: for most people, vitamin C won't stop a cold, though it may make it a little shorter.",
+  "warn": "Very high doses from supplements can cause stomach aches and diarrhea, and may raise the chance of kidney stones in some people. Fruits and veggies? Always fine. And sorry: for most people, vitamin C won't stop a cold, though it may make it a little shorter.",
   "formsIntro": "Vitamin C is mostly one molecule, but it comes in a few supplement styles.",
   "forms": [
    [
@@ -790,7 +790,7 @@
    ],
    [
     "Sodium & calcium ascorbate",
-    "Ascorbic acid paired with a mineral. They're gentler on some tummies and absorbed about the same.",
+    "Ascorbic acid paired with a mineral. They're gentler on the stomach and absorbed about the same.",
     "Supplements"
    ],
    [
@@ -843,7 +843,7 @@
   "low": [
    "Weak or achy bones",
    "Muscle weakness",
-   "In kids: soft, bendy bones (called rickets)"
+   "Bone pain and soft bones (called osteomalacia in adults)"
   ],
   "amount": "Most people aged 1–70 need about 600 IU (15 mcg) a day, and adults over 70 need about 800 IU (20 mcg). Very few foods have much, so fortified foods help a lot.",
   "fun": "Your skin can make vitamin D from sunlight. That's why it's called the 'sunshine vitamin'. And it actually works more like a hormone than a regular vitamin. Fancy!",
