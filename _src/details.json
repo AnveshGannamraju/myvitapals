@@ -1,0 +1,1716 @@
+{
+ "A": {
+  "unit": "mcg RAE",
+  "needs": [
+   [
+    "Men",
+    "900 mcg"
+   ],
+   [
+    "Women",
+    "700 mcg"
+   ],
+   [
+    "Pregnancy",
+    "770 mcg"
+   ],
+   [
+    "Breastfeeding",
+    "1,300 mcg"
+   ]
+  ],
+  "needShort": "700–900 mcg a day",
+  "ul": "3,000 mcg a day of preformed vitamin A (retinol) from supplements and animal foods. There's no upper limit for beta-carotene from food.",
+  "ulShort": "3,000 mcg (retinol only)",
+  "top3": "Sweet potato, spinach, carrots",
+  "dv": "900 mcg",
+  "table": [
+   [
+    "Sweet potato, baked in skin",
+    "1 whole",
+    "1,403 mcg",
+    156
+   ],
+   [
+    "Spinach, frozen, boiled",
+    "½ cup",
+    "573 mcg",
+    64
+   ],
+   [
+    "Carrots, raw",
+    "½ cup",
+    "459 mcg",
+    51
+   ],
+   [
+    "Milk, skim, fortified",
+    "1 cup",
+    "149 mcg",
+    17
+   ],
+   [
+    "Cantaloupe",
+    "½ cup",
+    "135 mcg",
+    15
+   ],
+   [
+    "Ricotta cheese, part skim",
+    "½ cup",
+    "133 mcg",
+    15
+   ],
+   [
+    "Red bell pepper, raw",
+    "½ cup",
+    "117 mcg",
+    13
+   ],
+   [
+    "Mango",
+    "1 whole",
+    "112 mcg",
+    12
+   ],
+   [
+    "Egg, hard boiled",
+    "1 large",
+    "75 mcg",
+    8
+   ]
+  ],
+  "tableNote": "Beef liver is extremely high: 3 oz has about 6,582 mcg, more than 7 times the daily value. Enjoy it occasionally, not daily.",
+  "indian": [
+   "Carrots (gajar)",
+   "Pumpkin (kaddu)",
+   "Papaya",
+   "Mango",
+   "Spinach (palak)",
+   "Fenugreek leaves (methi)",
+   "Drumstick leaves (moringa)",
+   "Curd, paneer & ghee"
+  ],
+  "tips": [
+   "Beta-carotene needs a little fat to be absorbed. A drizzle of oil or ghee on carrots and greens helps.",
+   "Cooking carrots and spinach lightly actually makes their beta-carotene easier to absorb."
+  ],
+  "risk": [
+   [
+    "People with gut conditions that limit fat absorption",
+    "Such as cystic fibrosis, celiac disease or Crohn's disease."
+   ],
+   [
+    "Premature babies",
+    "They're born with low stores."
+   ],
+   [
+    "Young children and pregnant women in low-income regions",
+    "Where diets have little variety."
+   ]
+  ],
+  "lowNote": "Vitamin A deficiency is rare in the US but still common in some low- and middle-income countries.",
+  "suppWhen": "Most people get enough from food. Supplements are rarely needed unless a doctor finds a deficiency.",
+  "suppPick": "If your multivitamin has vitamin A, check how much is retinol (retinyl acetate or palmitate) versus beta-carotene. Retinol is the part that counts toward the upper limit.",
+  "interactions": [
+   "Orlistat (Alli, Xenical), a weight-loss drug, lowers vitamin A absorption",
+   "Retinoid medicines like acitretin (Soriatane) and bexarotene (Targretin) shouldn't be combined with vitamin A supplements"
+  ],
+  "myths": [
+   [
+    "Carrots give you night vision.",
+    "Vitamin A keeps normal night vision working. It won't give you super-vision. That story was WWII propaganda to hide radar."
+   ],
+   [
+    "More vitamin A means better skin and eyes.",
+    "Too much retinol from supplements can harm your liver and bones, and cause birth defects in pregnancy."
+   ]
+  ],
+  "faq": [
+   [
+    "Is beta-carotene safe?",
+    "Beta-carotene from food is safe. Your body only converts what it needs. High-dose beta-carotene supplements raised lung cancer risk in smokers in large studies, so smokers should avoid them."
+   ],
+   [
+    "Should I avoid vitamin A in pregnancy?",
+    "You need some vitamin A in pregnancy, but avoid high-dose retinol supplements and liver in large amounts. Ask your doctor whether your prenatal vitamin uses beta-carotene."
+   ]
+  ]
+ },
+ "B1": {
+  "unit": "mg",
+  "needs": [
+   [
+    "Men",
+    "1.2 mg"
+   ],
+   [
+    "Women",
+    "1.1 mg"
+   ],
+   [
+    "Pregnancy",
+    "1.4 mg"
+   ],
+   [
+    "Breastfeeding",
+    "1.4 mg"
+   ]
+  ],
+  "needShort": "1.1–1.2 mg a day",
+  "ul": "No upper limit has been set. No harm has been reported from high intakes.",
+  "ulShort": "None set",
+  "top3": "Fortified cereal, beans, whole grains",
+  "dv": "1.2 mg",
+  "table": [
+   [
+    "Breakfast cereal, fortified (100% DV)",
+    "1 serving",
+    "1.2 mg",
+    100
+   ],
+   [
+    "Egg noodles, enriched, cooked",
+    "1 cup",
+    "0.5 mg",
+    42
+   ],
+   [
+    "Black beans, boiled",
+    "½ cup",
+    "0.4 mg",
+    33
+   ],
+   [
+    "Trout, cooked",
+    "3 oz",
+    "0.4 mg",
+    33
+   ],
+   [
+    "Pork chop, broiled",
+    "3 oz",
+    "0.4 mg",
+    33
+   ],
+   [
+    "English muffin, enriched",
+    "1",
+    "0.3 mg",
+    25
+   ],
+   [
+    "Whole wheat pasta, cooked",
+    "1 cup",
+    "0.2 mg",
+    17
+   ],
+   [
+    "Brown rice, cooked",
+    "½ cup",
+    "0.2 mg",
+    17
+   ],
+   [
+    "Acorn squash, baked",
+    "½ cup",
+    "0.2 mg",
+    17
+   ]
+  ],
+  "indian": [
+   "Whole wheat atta (roti, chapati)",
+   "Brown or parboiled rice",
+   "Rajma (kidney beans)",
+   "Chana (chickpeas)",
+   "Peanuts",
+   "Sunflower seeds"
+  ],
+  "tips": [
+   "Thiamine leaks into cooking water. Use less water, or use the water in dal or soup.",
+   "Parboiled rice keeps more B1 than polished white rice."
+  ],
+  "risk": [
+   [
+    "Heavy alcohol use",
+    "Alcohol reduces B1 absorption. This is the most common cause of deficiency."
+   ],
+   [
+    "Older adults",
+    "They often eat less and absorb less."
+   ],
+   [
+    "People with diabetes",
+    "They tend to lose more B1 in urine."
+   ],
+   [
+    "After weight-loss (bariatric) surgery",
+    "Absorption drops after surgery."
+   ]
+  ],
+  "lowNote": "Severe deficiency (beriberi or Wernicke-Korsakoff syndrome) is a medical emergency, mostly seen with heavy drinking.",
+  "suppWhen": "Usually only needed for heavy drinkers or after bariatric surgery, under a doctor's care.",
+  "suppPick": "Thiamine (thiamine HCl or mononitrate) is the standard form. Benfotiamine is a lab-made version sold in some supplements.",
+  "interactions": [
+   "Furosemide (Lasix), a water pill, may lower B1 levels",
+   "Fluorouracil (5-FU), a cancer drug, can block B1 use"
+  ],
+  "myths": [
+   [
+    "B1 boosts energy if you feel tired.",
+    "B1 helps turn food into energy, but extra won't energize you unless you're actually low."
+   ]
+  ],
+  "faq": [
+   [
+    "Can vegetarians get enough B1?",
+    "Yes. Whole grains, beans, lentils, seeds and fortified cereals are all good sources."
+   ],
+   [
+    "Why is white rice 'enriched'?",
+    "Polishing rice removes the B1-rich outer layer. Enriched rice adds some back."
+   ]
+  ]
+ },
+ "B2": {
+  "unit": "mg",
+  "needs": [
+   [
+    "Men",
+    "1.3 mg"
+   ],
+   [
+    "Women",
+    "1.1 mg"
+   ],
+   [
+    "Pregnancy",
+    "1.4 mg"
+   ],
+   [
+    "Breastfeeding",
+    "1.6 mg"
+   ]
+  ],
+  "needShort": "1.1–1.3 mg a day",
+  "ul": "No upper limit has been set. Extra is flushed out in urine.",
+  "ulShort": "None set",
+  "top3": "Dairy, fortified oats, almonds",
+  "dv": "1.3 mg",
+  "table": [
+   [
+    "Breakfast cereal, fortified (100% DV)",
+    "1 serving",
+    "1.3 mg",
+    100
+   ],
+   [
+    "Instant oats, fortified, cooked",
+    "1 cup",
+    "1.1 mg",
+    85
+   ],
+   [
+    "Yogurt, plain, fat-free",
+    "1 cup",
+    "0.6 mg",
+    46
+   ],
+   [
+    "Milk, 2%",
+    "1 cup",
+    "0.5 mg",
+    38
+   ],
+   [
+    "Almonds, dry roasted",
+    "1 oz",
+    "0.3 mg",
+    23
+   ],
+   [
+    "Swiss cheese",
+    "3 oz",
+    "0.3 mg",
+    23
+   ],
+   [
+    "Portabella mushrooms, grilled",
+    "½ cup",
+    "0.2 mg",
+    15
+   ],
+   [
+    "Egg, scrambled",
+    "1 large",
+    "0.2 mg",
+    15
+   ],
+   [
+    "Chicken breast",
+    "3 oz",
+    "0.2 mg",
+    15
+   ]
+  ],
+  "indian": [
+   "Milk & curd (dahi)",
+   "Paneer",
+   "Almonds (badam)",
+   "Mushrooms",
+   "Eggs",
+   "Spinach (palak)"
+  ],
+  "tips": [
+   "Light breaks down riboflavin, so store milk in opaque containers.",
+   "Dairy is the main source for many people. If you skip dairy, look for fortified plant milks."
+  ],
+  "risk": [
+   [
+    "Vegans and people who drink little milk",
+    "Dairy is a major source."
+   ],
+   [
+    "Vegetarian athletes",
+    "They may need a little more."
+   ],
+   [
+    "Pregnancy and breastfeeding",
+    "Needs go up."
+   ]
+  ],
+  "lowNote": "Deficiency is rare in countries where milk and fortified foods are common.",
+  "suppWhen": "Rarely needed. High-dose riboflavin is sometimes used for migraine prevention, but only with a doctor's guidance.",
+  "suppPick": "Riboflavin is the usual form. Bright yellow urine afterward is normal.",
+  "interactions": [
+   "No clinically important medicine interactions are known"
+  ],
+  "myths": [
+   [
+    "Neon-yellow pee means the vitamins aren't working.",
+    "It's just extra riboflavin leaving your body. Totally normal."
+   ]
+  ],
+  "faq": [
+   [
+    "Can riboflavin help migraines?",
+    "Some studies suggest high-dose riboflavin may reduce migraines in some adults. Talk to your doctor before trying it."
+   ]
+  ]
+ },
+ "B3": {
+  "unit": "mg NE",
+  "needs": [
+   [
+    "Men",
+    "16 mg"
+   ],
+   [
+    "Women",
+    "14 mg"
+   ],
+   [
+    "Pregnancy",
+    "18 mg"
+   ],
+   [
+    "Breastfeeding",
+    "17 mg"
+   ]
+  ],
+  "needShort": "14–16 mg a day",
+  "ul": "35 mg a day from supplements and fortified foods. This doesn't apply to niacin prescribed by a doctor.",
+  "ulShort": "35 mg (supplements)",
+  "top3": "Chicken, fish, peanuts",
+  "dv": "16 mg",
+  "table": [
+   [
+    "Chicken breast, grilled",
+    "3 oz",
+    "10.3 mg",
+    64
+   ],
+   [
+    "Marinara sauce, ready to serve",
+    "1 cup",
+    "10.3 mg",
+    64
+   ],
+   [
+    "Turkey breast, roasted",
+    "3 oz",
+    "10.0 mg",
+    63
+   ],
+   [
+    "Salmon, cooked",
+    "3 oz",
+    "8.6 mg",
+    54
+   ],
+   [
+    "Tuna, light, canned",
+    "3 oz",
+    "8.6 mg",
+    54
+   ],
+   [
+    "Brown rice, cooked",
+    "1 cup",
+    "5.2 mg",
+    33
+   ],
+   [
+    "Peanuts, dry roasted",
+    "1 oz",
+    "4.2 mg",
+    26
+   ],
+   [
+    "Breakfast cereal, fortified (25% DV)",
+    "1 serving",
+    "4.0 mg",
+    25
+   ],
+   [
+    "White rice, enriched, cooked",
+    "1 cup",
+    "2.3 mg",
+    14
+   ]
+  ],
+  "indian": [
+   "Peanuts (moongphali)",
+   "Brown rice",
+   "Whole wheat atta",
+   "Mushrooms",
+   "Chicken & fish",
+   "Green peas (matar)"
+  ],
+  "tips": [
+   "Your body also makes niacin from tryptophan in protein foods, so a diet with enough protein usually covers it."
+  ],
+  "risk": [
+   [
+    "People who are undernourished",
+    "Low overall food intake."
+   ],
+   [
+    "Low intake of B2, B6 or iron",
+    "Your body needs them to make niacin from tryptophan."
+   ],
+   [
+    "Rare conditions",
+    "Such as Hartnup disease or carcinoid syndrome."
+   ]
+  ],
+  "lowNote": "Severe deficiency (pellagra) causes a sun-sensitive rash, diarrhea and confusion. It's rare today.",
+  "suppWhen": "Not needed for most people. High-dose niacin is a prescription cholesterol treatment and should only be taken under a doctor's care.",
+  "suppPick": "Nicotinic acid can cause flushing. Nicotinamide (niacinamide) doesn't. 'Flush-free' inositol hexanicotinate is absorbed less well.",
+  "interactions": [
+   "Isoniazid and pyrazinamide (tuberculosis drugs) can lower niacin",
+   "High-dose nicotinic acid can raise blood sugar, affecting diabetes medicines"
+  ],
+  "myths": [
+   [
+    "Niacin flush means it's detoxing you.",
+    "Flushing is just widened blood vessels. It isn't a detox."
+   ]
+  ],
+  "faq": [
+   [
+    "Is niacinamide in skin care the same as niacin?",
+    "It's a form of vitamin B3, but skin creams act on the skin. They don't count toward your daily needs."
+   ],
+   [
+    "Should I take niacin for cholesterol?",
+    "Only if your doctor prescribes it. High doses can cause liver problems and raise blood sugar."
+   ]
+  ]
+ },
+ "B5": {
+  "unit": "mg",
+  "needs": [
+   [
+    "Adults",
+    "5 mg"
+   ],
+   [
+    "Pregnancy",
+    "6 mg"
+   ],
+   [
+    "Breastfeeding",
+    "7 mg"
+   ]
+  ],
+  "needShort": "5 mg a day",
+  "ul": "No upper limit has been set.",
+  "ulShort": "None set",
+  "top3": "Mushrooms, sunflower seeds, chicken",
+  "dv": "5 mg",
+  "table": [
+   [
+    "Breakfast cereal, fortified (100% DV)",
+    "1 serving",
+    "5 mg",
+    100
+   ],
+   [
+    "Shiitake mushrooms, cooked",
+    "½ cup",
+    "2.6 mg",
+    52
+   ],
+   [
+    "Sunflower seeds",
+    "¼ cup",
+    "2.4 mg",
+    48
+   ],
+   [
+    "Chicken breast, roasted",
+    "3 oz",
+    "1.3 mg",
+    26
+   ],
+   [
+    "Avocado",
+    "½",
+    "1.0 mg",
+    20
+   ],
+   [
+    "Milk, 2%",
+    "1 cup",
+    "0.9 mg",
+    18
+   ],
+   [
+    "White mushrooms, stir fried",
+    "½ cup",
+    "0.8 mg",
+    16
+   ],
+   [
+    "Potato, baked with skin",
+    "1 medium",
+    "0.7 mg",
+    14
+   ],
+   [
+    "Egg, hard boiled",
+    "1 large",
+    "0.7 mg",
+    14
+   ]
+  ],
+  "indian": [
+   "Mushrooms",
+   "Sunflower seeds",
+   "Curd (dahi)",
+   "Sweet potato (shakarkandi)",
+   "Eggs",
+   "Whole grains"
+  ],
+  "tips": [
+   "Almost every food has some B5. Whole, less-processed foods have the most."
+  ],
+  "risk": [
+   [
+    "Almost nobody",
+    "Deficiency is extremely rare and only seen with severe malnutrition or a rare genetic condition."
+   ]
+  ],
+  "lowNote": "Low levels are so rare that symptoms are mostly known from experiments.",
+  "suppWhen": "Not needed. A varied diet covers it.",
+  "suppPick": "Calcium pantothenate is the usual supplement form.",
+  "interactions": [
+   "No clinically important medicine interactions are known"
+  ],
+  "myths": [
+   [
+    "B5 supplements cure acne.",
+    "There isn't good evidence for this."
+   ]
+  ],
+  "faq": [
+   [
+    "Is panthenol in shampoo good for hair?",
+    "It helps hair feel softer and look shinier, but it doesn't change your body's B5 levels."
+   ]
+  ]
+ },
+ "B6": {
+  "unit": "mg",
+  "needs": [
+   [
+    "Adults 19–50",
+    "1.3 mg"
+   ],
+   [
+    "Men 51+",
+    "1.7 mg"
+   ],
+   [
+    "Women 51+",
+    "1.5 mg"
+   ],
+   [
+    "Pregnancy",
+    "1.9 mg"
+   ],
+   [
+    "Breastfeeding",
+    "2.0 mg"
+   ]
+  ],
+  "needShort": "1.3–1.7 mg a day",
+  "ul": "100 mg a day. Nerve damage has been reported with long-term high doses, and some health agencies now warn about lower doses too.",
+  "ulShort": "100 mg",
+  "top3": "Chickpeas, fish, potatoes",
+  "dv": "1.7 mg",
+  "table": [
+   [
+    "Chickpeas, canned",
+    "1 cup",
+    "1.1 mg",
+    65
+   ],
+   [
+    "Tuna, yellowfin, cooked",
+    "3 oz",
+    "0.9 mg",
+    53
+   ],
+   [
+    "Salmon, cooked",
+    "3 oz",
+    "0.6 mg",
+    35
+   ],
+   [
+    "Chicken breast, roasted",
+    "3 oz",
+    "0.5 mg",
+    29
+   ],
+   [
+    "Potatoes, boiled",
+    "1 cup",
+    "0.4 mg",
+    25
+   ],
+   [
+    "Banana",
+    "1 medium",
+    "0.4 mg",
+    25
+   ],
+   [
+    "Breakfast cereal, fortified (25% DV)",
+    "1 serving",
+    "0.4 mg",
+    25
+   ],
+   [
+    "Marinara sauce",
+    "1 cup",
+    "0.4 mg",
+    25
+   ]
+  ],
+  "indian": [
+   "Chana & chole (chickpeas)",
+   "Banana",
+   "Potatoes (aloo)",
+   "Peanuts",
+   "Fish",
+   "Chicken"
+  ],
+  "tips": [
+   "Chickpeas are one of the best plant sources. Chole or hummus count!"
+  ],
+  "risk": [
+   [
+    "Kidney disease",
+    "Including people on dialysis."
+   ],
+   [
+    "Autoimmune conditions",
+    "Such as rheumatoid arthritis or celiac disease."
+   ],
+   [
+    "Heavy alcohol use",
+    "Alcohol breaks down B6 faster."
+   ]
+  ],
+  "lowNote": "Low B6 often happens alongside low B12 or folate.",
+  "suppWhen": "Not needed for most people. Check how much B6 is in any 'energy', 'stress' or multivitamin product. It adds up across products.",
+  "suppPick": "Pyridoxine (pyridoxine HCl) is the most common form. More is NOT better.",
+  "interactions": [
+   "Some seizure medicines (valproate, carbamazepine, phenytoin) can lower B6",
+   "Cycloserine (a tuberculosis drug) and theophylline (an asthma drug) can lower B6"
+  ],
+  "myths": [
+   [
+    "Water-soluble vitamins can't hurt you.",
+    "Long-term high-dose B6 can cause numbness and nerve damage."
+   ]
+  ],
+  "faq": [
+   [
+    "Does B6 help with morning sickness?",
+    "Doctors sometimes recommend B6 for nausea in pregnancy, but only take it on their advice."
+   ],
+   [
+    "How do I know if I'm taking too much B6?",
+    "Add up the B6 in every supplement you take. If you have tingling or numbness in your hands or feet, stop and see a doctor."
+   ]
+  ]
+ },
+ "B7": {
+  "unit": "mcg",
+  "needs": [
+   [
+    "Adults",
+    "30 mcg"
+   ],
+   [
+    "Pregnancy",
+    "30 mcg"
+   ],
+   [
+    "Breastfeeding",
+    "35 mcg"
+   ]
+  ],
+  "needShort": "30 mcg a day",
+  "ul": "No upper limit has been set, but high doses can mess up lab test results.",
+  "ulShort": "None set",
+  "top3": "Eggs, salmon, sunflower seeds",
+  "dv": "30 mcg",
+  "table": [
+   [
+    "Egg, whole, cooked",
+    "1 large",
+    "10 mcg",
+    33
+   ],
+   [
+    "Salmon, pink, canned",
+    "3 oz",
+    "5 mcg",
+    17
+   ],
+   [
+    "Sunflower seeds, roasted",
+    "¼ cup",
+    "2.6 mcg",
+    9
+   ],
+   [
+    "Sweet potato, cooked",
+    "½ cup",
+    "2.4 mcg",
+    8
+   ],
+   [
+    "Almonds, roasted",
+    "¼ cup",
+    "1.5 mcg",
+    5
+   ],
+   [
+    "Spinach, boiled",
+    "½ cup",
+    "0.5 mcg",
+    2
+   ],
+   [
+    "Broccoli",
+    "½ cup",
+    "0.4 mcg",
+    1
+   ]
+  ],
+  "tableNote": "Beef liver has about 31 mcg in 3 oz, roughly a whole day's worth.",
+  "indian": [
+   "Eggs (cooked)",
+   "Peanuts",
+   "Almonds",
+   "Sunflower seeds",
+   "Sweet potato"
+  ],
+  "tips": [
+   "Cook your eggs. Raw egg whites contain a protein that blocks biotin."
+  ],
+  "risk": [
+   [
+    "Heavy alcohol use",
+    "Alcohol lowers biotin absorption."
+   ],
+   [
+    "Pregnancy and breastfeeding",
+    "Biotin levels can drop slightly."
+   ],
+   [
+    "A rare inherited condition (biotinidase deficiency)",
+    "It's picked up by newborn screening."
+   ]
+  ],
+  "lowNote": "Real deficiency is uncommon. Thinning hair has many other causes.",
+  "suppWhen": "Most people don't need it. There's little evidence that biotin supplements help hair or nails unless you're truly low.",
+  "suppPick": "If you take biotin, many hair, skin and nail products contain doses 100+ times your daily need.",
+  "interactions": [
+   "⚠️ High-dose biotin can cause false lab results, including heart (troponin) and thyroid tests. Tell your doctor before any blood test.",
+   "Some seizure medicines (carbamazepine, phenytoin, phenobarbital, primidone) can lower biotin"
+  ],
+  "myths": [
+   [
+    "Biotin makes hair grow faster.",
+    "It only helps if you're deficient, which is rare."
+   ]
+  ],
+  "faq": [
+   [
+    "Should I stop biotin before a blood test?",
+    "Tell your doctor you take it. They may ask you to pause it before certain tests."
+   ]
+  ]
+ },
+ "B9": {
+  "unit": "mcg DFE",
+  "needs": [
+   [
+    "Adults",
+    "400 mcg"
+   ],
+   [
+    "Pregnancy",
+    "600 mcg"
+   ],
+   [
+    "Breastfeeding",
+    "500 mcg"
+   ],
+   [
+    "Could become pregnant",
+    "400 mcg folic acid daily, plus food folate"
+   ]
+  ],
+  "needShort": "400 mcg a day",
+  "ul": "1,000 mcg a day of folic acid from supplements and fortified foods. There's no limit for natural folate in food.",
+  "ulShort": "1,000 mcg (folic acid)",
+  "top3": "Spinach, beans, asparagus",
+  "dv": "400 mcg",
+  "table": [
+   [
+    "Spinach, boiled",
+    "½ cup",
+    "131 mcg",
+    33
+   ],
+   [
+    "Black-eyed peas, boiled",
+    "½ cup",
+    "105 mcg",
+    26
+   ],
+   [
+    "Breakfast cereal, fortified (25% DV)",
+    "1 serving",
+    "100 mcg",
+    25
+   ],
+   [
+    "Asparagus, boiled",
+    "4 spears",
+    "89 mcg",
+    22
+   ],
+   [
+    "Brussels sprouts, boiled",
+    "½ cup",
+    "78 mcg",
+    20
+   ],
+   [
+    "Romaine lettuce",
+    "1 cup",
+    "64 mcg",
+    16
+   ],
+   [
+    "Avocado, sliced",
+    "½ cup",
+    "59 mcg",
+    15
+   ],
+   [
+    "Broccoli, cooked",
+    "½ cup",
+    "52 mcg",
+    13
+   ],
+   [
+    "Green peas, boiled",
+    "½ cup",
+    "47 mcg",
+    12
+   ],
+   [
+    "Kidney beans, canned",
+    "½ cup",
+    "46 mcg",
+    12
+   ]
+  ],
+  "indian": [
+   "Palak & methi",
+   "Lobia (black-eyed peas)",
+   "Rajma (kidney beans)",
+   "Moong, masoor & toor dal",
+   "Chana (chickpeas)",
+   "Bhindi (okra)",
+   "Oranges"
+  ],
+  "tips": [
+   "Folate is destroyed by long boiling. Steam greens, or eat some raw.",
+   "Dals and beans are folate powerhouses. A daily bowl helps a lot."
+  ],
+  "risk": [
+   [
+    "Anyone who could become pregnant",
+    "Folic acid before pregnancy helps prevent serious birth defects of the brain and spine."
+   ],
+   [
+    "Heavy alcohol use",
+    "Alcohol blocks folate absorption."
+   ],
+   [
+    "Gut conditions",
+    "Such as celiac disease or inflammatory bowel disease."
+   ],
+   [
+    "People with an MTHFR gene variant",
+    "A common variant that can lower folate levels a little."
+   ]
+  ],
+  "lowNote": "Low folate can cause a type of anemia (large red blood cells). It looks a lot like B12 deficiency, so both are usually tested together.",
+  "suppWhen": "Recommended for anyone who could become pregnant: 400 mcg of folic acid daily, starting at least a month before pregnancy. Most others can get enough from food.",
+  "suppPick": "Folic acid is well studied and well absorbed. L-methylfolate is an alternative. Ask your doctor which suits you.",
+  "interactions": [
+   "Methotrexate (for arthritis or cancer): don't take folic acid unless your doctor advises",
+   "Seizure medicines (phenytoin, carbamazepine, valproate) can lower folate",
+   "Sulfasalazine (for ulcerative colitis) reduces folate absorption",
+   "Large amounts of folic acid can hide a B12 deficiency"
+  ],
+  "myths": [
+   [
+    "You only need folate once you know you're pregnant.",
+    "The brain and spine form in the first weeks, often before you know. Start before."
+   ]
+  ],
+  "faq": [
+   [
+    "Folic acid or methylfolate?",
+    "Both raise folate levels. Folic acid is what most research on preventing birth defects used. Ask your doctor if you have an MTHFR variant."
+   ],
+   [
+    "Do men need folate?",
+    "Yes, everyone needs 400 mcg a day for healthy cells and blood."
+   ]
+  ]
+ },
+ "B12": {
+  "unit": "mcg",
+  "needs": [
+   [
+    "Adults",
+    "2.4 mcg"
+   ],
+   [
+    "Pregnancy",
+    "2.6 mcg"
+   ],
+   [
+    "Breastfeeding",
+    "2.8 mcg"
+   ],
+   [
+    "Adults over 50",
+    "Get most from fortified foods or a supplement"
+   ]
+  ],
+  "needShort": "2.4 mcg a day",
+  "ul": "No upper limit has been set. Your body absorbs only a small portion of large doses.",
+  "ulShort": "None set",
+  "top3": "Fish, dairy, fortified foods",
+  "dv": "2.4 mcg",
+  "table": [
+   [
+    "Salmon, cooked",
+    "3 oz",
+    "4.8 mcg",
+    200
+   ],
+   [
+    "Tuna, light, canned",
+    "3 oz",
+    "2.5 mcg",
+    104
+   ],
+   [
+    "Nutritional yeast, fortified",
+    "1 serving",
+    "2.4 mcg",
+    100
+   ],
+   [
+    "Milk, low-fat",
+    "1 cup",
+    "1.2 mcg",
+    50
+   ],
+   [
+    "Yogurt, low-fat",
+    "8 oz",
+    "1.1 mcg",
+    46
+   ],
+   [
+    "Swiss cheese",
+    "1 oz",
+    "0.9 mcg",
+    38
+   ],
+   [
+    "Breakfast cereal, fortified (25% DV)",
+    "1 serving",
+    "0.6 mcg",
+    25
+   ],
+   [
+    "Egg, hard boiled",
+    "1 large",
+    "0.5 mcg",
+    21
+   ]
+  ],
+  "tableNote": "Clams and beef liver are the richest sources: 3 oz has many days' worth.",
+  "indian": [
+   "Milk, curd & buttermilk",
+   "Paneer",
+   "Eggs",
+   "Fish",
+   "Fortified cereals & plant milks"
+  ],
+  "tips": [
+   "Plants don't make B12. Spirulina, seaweed and fermented foods are NOT reliable sources.",
+   "Vegetarians: 2–3 servings of dairy a day helps, but many still need fortified foods or a supplement."
+  ],
+  "risk": [
+   [
+    "Vegetarians and especially vegans",
+    "B12 is naturally found only in animal foods."
+   ],
+   [
+    "Adults over 50",
+    "Less stomach acid means less B12 absorbed from food."
+   ],
+   [
+    "People taking metformin or acid reducers long-term",
+    "Both lower B12 absorption."
+   ],
+   [
+    "Pernicious anemia or gut surgery",
+    "The body can't absorb B12 normally."
+   ],
+   [
+    "Babies of vegan mothers who breastfeed",
+    "Low B12 in breast milk can harm a baby's development."
+   ]
+  ],
+  "lowNote": "Low B12 can cause permanent nerve damage if untreated, sometimes before anemia shows up. A simple blood test can check.",
+  "suppWhen": "Strongly recommended for vegans. Worth discussing for vegetarians, adults over 50, and anyone on long-term metformin or acid reducers.",
+  "suppPick": "Cyanocobalamin is cheap, stable and well studied. Methylcobalamin also works. Shots are used when absorption is the problem.",
+  "interactions": [
+   "Metformin (diabetes) lowers B12 over time",
+   "Acid reducers: PPIs like omeprazole and H2 blockers like famotidine",
+   "Chloramphenicol (an antibiotic)"
+  ],
+  "myths": [
+   [
+    "Vegetarians get enough B12 from dairy.",
+    "Some do, but many don't. Getting tested is the only way to know."
+   ],
+   [
+    "B12 shots give everyone more energy.",
+    "They only help if you're low."
+   ]
+  ],
+  "faq": [
+   [
+    "How do I know if I'm low on B12?",
+    "Ask your doctor for a blood test. Your doctor may also check methylmalonic acid (MMA) for a clearer picture."
+   ],
+   [
+    "Is too much B12 harmful?",
+    "No upper limit is set, and extra is mostly not absorbed. Unusually high blood levels without supplements are worth mentioning to your doctor."
+   ]
+  ]
+ },
+ "C": {
+  "unit": "mg",
+  "needs": [
+   [
+    "Men",
+    "90 mg"
+   ],
+   [
+    "Women",
+    "75 mg"
+   ],
+   [
+    "Pregnancy",
+    "85 mg"
+   ],
+   [
+    "Breastfeeding",
+    "120 mg"
+   ],
+   [
+    "Smokers",
+    "Add 35 mg"
+   ]
+  ],
+  "needShort": "75–90 mg a day",
+  "ul": "2,000 mg a day. More can cause diarrhea and stomach upset.",
+  "ulShort": "2,000 mg",
+  "top3": "Bell peppers, oranges, kiwi",
+  "dv": "90 mg",
+  "table": [
+   [
+    "Red bell pepper, raw",
+    "½ cup",
+    "95 mg",
+    106
+   ],
+   [
+    "Orange juice",
+    "¾ cup",
+    "93 mg",
+    103
+   ],
+   [
+    "Orange",
+    "1 medium",
+    "70 mg",
+    78
+   ],
+   [
+    "Kiwi",
+    "1 medium",
+    "64 mg",
+    71
+   ],
+   [
+    "Green bell pepper, raw",
+    "½ cup",
+    "60 mg",
+    67
+   ],
+   [
+    "Broccoli, cooked",
+    "½ cup",
+    "51 mg",
+    57
+   ],
+   [
+    "Strawberries",
+    "½ cup",
+    "49 mg",
+    54
+   ],
+   [
+    "Brussels sprouts, cooked",
+    "½ cup",
+    "48 mg",
+    53
+   ],
+   [
+    "Tomato juice",
+    "¾ cup",
+    "33 mg",
+    37
+   ],
+   [
+    "Cantaloupe",
+    "½ cup",
+    "29 mg",
+    32
+   ]
+  ],
+  "indian": [
+   "Amla (Indian gooseberry)",
+   "Guava (amrood)",
+   "Oranges & mosambi",
+   "Lemon (nimbu)",
+   "Capsicum (shimla mirch)",
+   "Tomatoes",
+   "Papaya"
+  ],
+  "tips": [
+   "Heat and water destroy vitamin C. Eat some fruit and veg raw.",
+   "Squeeze lemon on dal or sabzi at the end of cooking, not during.",
+   "Vitamin C helps you absorb iron from plant foods. Pair them!"
+  ],
+  "risk": [
+   [
+    "Smokers and people around secondhand smoke",
+    "Smoking uses up vitamin C faster."
+   ],
+   [
+    "Very limited diets",
+    "Including some older adults and people with food insecurity."
+   ],
+   [
+    "Some gut and kidney conditions",
+    "Including people on dialysis."
+   ]
+  ],
+  "lowNote": "Severe deficiency (scurvy) is rare but still happens with very restricted diets.",
+  "suppWhen": "Most people can easily get enough from fruits and vegetables. A supplement may help smokers or people who eat very little produce.",
+  "suppPick": "Ascorbic acid works fine. Buffered forms (sodium or calcium ascorbate) may be gentler on the stomach.",
+  "interactions": [
+   "Some chemotherapy and radiation treatments: ask your oncologist before taking antioxidant supplements",
+   "Combination with niacin and simvastatin may blunt cholesterol benefits"
+  ],
+  "myths": [
+   [
+    "Vitamin C prevents colds.",
+    "For most people it doesn't prevent colds, but regular intake may make them slightly shorter."
+   ],
+   [
+    "Megadoses are harmless because extra is peed out.",
+    "Over 2,000 mg a day can cause diarrhea and raise kidney stone risk in some people."
+   ]
+  ],
+  "faq": [
+   [
+    "Is amla really high in vitamin C?",
+    "Yes, amla is one of the richest fruit sources. Fresh is best, since processing and heat reduce it."
+   ],
+   [
+    "Does orange juice count?",
+    "Yes. ¾ cup gives about a day's worth, but whole fruit also gives fiber."
+   ]
+  ]
+ },
+ "D": {
+  "unit": "IU",
+  "needs": [
+   [
+    "Ages 1–70",
+    "600 IU (15 mcg)"
+   ],
+   [
+    "Over 70",
+    "800 IU (20 mcg)"
+   ],
+   [
+    "Pregnancy & breastfeeding",
+    "600 IU (15 mcg)"
+   ],
+   [
+    "Babies under 1",
+    "400 IU (10 mcg)"
+   ]
+  ],
+  "needShort": "600–800 IU a day",
+  "ul": "4,000 IU (100 mcg) a day for adults. Doctors sometimes prescribe more for a short time to treat a deficiency.",
+  "ulShort": "4,000 IU",
+  "top3": "Fatty fish, UV mushrooms, fortified milk",
+  "dv": "800 IU",
+  "table": [
+   [
+    "Trout, farmed, cooked",
+    "3 oz",
+    "645 IU",
+    81
+   ],
+   [
+    "Salmon, sockeye, cooked",
+    "3 oz",
+    "570 IU",
+    71
+   ],
+   [
+    "Mushrooms, exposed to UV light",
+    "½ cup",
+    "366 IU",
+    46
+   ],
+   [
+    "Milk, 2%, fortified",
+    "1 cup",
+    "120 IU",
+    15
+   ],
+   [
+    "Soy, almond or oat milk, fortified",
+    "1 cup",
+    "100–144 IU",
+    15
+   ],
+   [
+    "Breakfast cereal, fortified (10% DV)",
+    "1 serving",
+    "80 IU",
+    10
+   ],
+   [
+    "Sardines, canned",
+    "2 fish",
+    "46 IU",
+    6
+   ],
+   [
+    "Egg, scrambled",
+    "1 large",
+    "44 IU",
+    6
+   ],
+   [
+    "Tuna, light, canned",
+    "3 oz",
+    "40 IU",
+    5
+   ]
+  ],
+  "tableNote": "Few foods have much vitamin D. Most people rely on sunshine, fortified foods or a supplement.",
+  "indian": [
+   "Morning sunlight on arms & legs",
+   "Eggs",
+   "Fatty fish (sardines, mackerel / bangda)",
+   "Fortified milk & oils",
+   "Sun-dried or UV mushrooms"
+  ],
+  "tips": [
+   "Your skin makes vitamin D from sunlight, but glass and sunscreen block it. Short, sensible sun exposure helps. Avoid sunburn.",
+   "Vitamin D is fat-soluble, so take supplements with a meal."
+  ],
+  "risk": [
+   [
+    "Older adults",
+    "Skin makes less and kidneys convert less."
+   ],
+   [
+    "People who get little sun",
+    "Indoor jobs, covered clothing or northern winters."
+   ],
+   [
+    "Darker skin tones",
+    "More melanin means less vitamin D made from the same sun."
+   ],
+   [
+    "Breastfed babies",
+    "Breast milk is low in vitamin D."
+   ],
+   [
+    "Obesity or gastric bypass",
+    "Vitamin D gets trapped in fat tissue or absorbed less."
+   ]
+  ],
+  "lowNote": "Low vitamin D is common in many countries, even sunny ones like India. A blood test (25-hydroxyvitamin D) is the only way to know.",
+  "suppWhen": "Worth discussing with your doctor if you're in any risk group. A blood test helps decide the right dose.",
+  "suppPick": "D3 raises blood levels more than D2. Take it with food that has some fat.",
+  "interactions": [
+   "Steroids like prednisone lower vitamin D",
+   "Orlistat (Alli, Xenical) lowers absorption",
+   "Statins may interact",
+   "Thiazide water pills plus vitamin D can raise calcium too high"
+  ],
+  "myths": [
+   [
+    "Living somewhere sunny means you have enough.",
+    "Many people in sunny places are low, due to indoor life, clothing, skin tone and pollution."
+   ],
+   [
+    "More vitamin D is always better.",
+    "Too much raises blood calcium and can harm kidneys and heart."
+   ]
+  ],
+  "faq": [
+   [
+    "D3 or D2?",
+    "Both work, but D3 raises and keeps blood levels higher. D2 is the vegan option, though vegan D3 from lichen also exists."
+   ],
+   [
+    "How much sun do I need?",
+    "It depends on skin tone, season, location and time of day. There's no single safe number, so many experts suggest food and supplements over extra sun."
+   ]
+  ]
+ },
+ "E": {
+  "unit": "mg",
+  "needs": [
+   [
+    "Adults",
+    "15 mg"
+   ],
+   [
+    "Pregnancy",
+    "15 mg"
+   ],
+   [
+    "Breastfeeding",
+    "19 mg"
+   ]
+  ],
+  "needShort": "15 mg a day",
+  "ul": "1,000 mg a day from supplements (about 1,500 IU natural or 1,100 IU synthetic).",
+  "ulShort": "1,000 mg (supplements)",
+  "top3": "Sunflower seeds, almonds, plant oils",
+  "dv": "15 mg",
+  "table": [
+   [
+    "Wheat germ oil",
+    "1 tbsp",
+    "20.3 mg",
+    135
+   ],
+   [
+    "Sunflower seeds, dry roasted",
+    "1 oz",
+    "7.4 mg",
+    49
+   ],
+   [
+    "Almonds, dry roasted",
+    "1 oz",
+    "6.8 mg",
+    45
+   ],
+   [
+    "Sunflower oil",
+    "1 tbsp",
+    "5.6 mg",
+    37
+   ],
+   [
+    "Hazelnuts, dry roasted",
+    "1 oz",
+    "4.3 mg",
+    29
+   ],
+   [
+    "Peanut butter",
+    "2 tbsp",
+    "2.9 mg",
+    19
+   ],
+   [
+    "Peanuts, dry roasted",
+    "1 oz",
+    "2.2 mg",
+    15
+   ],
+   [
+    "Spinach, boiled",
+    "½ cup",
+    "1.9 mg",
+    13
+   ],
+   [
+    "Broccoli, boiled",
+    "½ cup",
+    "1.2 mg",
+    8
+   ],
+   [
+    "Kiwi",
+    "1 medium",
+    "1.1 mg",
+    7
+   ]
+  ],
+  "indian": [
+   "Almonds (badam)",
+   "Sunflower seeds",
+   "Peanuts & groundnut oil",
+   "Sunflower oil",
+   "Spinach (palak)",
+   "Mango"
+  ],
+  "tips": [
+   "A small handful of almonds or sunflower seeds a day covers about half your needs.",
+   "Most Americans eat less than the recommended amount, though true deficiency is rare."
+  ],
+  "risk": [
+   [
+    "Gut conditions that limit fat absorption",
+    "Such as Crohn's disease or cystic fibrosis."
+   ],
+   [
+    "Very low-fat diets",
+    "Vitamin E comes mostly from fats and oils."
+   ],
+   [
+    "Premature babies",
+    "Born with low stores."
+   ]
+  ],
+  "lowNote": "True deficiency is rare in healthy adults.",
+  "suppWhen": "Not recommended routinely. Large trials didn't show benefits for heart disease or cancer prevention, and in one big trial, men taking 400 IU daily had a slightly higher prostate cancer risk.",
+  "suppPick": "'d-alpha-tocopherol' is natural. 'dl-alpha-tocopherol' is synthetic and about half as strong per mg.",
+  "interactions": [
+   "Blood thinners (warfarin) and antiplatelet drugs: vitamin E can increase bleeding risk",
+   "Simvastatin with niacin: may blunt benefits",
+   "Chemotherapy and radiation: ask your oncologist first"
+  ],
+  "myths": [
+   [
+    "Vitamin E pills prevent heart disease.",
+    "Large studies found no benefit."
+   ]
+  ],
+  "faq": [
+   [
+    "Does vitamin E oil help scars?",
+    "Studies are mixed, and some people get skin irritation. It doesn't affect your body's vitamin E levels."
+   ]
+  ]
+ },
+ "K": {
+  "unit": "mcg",
+  "needs": [
+   [
+    "Men",
+    "120 mcg"
+   ],
+   [
+    "Women",
+    "90 mcg"
+   ],
+   [
+    "Pregnancy & breastfeeding",
+    "90 mcg"
+   ]
+  ],
+  "needShort": "90–120 mcg a day",
+  "ul": "No upper limit has been set. Vitamin K from food and supplements has low potential for harm.",
+  "ulShort": "None set",
+  "top3": "Leafy greens, broccoli, soybeans",
+  "dv": "120 mcg",
+  "table": [
+   [
+    "Natto (fermented soybeans)",
+    "3 oz",
+    "850 mcg",
+    708
+   ],
+   [
+    "Collard greens, boiled",
+    "½ cup",
+    "530 mcg",
+    442
+   ],
+   [
+    "Turnip greens, boiled",
+    "½ cup",
+    "426 mcg",
+    355
+   ],
+   [
+    "Spinach, raw",
+    "1 cup",
+    "145 mcg",
+    121
+   ],
+   [
+    "Kale, raw",
+    "1 cup",
+    "113 mcg",
+    94
+   ],
+   [
+    "Broccoli, boiled",
+    "½ cup",
+    "110 mcg",
+    92
+   ],
+   [
+    "Soybeans, roasted",
+    "½ cup",
+    "43 mcg",
+    36
+   ],
+   [
+    "Soybean oil",
+    "1 tbsp",
+    "25 mcg",
+    21
+   ],
+   [
+    "Edamame",
+    "½ cup",
+    "21 mcg",
+    18
+   ],
+   [
+    "Okra, raw",
+    "½ cup",
+    "16 mcg",
+    13
+   ]
+  ],
+  "indian": [
+   "Palak (spinach)",
+   "Methi (fenugreek)",
+   "Sarson (mustard greens)",
+   "Cabbage & broccoli",
+   "Bhindi (okra)",
+   "Soybeans"
+  ],
+  "tips": [
+   "Vitamin K needs fat to be absorbed. Cooking greens with a little oil helps.",
+   "On warfarin? The key is consistency: similar amounts of greens each week."
+  ],
+  "risk": [
+   [
+    "Newborns who didn't get the vitamin K shot",
+    "Babies are born with very little."
+   ],
+   [
+    "Gut conditions that limit absorption",
+    "Such as celiac disease or cystic fibrosis."
+   ]
+  ],
+  "lowNote": "Deficiency in healthy adults is rare.",
+  "suppWhen": "Not needed for most adults. Don't start or stop vitamin K if you take warfarin without talking to your doctor.",
+  "suppPick": "K1 (phylloquinone) is the main food form. K2 (MK-7) is common in supplements.",
+  "interactions": [
+   "⚠️ Warfarin (Coumadin) and similar blood thinners: sudden changes in vitamin K change how the drug works",
+   "Some antibiotics may lower vitamin K made by gut bacteria",
+   "Cholesterol binders (cholestyramine, colestipol) and orlistat lower absorption"
+  ],
+  "myths": [
+   [
+    "People on blood thinners must avoid green vegetables.",
+    "No. Keep intake steady from week to week, and your doctor adjusts your dose."
+   ]
+  ],
+  "faq": [
+   [
+    "Does K2 help bones?",
+    "Research is promising but not conclusive. Food first. Ask your doctor before supplementing."
+   ],
+   [
+    "Is natto worth trying?",
+    "It's the richest K2 food by far. It's an acquired taste, though!"
+   ]
+  ]
+ }
+}
