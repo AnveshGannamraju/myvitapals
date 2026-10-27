@@ -177,7 +177,7 @@
       [
         "Omega-3 fats",
         "y",
-        "",
+        "/omega-3/",
         "EPA and DHA (from fish) and ALA (from flaxseed, chia, walnuts). Trials in rheumatoid arthritis show people needed fewer painkillers, but effects on pain and swelling were inconsistent. Adults need 1.1 g (women) to 1.6 g (men) of ALA a day; 1 tbsp of flaxseed has about 2.35 g. No upper limit is set, and the FDA considers up to 5 g a day of EPA + DHA from supplements safe. High doses can increase bleeding risk, and 4 g a day was linked to a slightly higher risk of an irregular heartbeat (atrial fibrillation) in heart patients. On warfarin? Your doctor may want to check your INR."
       ],
       [
@@ -207,7 +207,7 @@
       [
         "Magnesium, zinc, selenium",
         "w",
-        "",
+        "/magnesium/",
         "Your body needs them, and being low is linked with more inflammation. That doesn't mean extra pills help if your levels are fine. Get them from nuts, seeds, dals and whole grains."
       ]
     ],
@@ -388,7 +388,11 @@
       "vitamins": [
         "C",
         "D",
-        "E"
+        "E",
+        "O3",
+        "Mg",
+        "Zn",
+        "Se"
       ],
       "guides": [
         "over-50",
@@ -583,19 +587,19 @@
       [
         "Iodine",
         "g",
-        "",
+        "/iodine/",
         "Your thyroid needs it to make thyroid hormone. Adults need 150 mcg a day (220 mcg in pregnancy). Easy sources: iodized salt (¼ tsp has about 78 mcg), milk, curd, eggs and fish. Vegans and people who skip iodized salt may run low. Upper limit: 1,100 mcg a day. Too much, often from kelp or iodine drops, can cause or worsen thyroid problems, especially if you have autoimmune thyroid disease."
       ],
       [
         "Iron",
         "g",
-        "",
+        "/iron/",
         "Heavy periods are a common cause of low iron, which causes tiredness that's easy to blame on \"hormones.\" Women 19–50 need 18 mg a day, men 8 mg. Dals, chana, palak, rajma and fortified cereals help, and vitamin C (amla, guava, lemon) boosts absorption. Upper limit: 45 mg a day. Ask your doctor to test before taking pills."
       ],
       [
         "Calcium (for PMS)",
         "y",
-        "",
+        "/calcium/",
         "ACOG suggests calcium may ease PMS symptoms, though the evidence is low quality. Adults need 1,000 mg a day (1,200 mg for women over 50). Curd, milk, paneer, ragi and til are great sources. Upper limit: 2,500 mg a day up to age 50, then 2,000 mg."
       ],
       [
@@ -619,7 +623,7 @@
       [
         "Selenium",
         "w",
-        "",
+        "/selenium/",
         "The thyroid has more selenium than most organs. In Hashimoto's (autoimmune hypothyroidism), selenium pills can lower antibody numbers, but there's no clear proof that people feel better. Adults need 55 mcg a day; just 1 oz (6–8) of Brazil nuts has about 544 mcg, above the 400 mcg upper limit."
       ],
       [
@@ -848,7 +852,11 @@
         "D",
         "B12",
         "B6",
-        "B7"
+        "B7",
+        "I",
+        "Se",
+        "Fe",
+        "Ca"
       ],
       "guides": [
         "tired",

@@ -1691,5 +1691,1162 @@
         "It's the richest K2 food by far. It's an acquired taste, though!"
       ]
     ]
+  },
+  "Fe": {
+    "unit": "mg",
+    "needs": [
+      [
+        "Men",
+        "8 mg"
+      ],
+      [
+        "Women 19–50",
+        "18 mg"
+      ],
+      [
+        "Women 51+",
+        "8 mg"
+      ],
+      [
+        "Pregnancy",
+        "27 mg"
+      ],
+      [
+        "Breastfeeding",
+        "9 mg"
+      ],
+      [
+        "Vegetarians",
+        "1.8 times these amounts"
+      ]
+    ],
+    "needShort": "8–18 mg a day",
+    "ul": "45 mg a day for adults. Supplements at this level often cause nausea and constipation.",
+    "ulShort": "45 mg",
+    "top3": "Fortified cereal, beans, lentils",
+    "dv": "18 mg",
+    "table": [
+      [
+        "Breakfast cereal, fortified (100% DV)",
+        "1 serving",
+        "18 mg",
+        100
+      ],
+      [
+        "Oysters, cooked",
+        "3 oz",
+        "8 mg",
+        44
+      ],
+      [
+        "White beans, canned",
+        "1 cup",
+        "8 mg",
+        44
+      ],
+      [
+        "Lentils, boiled",
+        "½ cup",
+        "3 mg",
+        17
+      ],
+      [
+        "Spinach, boiled",
+        "½ cup",
+        "3 mg",
+        17
+      ],
+      [
+        "Tofu, firm",
+        "½ cup",
+        "3 mg",
+        17
+      ],
+      [
+        "Dark chocolate (45–69% cacao)",
+        "1 oz",
+        "2 mg",
+        11
+      ],
+      [
+        "Kidney beans, canned",
+        "½ cup",
+        "2 mg",
+        11
+      ],
+      [
+        "Chickpeas, boiled",
+        "½ cup",
+        "2 mg",
+        11
+      ],
+      [
+        "Sardines, canned",
+        "3 oz",
+        "2 mg",
+        11
+      ],
+      [
+        "Beef, braised",
+        "3 oz",
+        "2 mg",
+        11
+      ],
+      [
+        "Cashews",
+        "1 oz",
+        "2 mg",
+        11
+      ],
+      [
+        "Egg, hard boiled",
+        "1 large",
+        "1 mg",
+        6
+      ]
+    ],
+    "tableNote": "Iron from meat, fish and poultry (heme iron) is absorbed best. Plant iron is absorbed less, which is why vegetarians need 1.8 times as much.",
+    "indian": [
+      "Rajma (kidney beans)",
+      "Chana & kala chana",
+      "Masoor & moong dal",
+      "Palak & methi",
+      "Bajra & ragi",
+      "Tofu & soya chunks",
+      "Til (sesame)",
+      "Kishmish (raisins)"
+    ],
+    "tips": [
+      "Pair plant iron with vitamin C: lemon on dal, or amla, guava or orange with the meal.",
+      "Have chai or coffee between meals rather than with them. Plant compounds called polyphenols can block plant iron.",
+      "If you take calcium and iron supplements, take them at different times."
+    ],
+    "risk": [
+      [
+        "Women with heavy periods",
+        "Monthly blood loss is a common reason for low iron."
+      ],
+      [
+        "Pregnancy",
+        "Needs rise to 27 mg a day."
+      ],
+      [
+        "Vegetarians and vegans",
+        "Plant iron is absorbed less, so needs are 1.8 times higher."
+      ],
+      [
+        "Frequent blood donors",
+        "Each donation takes iron with it."
+      ],
+      [
+        "Gut conditions or surgery",
+        "Celiac disease, IBD or weight-loss surgery can cut absorption."
+      ]
+    ],
+    "lowNote": "Low iron can lead to iron deficiency anemia. A ferritin test shows your iron stores, and a complete blood count (CBC) checks for anemia.",
+    "suppWhen": "Only if a blood test shows you're low, or your doctor advises it, for example in pregnancy. Low iron always has a reason, like heavy periods or slow bleeding in the gut, so find the cause too.",
+    "suppPick": "Your doctor will suggest a dose. Taking iron with food eases stomach upset. Keep iron pills locked away: accidental overdose is a leading cause of fatal poisoning in children under 6.",
+    "interactions": [
+      "Levothyroxine (thyroid medicine): iron can block it. Take them at least 4 hours apart",
+      "Levodopa (for Parkinson's): iron may lower how much you absorb",
+      "Acid reducers (PPIs like omeprazole) lower absorption of plant iron",
+      "Iron of 25 mg or more can lower zinc absorption"
+    ],
+    "myths": [
+      [
+        "Spinach is the best iron food.",
+        "It has some (3 mg per ½ cup cooked), but plant iron is absorbed less. Dals, beans and fortified cereals give as much or more."
+      ],
+      [
+        "If you're tired, you need iron pills.",
+        "Tiredness has many causes, and extra iron can harm you. Get a blood test first."
+      ],
+      [
+        "Jaggery fixes low iron.",
+        "Jaggery is mostly sugar. If you're low, you need a diagnosis and a plan from your doctor, not a sweetener swap."
+      ]
+    ],
+    "faq": [
+      [
+        "Should I get my iron checked?",
+        "If you have heavy periods, are pregnant, are vegetarian or are always tired, ask your doctor about a ferritin test and a complete blood count (CBC)."
+      ],
+      [
+        "Does chai with meals really matter?",
+        "It can. Polyphenols in tea and coffee can reduce how much plant iron you absorb. Enjoy your chai between meals instead."
+      ],
+      [
+        "Can I get enough iron as a vegetarian?",
+        "Yes, with some planning: dals, beans, tofu, millets, greens and fortified cereals, with a vitamin C food at the same meal."
+      ]
+    ]
+  },
+  "Ca": {
+    "unit": "mg",
+    "needs": [
+      [
+        "Adults 19–50",
+        "1,000 mg"
+      ],
+      [
+        "Men 51–70",
+        "1,000 mg"
+      ],
+      [
+        "Women 51+",
+        "1,200 mg"
+      ],
+      [
+        "Everyone 71+",
+        "1,200 mg"
+      ],
+      [
+        "Pregnancy & breastfeeding",
+        "1,000 mg"
+      ]
+    ],
+    "needShort": "1,000–1,200 mg a day",
+    "ul": "2,500 mg a day up to age 50, then 2,000 mg. This includes food and supplements.",
+    "ulShort": "2,000–2,500 mg",
+    "top3": "Yogurt, milk, fortified soy milk",
+    "dv": "1,300 mg",
+    "table": [
+      [
+        "Yogurt, plain, low fat",
+        "8 oz",
+        "415 mg",
+        32
+      ],
+      [
+        "Orange juice, calcium fortified",
+        "1 cup",
+        "349 mg",
+        27
+      ],
+      [
+        "Mozzarella, part skim",
+        "1.5 oz",
+        "333 mg",
+        26
+      ],
+      [
+        "Sardines, canned with bones",
+        "3 oz",
+        "325 mg",
+        25
+      ],
+      [
+        "Milk, nonfat",
+        "1 cup",
+        "299 mg",
+        23
+      ],
+      [
+        "Soy milk, calcium fortified",
+        "1 cup",
+        "299 mg",
+        23
+      ],
+      [
+        "Tofu, firm, made with calcium sulfate",
+        "½ cup",
+        "253 mg",
+        19
+      ],
+      [
+        "Salmon, canned with bones",
+        "3 oz",
+        "181 mg",
+        14
+      ],
+      [
+        "Soybeans, cooked",
+        "½ cup",
+        "131 mg",
+        10
+      ],
+      [
+        "Spinach, boiled",
+        "½ cup",
+        "123 mg",
+        9
+      ],
+      [
+        "Kale, cooked",
+        "1 cup",
+        "94 mg",
+        7
+      ],
+      [
+        "Chia seeds",
+        "1 tbsp",
+        "76 mg",
+        6
+      ]
+    ],
+    "tableNote": "Tofu only counts if it's made with calcium sulfate (check the label).",
+    "indian": [
+      "Curd (dahi) & buttermilk",
+      "Paneer",
+      "Milk",
+      "Ragi (finger millet)",
+      "Til (sesame) & til chikki",
+      "Sarson & methi greens",
+      "Rajma & chana",
+      "Small fish eaten with bones"
+    ],
+    "tips": [
+      "Spread calcium through the day. Your body absorbs it best in amounts of 500 mg or less at a time.",
+      "Vitamin D helps you absorb calcium.",
+      "A bowl of curd plus a glass of milk covers more than half a day's need."
+    ],
+    "risk": [
+      [
+        "Women after menopause",
+        "Less estrogen means less calcium absorbed and more bone loss."
+      ],
+      [
+        "People who avoid dairy",
+        "Including lactose intolerance, milk allergy and vegan diets."
+      ],
+      [
+        "Adults over 50",
+        "Needs rise and absorption drops with age."
+      ]
+    ],
+    "lowNote": "Low intake mostly shows up silently as weaker bones over years. Blood calcium stays normal even when you eat too little, so ask about a bone density (DEXA) scan if you're at risk.",
+    "suppWhen": "If food doesn't get you close, for example if you skip dairy and fortified foods. Many people only need a small top-up, not a full 1,000 mg pill.",
+    "suppPick": "Calcium carbonate is about 40% calcium and works best with food. Calcium citrate is about 21% calcium, works without food and is gentler on the stomach. Take 500 mg or less at a time.",
+    "interactions": [
+      "Levothyroxine (thyroid medicine): take it at least 4 hours apart from calcium",
+      "Antibiotics like ciprofloxacin: take them 2 hours before or 2 hours after calcium",
+      "Dolutegravir (for HIV): take it 2 hours before or 6 hours after calcium",
+      "Lithium: may raise blood calcium, and extra calcium could add to it"
+    ],
+    "myths": [
+      [
+        "More calcium pills mean stronger bones.",
+        "Above your daily need, extra calcium doesn't build more bone, and high supplement doses may raise kidney stone risk for some people."
+      ],
+      [
+        "Only dairy has calcium.",
+        "Fortified soy milk, calcium-set tofu, ragi, til, sardines with bones and greens like sarson all help."
+      ]
+    ],
+    "faq": [
+      [
+        "Do I need a calcium supplement after menopause?",
+        "Not automatically. Add up what you eat first: three servings of dairy or fortified alternatives cover most of the 1,200 mg. Ask your doctor about bone density testing."
+      ],
+      [
+        "Is calcium bad for my heart?",
+        "Studies are mixed. An expert panel concluded that intakes within the upper limit are safe for the heart. Food sources are the safest bet."
+      ]
+    ]
+  },
+  "Mg": {
+    "unit": "mg",
+    "needs": [
+      [
+        "Men 19–30",
+        "400 mg"
+      ],
+      [
+        "Men 31+",
+        "420 mg"
+      ],
+      [
+        "Women 19–30",
+        "310 mg"
+      ],
+      [
+        "Women 31+",
+        "320 mg"
+      ],
+      [
+        "Pregnancy",
+        "350–360 mg"
+      ]
+    ],
+    "needShort": "310–420 mg a day",
+    "ul": "350 mg a day from supplements and medicines only. Magnesium from food doesn't count toward it. More often causes diarrhea.",
+    "ulShort": "350 mg (supplements)",
+    "top3": "Pumpkin seeds, chia, almonds",
+    "dv": "420 mg",
+    "table": [
+      [
+        "Pumpkin seeds, roasted",
+        "1 oz",
+        "156 mg",
+        37
+      ],
+      [
+        "Chia seeds",
+        "1 oz",
+        "111 mg",
+        26
+      ],
+      [
+        "Almonds, dry roasted",
+        "1 oz",
+        "80 mg",
+        19
+      ],
+      [
+        "Spinach, boiled",
+        "½ cup",
+        "78 mg",
+        19
+      ],
+      [
+        "Cashews, dry roasted",
+        "1 oz",
+        "74 mg",
+        18
+      ],
+      [
+        "Peanuts, oil roasted",
+        "¼ cup",
+        "63 mg",
+        15
+      ],
+      [
+        "Soy milk",
+        "1 cup",
+        "61 mg",
+        15
+      ],
+      [
+        "Black beans, cooked",
+        "½ cup",
+        "60 mg",
+        14
+      ],
+      [
+        "Edamame, cooked",
+        "½ cup",
+        "50 mg",
+        12
+      ],
+      [
+        "Peanut butter",
+        "2 tbsp",
+        "49 mg",
+        12
+      ],
+      [
+        "Brown rice, cooked",
+        "½ cup",
+        "42 mg",
+        10
+      ],
+      [
+        "Banana",
+        "1 medium",
+        "32 mg",
+        8
+      ],
+      [
+        "White rice, cooked",
+        "½ cup",
+        "10 mg",
+        2
+      ]
+    ],
+    "tableNote": "Refining grains strips out most of the magnesium: compare brown and white rice.",
+    "indian": [
+      "Kaddu ke beej (pumpkin seeds)",
+      "Almonds & cashews",
+      "Peanuts (moongphali)",
+      "Rajma & chana",
+      "Bajra, jowar & whole wheat atta",
+      "Palak (spinach)",
+      "Banana",
+      "Curd (dahi)"
+    ],
+    "tips": [
+      "Choose whole grains: atta, brown rice, millets. Refining removes most of the magnesium.",
+      "A small handful of nuts or seeds a day goes a long way."
+    ],
+    "risk": [
+      [
+        "People with type 2 diabetes",
+        "More magnesium is lost in urine."
+      ],
+      [
+        "Older adults",
+        "They tend to eat less, absorb less and lose more."
+      ],
+      [
+        "Gut conditions",
+        "Crohn's, celiac disease or gut surgery."
+      ],
+      [
+        "Heavy drinking",
+        "Alcohol use disorder is linked to low magnesium."
+      ],
+      [
+        "Long-term acid reducers",
+        "PPIs taken for over a year can lower magnesium."
+      ]
+    ],
+    "lowNote": "Healthy people rarely get symptoms, because the kidneys hold on to magnesium when intake is low.",
+    "suppWhen": "Most people can get enough from nuts, seeds, beans and whole grains. Your doctor may suggest one if you take a PPI long term or have a gut condition. Magnesium for migraine prevention uses doses above the upper limit, so only with a doctor's guidance.",
+    "suppPick": "Citrate, aspartate, lactate and chloride forms are absorbed better than oxide. Labels list elemental magnesium. Diarrhea is the most common side effect.",
+    "interactions": [
+      "Bisphosphonates for osteoporosis (like alendronate): take them at least 2 hours apart",
+      "Antibiotics like doxycycline or ciprofloxacin: take the antibiotic 2 hours before or 4–6 hours after magnesium",
+      "Water pills: loop and thiazide diuretics raise magnesium losses; potassium-sparing ones (spironolactone) lower them",
+      "Acid reducers (PPIs) taken for over a year can lower magnesium",
+      "Kidney disease: avoid magnesium supplements unless prescribed"
+    ],
+    "myths": [
+      [
+        "Magnesium is a proven sleep aid.",
+        "There isn't strong trial evidence. Getting enough from food is great; a supplement for sleep is a maybe at best."
+      ],
+      [
+        "Antacids and laxatives are a harmless way to get magnesium.",
+        "Some, like milk of magnesia, can far exceed the upper limit, and they're risky if your kidneys don't work well."
+      ]
+    ],
+    "faq": [
+      [
+        "Does magnesium lower blood pressure?",
+        "Only a little, about 2–4 points in studies. The FDA calls the evidence inconsistent. Magnesium-rich foods are still worth eating."
+      ],
+      [
+        "Can magnesium help migraines?",
+        "Small trials suggest it may reduce how often they happen, and neurology groups call it probably effective. The doses used are above the upper limit, so only with your doctor's supervision."
+      ]
+    ]
+  },
+  "Zn": {
+    "unit": "mg",
+    "needs": [
+      [
+        "Men",
+        "11 mg"
+      ],
+      [
+        "Women",
+        "8 mg"
+      ],
+      [
+        "Pregnancy",
+        "11 mg"
+      ],
+      [
+        "Breastfeeding",
+        "12 mg"
+      ]
+    ],
+    "needShort": "8–11 mg a day",
+    "ul": "40 mg a day. Taking 50 mg or more for long periods can cause copper deficiency and weaken immunity.",
+    "ulShort": "40 mg",
+    "top3": "Oysters, beef, fortified cereal",
+    "dv": "11 mg",
+    "table": [
+      [
+        "Oysters, cooked",
+        "3 oz",
+        "28 mg",
+        256
+      ],
+      [
+        "Beef sirloin, roasted",
+        "3 oz",
+        "3.8 mg",
+        35
+      ],
+      [
+        "Crab, cooked",
+        "3 oz",
+        "3.2 mg",
+        29
+      ],
+      [
+        "Breakfast cereal, fortified (25% DV)",
+        "1 serving",
+        "2.8 mg",
+        25
+      ],
+      [
+        "Oats, cooked",
+        "1 cup",
+        "2.3 mg",
+        21
+      ],
+      [
+        "Pumpkin seeds, roasted",
+        "1 oz",
+        "2.2 mg",
+        20
+      ],
+      [
+        "Cheddar cheese",
+        "1.5 oz",
+        "1.5 mg",
+        14
+      ],
+      [
+        "Lentils, boiled",
+        "½ cup",
+        "1.3 mg",
+        12
+      ],
+      [
+        "Greek yogurt, plain",
+        "6 oz",
+        "1.0 mg",
+        9
+      ],
+      [
+        "Milk, 1%",
+        "1 cup",
+        "1.0 mg",
+        9
+      ],
+      [
+        "Peanuts, dry roasted",
+        "1 oz",
+        "0.8 mg",
+        7
+      ],
+      [
+        "Egg",
+        "1 large",
+        "0.6 mg",
+        5
+      ]
+    ],
+    "tableNote": "Zinc from beans and grains is absorbed less, because of natural compounds called phytates.",
+    "indian": [
+      "Kaddu ke beej & til (pumpkin & sesame seeds)",
+      "Chana & rajma",
+      "Moong & masoor dal",
+      "Paneer & curd",
+      "Oats, bajra & whole wheat atta",
+      "Cashews & peanuts",
+      "Eggs"
+    ],
+    "tips": [
+      "Soak, sprout or ferment beans and grains (sprouts, idli, dosa). It lowers phytates, so you absorb more zinc.",
+      "If you take iron of 25 mg or more, take zinc at a different time."
+    ],
+    "risk": [
+      [
+        "Vegetarians and vegans",
+        "Intake and absorption tend to be lower."
+      ],
+      [
+        "Pregnancy and breastfeeding",
+        "Needs rise."
+      ],
+      [
+        "Gut conditions or surgery",
+        "IBD, celiac disease or weight-loss surgery."
+      ],
+      [
+        "Heavy drinking",
+        "Alcohol lowers zinc absorption and raises losses."
+      ]
+    ],
+    "lowNote": "Mild zinc deficiency is hard to spot with a blood test, so doctors look at your diet and symptoms too.",
+    "suppWhen": "Usually only if your diet is low in zinc, or your doctor advises it. Zinc lozenges started early may shorten a cold by about 2 days.",
+    "suppPick": "Labels list elemental zinc. Gluconate, sulfate, acetate and citrate are common. Stay under 40 mg a day unless your doctor says otherwise.",
+    "interactions": [
+      "Antibiotics (quinolones like ciprofloxacin, tetracyclines like doxycycline): take the antibiotic 2 hours before or 4–6 hours after zinc",
+      "Penicillamine (for arthritis or Wilson's disease): take it at least 1 hour apart from zinc",
+      "Thiazide water pills (like hydrochlorothiazide) increase zinc loss"
+    ],
+    "myths": [
+      [
+        "Zinc prevents colds.",
+        "A 2024 Cochrane review found little to no effect on preventing colds. Started early, lozenges may shorten one by about 2 days."
+      ],
+      [
+        "More zinc means a stronger immune system.",
+        "Too much, 50 mg or more for long periods, can actually weaken immunity and cause copper deficiency."
+      ]
+    ],
+    "faq": [
+      [
+        "Do vegetarians need zinc supplements?",
+        "Not automatically. Dals, beans, seeds, whole grains and dairy all have zinc, and soaking or sprouting helps you absorb more. Ask your doctor if you're concerned."
+      ],
+      [
+        "What about zinc for eyesight?",
+        "In a large trial, a specific formula with 80 mg zinc plus vitamins lowered the risk of advanced macular degeneration by 25% in people at high risk. It's a medical regimen, not an everyday supplement."
+      ]
+    ]
+  },
+  "I": {
+    "unit": "mcg",
+    "needs": [
+      [
+        "Adults",
+        "150 mcg"
+      ],
+      [
+        "Pregnancy",
+        "220 mcg"
+      ],
+      [
+        "Breastfeeding",
+        "290 mcg"
+      ]
+    ],
+    "needShort": "150 mcg a day",
+    "ul": "1,100 mcg a day. Too much can cause or worsen thyroid problems, especially if you have autoimmune thyroid disease.",
+    "ulShort": "1,100 mcg",
+    "top3": "Iodized salt, dairy, fish",
+    "dv": "150 mcg",
+    "table": [
+      [
+        "Cod, baked",
+        "3 oz",
+        "146 mcg",
+        97
+      ],
+      [
+        "Nori seaweed, dried",
+        "2 tbsp (5 g)",
+        "116 mcg",
+        77
+      ],
+      [
+        "Oysters, cooked",
+        "3 oz",
+        "93 mcg",
+        62
+      ],
+      [
+        "Greek yogurt, plain",
+        "¾ cup",
+        "87 mcg",
+        58
+      ],
+      [
+        "Milk, nonfat",
+        "1 cup",
+        "84 mcg",
+        56
+      ],
+      [
+        "Iodized table salt",
+        "¼ tsp",
+        "78 mcg",
+        52
+      ],
+      [
+        "Egg, hard boiled",
+        "1 large",
+        "31 mcg",
+        21
+      ],
+      [
+        "Pasta cooked in iodized salt water",
+        "1 cup",
+        "30 mcg",
+        20
+      ],
+      [
+        "Cheddar cheese",
+        "1 oz",
+        "14 mcg",
+        9
+      ],
+      [
+        "Shrimp, cooked",
+        "3 oz",
+        "13 mcg",
+        9
+      ],
+      [
+        "Tuna, canned in water",
+        "3 oz",
+        "7 mcg",
+        5
+      ],
+      [
+        "Sea salt, not iodized",
+        "¼ tsp",
+        "0 mcg",
+        0
+      ]
+    ],
+    "tableNote": "Values are approximate. Seaweed varies hugely, from 16 to nearly 3,000 mcg per gram. Sea, kosher and pink salt usually aren't iodized.",
+    "indian": [
+      "Iodized salt (namak) in home cooking",
+      "Curd & milk",
+      "Paneer",
+      "Eggs",
+      "Fish & prawns"
+    ],
+    "tips": [
+      "Use iodized salt at home, but keep total salt modest. Packaged foods almost always use non-iodized salt.",
+      "Check your prenatal vitamin if you're pregnant: many contain no iodine."
+    ],
+    "risk": [
+      [
+        "Pregnancy and breastfeeding",
+        "Needs rise to 220–290 mcg."
+      ],
+      [
+        "Vegans and people who skip dairy, eggs and seafood",
+        "These are the main sources besides salt."
+      ],
+      [
+        "People who don't use iodized salt",
+        "Including people who switch to sea, rock or pink salt."
+      ]
+    ],
+    "lowNote": "If you have thyroid symptoms, a TSH blood test is the place to start. Iodine levels are usually judged across a population, not in one person.",
+    "suppWhen": "If you're planning a pregnancy, pregnant or breastfeeding, the American Thyroid Association recommends a supplement with 150 mcg of iodine a day. Otherwise, iodized salt, dairy and eggs usually cover it.",
+    "suppPick": "Potassium iodide is the usual form. Avoid kelp and seaweed supplements: their iodine content varies widely.",
+    "interactions": [
+      "Antithyroid medicines (like methimazole): high iodine can tip you toward an underactive thyroid",
+      "ACE inhibitors (like lisinopril) and potassium-sparing water pills (like spironolactone): potassium iodide may raise blood potassium"
+    ],
+    "myths": [
+      [
+        "Broccoli, cabbage and soy will harm your thyroid.",
+        "Only if you're short on iodine. With enough iodine and a varied diet, normal amounts aren't a concern."
+      ],
+      [
+        "Fancy salts are a better choice.",
+        "Sea, rock and pink salt usually aren't iodized, so switching can leave you short on iodine."
+      ]
+    ],
+    "faq": [
+      [
+        "Should I take iodine for my thyroid?",
+        "Not without a diagnosis and your doctor's advice. If you have autoimmune thyroid disease, extra iodine can make things worse."
+      ],
+      [
+        "How much iodized salt is enough?",
+        "About ¼ tsp of iodized salt gives roughly half a day's iodine. Dairy, eggs and fish cover much of the rest, so there's no need to add extra salt."
+      ]
+    ]
+  },
+  "Se": {
+    "unit": "mcg",
+    "needs": [
+      [
+        "Adults",
+        "55 mcg"
+      ],
+      [
+        "Pregnancy",
+        "60 mcg"
+      ],
+      [
+        "Breastfeeding",
+        "70 mcg"
+      ]
+    ],
+    "needShort": "55 mcg a day",
+    "ul": "400 mcg a day. Too much causes hair and nail loss, a metallic taste and garlic breath.",
+    "ulShort": "400 mcg",
+    "top3": "Brazil nuts, tuna, sardines",
+    "dv": "55 mcg",
+    "table": [
+      [
+        "Brazil nuts",
+        "1 oz (6–8 nuts)",
+        "544 mcg",
+        989
+      ],
+      [
+        "Tuna, yellowfin, cooked",
+        "3 oz",
+        "92 mcg",
+        167
+      ],
+      [
+        "Sardines, canned",
+        "3 oz",
+        "45 mcg",
+        82
+      ],
+      [
+        "Shrimp, cooked",
+        "3 oz",
+        "42 mcg",
+        76
+      ],
+      [
+        "Spaghetti, cooked",
+        "1 cup",
+        "33 mcg",
+        60
+      ],
+      [
+        "Chicken, light meat",
+        "3 oz",
+        "22 mcg",
+        40
+      ],
+      [
+        "Cottage cheese",
+        "1 cup",
+        "20 mcg",
+        36
+      ],
+      [
+        "Egg, hard boiled",
+        "1 large",
+        "15 mcg",
+        27
+      ],
+      [
+        "Baked beans",
+        "1 cup",
+        "13 mcg",
+        24
+      ],
+      [
+        "Oatmeal, cooked",
+        "1 cup",
+        "13 mcg",
+        24
+      ],
+      [
+        "Brown rice, cooked",
+        "1 cup",
+        "12 mcg",
+        22
+      ],
+      [
+        "Lentils, boiled",
+        "1 cup",
+        "6 mcg",
+        11
+      ]
+    ],
+    "tableNote": "Plant selenium depends on the soil it grew in. One Brazil nut can cover a day; a handful (6–8 nuts) is above the upper limit.",
+    "indian": [
+      "Eggs",
+      "Fish & prawns",
+      "Whole wheat atta & rotis",
+      "Mushrooms",
+      "Brown rice",
+      "Dals & lentils",
+      "Curd & paneer"
+    ],
+    "tips": [
+      "You don't need Brazil nuts every day. Eggs, grains, dairy and fish usually cover it."
+    ],
+    "risk": [
+      [
+        "People on long-term dialysis",
+        "Selenium levels are often low."
+      ],
+      [
+        "People with HIV",
+        "Levels are often low."
+      ],
+      [
+        "People in low-selenium regions eating mostly local plant foods",
+        "Soil levels drive what's in the food."
+      ]
+    ],
+    "lowNote": "Deficiency is rare in people who eat a mix of foods grown in different regions.",
+    "suppWhen": "Rarely needed. Supplements haven't been shown to prevent cancer, heart disease or memory loss in people who get enough.",
+    "suppPick": "If your doctor suggests one, keep your total under 400 mcg a day. In 2008, a mislabeled liquid supplement with about 200 times the stated amount sickened 201 people.",
+    "interactions": [
+      "Cisplatin (a chemotherapy drug) can lower selenium levels; the effect isn't clear, so ask your oncologist"
+    ],
+    "myths": [
+      [
+        "Selenium prevents cancer.",
+        "The SELECT trial of 35,533 men found 200 mcg a day didn't lower prostate cancer risk."
+      ],
+      [
+        "Selenium fixes Hashimoto's.",
+        "In some trials it lowered thyroid antibodies, but it didn't improve thyroid function or quality of life."
+      ]
+    ],
+    "faq": [
+      [
+        "How many Brazil nuts are safe?",
+        "One or two now and then is plenty. Eating 6–8 a day regularly puts you over the upper limit."
+      ],
+      [
+        "Should I take selenium for my thyroid?",
+        "Not routinely. Ask your doctor. The American Thyroid Association advises against it for pregnant women with thyroid antibodies."
+      ]
+    ]
+  },
+  "O3": {
+    "unit": "g",
+    "needs": [
+      [
+        "Men (ALA)",
+        "1.6 g"
+      ],
+      [
+        "Women (ALA)",
+        "1.1 g"
+      ],
+      [
+        "Pregnancy (ALA)",
+        "1.4 g"
+      ],
+      [
+        "Breastfeeding (ALA)",
+        "1.3 g"
+      ],
+      [
+        "EPA + DHA",
+        "No official amount. The AHA suggests 1–2 servings of fish a week"
+      ]
+    ],
+    "needShort": "1.1–1.6 g ALA a day",
+    "ul": "No upper limit is set. The FDA considers up to 5 g a day of EPA + DHA from supplements safe.",
+    "ulShort": "None set",
+    "top3": "Flaxseed, chia, salmon",
+    "dv": null,
+    "table": [
+      [
+        "Flaxseed oil",
+        "1 tbsp",
+        "7.26 g",
+        "ALA"
+      ],
+      [
+        "Chia seeds",
+        "1 oz",
+        "5.06 g",
+        "ALA"
+      ],
+      [
+        "Walnuts",
+        "1 oz",
+        "2.57 g",
+        "ALA"
+      ],
+      [
+        "Flaxseed, whole",
+        "1 tbsp",
+        "2.35 g",
+        "ALA"
+      ],
+      [
+        "Salmon, Atlantic, farmed",
+        "3 oz",
+        "1.83 g",
+        "EPA + DHA"
+      ],
+      [
+        "Herring, cooked",
+        "3 oz",
+        "1.71 g",
+        "EPA + DHA"
+      ],
+      [
+        "Salmon, Atlantic, wild",
+        "3 oz",
+        "1.57 g",
+        "EPA + DHA"
+      ],
+      [
+        "Canola oil",
+        "1 tbsp",
+        "1.28 g",
+        "ALA"
+      ],
+      [
+        "Sardines in tomato sauce",
+        "3 oz",
+        "1.19 g",
+        "EPA + DHA"
+      ],
+      [
+        "Mackerel, cooked",
+        "3 oz",
+        "1.02 g",
+        "EPA + DHA"
+      ],
+      [
+        "Soybean oil",
+        "1 tbsp",
+        "0.92 g",
+        "ALA"
+      ],
+      [
+        "Trout, rainbow",
+        "3 oz",
+        "0.84 g",
+        "EPA + DHA"
+      ],
+      [
+        "Edamame",
+        "½ cup",
+        "0.28 g",
+        "ALA"
+      ],
+      [
+        "Tuna, light, canned",
+        "3 oz",
+        "0.19 g",
+        "EPA + DHA"
+      ]
+    ],
+    "tableNote": "There's no Daily Value for omega-3s, so amounts are in grams. Your body turns only a small amount of plant ALA into EPA and DHA.",
+    "indian": [
+      "Alsi (flaxseed), roasted or ground",
+      "Akhrot (walnuts)",
+      "Soybeans & soya chunks",
+      "Rajma",
+      "Bangda (mackerel) & mathi (sardines)",
+      "Fish curry (if you eat fish)"
+    ],
+    "tips": [
+      "If you eat fish, aim for 1–2 servings a week, especially oily fish like salmon, mackerel and sardines.",
+      "Vegetarians can meet the ALA need with 1 tbsp of flaxseed or a small handful of walnuts."
+    ],
+    "risk": [
+      [
+        "Very low-fat diets",
+        "Fat is where omega-3s come from."
+      ],
+      [
+        "Poor fat absorption",
+        "Some gut conditions limit how much fat you absorb."
+      ],
+      [
+        "People who don't eat fish",
+        "ALA is easy to get, but EPA and DHA come mainly from seafood."
+      ]
+    ],
+    "lowNote": "True deficiency is very rare in healthy people.",
+    "suppWhen": "Not needed by most healthy people. For people with heart disease, the AHA suggests about 1 g a day of EPA + DHA, preferably from fish. Ask your doctor before starting.",
+    "suppPick": "Fish oil, krill oil and algae oil (a vegan source) are common. Check the label for the actual EPA + DHA per serving, not just total oil.",
+    "interactions": [
+      "Warfarin and other blood thinners: high doses may increase bleeding risk; your doctor may check your INR",
+      "High doses (4 g a day for years) slightly raised the risk of an irregular heartbeat (atrial fibrillation) in heart patients"
+    ],
+    "myths": [
+      [
+        "Fish oil pills protect everyone's heart.",
+        "In the large VITAL trial, 1 g a day didn't lower major heart events overall. The AHA doesn't recommend supplements for people at low risk."
+      ],
+      [
+        "Omega-3 capsules fix dry eyes.",
+        "A large study found 3 g a day of EPA + DHA for a year worked no better than a placebo."
+      ]
+    ],
+    "faq": [
+      [
+        "Do vegetarians need fish oil?",
+        "Not automatically. The ALA need is easy to meet with flaxseed, chia or walnuts. Algae oil is a vegan EPA and DHA option if your doctor suggests one."
+      ],
+      [
+        "Is mercury in fish a worry?",
+        "Choose lower-mercury fish like salmon, sardines and canned light tuna. In pregnancy, 8–12 oz a week of low-mercury seafood is recommended."
+      ]
+    ]
   }
 }

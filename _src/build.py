@@ -19,19 +19,21 @@ SITE = "https://myvitapals.com"
 REVIEWED = "October 2026"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-ASSET_V = "10"
+ASSET_V = "11"
 
 V = json.loads((SRC / "vitamins.json").read_text(encoding="utf-8"))
 D = json.loads((SRC / "details.json").read_text(encoding="utf-8"))
 G = json.loads((SRC / "guides.json").read_text(encoding="utf-8"))
 T = json.loads((SRC / "topics.json").read_text(encoding="utf-8"))
-BYID = {v["id"]: v for v in V}
+M = json.loads((SRC / "minerals.json").read_text(encoding="utf-8"))
+ALL = V + M
+BYID = {v["id"]: v for v in ALL}
 BS = [v for v in V if v["id"].startswith("B")]
 B_HUB = {"id": "B", "color": "#ef476f", "text": "#fff", "prop": "🐝", "nick": "The B-Team", "name": "8 B vitamins"}
 FAMILY = [BYID["A"], B_HUB, BYID["C"], BYID["D"], BYID["E"], BYID["K"]]
 
 e = lambda s: html.escape(str(s), quote=True)
-slug = lambda v: f"vitamin-{v['id'].lower()}"
+slug = lambda v: v.get("slug") or f"vitamin-{v['id'].lower()}"
 url = lambda v: f"/{slug(v)}/"
 suburl = lambda pv, s: f"{url(pv)}{s['slug']}/"
 gurl = lambda g: f"/guides/{g['slug']}/"
@@ -40,13 +42,15 @@ EV = {"g": ("🟢", "Strong evidence"), "y": ("🟡", "Some evidence"), "w": ("�
 badge = lambda k, labels=None: f'<span class="ev ev-{k}"><i aria-hidden="true">{EV[k][0]}</i>{(labels or {}).get(k, EV[k][1])}</span>'
 txt = lambda v: v.get("text", "#fff")
 subpal = lambda s: {"id": s["label"], "color": s["color"], "text": txt(s), "prop": s["prop"]}
-vname = lambda v: f"Vitamin {v['id']}"
+vname = lambda v: v.get("label") or f"Vitamin {v['id']}"
+ismin = lambda v: v["type"] in ("mineral", "omega")
 nih = lambda v: f"https://ods.od.nih.gov/factsheets/{v['nih'].replace('Consumer', 'HealthProfessional')}/"
 
 
 def pal(v, w, decorative=True, prop=True):
     label = 'aria-hidden="true"' if decorative else f'role="img" aria-label="Vitamin {e(v["id"])} icon"'
-    fs = 24 if len(v["id"]) > 2 else (28 if len(v["id"]) == 2 else 40)
+    lab = v.get("sym", v["id"])
+    fs = 24 if len(lab) > 2 else (28 if len(lab) == 2 else 40)
     c = v["color"]
     return (f'<svg viewBox="0 0 120 160" width="{w}" height="{round(w*4/3)}" {label}>'
             f'<path d="M22 88q-16-2-18-20" stroke="{c}" stroke-width="7" fill="none" stroke-linecap="round"/>'
@@ -56,7 +60,7 @@ def pal(v, w, decorative=True, prop=True):
             f'<circle cx="47" cy="56" r="7.5" fill="#fff"/><circle cx="73" cy="56" r="7.5" fill="#fff"/>'
             f'<circle cx="48" cy="57" r="3.8" fill="#17201b"/><circle cx="74" cy="57" r="3.8" fill="#17201b"/>'
             f'<path d="M50 68q10 10 20 0" stroke="#17201b" stroke-width="3" fill="none" stroke-linecap="round"/>'
-            f'<text x="60" y="{128 if fs == 40 else 122}" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="{fs}" fill="{txt(v)}">{e(v["id"])}</text>'
+            f'<text x="60" y="{128 if fs == 40 else 122}" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="{fs}" fill="{txt(v)}">{e(v.get("sym", v["id"]))}</text>'
             + (f'<text x="96" y="22" font-size="24" text-anchor="middle">{v["prop"]}</text>' if prop else "") + '</svg>')
 
 
@@ -96,7 +100,7 @@ def head(title, desc, path, og="home", extra=""):
 
 
 def header(section="", vit=None, sub=None):
-    links = [("vitamins", "/#vitamins", "Vitamins"), ("topics", "/topics/", "Health topics"), ("guides", "/guides/", "Guides"),
+    links = [("vitamins", "/#vitamins", "Vitamins"), ("minerals", "/minerals/", "Minerals"), ("topics", "/topics/", "Health topics"), ("guides", "/guides/", "Guides"),
              ("finder", "/tools/food-finder/", "Food finder"), ("check", "/tools/vitamin-check/", "Vitamin check"),
              ("about", "/about/", "About")]
     nav = "".join(f'<a href="{h}"{" class=on" if section == k else ""}>{t}</a>' for k, h, t in links)
@@ -108,6 +112,7 @@ def header(section="", vit=None, sub=None):
 <h4>Health topics</h4>{topic_links}<a href="/topics/">All health topics</a>
 <h4>Guides</h4>{guide_links}
 <h4>Vitamins</h4><div class="grid2">{vit_links}</div>
+<h4>Minerals &amp; omega-3</h4><div class="grid2">{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}<a href="/minerals/">All minerals</a></div>
 <h4>More</h4><a href="/">Home</a><a href="/about/">About &amp; how we write</a></div></details>"""
     strip = ""
     if vit:
@@ -145,6 +150,7 @@ def footer(scripts=""):
   <div class="cols">
     <div><h4>Vitamins</h4>{vit}</div><div><h4>&nbsp;</h4>{vit2}</div>
     <div><h4>Guides</h4>{gd}<h4 style="margin-top:14px">Health topics</h4>{"".join(f'<a href="{turl(t)}">{e(t["title"])}</a>' for t in T)}</div>
+    <div><h4>Minerals</h4>{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}</div>
     <div><h4>Tools</h4><a href="/tools/vitamin-check/">Vitamin check</a><a href="/tools/food-finder/">Food finder</a><h4 style="margin-top:14px">VitaPals</h4><a href="/about/">About &amp; how we write</a></div>
   </div>
   <p class="disc">VitaPals is written for adults aged 20 and over, for general education, not medical advice. Facts are based on the NIH Office of Dietary Supplements. Talk to a doctor, dietitian or pharmacist before starting a supplement, especially if you're pregnant, take medicines or have a health condition.</p>
@@ -187,6 +193,10 @@ def dvbar(pct):
 
 
 def food_table(d):
+    if d["dv"] is None:
+        rows = "".join(f'<tr><td>{e(f)}<small>{e(s)}</small></td><td class="amt">{e(a)}</td><td>{e(k)}</td></tr>' for f, s, a, k in d["table"])
+        return (f'<table class="foods"><thead><tr><th>Food</th><th>Amount</th><th>Type</th></tr></thead><tbody>{rows}</tbody></table>'
+                f'<p class="tnote">{e(d.get("tableNote", ""))} Data: NIH Office of Dietary Supplements.</p>')
     rows = "".join(f'<tr><td>{e(f)}<small>{e(s)}</small></td><td class="amt">{e(a)}</td><td>{dvbar(p)}</td></tr>' for f, s, a, p in d["table"])
     return (f'<table class="foods"><thead><tr><th>Food</th><th>Amount</th><th>% Daily Value</th></tr></thead><tbody>{rows}</tbody></table>'
             f'<p class="tnote">% Daily Value is based on {e(d["dv"])} for adults (US FDA). Data: NIH Office of Dietary Supplements.'
@@ -204,36 +214,31 @@ VKEYS = {"A": "eyes skin night vision retinol beta-carotene", "B1": "energy carb
          "B3": "niacin cholesterol flushing", "B5": "energy", "B6": "pms nerves mood", "B7": "biotin hair nails skin lab tests",
          "B9": "folate folic acid pregnancy anemia", "B12": "vegetarian vegan anemia tired nerves metformin",
          "C": "immunity colds collagen iron absorption amla", "D": "sunshine sun calcium bones vegetarian", "E": "antioxidant skin",
-         "K": "blood clotting warfarin bones calcium"}
+         "K": "blood clotting warfarin bones calcium",
+         "Fe": "anemia anaemia ferritin hemoglobin tired periods", "Ca": "bones osteoporosis dairy milk", "Mg": "cramps migraine blood pressure",
+         "Zn": "immunity colds taste smell wounds", "I": "thyroid salt goiter pregnancy", "Se": "thyroid brazil nuts antioxidant",
+         "O3": "omega 3 fish oil heart dha epa ala flaxseed walnuts triglycerides"}
 GENERIC = "daily need dose dosage amount how much upper limit deficiency deficient low signs supplement foods"
-for v in V:
-    INDEX.append({"t": f"{vname(v)} ({v['name']})", "u": url(v), "k": "Vitamin", "x": VKEYS.get(v["id"], ""),
+for v in ALL:
+    INDEX.append({"t": f"{vname(v)} ({v['name']})", "u": url(v), "k": ("Omega-3 fats" if v["type"] == "omega" else "Mineral") if ismin(v) else "Vitamin", "x": VKEYS.get(v["id"], ""),
                   "s": " ".join([GENERIC, v["job"]] + [f[1] for f in v["foods"]] + [f[0] for f in v.get("forms", [])])})
     for s in v.get("subs", []):
         INDEX.append({"t": f"{s['tab']} · {s['name']}", "u": suburl(v, s), "k": f"Vitamin {v['id']} type", "s": s["job"]})
 for g in G:
     INDEX.append({"t": g["title"], "u": gurl(g), "k": "Guide", "x": g["slug"].replace("-", " ") + (" fatigue energy exhausted" if g["slug"] == "tired" else ""),
                   "s": g["card"] + " " + " ".join(vname(BYID[k]) for k, _ in g["key"])})
-# Minerals don't have pages yet: point to the closest pages instead of a dead end.
-for name, words, u, where in [("Iron", "iron anemia ferritin", "/guides/tired/", "Always tired? guide"),
-                              ("Calcium", "calcium bones", "/vitamin-d/", "Vitamin D page"),
-                              ("Iodine", "iodine thyroid salt", "/topics/hormonal-imbalance/#nutrients", "Hormonal imbalance"),
-                              ("Magnesium", "magnesium", "/topics/inflammation/#nutrients", "Inflammation"),
-                              ("Zinc", "zinc", "/guides/vegetarian/", "Vegetarian guide"),
-                              ("Selenium", "selenium thyroid", "/topics/hormonal-imbalance/#nutrients", "Hormonal imbalance"),
-                              ("Omega-3", "omega-3 omega 3 fish oil flaxseed", "/topics/inflammation/#nutrients", "Inflammation")]:
-    INDEX.append({"t": f"{name}: see {where}", "u": u, "k": "Mineral page coming soon", "x": words, "s": "", "m": 1})
+INDEX.append({"t": "Minerals & omega-3", "u": "/minerals/", "k": "Overview", "x": "minerals mineral", "s": " ".join(vname(m) for m in M)})
 for t in T:
     INDEX.append({"t": t["title"], "u": turl(t), "k": "Health topic", "x": t.get("keywords", ""), "s": " ".join([t["card"]] + [c[0] for c in t["causes"]] + [c[0] for c in t["claims"]] + [t.get("keywords", "")])})
 INDEX += [{"t": "2-minute vitamin check", "u": "/tools/vitamin-check/", "k": "Tool", "s": "quiz am I low deficient test"},
           {"t": "Food finder", "u": "/tools/food-finder/", "k": "Tool", "s": "which foods vitamins search"}]
 FOODS = []
-for v in V:
+for v in ALL:
     d = D[v["id"]]
     for f, s, a, p in d["table"]:
-        FOODS.append({"f": f, "s": s, "a": a, "p": p, "v": v["id"], "u": url(v), "c": v["color"]})
+        FOODS.append({"f": f, "s": s, "a": a, "p": p if isinstance(p, int) else None, "v": v["id"], "n": vname(v), "u": url(v), "c": v["color"]})
     for f in d["indian"]:
-        FOODS.append({"f": f, "s": "", "a": "", "p": None, "v": v["id"], "u": url(v), "c": v["color"], "in": 1})
+        FOODS.append({"f": f, "s": "", "a": "", "p": None, "v": v["id"], "n": vname(v), "u": url(v), "c": v["color"], "in": 1})
 write("assets/search.json", json.dumps(INDEX, ensure_ascii=False))
 write("assets/foods.json", json.dumps(FOODS, ensure_ascii=False))
 
@@ -291,6 +296,12 @@ home = head("VitaPals — Vitamins Explained Simply, Food First",
   <div class="vlist">{"".join(vrow(v) for v in fat)}</div>
 </section>
 
+<section class="block" id="minerals">
+  <div class="head-row"><div><h2>Minerals &amp; omega-3</h2><p>Iron, calcium and friends: the nutrients people most often run short on, plus the healthy fats everyone asks about.</p></div></div>
+  <div class="vlist">{"".join(vrow(m) for m in M)}</div>
+  <p style="margin-top:12px"><a href="/minerals/">See all minerals at a glance →</a></p>
+</section>
+
 <section class="block">
   <div><h2 style="margin-bottom:10px">Myth vs fact</h2><div id="myth-week" class="mythgrid">
     {"".join(f'<div class="myth"><div class="m"><b>Myth</b>{e(m)}</div><div class="f"><b>Fact</b>{e(f)} <a href="/vitamin-{i.lower()}/#myths">Vitamin {e(i)} →</a></div></div>' for m, f, i in featured)}
@@ -298,7 +309,7 @@ home = head("VitaPals — Vitamins Explained Simply, Food First",
 </section>
 
 <section class="block band">
-  <div><h2>Not sure where to start?</h2><p>Answer 10 quick questions about what you eat and your lifestyle. We'll show which vitamins deserve a closer look, and the foods that help. Nothing is stored or sent anywhere.</p></div>
+  <div><h2>Not sure where to start?</h2><p>Answer 13 quick questions about what you eat and your lifestyle. We'll show which vitamins and minerals deserve a closer look, and the foods that help. Nothing is stored or sent anywhere.</p></div>
   <div><a class="btn" href="/tools/vitamin-check/">Start the vitamin check →</a></div>
 </section>
 """ + footer('\n<script type="application/json" id="myths-data">' + json.dumps([{"m": m, "f": f, "v": i} for m, f, i in ALLMYTHS], ensure_ascii=False) + "</script>")
@@ -311,18 +322,21 @@ def forms_html(v):
         f'<li><strong>{e(f[0])}</strong><span class="ftag t-{f[2].lower().replace(" ", "-")}">{e(f[2])}</span><p>{e(f[1])}</p></li>' for f in v["forms"]) + "</ul>")
 
 
-for i, v in enumerate(V):
+for i, v in enumerate(ALL):
     d = D[v["id"]]
-    isb = v["id"].startswith("B")
-    prev = V[i - 1] if i > 0 else None
-    nxt = V[i + 1] if i < len(V) - 1 else None
+    mn = ismin(v)
+    grp = M if mn else V
+    gi = grp.index(v)
+    isb = v["id"].startswith("B") and not mn
+    prev = grp[gi - 1] if gi > 0 else None
+    nxt = grp[gi + 1] if gi < len(grp) - 1 else None
     subs = v.get("subs") or []
-    title = f"Vitamin {v['id']} ({v['name'].split(' (')[0]}): Foods, Daily Needs & Supplements | VitaPals"
+    title = f"{vname(v)} ({v['name'].split(' (')[0]}): Foods, Daily Needs & Supplements | VitaPals"
     desc = fit(f"{vname(v)}: adults need {d['needShort']}. {v['job']} Top foods, who's at risk and when a supplement helps.",
                f"{vname(v)}: adults need {d['needShort']}. Top foods (US & Indian), who's at risk, upper limits and when a supplement helps.",
                f"{vname(v)}: adults need {d['needShort']}. Top foods, who's at risk and when a supplement helps.")
-    crumbs = '<a href="/">Home</a> › ' + ('<a href="/vitamin-b/">B vitamins</a> › ' if isb else "") + e(vname(v))
-    soluble = "Water-soluble" if v["type"] == "water" else "Fat-soluble"
+    crumbs = '<a href="/">Home</a> › ' + ('<a href="/vitamin-b/">B vitamins</a> › ' if isb else "") + ('<a href="/minerals/">Minerals</a> › ' if mn else "") + e(vname(v))
+    soluble = {"water": "Water-soluble", "fat": "Fat-soluble", "mineral": "Mineral", "omega": "Essential fats"}[v["type"]]
     faq_ld = jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in d["faq"]]})
     subpick = ""
@@ -332,9 +346,11 @@ for i, v in enumerate(V):
     keyed = [g for g in G if v["id"] in [k for k, _ in g["key"]]]
     keyed.sort(key=lambda g: [k for k, _ in g["key"]].index(v["id"]))
     related = (keyed + [g for g in G if v["id"] in g["sources"] and g not in keyed])[:3]
+    if v.get("guides"):
+        related = [g for g in G if g["slug"] in v["guides"]]
     if not related:
         related = [g for g in G if g["slug"] in ("over-50", "supplements")]
-    p = head(title, desc, url(v), slug(v), faq_ld) + header("vitamins", v["id"]) + f"""
+    p = head(title, desc, url(v), slug(v), faq_ld) + header("minerals" if mn else "vitamins", None if mn else v["id"]) + f"""
 <p class="crumbs">{crumbs}</p>
 <div class="vhead">{pal(v, 64, decorative=False)}<div>
   <p class="kicker">{e(v['name'])} · {soluble}</p>
@@ -357,7 +373,7 @@ for i, v in enumerate(V):
 
 <section class="sec" id="foods">
   <h2>Top food sources</h2>
-  <p class="sub">Per typical serving, with how much of your daily need it covers.</p>
+  <p class="sub">{"Per typical serving, with how much of your daily need it covers." if d["dv"] else "Per typical serving, in grams. Plant foods give ALA; fish gives EPA and DHA."}</p>
   {food_table(d)}
   <div class="two" style="margin-top:16px">
     <div class="note"><h3>🇮🇳 Also great in Indian kitchens</h3><div class="chips">{"".join(f"<span>{e(x)}</span>" for x in d['indian'])}</div></div>
@@ -409,8 +425,8 @@ for i, v in enumerate(V):
 """ + (f"""<section class="sec"><h2>Related guides</h2><div class="cards">{"".join(f'<a class="card" href="{gurl(g)}"><div class="ic">{g["icon"]}</div><h3>{e(g["title"])}</h3><p>{e(g["card"])}</p></a>' for g in related)}</div></section>""" if related else "") + topic_links_html(topics_for("vitamins", v["id"])) + f"""
 <p class="sources">Sources: <a href="{nih(v)}" rel="noopener">NIH Office of Dietary Supplements, {e(vname(v))} fact sheet for health professionals</a>. Daily needs are for healthy adults. Last reviewed {REVIEWED}. This page is for education, not medical advice.</p>
 <div class="pager">
-  {f'<a href="{url(prev)}"><small>← Previous</small>{e(vname(prev))}</a>' if prev else '<a href="/"><small>← Back</small>Home</a>'}
-  {f'<a href="{url(nxt)}"><small>Next →</small>{e(vname(nxt))}</a>' if nxt else '<a href="/"><small>Done →</small>Home</a>'}
+  {f'<a href="{url(prev)}"><small>← Previous</small>{e(vname(prev))}</a>' if prev else ('<a href="/minerals/"><small>← Back to</small>All minerals</a>' if mn else '<a href="/"><small>← Back</small>Home</a>')}
+  {f'<a href="{url(nxt)}"><small>Next →</small>{e(vname(nxt))}</a>' if nxt else ('<a href="/#vitamins"><small>Next →</small>All 13 vitamins</a>' if mn else '<a href="/minerals/"><small>Next →</small>Minerals &amp; omega-3</a>')}
 </div>
 """ + footer()
     write(f"{slug(v)}/index.html", p)
@@ -470,6 +486,26 @@ hub = head("B Vitamins: All 8 Explained — Foods, Needs & Who Needs More | Vita
 <div class="chips"><span>🫘 Beans, dals &amp; chickpeas</span><span>🌾 Whole grains &amp; fortified cereal</span><span>🥛 Milk &amp; curd</span><span>🥚 Eggs</span><span>🐟 Fish</span><span>🍄 Mushrooms</span><span>🌻 Sunflower seeds</span><span>🥬 Leafy greens</span></div></section>
 """ + footer()
 write("vitamin-b/index.html", hub)
+
+# ------------------------------------------------------------------ minerals hub
+mhub = head("Minerals & Omega-3: Iron, Calcium, Magnesium, Zinc & More | VitaPals",
+            fit("Iron, calcium, magnesium, zinc, iodine, selenium and omega-3 in one place: how much adults need, the best US and Indian foods, and who should watch them."),
+            "/minerals/", "minerals") + header("minerals") + f"""
+<p class="crumbs"><a href="/">Home</a> › Minerals</p>
+<div style="max-width:760px"><h1>Minerals &amp; omega-3</h1>
+<p class="lede">Your body needs minerals in small amounts to build bones, carry oxygen and run your thyroid. These six, plus omega-3 fats, are the ones people ask about most.</p></div>
+<section class="sec"><h2>All 7 at a glance</h2>
+<table class="foods"><thead><tr><th>Nutrient</th><th>Adults need</th><th>Best foods</th></tr></thead><tbody>
+{"".join(f'<tr><td><a href="{url(m)}"><strong>{e(vname(m))}</strong></a><small>{e(m["job"])}</small></td><td class="amt">{e(D[m["id"]]["needShort"].replace(" a day", ""))}</td><td>{e(D[m["id"]]["top3"])}<small>India: {e(D[m["id"]]["indian"][0])}</small></td></tr>' for m in M)}
+</tbody></table><p class="tnote">Daily needs for adults from the US Food and Nutrition Board, via the NIH Office of Dietary Supplements.</p></section>
+<section class="sec two">
+  <div class="note"><h3>👀 The three to watch</h3><p><a href="/iron/">Iron</a> (heavy periods, pregnancy, vegetarians), <a href="/calcium/">calcium</a> (no dairy, women after menopause) and <a href="/iodine/">iodine</a> (no iodized salt, pregnancy). The others are usually easy to get from a varied diet.</p></div>
+  <div class="note warn"><h3>⚠️ More isn't better</h3><p>Minerals have upper limits, and some build up. Iron, selenium and zinc pills can cause real harm in high doses. Test before you take, and keep iron away from children.</p></div>
+</section>
+{topic_links_html([t for t in T if any(x in t.get("related", {}).get("vitamins", []) for x in [m["id"] for m in M])])}
+<p class="sources">Sources: NIH Office of Dietary Supplements fact sheets: {", ".join(f'<a href="{nih(m)}" rel="noopener">{e(vname(m))}</a>' for m in M)}. Last reviewed {REVIEWED}.</p>
+""" + footer()
+write("minerals/index.html", mhub)
 
 # ------------------------------------------------------------------ guides
 ulrows = "".join(f'<tr><td><a href="{url(v)}">{e(vname(v))}</a></td><td>{e(D[v["id"]]["needShort"].replace(" a day", ""))}</td><td>{e(D[v["id"]]["ulShort"])}</td></tr>' for v in V)
@@ -644,10 +680,10 @@ ff = head("Food Finder: Which Vitamins Are in Your Food? | VitaPals",
 write("tools/food-finder/index.html", ff)
 
 vc = head("2-Minute Vitamin Check: Which Vitamins Should You Watch? | VitaPals",
-          "Answer 10 quick questions about your diet and lifestyle to see which vitamins deserve a closer look. Free, private and educational.",
+          "Answer 13 quick questions about your diet and lifestyle to see which vitamins and minerals deserve a closer look. Free, private and educational.",
           "/tools/vitamin-check/") + header("check") + """
 <p class="crumbs"><a href="/">Home</a> › Vitamin check</p>
-<div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer 10 quick questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Your answers stay on your device.</p></div>
+<div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer 13 quick questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Your answers stay on your device.</p></div>
 <form class="tool" id="vcheck" style="margin-top:20px">
   <fieldset class="q"><legend>1. How do you eat?</legend><div class="opts">
     <label><input type="radio" name="diet" value="omni" required> I eat meat or fish</label>
@@ -676,15 +712,24 @@ vc = head("2-Minute Vitamin Check: Which Vitamins Should You Watch? | VitaPals",
   <fieldset class="q"><legend>8. Nuts, seeds or nut butters</legend><div class="opts">
     <label><input type="radio" name="nuts" value="often" required> Several times a week</label>
     <label><input type="radio" name="nuts" value="rare"> Rarely</label></div></fieldset>
-  <fieldset class="q"><legend>9. Do you smoke, or have several alcoholic drinks most days?</legend><div class="opts">
+  <fieldset class="q"><legend>9. Milk, curd, paneer, or calcium-fortified foods (like fortified soy milk)</legend><div class="opts">
+    <label><input type="radio" name="dairy" value="daily" required> Most days</label>
+    <label><input type="radio" name="dairy" value="rare"> Rarely</label></div></fieldset>
+  <fieldset class="q"><legend>10. Do you use iodized salt at home?</legend><div class="opts">
+    <label><input type="radio" name="salt" value="yes" required> Yes</label>
+    <label><input type="radio" name="salt" value="no"> No, or not sure (sea, rock or pink salt usually isn't iodized)</label></div></fieldset>
+  <fieldset class="q"><legend>11. Do you have heavy periods?</legend><div class="opts">
+    <label><input type="radio" name="periods" value="heavy" required> Yes</label>
+    <label><input type="radio" name="periods" value="no"> No, or doesn't apply</label></div></fieldset>
+  <fieldset class="q"><legend>12. Do you smoke, or have several alcoholic drinks most days?</legend><div class="opts">
     <label><input type="checkbox" name="smoke"> I smoke</label>
     <label><input type="checkbox" name="alcohol"> Several drinks most days</label></div></fieldset>
-  <fieldset class="q"><legend>10. Do you take any of these medicines regularly?</legend><div class="opts">
+  <fieldset class="q"><legend>13. Do you take any of these medicines regularly?</legend><div class="opts">
     <label><input type="checkbox" name="metformin"> Metformin (diabetes)</label>
     <label><input type="checkbox" name="acid"> Acid reducers (omeprazole, pantoprazole, famotidine…)</label>
     <label><input type="checkbox" name="warfarin"> Warfarin or another blood thinner</label>
     <label><input type="checkbox" name="seizure"> Seizure medicines</label></div></fieldset>
-  <p class="vprog" id="vcheck-prog" aria-live="polite">0 of 8 answered · questions 9 and 10 are optional</p>
+  <p class="vprog" id="vcheck-prog" aria-live="polite">0 of 11 answered · questions 12 and 13 are optional</p>
   <button class="btn" type="submit">See my results</button>
   <div class="res" id="vcheck-out" aria-live="polite"></div>
   <noscript><p>The vitamin check needs JavaScript.</p></noscript>
@@ -718,24 +763,26 @@ nf = head("Page not found | VitaPals", "This page wandered off.", "/404.html") +
 write("404.html", nf)
 
 # ------------------------------------------------------------------ sitemap, robots, favicon, og
-paths = (["/", "/vitamin-b/"] + [p for v in V for p in [url(v)] + [suburl(v, s) for s in v.get("subs", [])]]
+paths = (["/", "/vitamin-b/"] + [p for v in V for p in [url(v)] + [suburl(v, s) for s in v.get("subs", [])]] + ["/minerals/"] + [url(m) for m in M]
          + ["/guides/"] + [gurl(g) for g in G] + ["/topics/"] + [turl(t) for t in T] + ["/tools/food-finder/", "/tools/vitamin-check/", "/about/"])
 write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       "".join(f"  <url><loc>{SITE}{p}</loc><lastmod>{TODAY}</lastmod></url>\n" for p in paths) + "</urlset>\n")
 write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 write("favicon.svg", '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="16" y="2" width="32" height="60" rx="16" fill="#1e6b52"/><path d="M16 32H48V46A16 16 0 0 1 16 46Z" fill="#7cc4a4"/></svg>\n')
 
-og_items = [("home", None), ("vitamin-b", B_HUB)] + [(slug(v), v) for v in V]
+og_items = [("home", None), ("vitamin-b", B_HUB)] + [(slug(v), v) for v in ALL]
 (SRC / "og.json").write_text(json.dumps([
     {"name": n,
      "svg": pal(v, 260) if v else "".join(pal(x, 110) for x in FAMILY),
-     "kicker": (("Vitamin " + v["id"] + " · " + v["name"]) if v is not B_HUB else "8 vitamins · water-soluble") if v else "Vitamins, explained simply",
+     "kicker": (((("Mineral · " if v["type"] == "mineral" else "Essential fats · ") + v["name"]) if ismin(v) else ("Vitamin " + v["id"] + " · " + v["name"])) if v is not B_HUB else "8 vitamins · water-soluble") if v else "Vitamins, explained simply",
      "title": (vname(v) if v is not B_HUB else "The B vitamins") if v else "Know what your body needs",
      "color": v["color"] if v else "#1e6b52",
-     "lead": (D[v["id"]]["needShort"].capitalize() + ". Best foods: " + D[v["id"]]["top3"].lower() + ".") if v and v is not B_HUB else ("Foods, daily needs and supplement advice for all 8." if v else "Foods, daily needs and honest supplement advice. Based on NIH data.")}
+     "lead": (D[v["id"]]["needShort"][:1].upper() + D[v["id"]]["needShort"][1:] + ". Best foods: " + D[v["id"]]["top3"].lower() + ".") if v and v is not B_HUB else ("Foods, daily needs and supplement advice for all 8." if v else "Foods, daily needs and honest supplement advice. Based on NIH data.")}
     for n, v in og_items] + [
     {"name": f"{slug(v)}-{s['slug']}", "svg": pal(subpal(s), 260), "kicker": f"Vitamin {v['id']} · {s['name']}",
      "title": s["tab"], "color": s["color"], "lead": s["job"]}
-    for v in V for s in v.get("subs", [])], ensure_ascii=False), encoding="utf-8")
+    for v in V for s in v.get("subs", [])] + [
+    {"name": "minerals", "svg": "".join(pal(m, 110) for m in M[:6]), "kicker": "Minerals & omega-3", "title": "Iron, calcium & friends",
+     "color": "#1e6b52", "lead": "How much you need, the best US and Indian foods, and who should watch them.", "multi": 1}], ensure_ascii=False), encoding="utf-8")
 
 print(f"Built {len(paths)} pages + 404, sitemap, robots, favicon, search & food data.")

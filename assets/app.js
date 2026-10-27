@@ -49,7 +49,7 @@
         foods.forEach(function (f) {
           var fn = norm(f.f);
           if (!seen[f.v] && (fn.indexOf(q) > -1 || (terms.length === 1 && terms[0].length >= 3 && fn.indexOf(terms[0]) > -1))) {
-            seen[f.v] = 1; hits.push({ t: f.f + " → Vitamin " + f.v, u: f.u + "#foods", k: "Food", sc: 2 });
+            seen[f.v] = 1; hits.push({ t: f.f + " → " + f.n, u: f.u + "#foods", k: "Food", sc: 2 });
           }
         });
         hits.sort(function (a, b) { return b.sc - a.sc; });
@@ -104,8 +104,8 @@
           var rows = groups[k].sort(function (a, b) { return (b.p || 0) - (a.p || 0); }).map(function (f) {
             var right = f.p != null
               ? '<div class="dv"><div class="b"><span style="width:' + Math.min(f.p, 100) + '%"></span></div><em>' + f.p + "%</em></div><small style=\"color:var(--muted)\">" + esc(f.a) + " per " + esc(f.s) + "</small>"
-              : '<small style="color:var(--muted)">Good everyday source · Indian kitchen</small>';
-            return '<div class="ff-row"><a href="' + f.u + '#foods" style="color:' + "var(--brand)" + '">Vitamin ' + esc(f.v) + "</a><div>" + right + "</div></div>";
+              : (f.in ? '<small style="color:var(--muted)">Good everyday source · Indian kitchen</small>' : '<small style="color:var(--muted)">' + esc(f.a) + " per " + esc(f.s) + "</small>");
+            return '<div class="ff-row"><a href="' + f.u + '#foods" style="color:' + "var(--brand)" + '">' + esc(f.n) + "</a><div>" + right + "</div></div>";
           }).join("");
           return '<div class="ff-group"><h3>' + esc(k) + "</h3>" + rows + "</div>";
         }).join("");
@@ -130,7 +130,7 @@
     var total = Object.keys(radios).length;
     var tally = function () {
       var n = Object.keys(radios).filter(function (nm) { return form.querySelector('input[name="' + nm + '"]:checked'); }).length;
-      if (prog) prog.textContent = n + " of " + total + " answered" + (n < total ? " · questions 9 and 10 are optional" : " · ready when you are");
+      if (prog) prog.textContent = n + " of " + total + " answered" + (n < total ? " · questions 12 and 13 are optional" : " · ready when you are");
     };
     form.addEventListener("change", tally); tally();
     form.addEventListener("submit", function (ev) {
@@ -142,9 +142,14 @@
       var add = function (v, lvl, why) { var w = { hi: 3, md: 2 }[lvl]; if (!R[v]) R[v] = { lvl: lvl, w: w, why: [] }; else if (w > R[v].w) { R[v].lvl = lvl; R[v].w = w; } R[v].why.push(why); };
       if (a.diet === "vegan") { add("B12", "hi", "B12 is only found naturally in animal foods. Vegans need fortified foods or a supplement."); add("D", "md", "Few plant foods contain vitamin D."); add("B2", "md", "Dairy is a main source of B2. Choose fortified plant milks."); }
       if (a.diet === "veg") add("B12", "md", "Vegetarians often run low on B12, even with dairy.");
+      if (a.diet !== "omni") { add("Fe", "md", "Plant iron is absorbed less, so vegetarians need 1.8 times as much."); add("Zn", "md", "Zinc from beans and grains is absorbed less. Soaking and sprouting help."); }
+      if (a.diet === "vegan") { add("Ca", "md", "Without dairy, choose fortified soy milk, calcium-set tofu, ragi and til."); add("I", "md", "Dairy, eggs and seafood are big iodine sources. Use iodized salt."); }
+      if (a.dairy === "rare") add("Ca", "hi", "Dairy and fortified foods are the main calcium sources.");
+      if (a.salt === "no") add("I", "hi", "Packaged foods rarely use iodized salt, so the salt you cook with matters.");
+      if (a.periods === "heavy") add("Fe", "hi", "Heavy periods are a common reason for low iron. Ask about a ferritin test.");
       if (a.age === "50" || a.age === "71") { add("B12", "md", "After 50, your body absorbs less B12 from food."); add("B6", "md", "B6 needs rise slightly after 50."); }
-      if (a.age === "71") add("D", "hi", "After 70, you need more vitamin D (800 IU) and your skin makes less.");
-      if (a.preg === "yes") { add("B9", "hi", "Folic acid (400 mcg daily) is recommended before and during early pregnancy."); add("A", "md", "Avoid high-dose retinol supplements during pregnancy."); if (a.diet !== "omni") add("B12", "hi", "B12 is vital for your baby's development."); }
+      if (a.age === "71") { add("D", "hi", "After 70, you need more vitamin D (800 IU) and your skin makes less."); add("Ca", "md", "After 70, everyone needs 1,200 mg of calcium a day."); }
+      if (a.preg === "yes") { add("B9", "hi", "Folic acid (400 mcg daily) is recommended before and during early pregnancy."); add("A", "md", "Avoid high-dose retinol supplements during pregnancy."); if (a.diet !== "omni") add("B12", "hi", "B12 is vital for your baby's development."); add("Fe", "hi", "Iron needs rise to 27 mg a day in pregnancy."); add("I", "hi", "Iodine needs rise in pregnancy. Check that your prenatal has 150 mcg."); }
       if (a.sun === "rare") add("D", "hi", "Little daylight on your skin means less vitamin D made.");
       if (a.skin === "dark") add("D", "md", "Darker skin makes less vitamin D from the same sunlight.");
       if (a.greens === "rare") { add("B9", "hi", "Leafy greens, dals and beans are top folate sources."); add("K", "md", "Leafy greens are the main source of vitamin K."); add("A", "md", "Greens and orange veg supply beta-carotene."); }
@@ -157,14 +162,16 @@
       if (a.acid) add("B12", "hi", "Acid reducers lower B12 absorption over time.");
       if (a.warfarin) { add("K", "md", "Keep vitamin K intake steady, not low. Your dose depends on it."); add("E", "md", "Avoid high-dose vitamin E with blood thinners."); }
       if (a.seizure) { add("B9", "md", "Some seizure medicines lower folate."); add("B6", "md", "Some seizure medicines lower B6."); add("B7", "md", "Some seizure medicines lower biotin."); }
+      var MIN = { Fe: ["Iron", "/iron/"], Ca: ["Calcium", "/calcium/"], Zn: ["Zinc", "/zinc/"], I: ["Iodine", "/iodine/"] };
+      var nm = function (v) { return MIN[v] ? MIN[v][0] : "Vitamin " + v; }, lk = function (v) { return MIN[v] ? MIN[v][1] : "/vitamin-" + v.toLowerCase() + "/"; };
       var list = Object.keys(R).sort(function (x, y) { return R[y].w - R[x].w; });
       var out = document.getElementById("vcheck-out");
       var html = "<h2 style=\"margin-bottom:6px\">Your results</h2>";
       if (!list.length) html += '<div class="item"><span class="lvl ok">Looking good</span><div><strong>Nothing stands out.</strong><p style="margin:4px 0 0;color:var(--muted)">Your answers suggest a varied diet and lifestyle. Keep eating a mix of whole foods. Browse any vitamin to learn more.</p></div></div>';
       list.forEach(function (v) {
         var r = R[v], label = r.lvl === "hi" ? "Look closer" : "Worth watching";
-        html += '<div class="item"><span class="lvl ' + r.lvl + '">' + label + '</span><div><strong><a href="/vitamin-' + v.toLowerCase() + '/">Vitamin ' + v + '</a></strong><ul class="clean" style="margin-top:4px">' +
-          r.why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + '</ul><a href="/vitamin-' + v.toLowerCase() + '/#foods">See the best foods →</a></div></div>';
+        html += '<div class="item"><span class="lvl ' + r.lvl + '">' + label + '</span><div><strong><a href="' + lk(v) + '">' + nm(v) + '</a></strong><ul class="clean" style="margin-top:4px">' +
+          r.why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + '</ul><a href="' + lk(v) + '#foods">See the best foods →</a></div></div>';
       });
       html += '<div class="note" style="margin-top:14px"><p><strong>Next step:</strong> share this with your doctor. They can decide whether a blood test makes sense. This is not a diagnosis. <a href="#" onclick="window.print();return false">Print or save as PDF</a></p></div>';
       out.innerHTML = html;
