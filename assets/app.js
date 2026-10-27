@@ -9,32 +9,53 @@
   }
   var norm = function (s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); };
 
+  /* ---------- Header height, for the sticky "on this page" chips ---------- */
+  var hdr = document.querySelector(".site-header");
+  var setH = function () { if (hdr) document.documentElement.style.setProperty("--hh", hdr.offsetHeight + "px"); };
+  setH(); window.addEventListener("resize", setH);
+
   /* ---------- Keep the active tab visible ---------- */
   document.querySelectorAll(".strip .on").forEach(function (a) {
     var s = a.parentNode; s.scrollLeft = a.offsetLeft - s.clientWidth / 2 + a.clientWidth / 2;
   });
 
   /* ---------- Site search ---------- */
+  var STOP = { a: 1, an: 1, the: 1, i: 1, my: 1, is: 1, are: 1, do: 1, does: 1, of: 1, "in": 1, "for": 1, to: 1, and: 1, or: 1, what: 1, which: 1, can: 1, should: 1, me: 1, much: 0 };
+  var SYN = { dose: "need", dosage: "need", amount: "need", fatigue: "tired", exhausted: "tired", energy: "tired", veg: "vegetarian", veggie: "vegetarian", pregnant: "pregnancy", hormones: "hormonal", hormone: "hormonal", thyroid: "thyroid", folic: "folate", sun: "sunshine", sunlight: "sunshine" };
+  var POPULAR = [["Vitamin B12", "/vitamin-b12/"], ["Vitamin D", "/vitamin-d/"], ["Always tired?", "/guides/tired/"], ["Food finder", "/tools/food-finder/"]];
+  var words = function (s) { return norm(s).split(/[^a-z0-9-]+/).filter(Boolean); };
+  // A term matches a word if it is the word (short terms like "d" or "b12") or starts it (longer terms like "veget").
+  var hit = function (list, w) { for (var i = 0; i < list.length; i++) { var x = list[i]; if (x === w || (w.length >= 3 && x.indexOf(w) === 0)) return true; } return false; };
   document.querySelectorAll("[data-search]").forEach(function (box) {
     var input = box.querySelector("input"), out = box.querySelector(".results");
     var run = function () {
-      var q = norm(input.value.trim());
-      if (q.length < 2) { out.innerHTML = ""; return; }
+      var raw = input.value.trim();
+      if (raw.length < 2) { out.innerHTML = ""; return; }
       Promise.all([load("/assets/search.json"), load("/assets/foods.json")]).then(function (res) {
-        var idx = res[0], foods = res[1], terms = q.split(/\s+/), hits = [];
+        var idx = res[0], foods = res[1], hits = [];
+        var terms = words(raw).filter(function (w) { return !STOP[w]; });
+        if (terms.length > 1) terms = terms.filter(function (w) { return w !== "vitamin" && w !== "vitamins"; });
+        if (!terms.length) { out.innerHTML = ""; return; }
+        terms = terms.map(function (w) { return SYN[w] || w; });
+        var need = terms.length === 1 ? 1 : Math.ceil(terms.length / 2);
         idx.forEach(function (it) {
-          var t = norm(it.t), s = norm(it.s || ""), score = 0;
-          terms.forEach(function (w) { if (t.indexOf(w) > -1) score += 3; else if (s.indexOf(w) > -1) score += 1; else score -= 5; });
-          if (/^b\d+$/.test(q) && t.indexOf("vitamin " + q + " ") === 0) score += 10;
-          if (score > 0) hits.push({ t: it.t, u: it.u, k: it.k, sc: score });
+          var t = words(it.t), x = words(it.x || ""), s = words(it.s || ""), score = 0, matched = 0;
+          terms.forEach(function (w) {
+            if (hit(t, w)) { score += 5; matched++; } else if (hit(x, w)) { score += 3; matched++; } else if (hit(s, w)) { score += 1; matched++; }
+          });
+          if (matched >= need && score > 0) hits.push({ t: it.t, u: it.u, k: it.k, sc: score + matched * 2 - (it.m ? 1 : 0) });
         });
-        var seen = {};
+        var seen = {}, q = norm(raw);
         foods.forEach(function (f) {
-          if (norm(f.f).indexOf(q) > -1 && !seen[f.v]) { seen[f.v] = 1; hits.push({ t: f.f + " → Vitamin " + f.v, u: f.u + "#foods", k: "Food", sc: 2 }); }
+          var fn = norm(f.f);
+          if (!seen[f.v] && (fn.indexOf(q) > -1 || (terms.length === 1 && terms[0].length >= 3 && fn.indexOf(terms[0]) > -1))) {
+            seen[f.v] = 1; hits.push({ t: f.f + " → Vitamin " + f.v, u: f.u + "#foods", k: "Food", sc: 2 });
+          }
         });
         hits.sort(function (a, b) { return b.sc - a.sc; });
-        out.innerHTML = hits.slice(0, 8).map(function (h) { return '<li><a href="' + h.u + '">' + esc(h.t) + "<small>" + esc(h.k) + "</small></a></li>"; }).join("") ||
-          '<li><a href="/tools/food-finder/">No match. Try the food finder →<small>Tool</small></a></li>';
+        var li = function (h) { return '<li><a href="' + h.u + '">' + esc(h.t) + "<small>" + esc(h.k) + "</small></a></li>"; };
+        out.innerHTML = hits.length ? hits.slice(0, 6).map(li).join("") :
+          '<li class="none">No exact match. Popular pages:</li>' + POPULAR.map(function (p) { return li({ t: p[0], u: p[1], k: "Popular" }); }).join("");
       });
     };
     input.addEventListener("input", run);
@@ -104,6 +125,14 @@
       var els = form.querySelectorAll('[name="' + n + '"]');
       els.forEach(function (el) { if (el.type === "radio") el.checked = el.value === saved[n]; else if (el.type === "checkbox") el.checked = !!saved[n]; });
     }); } catch (e) {}
+    var prog = document.getElementById("vcheck-prog");
+    var radios = {}; form.querySelectorAll('input[type="radio"]').forEach(function (el) { radios[el.name] = 1; });
+    var total = Object.keys(radios).length;
+    var tally = function () {
+      var n = Object.keys(radios).filter(function (nm) { return form.querySelector('input[name="' + nm + '"]:checked'); }).length;
+      if (prog) prog.textContent = n + " of " + total + " answered" + (n < total ? " · questions 9 and 10 are optional" : " · ready when you are");
+    };
+    form.addEventListener("change", tally); tally();
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       var a = {};

@@ -377,7 +377,24 @@
       "💊 A word on painkillers",
       "Anti-inflammatory painkillers like ibuprofen and naproxen are useful for short-term pain. Taken daily for weeks, they can raise heart attack and stroke risk. If you need them most days, see a doctor."
     ],
-    "foodsSub": "No single \"superfood\" lowers inflammation. Your overall pattern is what counts."
+    "foodsSub": "No single \"superfood\" lowers inflammation. Your overall pattern is what counts.",
+    "short": [
+      "Short bursts of inflammation heal you. The long, low-level kind is the one worth lowering.",
+      "The biggest levers: move most days, lose weight if you carry extra, and don't smoke.",
+      "Eat Mediterranean-style: vegetables, dals and beans, whole grains, nuts, olive oil, and fish if you eat it.",
+      "No supplement, detox or single \"superfood\" fixes it. Ongoing pain or swelling needs a doctor."
+    ],
+    "related": {
+      "vitamins": [
+        "C",
+        "D",
+        "E"
+      ],
+      "guides": [
+        "over-50",
+        "active"
+      ]
+    }
   },
   {
     "slug": "hormonal-imbalance",
@@ -819,6 +836,25 @@
     "causesLabels": {
       "g": "Recognized condition",
       "r": "Not a diagnosis"
+    },
+    "short": [
+      "\"Hormonal imbalance\" is a label, not a diagnosis. The usual real causes are thyroid problems, PCOS, perimenopause or blood sugar.",
+      "A few blood tests, starting with TSH for the thyroid, find most of them, and they're treatable.",
+      "Food helps most through steady blood sugar and, if you carry extra weight, losing 5–10% of it.",
+      "Skip \"hormone balancing\" teas, adrenal fatigue tests and testosterone boosters. Stop biotin 2 days before a thyroid test."
+    ],
+    "related": {
+      "vitamins": [
+        "D",
+        "B12",
+        "B6",
+        "B7"
+      ],
+      "guides": [
+        "tired",
+        "20s-to-40s",
+        "over-50"
+      ]
     }
   }
 ]
