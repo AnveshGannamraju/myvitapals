@@ -6,7 +6,8 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const FONT_DIR = process.env.FONT_DIR;
-const items = JSON.parse(fs.readFileSync(path.join(__dirname, 'og.json'), 'utf8'));
+const ONLY = process.env.ONLY ? new Set(process.env.ONLY.split(',')) : null; // e.g. ONLY=iron,calcium renders just those
+const items = JSON.parse(fs.readFileSync(path.join(__dirname, 'og.json'), 'utf8')).filter(it => !ONLY || ONLY.has(it.name));
 
 function fontCss() {
   if (!FONT_DIR) return '';
@@ -32,7 +33,7 @@ h1{font-family:Fraunces,'Emo',sans-serif;font-size:${it.name === 'home' ? 76 : 8
 svg text{font-family:Fraunces,'Emo',sans-serif}
 .home{text-align:center}
 </style></head><body>
-${it.name === 'home'
+${it.name === 'home' || it.multi
   ? `<div class="home"><div class="multi">${it.svg}</div><h1>${it.title}</h1><p class="l">${it.lead}</p></div>`
   : `<div class="row">${it.svg}<div><p class="k">${it.kicker}</p><h1>${it.title}</h1><p class="l">${it.lead}</p></div></div>`}
 <div class="brand">Vita<b>Pals</b> · myvitapals.com</div>
@@ -52,6 +53,7 @@ ${it.name === 'home'
     await p.screenshot({ path: path.join(ROOT, 'og', it.name + '.png') });
   }
   // Icons from favicon.svg
+  if (ONLY) { fs.unlinkSync(tmp); await browser.close(); console.log(`Rendered ${items.length} share images`); return; }
   const svg = fs.readFileSync(path.join(ROOT, 'favicon.svg'), 'utf8');
   for (const [file, size, bg] of [['favicon-32.png', 32, 'transparent'], ['apple-touch-icon.png', 180, '#fffaf2']]) {
     await p.setViewportSize({ width: size, height: size });
