@@ -1,0 +1,374 @@
+[
+  {
+    "slug": "inflammation",
+    "title": "Inflammation",
+    "icon": "🔥",
+    "seo": "Inflammation: Causes, Foods That Help & What Actually Works",
+    "card": "What chronic inflammation is, what drives it, and the food and lifestyle changes with real evidence behind them.",
+    "kicker": "Health topic · Evidence-rated",
+    "intro": "Inflammation is your immune system's repair crew. Short bursts heal cuts and fight germs. The problem is when it never clocks out. Here's what keeps it running, and what actually helps.",
+    "glance": [
+      [
+        "Biggest drivers",
+        "Extra belly fat, smoking, inactivity"
+      ],
+      [
+        "What helps most",
+        "Moving more, weight loss if needed"
+      ],
+      [
+        "Best eating pattern",
+        "Mediterranean-style, with dal & veg"
+      ],
+      [
+        "Test to ask about",
+        "hs-CRP (a blood test)"
+      ]
+    ],
+    "what": [
+      "Inflammation is how your body reacts to injury or infection. Blood flow increases and immune cells rush in to clean up and repair. That's why a sprained ankle swells and a cut turns red.",
+      "There are two kinds. Acute inflammation is fast and short: it starts within hours and settles in days. Chronic (long-term) inflammation is low and slow: it simmers for months or years, often with no obvious symptoms."
+    ],
+    "types": [
+      [
+        "⚡ Acute: the good kind",
+        "Redness, heat, swelling, pain. Lasts hours to days. It's a sign your body is healing. Don't try to \"fix\" it with food."
+      ],
+      [
+        "🐢 Chronic: the problem kind",
+        "Low-level and quiet. Linked with heart disease, type 2 diabetes, some cancers and joint problems. This is what lifestyle changes target."
+      ]
+    ],
+    "termNote": "\"Chronic inflammation\" isn't a diagnosis on its own. It's a process. A doctor looks for the cause, such as an infection, an autoimmune condition or a metabolic problem. Be wary of anyone who says you \"have inflammation\" and sells a cure in the same breath.",
+    "causes": [
+      [
+        "Extra body fat, especially around the waist",
+        "g",
+        "Fat tissue, particularly deep belly fat, releases inflammatory signals. Higher body weight tracks with higher inflammation markers."
+      ],
+      [
+        "Smoking and polluted air",
+        "g",
+        "Smoking raises inflammation and lowers the body's natural anti-inflammatory signals. Polluted air and dust at work (like silica) add to the load."
+      ],
+      [
+        "Sitting most of the day",
+        "g",
+        "Regular exercise lowers inflammation markers, so long stretches of inactivity leave them higher."
+      ],
+      [
+        "Autoimmune conditions and lingering infections",
+        "g",
+        "In conditions like rheumatoid arthritis, lupus, psoriasis or inflammatory bowel disease, the immune system attacks the body's own tissue. Some infections, like TB, can also smolder for months. These need a doctor, not a diet."
+      ],
+      [
+        "Short or poor sleep",
+        "y",
+        "Irregular sleep and insomnia are linked with higher inflammation markers."
+      ],
+      [
+        "Long-term stress and low mood",
+        "y",
+        "Ongoing physical or emotional stress triggers inflammatory signals. Depression is linked with higher CRP too."
+      ],
+      [
+        "An eating pattern high in sugar, refined flour and trans fat",
+        "y",
+        "Diets heavy in sugary drinks, refined carbohydrates (maida, white bread), and saturated and trans fats are linked with more inflammatory molecules."
+      ],
+      [
+        "Gum disease",
+        "y",
+        "Inflamed, bleeding gums are linked with heart disease and diabetes. The link is well documented, but it isn't yet proven that gum disease causes them."
+      ],
+      [
+        "Getting older",
+        "y",
+        "Inflammation markers tend to creep up with age. Scientists call this \"inflammaging.\" Staying active and keeping a healthy weight seem to slow it."
+      ]
+    ],
+    "helps": [
+      [
+        "Move most days",
+        "g",
+        "Aim for 150 minutes a week of moderate activity, like brisk walking, plus muscle strengthening on 2 days. A review of 83 trials found exercise lowered CRP, even without weight loss."
+      ],
+      [
+        "Lose some weight, if you carry extra",
+        "g",
+        "Weight loss is the single most effective way to lower chronic inflammation. Exercise plus weight loss beat exercise alone in the trials above."
+      ],
+      [
+        "Stop smoking",
+        "g",
+        "One of the biggest single changes you can make for inflammation and your heart. Ask your doctor about quit aids."
+      ],
+      [
+        "Eat Mediterranean-style",
+        "y",
+        "Lots of vegetables, fruit, beans, whole grains, nuts and olive oil, with fish if you eat it. In trials it lowered some inflammation markers (IL-6, IL-1β) more than other diets, though the drop in CRP wasn't clear-cut."
+      ],
+      [
+        "Sleep 7 or more hours",
+        "y",
+        "The CDC recommends at least 7 hours a night for adults. Steady bedtimes help too."
+      ],
+      [
+        "Manage stress",
+        "y",
+        "Yoga, meditation, a walk with a friend. Pick what you'll actually do. Stress drives inflammatory signals, and calming practices are a sensible, low-risk way to push back."
+      ],
+      [
+        "Brush, floss and see the dentist",
+        "y",
+        "Treating gum disease is good for your mouth for sure, and may help the rest of you."
+      ]
+    ],
+    "foodsUS": [
+      "🫒 Olive oil",
+      "🐟 Salmon & sardines",
+      "🌰 Walnuts & almonds",
+      "🫐 Berries",
+      "🥦 Broccoli & cabbage",
+      "🥬 Spinach & kale",
+      "🫘 Beans & lentils",
+      "🌾 Oats & whole grains",
+      "🍵 Green or black tea",
+      "🍒 Cherries"
+    ],
+    "foodsIndian": [
+      "Moong dal & other dals",
+      "Rajma & chana",
+      "Palak & methi",
+      "Amla",
+      "Haldi & adrak in cooking",
+      "Alsi (flaxseed)",
+      "Til (sesame)",
+      "Curd",
+      "Bajra, jowar & ragi",
+      "Fish curry (if you eat fish)"
+    ],
+    "limit": [
+      "Sugary drinks, packaged juices, mithai most days",
+      "Maida-heavy snacks: white bread, biscuits, bakery items",
+      "Deep-fried foods, especially in reused oil",
+      "Vanaspati and hydrogenated fats (trans fats)",
+      "Processed meats like sausages and bacon"
+    ],
+    "plate": [
+      [
+        "Breakfast",
+        "Oats with walnuts and berries, or moong dal chilla with mint chutney"
+      ],
+      [
+        "Lunch",
+        "Rajma or chana with brown rice or roti, plus a big salad with olive oil"
+      ],
+      [
+        "Snack",
+        "Roasted chana, a handful of nuts, or an apple or guava"
+      ],
+      [
+        "Dinner",
+        "Palak paneer or grilled fish, mixed veg sabzi, whole-wheat roti"
+      ]
+    ],
+    "nutrients": [
+      [
+        "Omega-3 fats",
+        "y",
+        "",
+        "EPA and DHA (from fish) and ALA (from flaxseed, chia, walnuts). Trials in rheumatoid arthritis show people needed fewer painkillers, but effects on pain and swelling were inconsistent. Adults need 1.1 g (women) to 1.6 g (men) of ALA a day; 1 tbsp of flaxseed has about 2.35 g. No upper limit is set, and the FDA considers up to 5 g a day of EPA + DHA from supplements safe. High doses can increase bleeding risk, and 4 g a day was linked to a slightly higher risk of an irregular heartbeat (atrial fibrillation) in heart patients. On warfarin? Your doctor may want to check your INR."
+      ],
+      [
+        "Vitamin D",
+        "y",
+        "/vitamin-d/",
+        "In the large VITAL trial, 2,000 IU a day for about 5 years led to 22% fewer new autoimmune conditions (a borderline result). But vitamin D supplements don't reliably lower CRP. If you might be low, ask your doctor about testing. Upper limit: 4,000 IU a day."
+      ],
+      [
+        "Fiber",
+        "y",
+        "",
+        "High-fiber diets are linked with lower inflammation. Dals, beans, whole grains, vegetables and fruit are the easy way in."
+      ],
+      [
+        "Vitamin C",
+        "w",
+        "/vitamin-c/",
+        "An antioxidant found in amla, guava, citrus and peppers. Food sources are great, but there isn't good evidence that supplements lower inflammation in people who aren't low. Upper limit: 2,000 mg a day."
+      ],
+      [
+        "Vitamin E",
+        "w",
+        "/vitamin-e/",
+        "Another antioxidant, found in nuts, seeds and plant oils. Supplements haven't been shown to lower inflammation in people who aren't low, and they can raise bleeding risk with blood thinners like warfarin. Upper limit: 1,000 mg a day from supplements."
+      ],
+      [
+        "Magnesium, zinc, selenium",
+        "w",
+        "",
+        "Your body needs them, and being low is linked with more inflammation. That doesn't mean extra pills help if your levels are fine. Get them from nuts, seeds, dals and whole grains."
+      ]
+    ],
+    "claims": [
+      [
+        "Turmeric supplements fix inflammation",
+        "y",
+        "Cooking with haldi is great. As supplements, turmeric and curcumin show early promise for knee osteoarthritis pain. But high-strength \"bioavailable\" curcumin products have been linked to liver damage, and supplements may be unsafe in pregnancy. Ask your doctor first, especially if you take medicines."
+      ],
+      [
+        "Detox teas and juice cleanses flush out inflammation",
+        "r",
+        "There's no good research that detox programs remove toxins. Any weight lost usually comes back. Some products have had hidden ingredients, and colon cleanses can cause real harm. Your liver and kidneys already do the detox job, for free."
+      ],
+      [
+        "Tomatoes, potatoes and brinjal (nightshades) cause inflammation",
+        "w",
+        "Research hasn't found that nightshades harm joints or raise inflammation. If one seems to bother you, try leaving it out for a few weeks and see."
+      ],
+      [
+        "Dairy is inflammatory",
+        "r",
+        "A review of 52 clinical trials found dairy, including curd and fermented milk, had a mildly anti-inflammatory effect overall. The exception: people with a true milk allergy."
+      ],
+      [
+        "Sugar causes inflammation",
+        "y",
+        "Partly true. A diet high in refined sugar and sugary drinks is linked with more inflammation. A sweet now and then isn't the problem; the daily pattern is."
+      ],
+      [
+        "A high CRP tells you what's wrong",
+        "r",
+        "CRP shows that inflammation is present, not where it is or why. It can be raised by a cold, an injury, smoking, poor sleep or extra weight. Your doctor interprets it alongside your symptoms and other tests."
+      ],
+      [
+        "Painkillers are a harmless daily fix",
+        "r",
+        "Regular non-aspirin NSAIDs (like ibuprofen or naproxen) can raise heart attack and stroke risk, sometimes within weeks. The FDA advises the lowest dose for the shortest time. Ongoing pain needs a doctor's visit, not a bigger bottle."
+      ]
+    ],
+    "doctor": [
+      "A joint is hot, red and swollen, or several joints are stiff for over an hour each morning",
+      "Fever, night sweats or weight loss you can't explain",
+      "Ongoing belly pain, diarrhea, or blood in your stool",
+      "A rash with joint pain, or tiredness that lasts more than a few weeks",
+      "Gums that bleed often or are pulling back",
+      "You use painkillers most days to get by"
+    ],
+    "tests": [
+      [
+        "CRP (C-reactive protein)",
+        "Shows how much inflammation is present right now, from any cause. Useful for spotting infection or tracking a known condition."
+      ],
+      [
+        "hs-CRP (high-sensitivity CRP)",
+        "Picks up small rises and is sometimes used to fine-tune heart risk. Under 1 mg/L is lower risk, 1–3 average, over 3 higher. Over 10 usually means a short-term cause, like an infection, so it's retested."
+      ],
+      [
+        "ESR (sed rate)",
+        "An older, slower marker of inflammation, often ordered with CRP."
+      ],
+      [
+        "Others your doctor may add",
+        "Blood sugar (HbA1c), cholesterol, vitamin D, or specific tests for autoimmune conditions, depending on your symptoms."
+      ]
+    ],
+    "faq": [
+      [
+        "What's the fastest way to lower inflammation?",
+        "There's no overnight fix. The biggest proven levers are regular exercise, losing weight if you carry extra, and not smoking. Diet and sleep add to it. Expect changes over weeks to months."
+      ],
+      [
+        "Is there an anti-inflammatory diet?",
+        "Not one official diet. The Mediterranean-style pattern has the best evidence: vegetables, fruit, dals and beans, whole grains, nuts, olive oil and fish. A typical home-cooked Indian vegetarian meal with dal, sabzi and roti fits nicely; just go easy on fried snacks and sweets."
+      ],
+      [
+        "Should I get an hs-CRP test?",
+        "It's not a routine screening test for everyone. Doctors mainly use it to fine-tune heart-risk decisions when your risk is in the middle range. Ask your doctor whether it would change anything for you."
+      ],
+      [
+        "Can I drink haldi doodh (turmeric milk) every day?",
+        "Yes, turmeric in food and drinks is fine for most people. The safety questions are about concentrated supplements, not the spice in your kitchen."
+      ],
+      [
+        "Do I need omega-3 capsules if I'm vegetarian?",
+        "Not automatically. You can meet the ALA need from ground flaxseed, chia or walnuts. Whether a fish- or algae-based EPA/DHA supplement makes sense for you is a good question for your doctor, especially if you take a blood thinner."
+      ],
+      [
+        "Does fasting or a cleanse reset inflammation?",
+        "There's no good evidence that cleanses do this, and some carry real risks. Steady habits beat short resets."
+      ]
+    ],
+    "sources": [
+      [
+        "StatPearls: Chronic Inflammation (Pahwa, Goyal, Jialal; NCBI Bookshelf, updated 2023)",
+        "https://www.ncbi.nlm.nih.gov/books/NBK493173/"
+      ],
+      [
+        "NIH NIEHS: Inflammation",
+        "https://www.niehs.nih.gov/health/topics/conditions/inflammation"
+      ],
+      [
+        "MedlinePlus: C-Reactive Protein (CRP) Test",
+        "https://medlineplus.gov/lab-tests/c-reactive-protein-crp-test/"
+      ],
+      [
+        "AHA/CDC Scientific Statement: Markers of inflammation and cardiovascular disease (Pearson et al., Circulation 2003)",
+        "https://pubmed.ncbi.nlm.nih.gov/12551878/"
+      ],
+      [
+        "Fedewa et al. Effect of exercise training on C-reactive protein: meta-analysis of 83 trials (Br J Sports Med 2017)",
+        "https://bjsm.bmj.com/content/51/8/670"
+      ],
+      [
+        "Koelman et al. Effects of dietary patterns on inflammation biomarkers: meta-analysis of RCTs (Adv Nutr 2022)",
+        "https://doi.org/10.1093/advances/nmab086"
+      ],
+      [
+        "CDC: Physical activity guidelines for adults",
+        "https://www.cdc.gov/physical-activity-basics/guidelines/adults.html"
+      ],
+      [
+        "CDC: How much sleep do I need?",
+        "https://www.cdc.gov/sleep/about/index.html"
+      ],
+      [
+        "NIH ODS: Omega-3 Fatty Acids fact sheet for health professionals",
+        "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/"
+      ],
+      [
+        "Hahn et al. VITAL trial: vitamin D and omega-3 and autoimmune disease (BMJ 2022)",
+        "https://pubmed.ncbi.nlm.nih.gov/35082139/"
+      ],
+      [
+        "Mazidi et al. Vitamin D supplementation and CRP: meta-analysis of RCTs (BMC Nutrition 2018)",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7050714/"
+      ],
+      [
+        "NIH NCCIH: Turmeric",
+        "https://www.nccih.nih.gov/health/turmeric"
+      ],
+      [
+        "NIH NCCIH: Detoxes and cleanses",
+        "https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know"
+      ],
+      [
+        "NIH NIDCR: Healthy mouth, healthy body",
+        "https://www.nidcr.nih.gov/news-events/nidcr-news/2024/healthy-mouth-healthy-body"
+      ],
+      [
+        "Bordoni et al. Dairy products and inflammation: review of 52 clinical trials (Crit Rev Food Sci Nutr 2017)",
+        "https://doi.org/10.1080/10408398.2014.967385"
+      ],
+      [
+        "Arthritis Society Canada: Nightshades and arthritis",
+        "https://arthritis.ca/healthy-living/nightshades-and-arthritis/"
+      ],
+      [
+        "US FDA: Drug safety communication on NSAIDs, heart attack and stroke (2015)",
+        "https://www.fda.gov/Drugs/DrugSafety/ucm451800.htm"
+      ]
+    ]
+  }
+]
