@@ -69,6 +69,7 @@ def head(title, desc, path, og="home", extra=""):
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{SITE}{path}">
 <meta name="theme-color" content="#faf7f2">
+<meta name="google-site-verification" content="PWmqsbCTxIDBLfAWZAj158s1Cxm_8TM1bWkIVkYY31g">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VitaPals">
 <meta property="og:title" content="{e(title)}">
