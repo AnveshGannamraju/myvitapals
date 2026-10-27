@@ -1,76 +1,420 @@
 [
-{"slug": "vegetarian", "icon": "🥗", "title": "Vegetarian or vegan", "card": "Which vitamins need extra attention when you skip meat, or all animal foods.",
- "seo": "Vitamins for Vegetarians and Vegans: What You Might Be Missing",
- "intro": "A well-planned vegetarian diet can cover nearly all your vitamin needs. A few need extra attention, especially if you're vegan.",
- "key": [["B12", "The big one. B12 is naturally found only in animal foods. Vegans need fortified foods or a supplement. Vegetarians who eat dairy and eggs may still run low."],
-         ["D", "Very few plant foods have vitamin D. Look for fortified plant milks, UV-exposed mushrooms and sensible sunshine."],
-         ["B2", "If you skip dairy, you lose a main source. Fortified plant milks, almonds and mushrooms help."],
-         ["B9", "Easy win! Dals, beans and leafy greens are packed with folate."],
-         ["A", "No problem. Your body makes vitamin A from carrots, pumpkin and greens. Add a little oil or ghee to absorb it."]],
- "plateTitle": "A day that covers the tricky ones",
- "plate": [["Breakfast", "Fortified cereal or oats with milk or fortified plant milk"], ["Lunch", "Dal, palak sabzi, roti and a bowl of curd"], ["Snack", "A handful of almonds and an orange or guava"], ["Dinner", "Chana masala, brown rice and a salad with lemon squeezed on top"]],
- "beyond": "Beyond vitamins, vegetarians should also watch iron, zinc, calcium, iodine and omega-3 fats. We'll cover these in upcoming mineral guides.",
- "doctor": ["Ask for a B12 blood test, especially if you've been vegetarian or vegan for years.", "Ask about vitamin D if you get little sun.", "If you're planning a pregnancy, discuss B12 and folic acid early."],
- "sources": ["B12", "D", "B2"]},
-{"slug": "over-50", "icon": "🧓", "title": "Over 50", "card": "Your body absorbs some vitamins differently with age. Here's what changes.",
- "seo": "Vitamins After 50: B12, Vitamin D and What Changes With Age",
- "intro": "After 50, your body absorbs and makes some vitamins less efficiently, and many common medicines affect vitamin levels. A few small changes go a long way.",
- "key": [["B12", "Less stomach acid means less B12 absorbed from food. Experts advise adults over 50 to get most of their B12 from fortified foods or a supplement."],
-         ["D", "Skin makes less vitamin D with age, and after 70 your daily need rises to 800 IU."],
-         ["B6", "Needs rise slightly after 50: 1.7 mg for men and 1.5 mg for women."],
-         ["K", "Important for blood clotting and bones. If you take warfarin, keep your intake steady."]],
- "plateTitle": "Easy habits",
- "plate": [["Every day", "A fortified cereal or fortified plant milk for B12 and D"], ["Most days", "Leafy greens for folate and vitamin K"], ["A few times a week", "Fatty fish or eggs, if you eat them"], ["Daily", "Some time outdoors, when it's safe"]],
- "beyond": "Calcium also matters more after 50 for bone health. A mineral guide is coming soon.",
- "doctor": ["Bring a list of every medicine and supplement to your next checkup. Metformin and acid reducers can lower B12.", "Ask whether a B12 or vitamin D test makes sense for you.", "Before starting any supplement, check for interactions with your medicines."],
- "sources": ["B12", "D", "B6"]},
-{"slug": "pregnancy", "icon": "🤰", "title": "Pregnant or planning", "card": "Folic acid, B12, vitamin D, and what to avoid before and during pregnancy.",
- "seo": "Vitamins Before and During Pregnancy: Folic Acid, B12, D and What to Avoid",
- "intro": "Some vitamins matter even before you know you're pregnant. Here's what the evidence says. Your doctor or midwife will tailor it to you.",
- "key": [["B9", "Take 400 mcg of folic acid every day, starting at least a month before pregnancy. It helps prevent serious birth defects of the brain and spine. Needs rise to 600 mcg in pregnancy."],
-         ["B12", "Needs rise to 2.6 mcg. Vegetarians and vegans should make sure they're covered, since low B12 affects baby's development."],
-         ["D", "600 IU a day. Many people start pregnancy low, so ask about testing."],
-         ["A", "You need some, but avoid high-dose retinol supplements and large amounts of liver, which can cause birth defects. Beta-carotene from vegetables is safe."],
-         ["C", "Needs rise a little, to 85 mg. Easy with fruit and veg."]],
- "plateTitle": "Smart moves",
- "plate": [["Before pregnancy", "Start a folic acid supplement (or a prenatal vitamin that has it)"], ["Every day", "Leafy greens, dals and beans for natural folate"], ["Check labels", "Make sure you're not doubling up vitamin A from several supplements"], ["Morning sickness", "Ask your doctor before trying B6 or ginger"]],
- "beyond": "Prenatal vitamins also contain iron, iodine and sometimes choline and DHA. All of these matter in pregnancy.",
- "doctor": ["Choose a prenatal vitamin together with your doctor.", "Mention any other supplements so you don't exceed safe limits.", "If you're vegetarian or vegan, ask about B12 testing."],
- "sources": ["B9", "B12", "A", "D"]},
-{"slug": "kids", "icon": "🧒", "title": "Feeding kids", "card": "Vitamin D for babies, picky eaters, and keeping gummy vitamins safe.",
- "seo": "Vitamins for Kids: Vitamin D for Babies, Picky Eaters and Safety Tips",
- "intro": "Most kids who eat a variety of foods get the vitamins they need. A few situations need extra care.",
- "key": [["D", "Breast milk is low in vitamin D, so pediatricians usually recommend a vitamin D supplement for breastfed babies. Ask yours about the right product and amount."],
-         ["K", "Newborns get a vitamin K shot at birth because babies are born with very little. It prevents dangerous bleeding."],
-         ["B12", "Essential for vegan families. Breastfed babies of vegan mothers can develop serious problems without enough B12."],
-         ["A", "Orange and green veg like carrots, pumpkin and spinach. Mash them into dal or khichdi for little ones."],
-         ["C", "Fruits like oranges, guava and strawberries. They also help kids absorb iron."]],
- "plateTitle": "Picky eater tips",
- "plate": [["Keep offering", "Kids may need many tries before accepting a new food"], ["Mix it in", "Grated carrot in parathas, spinach in dosa batter, fruit in yogurt"], ["Make it fun", "Let them pick a 'rainbow' of fruits at the store"], ["Don't stress", "One picky week won't cause a deficiency. Look at the overall pattern"]],
- "beyond": "Iron and calcium are also important for growing kids. Mineral guides are coming soon.",
- "doctor": ["Ask your pediatrician before giving any supplement. Kids' needs and safe amounts are much lower than adults'.", "Keep all vitamins, especially gummies, out of reach. They look like candy, and overdoses can be dangerous.", "Never give adult supplements to children."],
- "sources": ["D", "K", "B12"]},
-{"slug": "supplements", "icon": "💊", "title": "Thinking about supplements", "card": "Who actually benefits, how to choose a good one, and red flags to avoid.",
- "seo": "Should I Take a Vitamin Supplement? Who Benefits and How to Choose",
- "intro": "Food first. Most people get enough of most vitamins from a varied diet. But some people really do benefit from a supplement, and some supplements can cause harm.",
- "key": [["B12", "Vegans, many vegetarians, adults over 50, and people on long-term metformin or acid reducers."],
-         ["B9", "Anyone who could become pregnant: 400 mcg of folic acid daily."],
-         ["D", "People with little sun, darker skin or older age, and breastfed babies (ask your pediatrician)."]],
- "plateTitle": "How to choose a good supplement",
- "plate": [["Look for a seal", "USP Verified, NSF Certified or ConsumerLab means the label matches what's inside"], ["Skip megadoses", "More than 100% of the daily value is rarely needed unless your doctor says so"], ["Add it all up", "Count vitamins across every product you take, including 'energy', 'hair' or 'immunity' blends"], ["Tell your doctor", "And your pharmacist, especially if you take any medicines"]],
- "beyond": "Red flags: any product that claims to 'cure', 'detox' or 'boost immunity overnight', or that warns you not to tell your doctor. Real vitamins don't need hype.",
- "doctor": ["Ask whether a blood test would help before starting B12 or vitamin D.", "Ask your pharmacist to check for interactions with your medicines.", "Bring your supplement bottles to checkups."],
- "showUL": true,
- "sources": ["B12", "D", "B9", "B6", "E"]},
-{"slug": "tired", "icon": "😴", "title": "Always tired?", "card": "When low vitamins might be a cause, and what to ask your doctor.",
- "seo": "Always Tired? Vitamins That Can Cause Fatigue and What to Ask Your Doctor",
- "intro": "Feeling tired all the time has many possible causes, including sleep, stress, thyroid problems, anemia, depression, diabetes and medications. Low vitamins are only one of them, but they're easy to check.",
- "key": [["B12", "Low B12 can cause tiredness, weakness, tingling and memory problems. It's common in vegetarians and adults over 50."],
-         ["B9", "Low folate can cause a type of anemia that makes you tired and short of breath."],
-         ["D", "Low vitamin D is linked with tiredness and muscle aches in some people."]],
- "plateTitle": "What to ask your doctor about",
- "plate": [["Complete blood count", "To check for anemia"], ["B12 and folate", "Often tested together"], ["Vitamin D", "25-hydroxyvitamin D"], ["Iron & thyroid", "Ferritin and TSH are common non-vitamin causes"]],
- "beyond": "Please don't self-treat with high-dose 'energy' supplements. Too much B6 can damage nerves, and supplements can hide the real cause.",
- "doctor": ["See a doctor if tiredness lasts more than a few weeks or comes with weight loss, breathlessness, low mood or other symptoms.", "Get urgent help for chest pain, fainting or severe breathlessness."],
- "sources": ["B12", "B9", "D"]}
+ {
+  "slug": "vegetarian",
+  "icon": "🥗",
+  "title": "Vegetarian or vegan",
+  "card": "Which vitamins need extra attention when you skip meat, or all animal foods.",
+  "seo": "Vitamins for Vegetarians and Vegans: What You Might Be Missing",
+  "intro": "A well-planned vegetarian diet can cover nearly all your vitamin needs. A few need extra attention, especially if you're vegan.",
+  "key": [
+   [
+    "B12",
+    "The big one. B12 is naturally found only in animal foods. Vegans need fortified foods or a supplement. Vegetarians who eat dairy and eggs may still run low."
+   ],
+   [
+    "D",
+    "Very few plant foods have vitamin D. Look for fortified plant milks, UV-exposed mushrooms and sensible sunshine."
+   ],
+   [
+    "B2",
+    "If you skip dairy, you lose a main source. Fortified plant milks, almonds and mushrooms help."
+   ],
+   [
+    "B9",
+    "Easy win! Dals, beans and leafy greens are packed with folate."
+   ],
+   [
+    "A",
+    "No problem. Your body makes vitamin A from carrots, pumpkin and greens. Add a little oil or ghee to absorb it."
+   ]
+  ],
+  "plateTitle": "A day that covers the tricky ones",
+  "plate": [
+   [
+    "Breakfast",
+    "Fortified cereal or oats with milk or fortified plant milk"
+   ],
+   [
+    "Lunch",
+    "Dal, palak sabzi, roti and a bowl of curd"
+   ],
+   [
+    "Snack",
+    "A handful of almonds and an orange or guava"
+   ],
+   [
+    "Dinner",
+    "Chana masala, brown rice and a salad with lemon squeezed on top"
+   ]
+  ],
+  "beyond": "Beyond vitamins, vegetarians should also watch iron, zinc, calcium, iodine and omega-3 fats. We'll cover these in upcoming mineral guides.",
+  "doctor": [
+   "Ask for a B12 blood test, especially if you've been vegetarian or vegan for years.",
+   "Ask about vitamin D if you get little sun.",
+   "If you're planning a pregnancy, discuss B12 and folic acid early."
+  ],
+  "sources": [
+   "B12",
+   "D",
+   "B2"
+  ]
+ },
+ {
+  "slug": "20s-to-40s",
+  "icon": "🧑‍💻",
+  "title": "Your 20s to 40s",
+  "card": "Indoor jobs, takeout, weekend drinks and trendy supplements: what to watch.",
+  "seo": "Vitamins in Your 20s, 30s and 40s: What Busy Adults Should Watch",
+  "intro": "These are often your healthiest years. But long indoor days, skipped meals, takeout, weekend drinks and trendy supplements can quietly leave gaps, or push you over safe limits.",
+  "key": [
+   [
+    "D",
+    "Office jobs, commuting and screens mean little daylight on your skin. Low vitamin D is common, even in sunny places."
+   ],
+   [
+    "B9",
+    "Anyone who could become pregnant should take 400 mcg of folic acid daily, even if not planning, because the spine forms in the first weeks."
+   ],
+   [
+    "B12",
+    "Going plant-based? Plan your B12 from day one with fortified foods or a supplement."
+   ],
+   [
+    "B1",
+    "Regular heavy drinking, including weekend binges, drains B1 and folate."
+   ],
+   [
+    "B7",
+    "Hair, skin and nail gummies often pack huge biotin doses that can throw off blood tests."
+   ],
+   [
+    "B6",
+    "Energy drinks and pre-workouts often contain B6. Add it up across products, since long-term high doses can harm nerves."
+   ]
+  ],
+  "plateTitle": "Simple habits for busy weeks",
+  "plate": [
+   [
+    "Breakfast on the go",
+    "Fortified cereal or oats with milk, plus a piece of fruit"
+   ],
+   [
+    "Desk lunch",
+    "A dal, bean or chickpea bowl with greens"
+   ],
+   [
+    "Snack drawer",
+    "Almonds, sunflower seeds or a banana"
+   ],
+   [
+    "Takeout nights",
+    "Add a veggie side and squeeze lemon on top"
+   ],
+   [
+    "Daylight",
+    "A short walk outside at lunch"
+   ]
+  ],
+  "beyond": "Iron (especially for women who have periods) and calcium matter in these years too. Mineral guides are coming soon.",
+  "doctor": [
+   "At your yearly checkup, ask whether a vitamin D or B12 test makes sense for you.",
+   "Mention every supplement, including gummies, energy drinks and pre-workouts.",
+   "Planning a pregnancy in the next year? Start folic acid now and talk to your doctor."
+  ],
+  "sources": [
+   "D",
+   "B9",
+   "B12",
+   "B7",
+   "B6"
+  ]
+ },
+ {
+  "slug": "over-50",
+  "icon": "🧓",
+  "title": "Over 50",
+  "card": "Your body absorbs some vitamins differently with age. Here's what changes.",
+  "seo": "Vitamins After 50: B12, Vitamin D and What Changes With Age",
+  "intro": "After 50, your body absorbs and makes some vitamins less efficiently, and many common medicines affect vitamin levels. A few small changes go a long way.",
+  "key": [
+   [
+    "B12",
+    "Less stomach acid means less B12 absorbed from food. Experts advise adults over 50 to get most of their B12 from fortified foods or a supplement."
+   ],
+   [
+    "D",
+    "Skin makes less vitamin D with age, and after 70 your daily need rises to 800 IU."
+   ],
+   [
+    "B6",
+    "Needs rise slightly after 50: 1.7 mg for men and 1.5 mg for women."
+   ],
+   [
+    "K",
+    "Important for blood clotting and bones. If you take warfarin, keep your intake steady."
+   ]
+  ],
+  "plateTitle": "Easy habits",
+  "plate": [
+   [
+    "Every day",
+    "A fortified cereal or fortified plant milk for B12 and D"
+   ],
+   [
+    "Most days",
+    "Leafy greens for folate and vitamin K"
+   ],
+   [
+    "A few times a week",
+    "Fatty fish or eggs, if you eat them"
+   ],
+   [
+    "Daily",
+    "Some time outdoors, when it's safe"
+   ]
+  ],
+  "beyond": "Calcium also matters more after 50 for bone health. A mineral guide is coming soon.",
+  "doctor": [
+   "Bring a list of every medicine and supplement to your next checkup. Metformin and acid reducers can lower B12.",
+   "Ask whether a B12 or vitamin D test makes sense for you.",
+   "Before starting any supplement, check for interactions with your medicines."
+  ],
+  "sources": [
+   "B12",
+   "D",
+   "B6"
+  ]
+ },
+ {
+  "slug": "pregnancy",
+  "icon": "🤰",
+  "title": "Pregnant or planning",
+  "card": "Folic acid, B12, vitamin D, and what to avoid before and during pregnancy.",
+  "seo": "Vitamins Before and During Pregnancy: Folic Acid, B12, D and What to Avoid",
+  "intro": "Some vitamins matter even before you know you're pregnant. Here's what the evidence says. Your doctor or midwife will tailor it to you.",
+  "key": [
+   [
+    "B9",
+    "Take 400 mcg of folic acid every day, starting at least a month before pregnancy. It helps prevent serious birth defects of the brain and spine. Needs rise to 600 mcg in pregnancy."
+   ],
+   [
+    "B12",
+    "Needs rise to 2.6 mcg. Vegetarians and vegans should make sure they're covered, since low B12 affects baby's development."
+   ],
+   [
+    "D",
+    "600 IU a day. Many people start pregnancy low, so ask about testing."
+   ],
+   [
+    "A",
+    "You need some, but avoid high-dose retinol supplements and large amounts of liver, which can cause birth defects. Beta-carotene from vegetables is safe."
+   ],
+   [
+    "C",
+    "Needs rise a little, to 85 mg. Easy with fruit and veg."
+   ]
+  ],
+  "plateTitle": "Smart moves",
+  "plate": [
+   [
+    "Before pregnancy",
+    "Start a folic acid supplement (or a prenatal vitamin that has it)"
+   ],
+   [
+    "Every day",
+    "Leafy greens, dals and beans for natural folate"
+   ],
+   [
+    "Check labels",
+    "Make sure you're not doubling up vitamin A from several supplements"
+   ],
+   [
+    "Morning sickness",
+    "Ask your doctor before trying B6 or ginger"
+   ]
+  ],
+  "beyond": "Prenatal vitamins also contain iron, iodine and sometimes choline and DHA. All of these matter in pregnancy.",
+  "doctor": [
+   "Choose a prenatal vitamin together with your doctor.",
+   "Mention any other supplements so you don't exceed safe limits.",
+   "If you're vegetarian or vegan, ask about B12 testing."
+  ],
+  "sources": [
+   "B9",
+   "B12",
+   "A",
+   "D"
+  ]
+ },
+ {
+  "slug": "active",
+  "icon": "🏋️",
+  "title": "Active & working out",
+  "card": "Gym, running or sports: which vitamins matter, and why megadoses can backfire.",
+  "seo": "Vitamins for Active Adults and Gym-Goers: What Matters and What to Skip",
+  "intro": "Exercise doesn't dramatically raise your vitamin needs. Eating enough to fuel your training usually covers them. But a few vitamins deserve attention, and some popular supplements can work against you.",
+  "key": [
+   [
+    "D",
+    "Supports muscles and bones. Indoor training and winter months make low levels more likely."
+   ],
+   [
+    "B2",
+    "B vitamins help turn food into energy. Vegetarian athletes may need a little more riboflavin."
+   ],
+   [
+    "B12",
+    "Plant-based athletes should plan for B12, since low levels cause fatigue."
+   ],
+   [
+    "C",
+    "Food first. Some research suggests that high-dose vitamin C pills (around 1,000 mg a day) may blunt training gains."
+   ],
+   [
+    "E",
+    "Same story: high-dose antioxidant pills may get in the way of your body's training response. Nuts and seeds are fine."
+   ]
+  ],
+  "plateTitle": "Fueling tips",
+  "plate": [
+   [
+    "Before training",
+    "A banana or toast: easy carbs, plus some B6"
+   ],
+   [
+    "After training",
+    "Curd, milk, eggs or a chickpea bowl for protein and B vitamins"
+   ],
+   [
+    "Every day",
+    "Colorful fruit and veg for vitamin C. No megadose needed"
+   ],
+   [
+    "Check labels",
+    "Pre-workouts often contain B6 and B12. Count them toward your total"
+   ]
+  ],
+  "beyond": "Iron, calcium, protein and fluids matter a lot for active people. We'll cover these in future guides.",
+  "doctor": [
+   "If you train hard and feel unusually tired, ask about vitamin D, B12 and iron tests.",
+   "Supplements can contain undeclared ingredients. Competitive athletes should look for third-party tested products, like NSF Certified for Sport.",
+   "Talk to a sports dietitian before taking high-dose antioxidants."
+  ],
+  "sources": [
+   "D",
+   "B2",
+   "C",
+   "E"
+  ],
+  "extraSource": [
+   "Australian Institute of Sport: Vitamin C fact sheet",
+   "https://www.ais.gov.au/__data/assets/pdf_file/0009/999792/Sport-supplement-fact-sheets-Vitamin-C.pdf"
+  ]
+ },
+ {
+  "slug": "supplements",
+  "icon": "💊",
+  "title": "Thinking about supplements",
+  "card": "Who actually benefits, how to choose a good one, and red flags to avoid.",
+  "seo": "Should I Take a Vitamin Supplement? Who Benefits and How to Choose",
+  "intro": "Food first. Most people get enough of most vitamins from a varied diet. But some people really do benefit from a supplement, and some supplements can cause harm.",
+  "key": [
+   [
+    "B12",
+    "Vegans, many vegetarians, adults over 50, and people on long-term metformin or acid reducers."
+   ],
+   [
+    "B9",
+    "Anyone who could become pregnant: 400 mcg of folic acid daily."
+   ],
+   [
+    "D",
+    "People with little sun, darker skin, or older age."
+   ]
+  ],
+  "plateTitle": "How to choose a good supplement",
+  "plate": [
+   [
+    "Look for a seal",
+    "USP Verified, NSF Certified or ConsumerLab means the label matches what's inside"
+   ],
+   [
+    "Skip megadoses",
+    "More than 100% of the daily value is rarely needed unless your doctor says so"
+   ],
+   [
+    "Add it all up",
+    "Count vitamins across every product you take, including 'energy', 'hair' or 'immunity' blends"
+   ],
+   [
+    "Tell your doctor",
+    "And your pharmacist, especially if you take any medicines"
+   ]
+  ],
+  "beyond": "Red flags: any product that claims to 'cure', 'detox' or 'boost immunity overnight', or that warns you not to tell your doctor. Real vitamins don't need hype.",
+  "doctor": [
+   "Ask whether a blood test would help before starting B12 or vitamin D.",
+   "Ask your pharmacist to check for interactions with your medicines.",
+   "Bring your supplement bottles to checkups."
+  ],
+  "showUL": true,
+  "sources": [
+   "B12",
+   "D",
+   "B9",
+   "B6",
+   "E"
+  ]
+ },
+ {
+  "slug": "tired",
+  "icon": "😴",
+  "title": "Always tired?",
+  "card": "When low vitamins might be a cause, and what to ask your doctor.",
+  "seo": "Always Tired? Vitamins That Can Cause Fatigue and What to Ask Your Doctor",
+  "intro": "Feeling tired all the time has many possible causes, including sleep, stress, thyroid problems, anemia, depression, diabetes and medications. Low vitamins are only one of them, but they're easy to check.",
+  "key": [
+   [
+    "B12",
+    "Low B12 can cause tiredness, weakness, tingling and memory problems. It's common in vegetarians and adults over 50."
+   ],
+   [
+    "B9",
+    "Low folate can cause a type of anemia that makes you tired and short of breath."
+   ],
+   [
+    "D",
+    "Low vitamin D is linked with tiredness and muscle aches in some people."
+   ]
+  ],
+  "plateTitle": "What to ask your doctor about",
+  "plate": [
+   [
+    "Complete blood count",
+    "To check for anemia"
+   ],
+   [
+    "B12 and folate",
+    "Often tested together"
+   ],
+   [
+    "Vitamin D",
+    "25-hydroxyvitamin D"
+   ],
+   [
+    "Iron & thyroid",
+    "Ferritin and TSH are common non-vitamin causes"
+   ]
+  ],
+  "beyond": "Please don't self-treat with high-dose 'energy' supplements. Too much B6 can damage nerves, and supplements can hide the real cause.",
+  "doctor": [
+   "See a doctor if tiredness lasts more than a few weeks or comes with weight loss, breathlessness, low mood or other symptoms.",
+   "Get urgent help for chest pain, fainting or severe breathlessness."
+  ],
+  "sources": [
+   "B12",
+   "B9",
+   "D"
+  ]
+ }
 ]

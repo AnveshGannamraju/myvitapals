@@ -18,7 +18,7 @@ SITE = "https://myvitapals.com"
 REVIEWED = "October 2026"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-ASSET_V = "7"
+ASSET_V = "8"
 
 V = json.loads((SRC / "vitamins.json").read_text(encoding="utf-8"))
 D = json.loads((SRC / "details.json").read_text(encoding="utf-8"))
@@ -69,6 +69,7 @@ def head(title, desc, path, og="home", extra=""):
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{SITE}{path}">
 <meta name="theme-color" content="#faf7f2">
+<meta name="google-site-verification" content="PWmqsbCTxIDBLfAWZAj158s1Cxm_8TM1bWkIVkYY31g">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VitaPals">
 <meta property="og:title" content="{e(title)}">
@@ -140,7 +141,7 @@ def footer(scripts=""):
     <div><h4>Guides</h4>{gd}</div>
     <div><h4>Tools</h4><a href="/tools/vitamin-check/">Vitamin check</a><a href="/tools/food-finder/">Food finder</a><h4 style="margin-top:14px">VitaPals</h4><a href="/about/">About &amp; how we write</a></div>
   </div>
-  <p class="disc">VitaPals is for general education, not medical advice. Facts are based on the NIH Office of Dietary Supplements. Talk to a doctor, dietitian or pharmacist before starting a supplement, especially if you're pregnant, take medicines or have a health condition.</p>
+  <p class="disc">VitaPals is written for adults aged 20 and over, for general education, not medical advice. Facts are based on the NIH Office of Dietary Supplements. Talk to a doctor, dietitian or pharmacist before starting a supplement, especially if you're pregnant, take medicines or have a health condition.</p>
   <p class="disc">© {YEAR} VitaPals · Last reviewed {REVIEWED}</p>
 </div></footer>
 <script src="/assets/app.js?v={ASSET_V}" defer></script>{scripts}
@@ -217,7 +218,7 @@ home = head("VitaPals — Vitamins Explained Simply, Food First",
   <p class="lede">What each vitamin does, the foods that have the most, how much you need, and when a supplement actually makes sense. Plain language, with real numbers from the NIH.</p>
   {SEARCH}
   <div class="ctas"><a class="btn" href="/tools/vitamin-check/">Take the 2-minute vitamin check</a><a class="btn ghost" href="/tools/food-finder/">Find foods by vitamin</a></div>
-  <div class="trust"><span>Based on NIH fact sheets</span><span>Food first, supplements second</span><span>US &amp; Indian foods</span><span>Reviewed {REVIEWED}</span></div>
+  <div class="trust"><span>Based on NIH fact sheets</span><span>Food first, supplements second</span><span>For adults 20+</span><span>US &amp; Indian foods</span><span>Reviewed {REVIEWED}</span></div>
 </div><aside class="hero-aside" aria-label="Most read">
   <div class="squad" aria-hidden="true">{"".join(pal(x, 46, prop=False) for x in FAMILY)}</div>
   <h3>Most people ask about</h3>
@@ -431,12 +432,12 @@ for g in G:
   <div class="note warm"><h3>📌 Good to know</h3><p>{e(g['beyond'])}</p></div>
   <div class="note"><h3>🩺 Talk to your doctor about</h3><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in g['doctor'])}</ul></div>
 </section>
-<p class="sources">Sources: NIH Office of Dietary Supplements fact sheets: {srcs}. Last reviewed {REVIEWED}. General education, not medical advice.</p>
+<p class="sources">Sources: NIH Office of Dietary Supplements fact sheets: {srcs}{('; <a href="' + g['extraSource'][1] + '" rel="noopener">' + e(g['extraSource'][0]) + '</a>') if g.get('extraSource') else ''}. Last reviewed {REVIEWED}. General education, not medical advice.</p>
 """ + footer()
     write(f"guides/{g['slug']}/index.html", gp)
 
-gi = head("Vitamin Guides for Every Stage of Life | VitaPals", "Vitamin guides for vegetarians, adults over 50, pregnancy, kids, supplements and tiredness.", "/guides/") + header("guides") + f"""
-<p class="crumbs"><a href="/">Home</a> › Guides</p><h1>Guides</h1><p class="lede">Practical vitamin advice for your stage of life.</p>
+gi = head("Vitamin Guides for Every Stage of Life | VitaPals", "Vitamin guides for adults: vegetarians, your 20s to 40s, over 50, pregnancy, active lifestyles, supplements and tiredness.", "/guides/") + header("guides") + f"""
+<p class="crumbs"><a href="/">Home</a> › Guides</p><h1>Guides</h1><p class="lede">Practical vitamin advice for adults, for every stage of life.</p>
 <div class="cards" style="margin-top:22px">{"".join(f'<a class="card" href="{gurl(g)}"><div class="ic">{g["icon"]}</div><h3>{e(g["title"])}</h3><p>{e(g["card"])}</p><span class="go">Read guide →</span></a>' for g in G)}</div>
 """ + footer()
 write("guides/index.html", gi)
@@ -468,7 +469,7 @@ vc = head("2-Minute Vitamin Check: Which Vitamins Should You Watch? | VitaPals",
     <label><input type="radio" name="diet" value="veg"> Vegetarian (dairy and/or eggs)</label>
     <label><input type="radio" name="diet" value="vegan"> Vegan (no animal foods)</label></div></fieldset>
   <fieldset class="q"><legend>2. Your age</legend><div class="opts">
-    <label><input type="radio" name="age" value="u50" checked> Under 50</label>
+    <label><input type="radio" name="age" value="u50" checked> 20–49</label>
     <label><input type="radio" name="age" value="50"> 50–70</label>
     <label><input type="radio" name="age" value="71"> Over 70</label></div></fieldset>
   <fieldset class="q"><legend>3. Are you pregnant, breastfeeding or planning a pregnancy?</legend><div class="opts">
@@ -502,7 +503,7 @@ vc = head("2-Minute Vitamin Check: Which Vitamins Should You Watch? | VitaPals",
   <div class="res" id="vcheck-out" aria-live="polite"></div>
   <noscript><p>The vitamin check needs JavaScript.</p></noscript>
 </form>
-<p class="tnote" style="margin-top:12px">This is an educational tool, not a diagnosis. Only a doctor and a blood test can tell you if you're low.</p>
+<p class="tnote" style="margin-top:12px">Designed for adults aged 20 and over. This is an educational tool, not a diagnosis. Only a doctor and a blood test can tell you if you're low.</p>
 """ + footer()
 write("tools/vitamin-check/index.html", vc)
 
@@ -511,6 +512,7 @@ about = head("About VitaPals & How We Write", "How VitaPals researches, writes a
 <p class="crumbs"><a href="/">Home</a> › About</p>
 <div class="prose"><h1>About VitaPals</h1>
 <p class="lede">VitaPals explains vitamins in plain language, so you can make sense of what you eat and have better conversations with your doctor.</p>
+<h2>Who it's for</h2><p>VitaPals is written for adults aged 20 and over. Children and teens have different needs and safe limits, so please ask a pediatrician about them.</p>
 <h2>Food first</h2><p>Most people can get most vitamins from a varied diet. We show real foods, with real amounts, before we ever talk about supplements. We include everyday US and Indian foods, because that's how many of our readers eat.</p>
 <h2>Where our facts come from</h2><p>Daily needs, upper limits, food amounts and medicine interactions come from the <a href="https://ods.od.nih.gov/factsheets/list-VitaminsMinerals/" rel="noopener">NIH Office of Dietary Supplements</a> fact sheets for health professionals, which are based on the US Food and Nutrition Board. Every page links to its source.</p>
 <h2>How we keep it current</h2><p>Each page shows when it was last reviewed. We re-check facts against the latest NIH fact sheets when they're updated. Spotted something wrong? We want to know.</p>
