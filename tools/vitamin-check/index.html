@@ -20,10 +20,9 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=9">
+<link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/style.css?v=10">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -39,34 +38,34 @@
 </div></header>
 <main id="main"><div class="wrap">
 <p class="crumbs"><a href="/">Home</a> › Vitamin check</p>
-<div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer a few questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Your answers stay on your device.</p></div>
+<div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer 10 quick questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Your answers stay on your device.</p></div>
 <form class="tool" id="vcheck" style="margin-top:20px">
   <fieldset class="q"><legend>1. How do you eat?</legend><div class="opts">
-    <label><input type="radio" name="diet" value="omni" checked> I eat meat or fish</label>
+    <label><input type="radio" name="diet" value="omni" required> I eat meat or fish</label>
     <label><input type="radio" name="diet" value="veg"> Vegetarian (dairy and/or eggs)</label>
     <label><input type="radio" name="diet" value="vegan"> Vegan (no animal foods)</label></div></fieldset>
   <fieldset class="q"><legend>2. Your age</legend><div class="opts">
-    <label><input type="radio" name="age" value="u50" checked> 20–49</label>
+    <label><input type="radio" name="age" value="u50" required> 20–49</label>
     <label><input type="radio" name="age" value="50"> 50–70</label>
     <label><input type="radio" name="age" value="71"> Over 70</label></div></fieldset>
   <fieldset class="q"><legend>3. Are you pregnant, breastfeeding or planning a pregnancy?</legend><div class="opts">
-    <label><input type="radio" name="preg" value="no" checked> No</label>
+    <label><input type="radio" name="preg" value="no" required> No</label>
     <label><input type="radio" name="preg" value="yes"> Yes</label></div></fieldset>
   <fieldset class="q"><legend>4. How often are you outdoors in daylight (arms or face uncovered)?</legend><div class="opts">
-    <label><input type="radio" name="sun" value="often" checked> Most days</label>
+    <label><input type="radio" name="sun" value="often" required> Most days</label>
     <label><input type="radio" name="sun" value="rare"> Rarely, or mostly covered up</label></div></fieldset>
   <fieldset class="q"><legend>5. Your skin tone</legend><div class="opts">
-    <label><input type="radio" name="skin" value="light" checked> Lighter</label>
+    <label><input type="radio" name="skin" value="light" required> Lighter</label>
     <label><input type="radio" name="skin" value="dark"> Medium to darker (makes less vitamin D from sun)</label></div></fieldset>
   <fieldset class="q"><legend>6. Leafy greens, dals or beans</legend><div class="opts">
-    <label><input type="radio" name="greens" value="daily" checked> Most days</label>
+    <label><input type="radio" name="greens" value="daily" required> Most days</label>
     <label><input type="radio" name="greens" value="some"> A few times a week</label>
     <label><input type="radio" name="greens" value="rare"> Rarely</label></div></fieldset>
   <fieldset class="q"><legend>7. Fresh fruit or raw veggies (oranges, guava, peppers, tomatoes…)</legend><div class="opts">
-    <label><input type="radio" name="fruit" value="daily" checked> Daily</label>
+    <label><input type="radio" name="fruit" value="daily" required> Daily</label>
     <label><input type="radio" name="fruit" value="rare"> Rarely</label></div></fieldset>
   <fieldset class="q"><legend>8. Nuts, seeds or nut butters</legend><div class="opts">
-    <label><input type="radio" name="nuts" value="often" checked> Several times a week</label>
+    <label><input type="radio" name="nuts" value="often" required> Several times a week</label>
     <label><input type="radio" name="nuts" value="rare"> Rarely</label></div></fieldset>
   <fieldset class="q"><legend>9. Do you smoke, or have several alcoholic drinks most days?</legend><div class="opts">
     <label><input type="checkbox" name="smoke"> I smoke</label>
@@ -76,6 +75,7 @@
     <label><input type="checkbox" name="acid"> Acid reducers (omeprazole, pantoprazole, famotidine…)</label>
     <label><input type="checkbox" name="warfarin"> Warfarin or another blood thinner</label>
     <label><input type="checkbox" name="seizure"> Seizure medicines</label></div></fieldset>
+  <p class="vprog" id="vcheck-prog" aria-live="polite">0 of 8 answered · questions 9 and 10 are optional</p>
   <button class="btn" type="submit">See my results</button>
   <div class="res" id="vcheck-out" aria-live="polite"></div>
   <noscript><p>The vitamin check needs JavaScript.</p></noscript>
@@ -92,6 +92,6 @@
   <p class="disc">VitaPals is written for adults aged 20 and over, for general education, not medical advice. Facts are based on the NIH Office of Dietary Supplements. Talk to a doctor, dietitian or pharmacist before starting a supplement, especially if you're pregnant, take medicines or have a health condition.</p>
   <p class="disc">© 2026 VitaPals · Last reviewed October 2026</p>
 </div></footer>
-<script src="/assets/app.js?v=9" defer></script>
+<script src="/assets/app.js?v=10" defer></script>
 </body>
 </html>

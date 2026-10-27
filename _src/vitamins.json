@@ -283,7 +283,7 @@
    "Itchy eyes that dislike bright light"
   ],
   "amount": "Adults need about 1.1–1.3 mg a day. Dairy, eggs and greens make that easy.",
-  "fun": "Ever taken a multivitamin and then seen neon-yellow pee? Don't panic! That's B2 waving goodbye on its way out. Totally harmless.",
+  "fun": "Ever taken a multivitamin and then seen neon-yellow pee? That's extra B2 leaving your body. Harmless.",
   "warn": "B2 hates sunlight, which breaks it down. That's one reason milk often comes in cartons you can't see through.",
   "warnTitle": "🧠 Pro tip",
   "formsIntro": "Riboflavin is the food form. Your body turns it into two helper molecules that do the real work.",
@@ -502,7 +502,7 @@
    "Feeling low or confused"
   ],
   "amount": "Adults need about 1.3–1.7 mg a day. One banana gives you roughly a quarter of that.",
-  "fun": "B6 isn't just one thing. It's a family of six closely related compounds. Overachiever!",
+  "fun": "B6 isn't just one thing. It's a family of six closely related compounds.",
   "warn": "More is NOT better. Taking very high-dose B6 supplements for a long time can cause numbness and nerve damage. B6 from food is safe.",
   "formsIntro": "'Vitamin B6' is a team name for six closely related compounds: three main forms, each with a phosphate version.",
   "forms": [
@@ -536,7 +536,7 @@
   "prop": "💇",
   "type": "water",
   "nih": "Biotin-Consumer",
-  "job": "Helps turn food into energy, and is famous (maybe too famous) for hair, skin and nails.",
+  "job": "Helps turn food into energy, and is best known, maybe too well known, for hair, skin and nails.",
   "powers": [
    "Helps break down fats, carbs and protein",
    "Supports healthy hair, skin and nails",
@@ -574,7 +574,7 @@
    "Brittle nails"
   ],
   "amount": "Adults need only about 30 mcg a day, and most people get plenty.",
-  "fun": "Raw egg whites contain a protein that grabs biotin and won't let go. Cook your eggs and the problem disappears. Sorry, raw-egg smoothie fans!",
+  "fun": "Raw egg whites contain a protein that grabs biotin and won't let go. Cook your eggs and the problem disappears. Sorry, raw-egg smoothie fans.",
   "warn": "Biotin supplements can mess up some blood tests, including heart and thyroid tests. Tell your doctor if you take them. And unless you're actually low, the hair-growth claims are mostly hype.",
   "formsIntro": "Biotin keeps it simple. There's really just one form!",
   "forms": [
@@ -846,7 +846,7 @@
    "Bone pain and soft bones (called osteomalacia in adults)"
   ],
   "amount": "Most people aged 1–70 need about 600 IU (15 mcg) a day, and adults over 70 need about 800 IU (20 mcg). Very few foods have much, so fortified foods help a lot.",
-  "fun": "Your skin can make vitamin D from sunlight. That's why it's called the 'sunshine vitamin'. And it actually works more like a hormone than a regular vitamin. Fancy!",
+  "fun": "Your skin can make vitamin D from sunlight. That's why it's called the 'sunshine vitamin'. It also works more like a hormone than a regular vitamin.",
   "warn": "Too much from supplements can build up and raise the calcium in your blood, causing nausea, weakness and kidney problems. Sunshine can't give you too much vitamin D, but it can give you sunburn, so wear sunscreen. Ask a doctor before taking high doses.",
   "formsIntro": "There are two main kinds of vitamin D, and your body converts both into an active hormone in two steps.",
   "forms": [
