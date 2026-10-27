@@ -369,6 +369,456 @@
         "US FDA: Drug safety communication on NSAIDs, heart attack and stroke (2015)",
         "https://www.fda.gov/Drugs/DrugSafety/ucm451800.htm"
       ]
-    ]
+    ],
+    "keywords": "anti-inflammatory diet causes remedies CRP",
+    "causesTitle": "What causes chronic inflammation",
+    "causesSub": "The badge shows how strong the evidence is that each one drives inflammation.",
+    "helpsNote": [
+      "💊 A word on painkillers",
+      "Anti-inflammatory painkillers like ibuprofen and naproxen are useful for short-term pain. Taken daily for weeks, they can raise heart attack and stroke risk. If you need them most days, see a doctor."
+    ],
+    "foodsSub": "No single \"superfood\" lowers inflammation. Your overall pattern is what counts."
+  },
+  {
+    "slug": "hormonal-imbalance",
+    "title": "Hormonal imbalance",
+    "icon": "⚖️",
+    "seo": "Hormonal Imbalance: What It Really Means, Tests & What Helps",
+    "card": "\"Hormonal imbalance\" isn't a diagnosis. Here are the real conditions behind the label, the tests that find them, and what food can and can't do.",
+    "kicker": "Health topic · Evidence-rated",
+    "intro": "Tired, moody, gaining weight, breaking out? The internet has one answer: \"hormonal imbalance.\" Your doctor will want a better one. Here are the real conditions behind the buzzword, how they're tested, and where food fits in.",
+    "glance": [
+      [
+        "Is it a diagnosis?",
+        "No. It's an umbrella term"
+      ],
+      [
+        "Most common real causes",
+        "Thyroid, PCOS, perimenopause"
+      ],
+      [
+        "What helps most",
+        "Finding the actual cause"
+      ],
+      [
+        "First test to ask about",
+        "TSH (a thyroid blood test)"
+      ]
+    ],
+    "what": [
+      "Hormones are chemical messengers. Your glands release them into the blood to tell other parts of the body what to do. Thyroid hormone sets your energy use. Insulin moves sugar into cells. Estrogen, progesterone and testosterone run periods, fertility and much more.",
+      "Hormone levels are supposed to move. They rise and fall through the day, the month and the decades. A problem is when a level is too high or too low for long enough to cause symptoms, and a blood test can usually show it."
+    ],
+    "types": [
+      [
+        "🔬 Real hormone conditions",
+        "Underactive or overactive thyroid, PCOS, diabetes, low testosterone with symptoms, early menopause. These have clear tests and real treatments."
+      ],
+      [
+        "🌊 Normal ups and downs",
+        "Monthly cycle changes, perimenopause, a dip after a bad night's sleep. Real and sometimes rough, but not a disease. Treatment is about easing symptoms."
+      ]
+    ],
+    "termNote": "\"Hormonal imbalance\" isn't a medical diagnosis. It's a marketing umbrella, often used to sell tests, teas and \"hormone balancing\" programs. Symptoms like tiredness, weight gain, low mood and acne have many causes, and hormones are only some of them. A doctor's job is to find which one, if any.",
+    "causesNav": "Real conditions",
+    "causesTitle": "The real conditions behind the label",
+    "causesSub": "These are the conditions doctors can actually test for and treat. The two at the end are popular labels, not real diagnoses. Deep-dive pages on each are coming soon.",
+    "causes": [
+      [
+        "Underactive thyroid (hypothyroidism)",
+        "g",
+        "About 4.6% of Americans aged 12 and up have it, and women far more often than men. Signs: tiredness, feeling cold, constipation, dry skin, weight gain, heavier periods. A simple blood test (TSH) finds it, and a daily pill treats it."
+      ],
+      [
+        "Overactive thyroid (hyperthyroidism)",
+        "g",
+        "The opposite problem: weight loss without trying, a racing heart, shaky hands, feeling hot, anxiety and poor sleep. Also found with a TSH test."
+      ],
+      [
+        "PCOS (polycystic ovary syndrome)",
+        "g",
+        "Affects an estimated 10–13% of women of reproductive age, and up to 70% don't know they have it. Signs: irregular or missed periods, extra facial or body hair, acne, thinning scalp hair, trouble getting pregnant. It raises the risk of type 2 diabetes, so it's worth diagnosing."
+      ],
+      [
+        "Perimenopause and menopause",
+        "g",
+        "Menopause is 12 months in a row without a period. The average age in the US is about 52. The years before it (perimenopause) can bring hot flashes, night sweats, irregular periods, poor sleep and mood changes. Normal, but not something you have to just put up with."
+      ],
+      [
+        "PMS and PMDD",
+        "g",
+        "Up to 90% of women get at least one symptom before their period. About 20–30% have PMS, and 2–5% have PMDD, a severe form where mood symptoms disrupt work or relationships. Effective treatments exist."
+      ],
+      [
+        "Low testosterone in men",
+        "g",
+        "A real condition, but much rarer than ads suggest. Diagnosis needs both symptoms (low sex drive, erection problems, low energy, loss of muscle) and low levels on two separate early-morning blood tests."
+      ],
+      [
+        "Insulin resistance and type 2 diabetes",
+        "g",
+        "When cells stop responding well to insulin, blood sugar creeps up. Often no symptoms at first. It's closely tied to PCOS and extra belly fat, and an HbA1c test picks it up."
+      ],
+      [
+        "\"Adrenal fatigue\"",
+        "r",
+        "Not a recognized condition. The Endocrine Society says there's no evidence that stress wears out your adrenal glands. In fact, stress makes them release more cortisol, not less. The tiredness is real, though, and deserves a proper check-up."
+      ],
+      [
+        "\"Estrogen dominance\"",
+        "r",
+        "A wellness-industry term, not a medical diagnosis. Real estrogen-related problems, like heavy bleeding or fibroids, are diagnosed and treated by name."
+      ]
+    ],
+    "helpsSub": "First, find the cause. Then these habits help most hormone-related conditions, strongest evidence first.",
+    "helps": [
+      [
+        "Get the right diagnosis",
+        "g",
+        "Thyroid disease, diabetes and PCOS are common, testable and treatable. A guess plus a supplement can delay real treatment for years."
+      ],
+      [
+        "Lose some weight, if you carry extra",
+        "g",
+        "In PCOS, losing just 5–10% of your body weight can improve periods, extra hair growth, insulin resistance and heart-risk markers. It also improves blood sugar in type 2 diabetes and can ease hot flashes for some women."
+      ],
+      [
+        "Move most days",
+        "g",
+        "Aim for 150 minutes a week of moderate activity, like brisk walking, plus muscle strengthening on 2 days. It improves insulin sensitivity, which matters a lot in PCOS and diabetes. For PMS, aerobic exercise, yoga or Pilates are reasonable to try."
+      ],
+      [
+        "Eat a balanced, mostly whole-food diet",
+        "y",
+        "No single \"hormone diet\" wins. For PCOS, studies show no clear winner between diets; the best one is the one you'll stick with. Build plates around vegetables, dals and beans, whole grains, fruit, nuts and some protein at every meal."
+      ],
+      [
+        "Sleep 7 or more hours",
+        "y",
+        "Short sleep disrupts appetite hormones and blood sugar control. The CDC recommends at least 7 hours a night for adults."
+      ],
+      [
+        "Talk therapy (CBT) for PMS and menopause symptoms",
+        "g",
+        "Cognitive behavioral therapy, a structured type of talk therapy, is recommended by ACOG for PMS and PMDD, and by The Menopause Society for hot flashes."
+      ],
+      [
+        "Stop smoking",
+        "y",
+        "Smoking is linked with earlier menopause and can worsen thyroid eye problems in Graves' disease (an overactive thyroid condition). Plenty of other reasons to quit too."
+      ]
+    ],
+    "helpsNote": [
+      "💊 About hormone medicines",
+      "When hormones really are off, medicines often work best: thyroid pills, metformin, menopause hormone therapy, SSRIs for PMDD, or testosterone when it's truly low. These are prescriptions, with real benefits and real risks, so they're a conversation with your doctor, not a DIY project."
+    ],
+    "foodsSub": "No food \"balances\" hormones. But a steady pattern of these supports blood sugar, thyroid and overall health.",
+    "foodsUS": [
+      "🥦 Vegetables of every color",
+      "🫘 Beans & lentils",
+      "🌾 Oats & whole grains",
+      "🥛 Milk, yogurt & cheese (iodine & calcium)",
+      "🥚 Eggs (iodine)",
+      "🐟 Fish & seafood (iodine)",
+      "🌰 Nuts & seeds",
+      "🫐 Berries & other whole fruit",
+      "🧂 Iodized salt, in small amounts",
+      "🫛 Tofu & edamame"
+    ],
+    "foodsIndian": [
+      "Moong, masoor & toor dal",
+      "Rajma & chana",
+      "Palak & methi",
+      "Bajra, jowar & ragi",
+      "Curd & paneer",
+      "Amla & guava",
+      "Til (sesame) & alsi (flaxseed)",
+      "Sprouts salad",
+      "Iodized salt (namak)",
+      "Fish curry (if you eat fish)"
+    ],
+    "limit": [
+      "Sugary drinks, packaged juices and mithai most days (rough on insulin)",
+      "Maida-heavy snacks and bakery items",
+      "Deep-fried foods",
+      "Seaweed or kelp supplements and iodine drops (too much iodine can harm the thyroid)",
+      "Alcohol, which worsens sleep, hot flashes and PMS mood"
+    ],
+    "plate": [
+      [
+        "Breakfast",
+        "Vegetable besan chilla with curd, or oats with nuts and berries"
+      ],
+      [
+        "Lunch",
+        "Dal, mixed veg sabzi, 2 whole-wheat rotis and a salad"
+      ],
+      [
+        "Snack",
+        "Roasted chana, a guava, or yogurt with seeds"
+      ],
+      [
+        "Dinner",
+        "Rajma or grilled fish, brown rice or millet, and a big serving of greens"
+      ]
+    ],
+    "nutrients": [
+      [
+        "Iodine",
+        "g",
+        "",
+        "Your thyroid needs it to make thyroid hormone. Adults need 150 mcg a day (220 mcg in pregnancy). Easy sources: iodized salt (¼ tsp has about 78 mcg), milk, curd, eggs and fish. Vegans and people who skip iodized salt may run low. Upper limit: 1,100 mcg a day. Too much, often from kelp or iodine drops, can cause or worsen thyroid problems, especially if you have autoimmune thyroid disease."
+      ],
+      [
+        "Iron",
+        "g",
+        "",
+        "Heavy periods are a common cause of low iron, which causes tiredness that's easy to blame on \"hormones.\" Women 19–50 need 18 mg a day, men 8 mg. Dals, chana, palak, rajma and fortified cereals help, and vitamin C (amla, guava, lemon) boosts absorption. Upper limit: 45 mg a day. Ask your doctor to test before taking pills."
+      ],
+      [
+        "Calcium (for PMS)",
+        "y",
+        "",
+        "ACOG suggests calcium may ease PMS symptoms, though the evidence is low quality. Adults need 1,000 mg a day (1,200 mg for women over 50). Curd, milk, paneer, ragi and til are great sources. Upper limit: 2,500 mg a day up to age 50, then 2,000 mg."
+      ],
+      [
+        "Vitamin D",
+        "w",
+        "/vitamin-d/",
+        "Low vitamin D is common, and it's often mentioned for thyroid disease and PCOS. But supplements haven't been shown to fix either one. If you might be low, ask your doctor about testing. Upper limit: 4,000 IU a day."
+      ],
+      [
+        "Vitamin B12",
+        "y",
+        "/vitamin-b12/",
+        "Not a hormone fixer, but worth knowing: metformin, often used for PCOS and diabetes, can lower B12 over time. Vegetarians are at extra risk too. Ask about checking your level now and then."
+      ],
+      [
+        "Vitamin B6 (for PMS)",
+        "w",
+        "/vitamin-b6/",
+        "Often sold for PMS, but the evidence is thin. High doses taken for months can cause nerve damage. Upper limit: 100 mg a day, and some health agencies warn about lower doses."
+      ],
+      [
+        "Selenium",
+        "w",
+        "",
+        "The thyroid has more selenium than most organs. In Hashimoto's (autoimmune hypothyroidism), selenium pills can lower antibody numbers, but there's no clear proof that people feel better. Adults need 55 mcg a day; just 1 oz (6–8) of Brazil nuts has about 544 mcg, above the 400 mcg upper limit."
+      ],
+      [
+        "Inositol (for PCOS)",
+        "w",
+        "",
+        "A popular PCOS supplement. The 2023 international PCOS guideline says the evidence is limited, and it isn't a replacement for proven treatment. Ask your doctor before trying it."
+      ]
+    ],
+    "claims": [
+      [
+        "\"Hormone balancing\" teas, gummies and supplements fix hormones",
+        "r",
+        "There's no good evidence that any blend \"balances\" hormones. Some herbs in them interact with medicines, and supplements can contain ingredients that aren't on the label. If something is off, a diagnosis beats a blend."
+      ],
+      [
+        "You have \"adrenal fatigue\"",
+        "r",
+        "Not a recognized condition. Saliva cortisol tests used to \"diagnose\" it aren't reliable. Adrenal supplements may contain animal gland extracts or steroids, and stopping steroids suddenly can be dangerous. Real causes of tiredness, like anemia, thyroid problems, sleep apnea, depression or diabetes, get missed."
+      ],
+      [
+        "Seed cycling balances your cycle",
+        "w",
+        "Eating flax and pumpkin seeds in one half of your cycle, then sunflower and sesame in the other, has no published trials behind it. The seeds themselves are nutritious, so enjoy them all month."
+      ],
+      [
+        "Soy wrecks your hormones or your thyroid",
+        "r",
+        "Soy foods like tofu, edamame and soy milk are safe for most people. Research hasn't shown that normal amounts cause thyroid disease. If you take a thyroid pill, keep a steady routine and ask your pharmacist how to time it with meals."
+      ],
+      [
+        "Ashwagandha calms your hormones",
+        "y",
+        "Small studies suggest it may lower stress and help sleep a little over 6–8 weeks. But it can affect thyroid levels, has been linked to liver injury, may not be safe in pregnancy, and can interact with thyroid, diabetes, blood pressure and sedative medicines. Ask your doctor first."
+      ],
+      [
+        "\"Testosterone boosters\" raise your T",
+        "r",
+        "A study of 50 popular boosters found 90% claimed to raise testosterone, but fewer than 25% had any data behind the claim. Some contained vitamins and minerals above safe upper limits."
+      ],
+      [
+        "Compounded \"bioidentical\" hormones are safer than regular hormone therapy",
+        "r",
+        "Custom-mixed hormones aren't FDA-approved and haven't been tested in randomized trials. The Menopause Society recommends FDA-approved hormone therapy, which also comes in body-identical forms, with known doses."
+      ],
+      [
+        "Black cohosh and other herbs stop hot flashes",
+        "r",
+        "The Menopause Society doesn't recommend herbal remedies or supplements for hot flashes, as the evidence doesn't hold up. CBT, weight loss if needed, and several prescription options do work."
+      ],
+      [
+        "Biotin is harmless for hair, so it doesn't matter",
+        "y",
+        "Biotin itself is low risk, but high-dose hair, skin and nail supplements can make thyroid blood tests look like an overactive thyroid. The American Thyroid Association advises stopping biotin at least 2 days before thyroid testing. Tell your doctor about all supplements."
+      ]
+    ],
+    "doctor": [
+      "Periods that stop for 3 months or more (and you're not pregnant), or that are very irregular",
+      "Very heavy periods, or bleeding after menopause",
+      "New facial or body hair growth, or scalp hair thinning",
+      "Weight change, a racing heart or tiredness you can't explain",
+      "Hot flashes or mood changes that disrupt sleep, work or relationships",
+      "Mood symptoms before your period that affect daily life, or any thoughts of self-harm",
+      "Trouble getting pregnant after 12 months of trying (6 months if you're 35 or older)",
+      "Low sex drive or erection problems that persist"
+    ],
+    "tests": [
+      [
+        "TSH (thyroid-stimulating hormone)",
+        "Usually the first thyroid test. High suggests an underactive thyroid; low suggests overactive. Free T4 and thyroid antibodies may be added. Stop biotin at least 2 days before."
+      ],
+      [
+        "HbA1c and fasting glucose",
+        "Show your average blood sugar. Important if you have PCOS, extra weight around the waist, or a family history of diabetes."
+      ],
+      [
+        "For possible PCOS",
+        "Hormone blood tests (like testosterone), sometimes an ultrasound or AMH test, plus blood sugar and cholesterol. Your doctor will also rule out thyroid and prolactin problems."
+      ],
+      [
+        "For possible low testosterone",
+        "Total testosterone, drawn early in the morning after fasting, on two different days. One low result isn't enough."
+      ],
+      [
+        "For menopause",
+        "Over 45, usually no test is needed: your symptoms and period pattern tell the story. Under 45, an FSH test may help. Saliva hormone kits aren't recommended."
+      ],
+      [
+        "Ferritin and CBC",
+        "Check for low iron and anemia, a common, fixable cause of tiredness, especially with heavy periods."
+      ]
+    ],
+    "faq": [
+      [
+        "Can I test my hormones at home?",
+        "Some home kits use reliable blood-spot tests for things like TSH or HbA1c. Many \"full hormone panels,\" especially saliva tests, give numbers that aren't reliable or useful. Whatever you test, a doctor needs to interpret it with your symptoms."
+      ],
+      [
+        "Can diet alone fix a hormonal imbalance?",
+        "Diet helps a lot with insulin resistance and PCOS, especially if it leads to some weight loss. But it can't cure an underactive thyroid or reverse menopause. Think of food as a strong teammate to proper treatment, not a replacement."
+      ],
+      [
+        "What's a good diet for PCOS?",
+        "There's no single PCOS diet. Choose one you can keep up: plenty of vegetables, dals, whole grains, fruit and protein, with fewer sugary drinks and refined snacks. A dietitian can help tailor it."
+      ],
+      [
+        "Does the contraceptive pill \"mess up\" your hormones?",
+        "The pill changes hormone levels on purpose, that's how it works. It's also a common, effective treatment for PCOS symptoms and severe PMS. If you have side effects, talk to your doctor about other options rather than stopping suddenly."
+      ],
+      [
+        "Is weight gain in my 40s my hormones?",
+        "Partly, maybe. Perimenopause can shift where fat is stored. But muscle loss, less activity, sleep and stress usually play bigger roles. A thyroid test is reasonable if you have other symptoms."
+      ],
+      [
+        "Do men have hormonal imbalance too?",
+        "Men can have thyroid disease, diabetes and true low testosterone. Testosterone drifts down slowly with age, but most men don't need treatment. Symptoms plus two low morning tests are needed for a diagnosis."
+      ]
+    ],
+    "keywords": "hormone balance PCOS thyroid menopause perimenopause PMS PMDD testosterone adrenal fatigue estrogen dominance TSH",
+    "sources": [
+      [
+        "NIH NIDDK: Hypothyroidism (Underactive Thyroid)",
+        "https://www.niddk.nih.gov/health-information/endocrine-diseases/hypothyroidism"
+      ],
+      [
+        "World Health Organization: Polycystic ovary syndrome fact sheet",
+        "https://www.who.int/news-room/fact-sheets/detail/polycystic-ovary-syndrome"
+      ],
+      [
+        "NIH NICHD: How do health care providers diagnose PCOS?",
+        "https://www.nichd.nih.gov/health/topics/pcos/conditioninfo/diagnose"
+      ],
+      [
+        "Teede et al. 2023 International Evidence-based Guideline for PCOS (Eur J Endocrinol 2023)",
+        "https://doi.org/10.1093/ejendo/lvad096"
+      ],
+      [
+        "Proceedings of the Nutrition Society: Evidence-based lifestyle interventions in PCOS",
+        "https://www.cambridge.org/core/journals/proceedings-of-the-nutrition-society/article/evidence-based-lifestyle-interventions-in-polycystic-ovary-syndrome/36A101540ED363067345D2CC3CD600C8"
+      ],
+      [
+        "ACOG Clinical Practice Guideline 7: Management of PMS and PMDD (summary, 2023)",
+        "https://www.obgproject.com/2023/12/27/acog-guideline-management-of-premenstrual-syndrome-and-premenstrual-dysphoric-disorder/"
+      ],
+      [
+        "The Menopause Society (NAMS) 2023 Nonhormone Therapy Position Statement (summary)",
+        "https://www.breastcancer.org/research-news/non-hormone-therapy-hot-flashes"
+      ],
+      [
+        "The Menopause Society: Practice pearl on compounded bioidentical hormone therapy",
+        "https://menopause.org/docs/default-source/professional/nams-practice-pearl-cbht.pdf"
+      ],
+      [
+        "NICE NG23: Menopause, diagnosis and management",
+        "https://www.nice.org.uk/guidance/ng23/chapter/recommendations"
+      ],
+      [
+        "Baylor College of Medicine: Menopause 101 (citing NIA)",
+        "https://blogs.bcm.edu/2025/05/29/menopause-101/"
+      ],
+      [
+        "Endocrine Society: Testosterone therapy in men with hypogonadism guideline (2018)",
+        "https://www.endocrine.org/-/media/endocrine/files/cpg/testosterone-therapy-plenary-6-1-18_online.pdf"
+      ],
+      [
+        "Endocrine News: The myth of adrenal fatigue",
+        "https://endocrinenews.endocrine.org/myth-adrenal-fatigue"
+      ],
+      [
+        "Healio: Endocrinologists confront the myth of adrenal fatigue",
+        "https://www.healio.com/news/endocrinology/20180410/in-age-of-internet-diagnoses-endocrinologists-confront-myth-of-adrenal-fatigue"
+      ],
+      [
+        "NIH ODS: Iodine fact sheet for health professionals",
+        "https://ods.od.nih.gov/factsheets/Iodine-HealthProfessional/"
+      ],
+      [
+        "NIH ODS: Iron fact sheet for health professionals",
+        "https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/"
+      ],
+      [
+        "NIH ODS: Calcium fact sheet for health professionals",
+        "https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/"
+      ],
+      [
+        "NIH ODS: Selenium fact sheet for health professionals",
+        "https://ods.od.nih.gov/factsheets/Selenium-HealthProfessional/"
+      ],
+      [
+        "NIH ODS: Ashwagandha fact sheet",
+        "https://ods.od.nih.gov/factsheets/Ashwagandha-Consumer/"
+      ],
+      [
+        "NIH NCCIH: Soy",
+        "https://www.nccih.nih.gov/health/soy"
+      ],
+      [
+        "American Thyroid Association: Biotin and thyroid function tests",
+        "https://www.thyroid.org/patient-thyroid-information/ct-for-patients/december-2018/vol-11-issue-12-p-3-4/"
+      ],
+      [
+        "Keck Medicine of USC: Are testosterone-boosting supplements effective? (Clemesha et al., 2020)",
+        "https://keck.usc.edu/news/are-testosterone-boosting-supplements-effective-not-likely-says-new-study/"
+      ],
+      [
+        "CDC: Physical activity guidelines for adults",
+        "https://www.cdc.gov/physical-activity-basics/guidelines/adults.html"
+      ],
+      [
+        "CDC: How much sleep do I need?",
+        "https://www.cdc.gov/sleep/about/index.html"
+      ]
+    ],
+    "causesLabels": {
+      "g": "Recognized condition",
+      "r": "Not a diagnosis"
+    }
   }
 ]

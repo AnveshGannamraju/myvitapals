@@ -37,7 +37,7 @@ suburl = lambda pv, s: f"{url(pv)}{s['slug']}/"
 gurl = lambda g: f"/guides/{g['slug']}/"
 turl = lambda t: f"/topics/{t['slug']}/"
 EV = {"g": ("🟢", "Strong evidence"), "y": ("🟡", "Some evidence"), "w": ("⚪", "Not enough evidence"), "r": ("🔴", "Myth")}
-badge = lambda k: f'<span class="ev ev-{k}"><i aria-hidden="true">{EV[k][0]}</i>{EV[k][1]}</span>'
+badge = lambda k, labels=None: f'<span class="ev ev-{k}"><i aria-hidden="true">{EV[k][0]}</i>{(labels or {}).get(k, EV[k][1])}</span>'
 txt = lambda v: v.get("text", "#fff")
 subpal = lambda s: {"id": s["label"], "color": s["color"], "text": txt(s), "prop": s["prop"]}
 vname = lambda v: f"Vitamin {v['id']}"
@@ -187,7 +187,7 @@ for v in V:
 for g in G:
     INDEX.append({"t": g["title"], "u": gurl(g), "k": "Guide", "s": g["card"]})
 for t in T:
-    INDEX.append({"t": t["title"], "u": turl(t), "k": "Health topic", "s": " ".join([t["card"]] + [c[0] for c in t["causes"]] + [c[0] for c in t["claims"]] + ["anti-inflammatory diet causes remedies CRP"])})
+    INDEX.append({"t": t["title"], "u": turl(t), "k": "Health topic", "s": " ".join([t["card"]] + [c[0] for c in t["causes"]] + [c[0] for c in t["claims"]] + [t.get("keywords", "")])})
 INDEX += [{"t": "2-minute vitamin check", "u": "/tools/vitamin-check/", "k": "Tool", "s": "quiz am I low deficient test"},
           {"t": "Food finder", "u": "/tools/food-finder/", "k": "Tool", "s": "which foods vitamins search"}]
 FOODS = []
@@ -460,7 +460,7 @@ write("guides/index.html", gi)
 LEGEND = '<div class="evlegend" aria-label="Evidence badges">' + "".join(badge(k) for k in "gywr") + '<a href="/about/#evidence">How we rate evidence</a></div>'
 
 
-def evrows(rows, linkcol=False):
+def evrows(rows, linkcol=False, labels=None):
     out = []
     for r in rows:
         if linkcol:
@@ -469,7 +469,7 @@ def evrows(rows, linkcol=False):
         else:
             name, k, text = r
             title = e(name)
-        out.append(f'<li><div class="evh"><strong>{title}</strong>{badge(k)}</div><p>{e(text)}</p></li>')
+        out.append(f'<li><div class="evh"><strong>{title}</strong>{badge(k, labels)}</div><p>{e(text)}</p></li>')
     return '<ul class="evlist">' + "".join(out) + "</ul>"
 
 
@@ -480,7 +480,7 @@ for t in T:
 <p class="crumbs"><a href="/">Home</a> › <a href="/topics/">Health topics</a> › {e(t['title'])}</p>
 <div style="max-width:760px"><p class="kicker" style="font-size:36px;margin:0" aria-hidden="true">{t['icon']}</p><p class="tkick">{e(t['kicker'])}</p><h1>{e(t['title'])}</h1><p class="lede">{e(t['intro'])}</p></div>
 <div class="glance">{"".join(f"<div><small>{e(a)}</small><strong>{e(b)}</strong></div>" for a, b in t['glance'])}</div>
-<nav class="jump" aria-label="On this page"><a href="#what">What it is</a><a href="#causes">Causes</a><a href="#helps">What helps</a><a href="#foods">Foods</a><a href="#nutrients">Nutrients</a><a href="#claims">Claims checked</a><a href="#doctor">Doctor &amp; tests</a><a href="#faq">FAQ</a></nav>
+<nav class="jump" aria-label="On this page"><a href="#what">What it is</a><a href="#causes">{e(t.get("causesNav", "Causes"))}</a><a href="#helps">What helps</a><a href="#foods">Foods</a><a href="#nutrients">Nutrients</a><a href="#claims">Claims checked</a><a href="#doctor">Doctor &amp; tests</a><a href="#faq">FAQ</a></nav>
 {LEGEND}
 
 <section class="sec" id="what">
@@ -491,21 +491,21 @@ for t in T:
 </section>
 
 <section class="sec" id="causes">
-  <h2>What causes chronic inflammation</h2>
-  <p class="sub">The badge shows how strong the evidence is that each one drives inflammation.</p>
-  {evrows(t['causes'])}
+  <h2>{e(t["causesTitle"])}</h2>
+  <p class="sub">{e(t["causesSub"])}</p>
+  {evrows(t['causes'], labels=t.get('causesLabels'))}
 </section>
 
 <section class="sec" id="helps">
   <h2>What actually helps</h2>
-  <p class="sub">Lifestyle first. These are the changes with research behind them, strongest first.</p>
+  <p class="sub">{e(t.get("helpsSub", "Lifestyle first. These are the changes with research behind them, strongest first."))}</p>
   {evrows(t['helps'])}
-  <div class="note warn" style="margin-top:14px"><h3>💊 A word on painkillers</h3><p>Anti-inflammatory painkillers like ibuprofen and naproxen are useful for short-term pain. Taken daily for weeks, they can raise heart attack and stroke risk. If you need them most days, see a doctor.</p></div>
+  <div class="note warn" style="margin-top:14px"><h3>{e(t["helpsNote"][0])}</h3><p>{e(t["helpsNote"][1])}</p></div>
 </section>
 
 <section class="sec" id="foods">
   <h2>Foods and eating patterns that help</h2>
-  <p class="sub">No single \"superfood\" lowers inflammation. Your overall pattern is what counts.</p>
+  <p class="sub">{e(t["foodsSub"])}</p>
   <div class="two">
     <div class="note"><h3>🛒 Everyday picks</h3><div class="chips">{"".join(f"<span>{e(x)}</span>" for x in t['foodsUS'])}</div></div>
     <div class="note"><h3>🇮🇳 In Indian kitchens</h3><div class="chips">{"".join(f"<span>{e(x)}</span>" for x in t['foodsIndian'])}</div></div>
@@ -547,11 +547,11 @@ for t in T:
 """ + footer()
     write(f"topics/{t['slug']}/index.html", tp)
 
-ti = head("Health Topics: Evidence-Rated Answers | VitaPals", "Common health questions like inflammation, answered in plain language with every claim rated by the strength of its evidence.", "/topics/") + header("topics") + f"""
+ti = head("Health Topics: Evidence-Rated Answers | VitaPals", "Common health questions like inflammation and hormonal imbalance, answered in plain language with every claim rated by the strength of its evidence.", "/topics/") + header("topics") + f"""
 <p class="crumbs"><a href="/">Home</a> › Health topics</p><h1>Health topics</h1><p class="lede">Plain answers to common health questions. Every claim gets a badge, so you can see how strong the evidence is.</p>
 <div style="margin-top:16px">{LEGEND}</div>
 <div class="cards" style="margin-top:18px">{"".join(f'<a class="card" href="{turl(t)}"><div class="ic">{t["icon"]}</div><h3>{e(t["title"])}</h3><p>{e(t["card"])}</p><span class="go">Read →</span></a>' for t in T)}</div>
-<p class="tnote" style="margin-top:18px">Coming next: hormonal health (thyroid, PCOS, menopause, PMS), then sleep, mood, bones, heart and more.</p>
+<p class="tnote" style="margin-top:18px">Coming next: deep dives on thyroid, PCOS, menopause and PMS, then sleep, mood, bones, heart and more.</p>
 """ + footer()
 write("topics/index.html", ti)
 
