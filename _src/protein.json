@@ -1,0 +1,879 @@
+{
+  "id": "P",
+  "slug": "protein",
+  "label": "Protein",
+  "name": "Macronutrient",
+  "sym": "Pro",
+  "color": "#b35c2e",
+  "text": "#fff",
+  "prop": "💪",
+  "job": "Builds and repairs muscle, skin, enzymes and immune cells. Your body can't store extra for later, so you need a steady supply every day.",
+  "powers": [
+    "Builds and repairs muscle, skin, hair and nails",
+    "Makes enzymes and some hormones that run your body's chemistry",
+    "Makes antibodies, the proteins your immune system uses to fight infections",
+    "Carries things around your blood, like oxygen (hemoglobin) and iron",
+    "Helps you feel full for longer after a meal"
+  ],
+  "fun": "Protein is made of 20 building blocks called amino acids. Your body can make 11 of them. The other 9 are \"essential\": you have to get them from food. A \"complete\" protein has all 9 in good amounts.",
+  "glance": [
+    [
+      "Daily need (adults)",
+      "0.8 g per kg body weight"
+    ],
+    [
+      "In grams",
+      "About 46 g (women), 56 g (men)"
+    ],
+    [
+      "Upper limit",
+      "None set"
+    ],
+    [
+      "Pay attention if",
+      "You're over 65"
+    ]
+  ],
+  "needs": [
+    [
+      "Women (US)",
+      "46 g a day"
+    ],
+    [
+      "Men (US)",
+      "56 g a day"
+    ],
+    [
+      "The formula behind it",
+      "0.8 g per kg of body weight (0.36 g per lb)"
+    ],
+    [
+      "India (ICMR-NIN)",
+      "0.83 g per kg: about 46 g for women, 54 g for men"
+    ],
+    [
+      "Pregnancy (US)",
+      "71 g a day"
+    ],
+    [
+      "Pregnancy (India)",
+      "Extra 9.5 g a day in the 2nd trimester, 22 g in the 3rd"
+    ],
+    [
+      "Breastfeeding (US)",
+      "71 g a day"
+    ],
+    [
+      "Adults over 65",
+      "1.0–1.2 g per kg (expert group advice)"
+    ],
+    [
+      "Regular hard training",
+      "1.2–1.6 g per kg (Australian Institute of Sport)"
+    ]
+  ],
+  "needNote": "The US and Indian figures are the amounts that cover the basic needs of almost all healthy adults. The new 2025–2030 US Dietary Guidelines suggest more: 1.2–1.6 g per kg. Experts don't all agree on whether everyone needs that much, but higher amounts are widely seen as reasonable for older and active adults. Example: a 70 kg (154 lb) adult needs about 56 g at 0.8 g/kg, or 84–112 g at 1.2–1.6 g/kg.",
+  "ul": "No upper limit has been set for protein. The US Food and Nutrition Board suggests protein make up 10–35% of your calories. If you have kidney disease, your doctor may advise less, so follow their plan.",
+  "ulShort": "None set",
+  "needShort": "46–56 g a day",
+  "top3": "Yogurt, eggs, dals, chicken, tofu",
+  "dv": "50 g",
+  "table": [
+    [
+      "Chicken breast, cooked",
+      "3 oz",
+      "26 g",
+      52
+    ],
+    [
+      "Greek yogurt, plain",
+      "1 cup",
+      "24 g",
+      48
+    ],
+    [
+      "Tuna, canned, drained",
+      "3 oz",
+      "22 g",
+      44
+    ],
+    [
+      "Salmon, cooked",
+      "3 oz",
+      "19 g",
+      38
+    ],
+    [
+      "Tempeh",
+      "3 oz",
+      "17 g",
+      34
+    ],
+    [
+      "Tofu, firm",
+      "3 oz",
+      "15 g",
+      30
+    ],
+    [
+      "Cottage cheese",
+      "½ cup",
+      "14 g",
+      28
+    ],
+    [
+      "Lentils, cooked",
+      "½ cup",
+      "9 g",
+      18
+    ],
+    [
+      "Edamame",
+      "½ cup",
+      "9 g",
+      18
+    ],
+    [
+      "Pumpkin seeds",
+      "1 oz",
+      "8.5 g",
+      17
+    ],
+    [
+      "Milk (2%)",
+      "1 cup",
+      "8 g",
+      16
+    ],
+    [
+      "Soy milk",
+      "1 cup",
+      "8 g",
+      16
+    ],
+    [
+      "Quinoa, cooked",
+      "1 cup",
+      "8 g",
+      16
+    ],
+    [
+      "Peanut butter",
+      "2 tbsp",
+      "7 g",
+      14
+    ],
+    [
+      "Chickpeas, cooked",
+      "½ cup",
+      "7 g",
+      14
+    ],
+    [
+      "Oats, dry",
+      "½ cup",
+      "7 g",
+      14
+    ],
+    [
+      "Egg",
+      "1 large",
+      "6 g",
+      12
+    ],
+    [
+      "Almonds",
+      "1 oz (about 23)",
+      "6 g",
+      12
+    ]
+  ],
+  "tableNote": "Values are rounded, from USDA FoodData Central. Tofu varies a lot by brand, so check the label.",
+  "indian": [
+    "Dal (toor, moong, masoor, chana)",
+    "Rajma & chole",
+    "Paneer",
+    "Curd & buttermilk",
+    "Soya chunks",
+    "Besan cheela",
+    "Sprouted moong",
+    "Eggs & egg bhurji",
+    "Fish & chicken curry",
+    "Peanuts & chikki"
+  ],
+  "tips": [
+    "Aim for a protein food at every meal, not one big serving at dinner. Breakfast is where most people fall short.",
+    "Upgrade the dal: a thicker dal, a side of curd, or a handful of peanuts in poha can add 5–10 g.",
+    "Roti or rice with dal is a great team. The grain and the legume cover each other's weak spots.",
+    "Swap a sugary snack for roasted chana, Greek yogurt or a boiled egg."
+  ],
+  "kindsIntro": "Not all protein is built the same. What matters is the mix of amino acids and how well your body uses it.",
+  "kinds": [
+    [
+      "Complete protein",
+      "Has all 9 essential amino acids in good amounts. Eggs, dairy, meat, fish, soy and quinoa.",
+      "Complete"
+    ],
+    [
+      "Incomplete protein",
+      "Low in one or two essential amino acids. Most beans, grains, nuts and seeds. Still very useful.",
+      "Plant"
+    ],
+    [
+      "Complementary proteins",
+      "Two foods that fill each other's gaps, like dal and rice or rajma and roti. They don't need to be in the same meal, just the same day.",
+      "Plant"
+    ],
+    [
+      "Isolated protein",
+      "Protein pulled out of a food and dried into a powder, like whey, casein, soy or pea protein.",
+      "Supplement"
+    ]
+  ],
+  "benefits": [
+    [
+      "Building muscle with strength training",
+      "g",
+      "A review of 49 trials found protein helped people gain a bit more muscle and strength from weight training. Gains leveled off at around 1.6 g per kg a day."
+    ],
+    [
+      "Keeping muscle as you age",
+      "y",
+      "Muscle shrinks with age. Expert groups suggest 1.0–1.2 g per kg for adults over 65, together with regular activity. Strength training matters as much as the protein."
+    ],
+    [
+      "Feeling full and losing weight",
+      "y",
+      "In 24 trials, higher-protein diets during calorie cutting led to slightly more fat loss (under 1 kg on average) and helped keep muscle. Modest, but real."
+    ],
+    [
+      "Bones",
+      "y",
+      "Protein is part of bone. Studies don't show that plenty of protein harms bones, and soy and animal protein seem about equal for bone density."
+    ],
+    [
+      "Recovery after illness or surgery",
+      "y",
+      "Needs rise when you're sick or healing. Expert advice for older adults with illness is 1.2–1.5 g per kg. Follow your care team's plan."
+    ]
+  ],
+  "risk": [
+    [
+      "Adults over 65",
+      "Appetite often drops while protein needs rise."
+    ],
+    [
+      "Vegetarians who skip dal and dairy",
+      "Rice-and-roti-heavy meals can be low in protein. Dal, curd, paneer and soy fix that."
+    ],
+    [
+      "Pregnancy and breastfeeding",
+      "Needs rise to about 71 g a day in the US guidance."
+    ],
+    [
+      "People cutting calories",
+      "Eating less overall often means less protein, and some of the weight lost can be muscle."
+    ],
+    [
+      "Poor appetite or long illness",
+      "Ill health raises needs and lowers appetite at the same time."
+    ]
+  ],
+  "low": [
+    "Losing muscle or strength without trying",
+    "Slow healing of cuts or wounds",
+    "Swelling in the legs or feet (edema), in severe cases",
+    "Thin, brittle hair and nails",
+    "Getting sick more often"
+  ],
+  "lowNote": "Serious protein deficiency is rare in the US, but running a bit low is common in older adults and people with small appetites. A doctor can check your weight, muscle and blood tests such as albumin and a complete blood count (CBC).",
+  "suppWhen": "Most people can get enough from food. Indian guidelines from ICMR-NIN advise against protein supplements for healthy people. A powder can help if your appetite is poor, if you can't reach your target with food, or right after hard training when food isn't handy. The Australian Institute of Sport suggests 20–40 g per serve and no more than 1–2 serves a day.",
+  "suppPick": "Look for a third-party seal such as NSF Certified for Sport, Informed Choice or USP, which test for banned substances and contaminants. In a 2025 Consumer Reports test, more than two-thirds of 23 powders and shakes had more lead per serving than its experts consider safe for a day. Plant-based powders averaged the most. Check for added sugar too.",
+  "cautions": [
+    "Kidney disease: if you have chronic kidney disease (CKD) and aren't on dialysis, too much protein can strain your kidneys. Ask your doctor or a kidney dietitian how much is right for you",
+    "Levodopa (for Parkinson's): protein can compete with it in the gut, so some people find it works less well after a high-protein meal. Don't cut protein; ask your doctor or dietitian about timing",
+    "Processed meat (bacon, sausage, ham, salami) is linked to colon cancer. Eating 50 g a day raises the risk by about 18%. Choose fresh, minimally processed protein most of the time",
+    "Protein powders are lightly regulated. Some contain added sugar, caffeine or heavy metals. Treat them as a food, not a medicine"
+  ],
+  "claims": [
+    [
+      "You can only absorb about 30 g of protein at a time.",
+      "r",
+      "Your body absorbs nearly all the protein you eat. A 2023 study found 100 g after exercise kept muscle-building going for over 12 hours, longer than 25 g. Spreading protein over the day is still a good habit."
+    ],
+    [
+      "Vegetarians can't get enough protein.",
+      "r",
+      "They can. Dal, beans, soy, paneer, curd, milk, nuts and seeds add up. Variety across the day is what counts."
+    ],
+    [
+      "You have to combine plant proteins at every meal.",
+      "r",
+      "An older idea. Eating a variety of plant proteins over the day is enough. Your body keeps a pool of amino acids to draw on."
+    ],
+    [
+      "High-protein diets damage healthy kidneys.",
+      "w",
+      "There's no clear evidence of harm in people with healthy kidneys. People with kidney disease are different: they often need less, so follow your doctor's advice."
+    ],
+    [
+      "You need protein powder to build muscle.",
+      "r",
+      "Powder is just convenient protein. Food works as well. The real driver of muscle is strength training."
+    ],
+    [
+      "More protein alone builds muscle.",
+      "w",
+      "The muscle gains in studies came from protein plus strength training. Extra protein without exercise isn't shown to add much muscle."
+    ],
+    [
+      "Plant protein is lower quality.",
+      "y",
+      "Partly true. Most plant foods are lower in one or two amino acids and are digested a little less well. Eating a mix of plants, or adding soy or dairy, closes the gap."
+    ]
+  ],
+  "doctor": [
+    "Losing weight or muscle without trying",
+    "Swelling in your legs or feet",
+    "Poor appetite for more than a couple of weeks",
+    "Kidney or liver disease, before changing how much protein you eat",
+    "Plans to start a high-protein diet if you have diabetes or take several medicines"
+  ],
+  "tests": [
+    [
+      "Albumin",
+      "A blood protein. Low levels can point to poor nutrition, liver or kidney problems."
+    ],
+    [
+      "Kidney function (creatinine, eGFR)",
+      "Checks how well your kidneys filter. Useful before a big jump in protein if you have risk factors like diabetes or high blood pressure."
+    ],
+    [
+      "Urine albumin (UACR)",
+      "Looks for protein leaking into urine, an early sign of kidney strain."
+    ],
+    [
+      "Complete blood count (CBC)",
+      "Checks for anemia, which can come with a poor diet."
+    ]
+  ],
+  "faq": [
+    [
+      "How much protein do I need in grams?",
+      "A simple starting point is 0.8 g per kg of body weight. Multiply your weight in kg by 0.8. If you're over 65 or train hard, 1.0–1.6 g per kg is often suggested. Ask your doctor if you have kidney disease."
+    ],
+    [
+      "Is dal and rice enough protein?",
+      "It's a good start. A bowl of dal from about 50 g of dry dal gives roughly 11 g, and rice adds a few more. Add curd, paneer, an egg or a handful of peanuts to most meals to reach your target."
+    ],
+    [
+      "What's the best protein for vegetarians?",
+      "Soy (tofu, soya chunks, edamame), dals and beans, paneer, curd, Greek yogurt and milk. Mix them across the day."
+    ],
+    [
+      "When should I eat protein after a workout?",
+      "Within a few hours is fine. The Australian Institute of Sport suggests about 0.3 g per kg (usually 15–30 g) at each meal or snack, spread over 3–5 eating times a day."
+    ],
+    [
+      "Are eggs good for protein?",
+      "Yes. One large egg has about 6 g of complete protein. The yolk holds about 40% of it, so eat the whole egg unless your doctor says otherwise."
+    ],
+    [
+      "Is protein powder safe?",
+      "Most are fine in moderation, but quality varies. Pick one with a third-party seal, check for added sugar, and don't rely on it daily if food can do the job."
+    ]
+  ],
+  "guides": [
+    "vegetarian",
+    "active",
+    "over-50",
+    "pregnancy"
+  ],
+  "sources": [
+    [
+      "National Academies: Dietary Reference Intakes (protein RDA)",
+      "https://www.ncbi.nlm.nih.gov/books/NBK56068/table/summarytables.t4/?rep"
+    ],
+    [
+      "ICMR-NIN: Nutrient Requirements for Indians 2020 (summary)",
+      "https://www.nin.res.in/rdabook/brief_note.pdf"
+    ],
+    [
+      "American Family Physician: Dietary Guidelines for Americans 2025–2030 summary",
+      "https://www.aafp.org/afp/2026/0700/practice-guidelines-dietary-guidelines"
+    ],
+    [
+      "Bauer et al. 2013, PROT-AGE study group: protein for older adults (JAMDA)",
+      "https://digital.library.adelaide.edu.au/dspace/handle/2440/80029"
+    ],
+    [
+      "Australian Institute of Sport: isolated protein supplement fact sheet",
+      "https://www.ais.gov.au/__data/assets/pdf_file/0003/1000488/Sport-supplement-fact-sheets-Isolated-protein-supplement-v3.pdf"
+    ],
+    [
+      "Morton et al. 2018: protein and strength training meta-analysis (BJSM)",
+      "https://bjsm.bmj.com/content/52/6/376.abstract"
+    ],
+    [
+      "Trommelen et al. 2023: 25 g vs 100 g protein after exercise (Cell Reports Medicine)",
+      "https://cris.maastrichtuniversity.nl/en/publications/the-anabolic-response-to-protein-ingestion-during-recovery-from-e"
+    ],
+    [
+      "Wycherley et al. 2012: high-protein diets for weight loss meta-analysis (AJCN)",
+      "https://researchnow.flinders.edu.au/en/publications/effects-of-energy-restricted-high-protein-low-fat-compared-with-s/"
+    ],
+    [
+      "Shams-White et al. 2018: animal vs plant protein and bone (National Osteoporosis Foundation, PLoS ONE)",
+      "https://doaj.org/article/0cff45fc02c642e48855270d3997ded9"
+    ],
+    [
+      "National Kidney Foundation: CKD diet and protein",
+      "https://www.kidney.org/kidney-topics/ckd-diet-how-much-protein-right-amount"
+    ],
+    [
+      "American Parkinson Disease Association: levodopa and food",
+      "https://www.apdaparkinson.org/levodopa-dosing-and-food-intake/"
+    ],
+    [
+      "IARC (WHO): red and processed meat",
+      "https://www.iarc.who.int/wp-content/uploads/2018/07/pr240_E.pdf"
+    ],
+    [
+      "NPR/OPB: Consumer Reports finds lead in protein powders (2025)",
+      "https://www.opb.org/article/2025/10/16/consumer-reports-finds-lead-in-popular-protein-powders/"
+    ],
+    [
+      "Tufts Health & Nutrition Letter: do vegetarians need to combine proteins?",
+      "https://www.nutritionletter.tufts.edu/?p=1946"
+    ],
+    [
+      "News report on ICMR-NIN 2024 Dietary Guidelines and protein supplements",
+      "https://www.dtnext.in/lifestyle/wellbeing/why-do-icmr-nins-new-dietary-guidelines-advise-against-protein-supplements-784773"
+    ],
+    [
+      "USDA FoodData Central (food values)",
+      "https://fdc.nal.usda.gov/"
+    ],
+    [
+      "ICMR-NIN: Indian Food Composition Tables 2017 (Indian food values)",
+      "https://www.nin.res.in/"
+    ]
+  ],
+  "subs": [
+    {
+      "slug": "dairy-eggs",
+      "tab": "Dairy & eggs",
+      "name": "Milk, curd, paneer, yogurt, eggs",
+      "color": "#d08a2c",
+      "prop": "🥛",
+      "job": "Complete protein that's cheap, easy and vegetarian-friendly. Dairy brings calcium too.",
+      "what": [
+        "Complete protein: all 9 essential amino acids",
+        "Dairy adds calcium, vitamin B12 and often vitamin D (if fortified)",
+        "Eggs add choline and vitamin B12, and need almost no cooking skill",
+        "Greek yogurt and paneer pack the most protein per serving"
+      ],
+      "table": [
+        [
+          "Greek yogurt, plain",
+          "1 cup",
+          "24 g",
+          48
+        ],
+        [
+          "Paneer",
+          "100 g (about ¾ cup cubes)",
+          "18 g",
+          36
+        ],
+        [
+          "Cottage cheese",
+          "½ cup",
+          "14 g",
+          28
+        ],
+        [
+          "Milk (2%)",
+          "1 cup",
+          "8 g",
+          16
+        ],
+        [
+          "Curd (dahi), plain",
+          "1 cup (240 g)",
+          "8 g",
+          16
+        ],
+        [
+          "Cheddar or mozzarella",
+          "1 oz",
+          "7 g",
+          14
+        ],
+        [
+          "Egg",
+          "1 large",
+          "6 g",
+          12
+        ]
+      ],
+      "tableNote": "US values from USDA FoodData Central. Paneer and curd are approximate and vary by brand and how they're made.",
+      "indian": [
+        "Paneer bhurji or tikka",
+        "Curd & raita",
+        "Buttermilk (chaas)",
+        "Lassi (unsweetened)",
+        "Egg bhurji",
+        "Boiled eggs",
+        "Hung curd dips"
+      ],
+      "good": "Easy protein at breakfast, the meal where most people fall short. Curd and buttermilk also bring live bacteria if they're fresh.",
+      "watch": "Sweetened yogurts and lassi can carry a lot of sugar. Full-fat vs low-fat dairy is still debated: the 2025–2030 US guidelines favor full-fat, while the American Heart Association still suggests low-fat. If you have high cholesterol, ask your doctor.",
+      "fun": "Greek yogurt and hung curd have more protein than regular curd for the same reason: straining removes the watery whey, which concentrates the protein. That whey is what goes into whey powder.",
+      "tip": "Make it a habit: a cup of Greek yogurt plus 2 eggs gets you past 30 g before lunch. A bowl of curd plus 2 eggs gets you about 20 g."
+    },
+    {
+      "slug": "meat-fish",
+      "tab": "Meat & fish",
+      "name": "Chicken, fish, seafood, red meat",
+      "color": "#c0503a",
+      "prop": "🐟",
+      "job": "The most protein per bite, plus well-absorbed iron, zinc and vitamin B12.",
+      "what": [
+        "Complete protein, and very easy to digest",
+        "Fish like salmon, sardines and mackerel bring omega-3 fats",
+        "Meat brings heme iron, the kind your body absorbs best",
+        "A palm-sized portion (3 oz, about 85 g) gives 19–26 g"
+      ],
+      "table": [
+        [
+          "Chicken breast, cooked",
+          "3 oz",
+          "26 g",
+          52
+        ],
+        [
+          "Tuna, canned, drained",
+          "3 oz",
+          "22 g",
+          44
+        ],
+        [
+          "Salmon, cooked",
+          "3 oz",
+          "19 g",
+          38
+        ],
+        [
+          "Tandoori chicken, boneless",
+          "100 g",
+          "about 27 g",
+          54
+        ],
+        [
+          "Fish curry (rohu)",
+          "1 katori (150 g)",
+          "about 17 g",
+          34
+        ]
+      ],
+      "tableNote": "US values from USDA FoodData Central. Indian dishes are approximate and vary by recipe.",
+      "indian": [
+        "Fish curry",
+        "Tandoori or grilled chicken",
+        "Egg curry",
+        "Prawn fry",
+        "Chicken keema",
+        "Grilled pomfret"
+      ],
+      "good": "Fish twice a week covers protein and omega-3 at once. Grilling, baking and curries with less oil keep it lean.",
+      "watch": "Processed meats (bacon, sausage, ham, salami, hot dogs) are linked to colon cancer: 50 g a day raises the risk by about 18%. Red meat is a \"probable\" risk. Keep processed meat occasional and vary your protein.",
+      "fun": "Canned tuna and sardines are some of the cheapest complete proteins in the grocery store, and they don't need a fridge until you open them.",
+      "tip": "Batch-cook chicken or fish on the weekend. A ready protein in the fridge makes weekday meals much easier."
+    },
+    {
+      "slug": "dals-beans",
+      "tab": "Dals & beans",
+      "name": "Lentils, chickpeas, rajma, beans, peas",
+      "color": "#8a6d2b",
+      "prop": "🫘",
+      "job": "The backbone of vegetarian protein: cheap, filling and packed with fiber, iron and folate.",
+      "what": [
+        "Good protein plus fiber, iron, folate and potassium",
+        "Low in one amino acid (methionine), which grains supply, so dal-chawal and rajma-roti are a great team",
+        "Very filling for the calories",
+        "Cooked dal from about 50 g dry gives roughly 11 g of protein"
+      ],
+      "table": [
+        [
+          "Lentils, cooked",
+          "½ cup",
+          "9 g",
+          18
+        ],
+        [
+          "Black beans, cooked",
+          "½ cup",
+          "8 g",
+          16
+        ],
+        [
+          "Kidney beans (rajma), cooked",
+          "½ cup",
+          "7 g",
+          14
+        ],
+        [
+          "Chickpeas, cooked",
+          "½ cup",
+          "7 g",
+          14
+        ],
+        [
+          "Dal (toor, moong, masoor, chana)",
+          "1 bowl (from 50 g dry)",
+          "about 11 g",
+          22
+        ],
+        [
+          "Sprouted moong",
+          "100 g",
+          "about 7 g",
+          14
+        ],
+        [
+          "Besan cheela",
+          "1 medium",
+          "about 8 g",
+          16
+        ]
+      ],
+      "tableNote": "US values from USDA FoodData Central. Indian values are approximate, based on Indian Food Composition Tables 2017 (ICMR-NIN), and vary by recipe. Masoor and urad dal are a little higher in protein than toor.",
+      "indian": [
+        "Toor, moong, masoor & chana dal",
+        "Rajma",
+        "Chole & kala chana",
+        "Sprouts chaat",
+        "Besan cheela",
+        "Sundal",
+        "Sattu drink",
+        "Roasted chana"
+      ],
+      "good": "Fiber, iron and folate come along for free. A thicker dal (more dal, less water) is the easiest protein upgrade in an Indian kitchen.",
+      "watch": "Beans can cause gas at first. Increase slowly, soak well and cook thoroughly. Pair with vitamin C (lemon, tomato, amla) to absorb more of their iron.",
+      "fun": "ICMR-NIN's 2020 numbers assume a cereal, legume and milk mix of roughly 3:1:2.5. In other words, more dal and milk relative to rice and roti than many plates have.",
+      "tip": "Keep roasted chana or sprouts on hand. They're a protein snack that needs no cooking."
+    },
+    {
+      "slug": "soy",
+      "tab": "Soy",
+      "name": "Tofu, soya chunks, tempeh, edamame, soy milk",
+      "color": "#6f8f3a",
+      "prop": "🌱",
+      "job": "The plant protein that's complete: all 9 essential amino acids, just like eggs and dairy.",
+      "what": [
+        "A complete protein, which is rare among plants",
+        "Soya chunks are one of the most concentrated protein foods in an Indian pantry",
+        "Fortified soy milk can match cow's milk for calcium and vitamin B12",
+        "Works in curries, stir-fries, bhurji and pulao"
+      ],
+      "table": [
+        [
+          "Tempeh",
+          "3 oz",
+          "17 g",
+          34
+        ],
+        [
+          "Tofu, firm",
+          "3 oz",
+          "15 g",
+          30
+        ],
+        [
+          "Soya chunks, dry",
+          "25 g (about ¼ cup)",
+          "13 g",
+          26
+        ],
+        [
+          "Edamame",
+          "½ cup",
+          "9 g",
+          18
+        ],
+        [
+          "Soy milk",
+          "1 cup",
+          "8 g",
+          16
+        ]
+      ],
+      "tableNote": "Tofu, tempeh, edamame and soy milk from USDA FoodData Central. Soya chunks are approximate. Check labels: protein varies a lot by brand.",
+      "indian": [
+        "Soya chunk curry or pulao",
+        "Tofu bhurji",
+        "Tofu tikka",
+        "Soya keema",
+        "Fortified soy milk"
+      ],
+      "good": "For vegans, soy is the simplest way to get complete protein. It also brings iron, calcium (if set with calcium) and fiber.",
+      "watch": "Soy is a common allergen. If you take levothyroxine for your thyroid, take it on an empty stomach and keep soy foods a few hours apart, since soy can lower how much you absorb. Ask your doctor or pharmacist.",
+      "fun": "Tofu is made a lot like paneer: soy milk is curdled, then the curds are pressed into a block.",
+      "tip": "Soak soya chunks in hot water, squeeze them out, then add to any curry. They soak up the masala like a sponge."
+    },
+    {
+      "slug": "nuts-seeds",
+      "tab": "Nuts & seeds",
+      "name": "Peanuts, almonds, pumpkin seeds, chia, til",
+      "color": "#9c6b45",
+      "prop": "🥜",
+      "job": "Protein with healthy fats. A great add-on, but calorie-dense, so think handful, not bag.",
+      "what": [
+        "Protein plus healthy fats, fiber, magnesium and vitamin E",
+        "Peanuts (technically a legume) and pumpkin seeds have the most protein",
+        "Easy to add to poha, upma, oats, salads and chutneys",
+        "A small handful is about 1 oz (28 g)"
+      ],
+      "table": [
+        [
+          "Pumpkin seeds",
+          "1 oz",
+          "8.5 g",
+          17
+        ],
+        [
+          "Peanuts",
+          "1 oz",
+          "7 g",
+          14
+        ],
+        [
+          "Peanut butter",
+          "2 tbsp",
+          "7 g",
+          14
+        ],
+        [
+          "Almonds",
+          "1 oz (about 23)",
+          "6 g",
+          12
+        ],
+        [
+          "Chia seeds",
+          "1 oz (about 2½ tbsp)",
+          "5 g",
+          10
+        ]
+      ],
+      "tableNote": "Values from USDA FoodData Central, rounded.",
+      "indian": [
+        "Peanut chutney",
+        "Chikki (go easy on the jaggery)",
+        "Peanuts in poha & upma",
+        "Til (sesame) ladoo",
+        "Badam",
+        "Roasted makhana"
+      ],
+      "good": "Regularly eating nuts is linked to better heart health. They make an easy, filling snack.",
+      "watch": "About 160–170 calories per ounce, so portions add up fast. Peanut and tree nut allergies can be serious. Choose unsalted where you can.",
+      "fun": "Peanuts aren't nuts. They're legumes that grow underground, close cousins of chana and dal.",
+      "tip": "Sprinkle a tablespoon of pumpkin or sunflower seeds on dal, salad or curd rice for an easy 3–4 g boost."
+    },
+    {
+      "slug": "grains",
+      "tab": "Grains & millets",
+      "name": "Oats, wheat, rice, quinoa, millets",
+      "color": "#b8913a",
+      "text": "#2b2340",
+      "prop": "🌾",
+      "job": "Not protein stars on their own, but eaten every day, grains quietly add up.",
+      "what": [
+        "Usually 3–8 g per serving",
+        "Low in one amino acid (lysine), which dals and beans supply",
+        "Quinoa is a complete protein, unlike most grains",
+        "Whole grains also bring fiber and B vitamins"
+      ],
+      "table": [
+        [
+          "Quinoa, cooked",
+          "1 cup",
+          "8 g",
+          16
+        ],
+        [
+          "Oats, dry",
+          "½ cup",
+          "7 g",
+          14
+        ],
+        [
+          "Brown rice, cooked",
+          "1 cup",
+          "5 g",
+          10
+        ],
+        [
+          "White rice, cooked",
+          "1 cup",
+          "4 g",
+          8
+        ],
+        [
+          "Whole wheat bread",
+          "1 slice",
+          "3.5 g",
+          7
+        ],
+        [
+          "Roti (from 30 g atta)",
+          "1 medium",
+          "about 3 g",
+          6
+        ],
+        [
+          "Idli",
+          "2 pieces",
+          "about 4 g",
+          8
+        ]
+      ],
+      "tableNote": "US values from USDA FoodData Central. Roti and idli are approximate.",
+      "indian": [
+        "Roti & phulka",
+        "Bajra, jowar & ragi rotis",
+        "Oats upma",
+        "Dalia",
+        "Idli & dosa (with sambar)",
+        "Millet khichdi"
+      ],
+      "good": "Three or four rotis a day can add 10–12 g of protein. Pairing grains with dal turns two incomplete proteins into a complete meal.",
+      "watch": "Many meals are mostly grain with very little else. If your plate is three-quarters rice or roti, there's room to add more dal, curd or paneer.",
+      "fun": "Idli and dosa batter is already a protein team: rice plus urad dal, fermented together.",
+      "tip": "Cook oats in milk instead of water and stir in 2 tbsp of peanut butter: that one breakfast lands around 20 g."
+    },
+    {
+      "slug": "powders",
+      "tab": "Protein powders",
+      "name": "Whey, casein, soy, pea",
+      "color": "#7a6a8a",
+      "prop": "🥤",
+      "job": "Convenient protein when food falls short. Helpful for some, unnecessary for most.",
+      "what": [
+        "Whey and casein come from milk; soy and pea are plant-based",
+        "Whey is digested fast; casein is digested slowly",
+        "A scoop usually gives 20–30 g, but check the label",
+        "Food first: Indian guidelines from ICMR-NIN advise against them for healthy people"
+      ],
+      "table": [],
+      "tableNote": "",
+      "indian": [],
+      "good": "Useful if your appetite is poor, if you're older and struggle to eat enough, during hard training, or when food isn't practical. The Australian Institute of Sport suggests 20–40 g per serve and no more than 1–2 serves a day.",
+      "watch": "In a 2025 Consumer Reports test of 23 powders and shakes, more than two-thirds had more lead per serving than its experts consider safe for a day. Plant-based powders averaged about 9 times more lead than dairy-based ones. Many also add sugar, caffeine or herbal extracts.",
+      "fun": "Whey used to be a waste product of cheese and paneer making. Now it's one of the best-selling supplements in the world.",
+      "tip": "Look for a third-party seal: NSF Certified for Sport, Informed Choice or USP. These test for contaminants and banned substances. Avoid products with a California Prop 65 lead warning for daily use."
+    }
+  ],
+  "aria": "Protein"
+}

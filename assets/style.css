@@ -296,3 +296,14 @@ details.more .evlist,details.more .claimgrid{margin-top:0}
 }
 .sec,[id]{scroll-margin-top:calc(var(--hh,60px) + 60px)}
 .vtile span.dose{color:var(--ink);font-weight:600;white-space:nowrap}
+/* ---------- Protein ---------- */
+.t-complete{background:#dff1e6}.t-plant{background:#eef3d9}.t-supplement{background:#ffe9c9}
+.pcalc{padding:16px 18px}
+.pcalc h3{margin:0 0 10px}
+.pcalc-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pcalc-in label{font-weight:600;font-size:15px;flex:1 0 100%}
+.pcalc-in input,.pcalc-in select{font:inherit;font-size:16px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.pcalc-in input{width:120px}
+.pc-res{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:6px}
+.pc-res li{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:6px;font-size:15px}
+.pc-res b{white-space:nowrap}
