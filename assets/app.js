@@ -178,4 +178,23 @@
       out.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
+
+  /* ---------- Protein calculator ---------- */
+  var pc = document.getElementById("pcalc");
+  if (pc) {
+    pc.hidden = false;
+    var pw = document.getElementById("pc-w"), pu = document.getElementById("pc-u"), po = document.getElementById("pc-out");
+    var pcRun = function () {
+      var w = parseFloat(pw.value);
+      if (!(w > 0)) { po.innerHTML = '<p class="tnote">Enter your weight to see a daily range in grams. Nothing is stored or sent anywhere.</p>'; return; }
+      var kg = pu.value === "lb" ? w * 0.4536 : w;
+      if (kg < 30 || kg > 250) { po.innerHTML = '<p class="tnote">Please check the weight and unit.</p>'; return; }
+      var g = function (x) { return Math.round(kg * x); };
+      var rows = [["Basic need (0.8 g/kg)", g(0.8) + " g"], ["Over 65 (1.0–1.2 g/kg)", g(1.0) + "–" + g(1.2) + " g"], ["Hard training (1.2–1.6 g/kg)", g(1.2) + "–" + g(1.6) + " g"]];
+      po.innerHTML = '<ul class="pc-res">' + rows.map(function (r) { return "<li><span>" + r[0] + "</span><b>" + r[1] + " a day</b></li>"; }).join("") +
+        '</ul><p class="tnote">A general guide for healthy adults. If you have kidney disease, follow your doctor\'s advice.</p>';
+    };
+    pw.addEventListener("input", pcRun);
+    pu.addEventListener("change", pcRun);
+  }
 })();

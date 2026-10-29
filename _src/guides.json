@@ -72,7 +72,8 @@
       "Fe",
       "Zn",
       "O3"
-    ]
+    ],
+    "protein": "Vegetarians can easily get enough protein with a little planning. Build each meal around dal, beans, soy, paneer, curd or milk, and mix sources across the day."
   },
   {
     "slug": "20s-to-40s",
@@ -203,7 +204,8 @@
       "D",
       "B6",
       "Ca"
-    ]
+    ],
+    "protein": "Muscle naturally shrinks with age. Expert groups suggest adults over 65 aim for 1.0–1.2 g of protein per kg a day, spread across meals, alongside strength exercise."
   },
   {
     "slug": "pregnancy",
@@ -274,7 +276,8 @@
       "D",
       "Fe",
       "I"
-    ]
+    ],
+    "protein": "Protein needs rise in pregnancy, to about 71 g a day in US guidance. Dal, eggs, dairy, fish low in mercury, soy and nuts all help."
   },
   {
     "slug": "active",
@@ -324,7 +327,7 @@
         "Pre-workouts often contain B6 and B12. Count them toward your total"
       ]
     ],
-    "beyond": "Iron, calcium, protein and fluids matter a lot for active people. We'll cover these in future guides.",
+    "beyond": "Iron, calcium and fluids matter a lot for active people too. Women who train hard are especially prone to low iron, so ask your doctor about a ferritin test if you're often tired.",
     "doctor": [
       "If you train hard and feel unusually tired, ask about vitamin D, B12 and iron tests.",
       "Supplements can contain undeclared ingredients. Competitive athletes should look for third-party tested products, like NSF Certified for Sport.",
@@ -339,7 +342,8 @@
     "extraSource": [
       "Australian Institute of Sport: Vitamin C fact sheet",
       "https://www.ais.gov.au/__data/assets/pdf_file/0009/999792/Sport-supplement-fact-sheets-Vitamin-C.pdf"
-    ]
+    ],
+    "protein": "Regular hard training raises protein needs to about 1.2–1.6 g per kg a day. Spread it over 3–5 meals and snacks of roughly 15–30 g each. Food works as well as powders."
   },
   {
     "slug": "supplements",

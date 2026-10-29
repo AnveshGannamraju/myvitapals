@@ -19,13 +19,14 @@ SITE = "https://myvitapals.com"
 REVIEWED = "October 2026"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-ASSET_V = "11"
+ASSET_V = "12"
 
 V = json.loads((SRC / "vitamins.json").read_text(encoding="utf-8"))
 D = json.loads((SRC / "details.json").read_text(encoding="utf-8"))
 G = json.loads((SRC / "guides.json").read_text(encoding="utf-8"))
 T = json.loads((SRC / "topics.json").read_text(encoding="utf-8"))
 M = json.loads((SRC / "minerals.json").read_text(encoding="utf-8"))
+PR = json.loads((SRC / "protein.json").read_text(encoding="utf-8"))
 ALL = V + M
 BYID = {v["id"]: v for v in ALL}
 BS = [v for v in V if v["id"].startswith("B")]
@@ -38,17 +39,19 @@ url = lambda v: f"/{slug(v)}/"
 suburl = lambda pv, s: f"{url(pv)}{s['slug']}/"
 gurl = lambda g: f"/guides/{g['slug']}/"
 turl = lambda t: f"/topics/{t['slug']}/"
+purl = lambda s=None: "/protein/" + (f"{s['slug']}/" if s else "")
 EV = {"g": ("🟢", "Strong evidence"), "y": ("🟡", "Some evidence"), "w": ("⚪", "Not enough evidence"), "r": ("🔴", "Myth")}
 badge = lambda k, labels=None: f'<span class="ev ev-{k}"><i aria-hidden="true">{EV[k][0]}</i>{(labels or {}).get(k, EV[k][1])}</span>'
 txt = lambda v: v.get("text", "#fff")
 subpal = lambda s: {"id": s["label"], "color": s["color"], "text": txt(s), "prop": s["prop"]}
+psubpal = lambda x: {"id": x["prop"], "color": x["color"], "text": txt(x), "prop": x["prop"], "aria": x["tab"]}
 vname = lambda v: v.get("label") or f"Vitamin {v['id']}"
 ismin = lambda v: v["type"] in ("mineral", "omega")
 nih = lambda v: f"https://ods.od.nih.gov/factsheets/{v['nih'].replace('Consumer', 'HealthProfessional')}/"
 
 
 def pal(v, w, decorative=True, prop=True):
-    label = 'aria-hidden="true"' if decorative else f'role="img" aria-label="Vitamin {e(v["id"])} icon"'
+    label = 'aria-hidden="true"' if decorative else f'role="img" aria-label="{e(v.get("aria", "Vitamin " + v["id"]))} icon"'
     lab = v.get("sym", v["id"])
     fs = 24 if len(lab) > 2 else (28 if len(lab) == 2 else 40)
     c = v["color"]
@@ -99,8 +102,8 @@ def head(title, desc, path, og="home", extra=""):
 <a class="skip" href="#main">Skip to content</a>"""
 
 
-def header(section="", vit=None, sub=None):
-    links = [("vitamins", "/#vitamins", "Vitamins"), ("minerals", "/minerals/", "Minerals"), ("topics", "/topics/", "Health topics"), ("guides", "/guides/", "Guides"),
+def header(section="", vit=None, sub=None, psub=None):
+    links = [("vitamins", "/#vitamins", "Vitamins"), ("minerals", "/minerals/", "Minerals"), ("protein", "/protein/", "Protein"), ("topics", "/topics/", "Health topics"), ("guides", "/guides/", "Guides"),
              ("finder", "/tools/food-finder/", "Food finder"), ("check", "/tools/vitamin-check/", "Vitamin check"),
              ("about", "/about/", "About")]
     nav = "".join(f'<a href="{h}"{" class=on" if section == k else ""}>{t}</a>' for k, h, t in links)
@@ -113,6 +116,7 @@ def header(section="", vit=None, sub=None):
 <h4>Guides</h4>{guide_links}
 <h4>Vitamins</h4><div class="grid2">{vit_links}</div>
 <h4>Minerals &amp; omega-3</h4><div class="grid2">{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}<a href="/minerals/">All minerals</a></div>
+<h4>Protein</h4><div class="grid2"><a href="/protein/">Protein overview</a>{"".join(f'<a href="{purl(x)}">{e(x["tab"])}</a>' for x in PR["subs"])}</div>
 <h4>More</h4><a href="/">Home</a><a href="/about/">About &amp; how we write</a></div></details>"""
     strip = ""
     if vit:
@@ -131,6 +135,10 @@ def header(section="", vit=None, sub=None):
             s = [f'<a href="{url(pv)}"{" class=on" if not sub else ""}>Overview</a>']
             s += [f'<a href="{suburl(pv, x)}"{" class=on" if sub == x["slug"] else ""}><i style="--c:{x["color"]}"></i>{e(x["tab"])}</a>' for x in pv["subs"]]
             strip += f'<nav class="strip sub" aria-label="Types of vitamin {e(cur)}">{"".join(s)}</nav>'
+    if section == "protein":
+        s = [f'<a href="{purl()}"{" class=on" if not psub else ""}>Overview</a>']
+        s += [f'<a href="{purl(x)}"{" class=on" if psub == x["slug"] else ""}><i style="--c:{x["color"]}"></i>{e(x["tab"])}</a>' for x in PR["subs"]]
+        strip = f'<nav class="strip sub" aria-label="Types of protein">{"".join(s)}</nav>'
     return f"""
 <header class="site-header"><div class="wrap">
   <div class="bar"><a class="logo" href="/" aria-label="VitaPals home">{LOGO}<span>Vita<b>Pals</b></span></a>
@@ -150,7 +158,7 @@ def footer(scripts=""):
   <div class="cols">
     <div><h4>Vitamins</h4>{vit}</div><div><h4>&nbsp;</h4>{vit2}</div>
     <div><h4>Guides</h4>{gd}<h4 style="margin-top:14px">Health topics</h4>{"".join(f'<a href="{turl(t)}">{e(t["title"])}</a>' for t in T)}</div>
-    <div><h4>Minerals</h4>{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}</div>
+    <div><h4>Minerals</h4>{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}<h4 style="margin-top:14px">Protein</h4><a href="/protein/">Protein &amp; its sources</a></div>
     <div><h4>Tools</h4><a href="/tools/vitamin-check/">Vitamin check</a><a href="/tools/food-finder/">Food finder</a><h4 style="margin-top:14px">VitaPals</h4><a href="/about/">About &amp; how we write</a></div>
   </div>
   <p class="disc">VitaPals is written for adults aged 20 and over, for general education, not medical advice. Facts are based on the NIH Office of Dietary Supplements. Talk to a doctor, dietitian or pharmacist before starting a supplement, especially if you're pregnant, take medicines or have a health condition.</p>
@@ -230,6 +238,10 @@ for g in G:
 INDEX.append({"t": "Minerals & omega-3", "u": "/minerals/", "k": "Overview", "x": "minerals mineral", "s": " ".join(vname(m) for m in M)})
 for t in T:
     INDEX.append({"t": t["title"], "u": turl(t), "k": "Health topic", "x": t.get("keywords", ""), "s": " ".join([t["card"]] + [c[0] for c in t["causes"]] + [c[0] for c in t["claims"]] + [t.get("keywords", "")])})
+INDEX.append({"t": "Protein: how much you need & best sources", "u": purl(), "k": "Protein", "x": "protein proteins macronutrient muscle amino acids grams whey dal paneer",
+              "s": " ".join([GENERIC, PR["job"]] + [k[0] for k in PR["kinds"]] + [c[0] for c in PR["claims"]])})
+for x in PR["subs"]:
+    INDEX.append({"t": f"{x['tab']} · protein", "u": purl(x), "k": "Protein source", "x": "protein " + x["name"].replace(",", " ").lower(), "s": x["job"]})
 INDEX += [{"t": "2-minute vitamin check", "u": "/tools/vitamin-check/", "k": "Tool", "s": "quiz am I low deficient test"},
           {"t": "Food finder", "u": "/tools/food-finder/", "k": "Tool", "s": "which foods vitamins search"}]
 FOODS = []
@@ -239,6 +251,13 @@ for v in ALL:
         FOODS.append({"f": f, "s": s, "a": a, "p": p if isinstance(p, int) else None, "v": v["id"], "n": vname(v), "u": url(v), "c": v["color"]})
     for f in d["indian"]:
         FOODS.append({"f": f, "s": "", "a": "", "p": None, "v": v["id"], "n": vname(v), "u": url(v), "c": v["color"], "in": 1})
+_seen = set()
+for x in PR["subs"]:
+    for f, s, a, p in x["table"]:
+        if f in _seen:
+            continue
+        _seen.add(f)
+        FOODS.append({"f": f, "s": s, "a": a, "p": p, "v": "P", "n": "Protein", "u": purl(x), "c": PR["color"]})
 write("assets/search.json", json.dumps(INDEX, ensure_ascii=False))
 write("assets/foods.json", json.dumps(FOODS, ensure_ascii=False))
 
@@ -256,6 +275,7 @@ questions = [("Do vegetarians need a B12 supplement?", "/vitamin-b12/#faq"),
              ("Should I take folic acid before pregnancy?", "/guides/pregnancy/"),
              ("Can biotin mess up blood tests?", "/vitamin-b7/#supplements"),
              ("Why am I always tired?", "/guides/tired/"),
+             ("How much protein do I need a day?", "/protein/#needs"),
              ("Is \"hormonal imbalance\" a real diagnosis?", "/topics/hormonal-imbalance/")]
 water = [v for v in V if v["type"] == "water"]
 fat = [v for v in V if v["type"] == "fat"]
@@ -300,6 +320,11 @@ home = head("VitaPals — Vitamins Explained Simply, Food First",
   <div class="head-row"><div><h2>Minerals &amp; omega-3</h2><p>Iron, calcium and friends: the nutrients people most often run short on, plus the healthy fats everyone asks about.</p></div></div>
   <div class="vlist">{"".join(vrow(m) for m in M)}</div>
   <p style="margin-top:12px"><a href="/minerals/">See all minerals at a glance →</a></p>
+</section>
+
+<section class="block" id="protein">
+  <div class="head-row"><div><h2>Protein</h2><p>How much you need, and the best sources, from dal and paneer to eggs, fish and soy.</p></div></div>
+  <div class="vlist"><a class="vtile" href="/protein/">{pal(PR, 26, prop=False)}<div><strong>Protein overview</strong><span>Needs, benefits, myths</span><span class="dose">{e(PR["needShort"].replace(" a day", "/day"))}</span></div></a>{"".join(f'<a class="vtile" href="{purl(x)}">{pal(psubpal(x), 26, prop=False)}<div><strong>{e(x["tab"])}</strong><span>{e(x["name"])}</span></div></a>' for x in PR["subs"])}</div>
 </section>
 
 <section class="block">
@@ -533,6 +558,7 @@ for gi_, g in enumerate(G):
 {foods_block}
 <section class="sec"><h2>{e(g['plateTitle'])}</h2><div class="plate">{"".join(f"<div><b>{e(a)}</b>{e(b)}</div>" for a, b in g['plate'])}</div></section>
 """ + (f"""<section class="sec"><h2>Daily needs and upper limits</h2><table class="ul"><tr><th>Vitamin</th><th>Adults need</th><th>Upper limit</th></tr>{ulrows}</table><p class="tnote">Upper limits are for adults and include food plus supplements unless noted. "None set" doesn't mean megadoses are safe.</p></section>""" if g.get("showUL") else "") + f"""
+{f'<div class="note" style="margin-top:22px"><h3>💪 Don\'t forget protein</h3><p>{e(g["protein"])} <a href="/protein/">Protein: needs &amp; best sources →</a></p></div>' if g.get("protein") else ""}
 <section class="sec two">
   <div class="note warm"><h3>📌 Good to know</h3><p>{e(g['beyond'])}</p></div>
   <div class="note"><h3>🩺 Talk to your doctor about</h3><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in g['doctor'])}</ul></div>
@@ -663,6 +689,157 @@ ti = head("Health Topics: Evidence-Rated Answers | VitaPals", "Common health que
 """ + footer()
 write("topics/index.html", ti)
 
+# ------------------------------------------------------------------ protein
+def ptable(rows, note):
+    body = "".join(f'<tr><td>{e(f)}<small>{e(s)}</small></td><td class="amt">{e(a)}</td><td>{dvbar(p)}</td></tr>' for f, s, a, p in rows)
+    return (f'<table class="foods"><thead><tr><th>Food</th><th>Protein</th><th>% Daily Value</th></tr></thead><tbody>{body}</tbody></table>'
+            f'<p class="tnote">% Daily Value is based on {e(PR["dv"])} of protein a day for adults (US FDA). {e(note)}</p>')
+
+
+PSRC = ('<section class="sources" id="sources"><details><summary><strong>Sources ({n})</strong></summary><ol>{items}</ol></details>'
+        '<p>Last reviewed {rev}. This page is for general education, not medical advice. It hasn\'t been reviewed by a medical professional yet.</p></section>')
+psources = PSRC.format(n=len(PR["sources"]), rev=REVIEWED, items="".join(f'<li><a href="{e(u)}" rel="noopener">{e(n)}</a></li>' for n, u in PR["sources"]))
+pguides = [g for g in G if g["slug"] in PR["guides"]]
+pfaq_ld = jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in PR["faq"]]})
+CALC = """<div class="tool pcalc" id="pcalc" hidden>
+  <h3>Your number</h3>
+  <div class="pcalc-in"><label for="pc-w">Your weight</label><input id="pc-w" type="number" inputmode="decimal" min="30" max="300" placeholder="e.g. 65">
+  <select id="pc-u" aria-label="Unit"><option value="kg">kg</option><option value="lb">lb</option></select></div>
+  <div id="pc-out" aria-live="polite"><p class="tnote">Enter your weight to see a daily range in grams. Nothing is stored or sent anywhere.</p></div>
+</div>"""
+pp = head("Protein: How Much You Need & the Best Sources (US & Indian) | VitaPals",
+          fit("Protein for adults: how much you need (about 0.8 g per kg), the best US and Indian sources, protein powders, and myths checked with evidence."),
+          purl(), "protein", pfaq_ld) + header("protein") + f"""
+<p class="crumbs"><a href="/">Home</a> › Protein</p>
+<div class="vhead">{pal(PR, 64, decorative=False)}<div>
+  <p class="kicker">Macronutrient · Made of amino acids</p>
+  <h1>Protein</h1>
+  <p class="lede">{e(PR['job'])}</p>
+</div></div>
+<div class="glance" id="glance">{"".join(f"<div><small>{e(a)}</small><strong>{e(b)}</strong></div>" for a, b in PR['glance'])}</div>
+<nav class="jump" aria-label="On this page"><a href="#types">Sources</a><a href="#foods">Top foods</a><a href="#needs">How much</a><a href="#benefits">Benefits</a><a href="#risk">Who needs more</a><a href="#supplements">Powders</a><a href="#claims">Claims checked</a><a href="#doctor">Doctor</a><a href="#faq">FAQ</a></nav>
+
+<section class="sec" id="types">
+  <h2>Protein by source</h2>
+  <p class="sub">Tap a type for its best foods, Indian picks and what to watch.</p>
+  <div class="subpick">{"".join(f'<a class="vrow" href="{purl(x)}">{pal(psubpal(x), 30, prop=False)}<div><strong>{e(x["tab"])}</strong><span>{e(x["job"])}</span></div></a>' for x in PR["subs"])}</div>
+</section>
+
+<section class="sec two">
+  <div><h2>What it does</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in PR['powers'])}</ul></div>
+  <div class="note warm"><h3>🤓 Did you know?</h3><p>{e(PR['fun'])}</p></div>
+</section>
+
+<section class="sec" id="foods">
+  <h2>Top food sources</h2>
+  <p class="sub">Per typical serving, with how much of the 50 g Daily Value it covers.</p>
+  {ptable(PR["table"], PR["tableNote"])}
+  <div class="two" style="margin-top:16px">
+    <div class="note"><h3>🇮🇳 Also great in Indian kitchens</h3><div class="chips">{"".join(f"<span>{e(x)}</span>" for x in PR['indian'])}</div></div>
+    <div class="note warm"><h3>👩‍🍳 Kitchen tips</h3><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in PR['tips'])}</ul></div>
+  </div>
+</section>
+
+<section class="sec two" id="needs">
+  <div><h2>How much do you need?</h2>
+    <table class="needs">{"".join(f"<tr><td>{e(a)}</td><td>{e(b)}</td></tr>" for a, b in PR['needs'])}</table>
+    <p class="tnote">{e(PR['needNote'])}</p></div>
+  <div style="align-self:start;display:grid;gap:14px">{CALC}
+    <div class="note warm"><h3>ℹ️ Upper limit</h3><p>{e(PR['ul'])}</p></div></div>
+</section>
+
+<section class="sec" id="kinds">
+  <h2>Complete vs incomplete protein</h2>
+  <p class="sub">{e(PR['kindsIntro'])}</p>
+  <ul class="forms">{"".join(f'<li><strong>{e(a)}</strong><span class="ftag t-{c.lower()}">{e(c)}</span><p>{e(b)}</p></li>' for a, b, c in PR["kinds"])}</ul>
+</section>
+
+<section class="sec" id="benefits">
+  <h2>Benefits, rated by evidence</h2>
+  {LEGEND}
+  {evrows(PR['benefits'])}
+</section>
+
+<section class="sec" id="risk">
+  <h2>Who should pay more attention?</h2>
+  <div class="risk" style="--c:{PR['color']}">{"".join(f"<div><strong>{e(a)}</strong><span>{e(b)}</span></div>" for a, b in PR['risk'])}</div>
+</section>
+
+<section class="sec" id="supplements">
+  <h2>Protein powders: do you need one?</h2>
+  <div class="two">
+    <div class="note"><h3>When it helps</h3><p>{e(PR['suppWhen'])}</p></div>
+    <div class="note warm"><h3>Choosing one</h3><p>{e(PR['suppPick'])} <a href="{purl(PR['subs'][-1])}">More on powders →</a></p></div>
+  </div>
+  <div class="note warn" style="margin-top:14px"><h3>💊 Health conditions, medicines &amp; cautions</h3><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in PR['cautions'])}</ul><p style="margin-top:8px">Always tell your doctor and pharmacist about any supplements you take.</p></div>
+</section>
+
+<section class="sec" id="claims">
+  <h2>Popular claims we checked</h2>
+  {claims_html(PR['claims'])}
+</section>
+
+<section class="sec" id="doctor">
+  <h2>When to see a doctor</h2>
+  <div class="two">
+    <div class="note warn"><h3>🩺 Book a visit if you have</h3><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in PR['doctor'])}</ul></div>
+    <div><h3 style="margin-bottom:8px">Tests to ask about</h3><table class="needs tests">{"".join(f"<tr><td><strong>{e(a)}</strong><span>{e(b)}</span></td></tr>" for a, b in PR['tests'])}</table>
+    <p class="tnote">Only your doctor can interpret results. {e(PR['lowNote'])}</p></div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <h2>Frequently asked questions</h2>
+  {"".join(f'<details class="faq"><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in PR['faq'])}
+</section>
+<section class="sec"><h2>Related guides</h2><div class="cards">{"".join(f'<a class="card" href="{gurl(g)}"><div class="ic">{g["icon"]}</div><h3>{e(g["title"])}</h3><p>{e(g["card"])}</p></a>' for g in pguides)}</div></section>
+{psources}
+<div class="pager">
+  <a href="/minerals/"><small>← Previous</small>Minerals &amp; omega-3</a>
+  <a href="{purl(PR['subs'][0])}"><small>Next →</small>{e(PR['subs'][0]['tab'])}</a>
+</div>
+""" + footer()
+write("protein/index.html", pp)
+
+for j, x in enumerate(PR["subs"]):
+    xp = PR["subs"][j - 1] if j > 0 else None
+    xn = PR["subs"][j + 1] if j < len(PR["subs"]) - 1 else None
+    back = '<a href="/protein/"><small>← Back to</small>Protein overview</a>'
+    indian = (f'<div class="note"><h3>🇮🇳 In Indian kitchens</h3><div class="chips">{"".join(f"<span>{e(i)}</span>" for i in x["indian"])}</div></div>' if x["indian"] else "")
+    table = (f'<section class="sec" id="foods"><h2>How much protein?</h2><p class="sub">Per typical serving, with how much of the 50 g Daily Value it covers.</p>{ptable(x["table"], x["tableNote"])}<div style="margin-top:16px">{indian}</div></section>'
+             if x["table"] else "")
+    xh = head(f"{x['tab']}: Protein, Best Picks & What to Watch | VitaPals",
+              fit(f"{x['tab']} as a protein source: {x['job']} Grams per serving, US and Indian picks, and what to watch.", f"{x['tab']} as a protein source: {x['job']}"),
+              purl(x), f"protein-{x['slug']}") + header("protein", psub=x["slug"]) + f"""
+<p class="crumbs"><a href="/">Home</a> › <a href="/protein/">Protein</a> › {e(x['tab'])}</p>
+<div class="vhead">{pal(psubpal(x), 64, decorative=False, prop=False)}<div>
+  <p class="kicker">Protein source · {e(x['name'])}</p>
+  <h1>{e(x['tab'])}</h1>
+  <p class="lede">{e(x['job'])}</p>
+</div></div>
+<section class="sec two">
+  <div><h2>What makes it special</h2><ul class="clean">{"".join(f"<li>{e(i)}</li>" for i in x['what'])}</ul></div>
+  <div class="note warm"><h3>🤓 Did you know?</h3><p>{e(x['fun'])}</p></div>
+</section>
+{table}
+<section class="sec two">
+  <div class="note"><h3>👍 Why it's worth eating</h3><p>{e(x['good'])}</p></div>
+  <div class="note warn"><h3>⚠️ What to watch</h3><p>{e(x['watch'])}</p></div>
+</section>
+{f'<section class="sec">{indian}</section>' if indian and not table else ""}
+<section class="sec two">
+  <div class="note warm"><h3>{"🏷️ Label decoder" if x['slug'] == "powders" else "💡 Easy win"}</h3><p>{e(x['tip'])}</p></div>
+  <div class="note"><h3>📏 How much protein do you need?</h3><p>About 0.8 g per kg of body weight a day for most adults: {e(PR['needShort'])}. More if you're over 65 or train hard.</p><p><a href="/protein/#needs">See daily needs &amp; your number →</a></p></div>
+</section>
+{psources}
+<div class="pager">
+  {f'<a href="{purl(xp)}"><small>← Previous</small>{e(xp["tab"])}</a>' if xp else back}
+  {f'<a href="{purl(xn)}"><small>Next →</small>{e(xn["tab"])}</a>' if xn else back.replace("← Back to", "Back to →")}
+</div>
+""" + footer()
+    write(f"protein/{x['slug']}/index.html", xh)
+
 # ------------------------------------------------------------------ tools
 ff = head("Food Finder: Which Vitamins Are in Your Food? | VitaPals",
           "Search any food, like spinach, eggs, milk or dal, to see which vitamins it's rich in and how much of your daily need it covers.",
@@ -763,7 +940,7 @@ nf = head("Page not found | VitaPals", "This page wandered off.", "/404.html") +
 write("404.html", nf)
 
 # ------------------------------------------------------------------ sitemap, robots, favicon, og
-paths = (["/", "/vitamin-b/"] + [p for v in V for p in [url(v)] + [suburl(v, s) for s in v.get("subs", [])]] + ["/minerals/"] + [url(m) for m in M]
+paths = (["/", "/vitamin-b/"] + [p for v in V for p in [url(v)] + [suburl(v, s) for s in v.get("subs", [])]] + ["/minerals/"] + [url(m) for m in M] + [purl()] + [purl(x) for x in PR["subs"]]
          + ["/guides/"] + [gurl(g) for g in G] + ["/topics/"] + [turl(t) for t in T] + ["/tools/food-finder/", "/tools/vitamin-check/", "/about/"])
 write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       "".join(f"  <url><loc>{SITE}{p}</loc><lastmod>{TODAY}</lastmod></url>\n" for p in paths) + "</urlset>\n")
@@ -782,6 +959,10 @@ og_items = [("home", None), ("vitamin-b", B_HUB)] + [(slug(v), v) for v in ALL]
     {"name": f"{slug(v)}-{s['slug']}", "svg": pal(subpal(s), 260), "kicker": f"Vitamin {v['id']} · {s['name']}",
      "title": s["tab"], "color": s["color"], "lead": s["job"]}
     for v in V for s in v.get("subs", [])] + [
+    {"name": "protein", "svg": pal(PR, 260), "kicker": "Macronutrient · amino acids", "title": "Protein",
+     "color": PR["color"], "lead": "Adults need about 0.8 g per kg a day. Best foods: dals, dairy, eggs, fish, soy."}] + [
+    {"name": f"protein-{x['slug']}", "svg": pal(psubpal(x), 260, prop=False), "kicker": "Protein source", "title": x["tab"], "color": x["color"], "lead": x["job"]}
+    for x in PR["subs"]] + [
     {"name": "minerals", "svg": "".join(pal(m, 110) for m in M[:6]), "kicker": "Minerals & omega-3", "title": "Iron, calcium & friends",
      "color": "#1e6b52", "lead": "How much you need, the best US and Indian foods, and who should watch them.", "multi": 1}], ensure_ascii=False), encoding="utf-8")
 
