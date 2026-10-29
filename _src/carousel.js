@@ -1,6 +1,7 @@
 // Renders Instagram carousel slides (1080x1350) from _src/carousels.json into _social/<post>/NN.png.
-// Usage: EMOJI_FONT=/path/to/noto-color-emoji-0-400-normal.woff2 node _src/carousel.js
-//        ONLY=02-vitamin-d-sunny node _src/carousel.js   (render just one post)
+// Visual-first: one big picture + a few words per slide, readable in about a second.
+// Usage: node _src/carousel.js            (needs the "Noto Color Emoji" font installed, or EMOJI_FONT=/path/to/font)
+//        ONLY=02-vitamin-d-sunny node _src/carousel.js
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
@@ -14,95 +15,93 @@ const pals = Object.fromEntries(JSON.parse(fs.readFileSync(path.join(__dirname, 
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const pal = (name, w) => (pals[name] ? pals[name].svg : '').replace(/width="\d+" height="\d+"/, `width="${w}" height="${Math.round(w * 4 / 3)}"`);
+const words = s => String(s).trim().split(/\s+/).length;
 
-const css = (color) => `
-@font-face{font-family:Fraunces;font-weight:600;src:url(file://${FONTS}/fraunces-latin-600-normal.woff2)}
+const css = (post) => `
 @font-face{font-family:Fraunces;font-weight:700;src:url(file://${FONTS}/fraunces-latin-700-normal.woff2)}
-@font-face{font-family:Inter;font-weight:400;src:url(file://${FONTS}/inter-latin-400-normal.woff2)}
 @font-face{font-family:Inter;font-weight:500;src:url(file://${FONTS}/inter-latin-500-normal.woff2)}
 @font-face{font-family:Inter;font-weight:600;src:url(file://${FONTS}/inter-latin-600-normal.woff2)}
 @font-face{font-family:Inter;font-weight:700;src:url(file://${FONTS}/inter-latin-700-normal.woff2)}
-${process.env.EMOJI_FONT ? `@font-face{font-family:Emo;src:url(file://${process.env.EMOJI_FONT})}` : ''}
-:root{--c:${color};--bg:#faf7f2;--ink:#17201b;--muted:#5b675f;--line:#e8e1d5;--brand:#1e6b52;--soft:#e9f3ee;--warm:#fff3dc;--warn:#fdecea;--warn-ink:#8a2a1c}
+${process.env.EMOJI_FONT ? `@font-face{font-family:"Noto Color Emoji";src:url(file://${process.env.EMOJI_FONT})}` : ''}
+:root{--c:${post.color};--on:${post.dark ? '#17201b' : '#fff'};--bg:#faf7f2;--ink:#17201b;--muted:#5b675f;--line:#e8e1d5;--brand:#1e6b52;--soft:#e9f3ee;--warn:#fdecea;--warn-ink:#8a2a1c}
 *{box-sizing:border-box}html,body{margin:0}
-body{width:1080px;height:1350px;background:var(--bg);color:var(--ink);font-family:Inter,Emo,sans-serif;position:relative;overflow:hidden}
-.band{position:absolute;left:0;right:0;top:0;height:20px;background:var(--c)}
-.page{position:absolute;inset:20px 0 0;padding:96px 88px 150px;display:flex;flex-direction:column}
-.foot{position:absolute;left:88px;right:88px;bottom:56px;display:flex;justify-content:space-between;align-items:center;font-size:26px;color:var(--muted)}
-.brand{font-family:Fraunces,serif;font-weight:700;font-size:34px;color:var(--ink)}.brand b{color:var(--brand)}
-.count{font-weight:600;letter-spacing:.04em}
-h1{font-family:Fraunces,Emo,serif;font-weight:700;font-size:96px;line-height:1.04;letter-spacing:-.02em;margin:0}
-h2{font-family:Fraunces,Emo,serif;font-weight:600;font-size:66px;line-height:1.1;letter-spacing:-.01em;margin:0 0 44px}
-.k{font-size:28px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--c);margin:0 0 28px}
-.lead{font-size:40px;line-height:1.35;color:var(--muted);margin:36px 0 0}
-p{margin:0}
-/* cover */
-.cover{justify-content:center}
-.cover .pal{margin:0 0 40px -8px}
-.swipe{margin-top:auto;font-size:28px;font-weight:600;color:var(--c)}
-/* text */
-.body p{font-size:40px;line-height:1.4;padding:0 0 30px 38px;position:relative}
-.body p:before{content:"";position:absolute;left:0;top:20px;width:14px;height:14px;border-radius:50%;background:var(--c)}
-/* list */
-.items{display:flex;flex-direction:column;gap:22px}
-.item{background:#fff;border:2px solid var(--line);border-radius:24px;padding:26px 32px;border-left:12px solid var(--c)}
-.item b{display:block;font-size:36px;line-height:1.25;margin-bottom:6px}
-.item span{font-size:30px;line-height:1.4;color:var(--muted)}
-/* myth */
-.mythbox{border-radius:28px;padding:40px 44px}
-.tag{display:inline-block;font-size:26px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;border-radius:999px;margin-bottom:22px}
-.m{background:var(--warn)}.m .tag{background:var(--warn-ink);color:#fff}
-.m p{font-family:Fraunces,serif;font-weight:600;font-size:52px;line-height:1.18;color:var(--warn-ink)}
-.f{background:var(--soft);margin-top:30px}.f .tag{background:var(--brand);color:#fff}
-.f p{font-size:40px;line-height:1.4}
-/* foods */
-.need{display:inline-block;align-self:flex-start;background:var(--warm);font-size:30px;font-weight:600;padding:12px 22px;border-radius:14px;margin:-20px 0 34px}
-.row{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:20px 0;border-bottom:2px solid var(--line)}
-.row .n{font-size:34px;font-weight:600;line-height:1.25}.row .s{font-size:26px;color:var(--muted)}
-.row .a{font-size:38px;font-weight:700;text-align:right;grid-row:span 2;align-self:center}
-.bar{grid-column:1/-1;height:14px;background:#efe9df;border-radius:99px;overflow:hidden;margin-top:10px}
-.bar i{display:block;height:100%;background:var(--c);border-radius:99px}
-.dv{font-size:24px;color:var(--muted);margin-top:16px}
-.ind{margin-top:auto}
-.ind h3{font-size:26px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 16px}
-.chips{display:flex;flex-wrap:wrap;gap:12px}
-.chips span{background:#fff;border:2px solid var(--line);border-radius:999px;padding:10px 22px;font-size:28px;font-weight:500}
-/* table */
-.trow{display:flex;justify-content:space-between;font-size:38px;padding:20px 0;border-bottom:2px solid var(--line)}
-.trow b{font-weight:700}
-.note{margin-top:34px;background:var(--warm);border-radius:20px;padding:26px 30px;font-size:30px;line-height:1.4}
+body{width:1080px;height:1350px;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Color Emoji",sans-serif;position:relative;overflow:hidden}
+body.color{background:var(--c);color:var(--on)}
+.e{font-family:"Noto Color Emoji";line-height:1}
+.page{position:absolute;inset:0;padding:110px 80px 150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+h1{font-family:Fraunces,serif;font-weight:700;font-size:112px;line-height:1.02;letter-spacing:-.025em;margin:0}
+h2{font-family:Fraunces,serif;font-weight:700;font-size:76px;line-height:1.05;letter-spacing:-.015em;margin:0}
+.sub{font-size:34px;font-weight:600;margin-top:20px;color:var(--muted)}
+.color .sub{color:var(--on);opacity:.85}
+.foot{position:absolute;left:80px;right:80px;bottom:56px;display:flex;justify-content:space-between;align-items:center;font-size:28px;font-weight:600}
+.brand{font-family:Fraunces,serif;font-weight:700;font-size:38px}.brand b{color:var(--brand)}
+.color .brand b{color:inherit;opacity:.75}
+.count{opacity:.6}
+/* hook */
+.hook .big{font-size:340px;margin-bottom:60px}
+.hook .pal{margin-bottom:50px}
+.swipe{position:absolute;bottom:140px;left:0;right:0;font-size:32px;font-weight:700;opacity:.85}
+/* grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%;margin-top:50px}
+.tile{background:#fff;border-radius:36px;padding:40px 20px 34px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;align-items:center}
+.tile .e{font-size:150px;margin-bottom:18px}
+.tile .amt{font-size:62px;font-weight:700;color:var(--c);letter-spacing:-.02em;line-height:1.05}
+.dark-c .tile .amt{color:#9a6b00}
+.tile .nm{font-size:34px;font-weight:600;margin-top:8px;line-height:1.2}
+.tile .sv{font-size:26px;color:var(--muted);margin-top:4px}
+.tile.label .nm{font-size:40px;margin-top:6px}
+.small .grid{grid-template-columns:1fr 1fr;gap:22px}
+.small .tile{padding:28px 16px 24px}.small .tile .e{font-size:96px;margin-bottom:10px}
+.small .tile .amt{font-size:50px}.small .tile .nm{font-size:30px}
+.note{margin-top:34px;font-size:34px;font-weight:600}
+/* myth / fact */
+.mf{width:100%;border-radius:40px;padding:50px 50px 56px;display:flex;flex-direction:column;align-items:center}
+.mf .e{font-size:130px;margin-bottom:20px}
+.mf p{margin:0;font-family:Fraunces,serif;font-weight:700;font-size:64px;line-height:1.1}
+.mf.m{background:var(--warn);color:var(--warn-ink)}.mf.m p{text-decoration:line-through;text-decoration-thickness:6px}
+.mf.f{background:var(--soft);color:var(--ink);margin-top:34px}.mf.f p{font-family:Inter,sans-serif;font-weight:600;font-size:50px;line-height:1.25}
+/* stat */
+.stat .e{font-size:220px;margin-bottom:40px}
+.stat .num{font-family:Fraunces,serif;font-weight:700;font-size:150px;line-height:1;letter-spacing:-.03em;color:var(--c)}
+.dark-c .stat .num{color:#9a6b00}
+.stat .lbl{font-size:52px;font-weight:700;margin-top:30px;line-height:1.2}
+.stat .sub{font-size:40px}
+/* tips */
+.rows{width:100%;margin-top:56px;display:flex;flex-direction:column;gap:26px}
+.r{display:flex;align-items:center;gap:36px;background:#fff;border-radius:36px;padding:30px 40px;text-align:left;box-shadow:0 2px 0 var(--line)}
+.r .e{font-size:120px;flex:none}
+.r span{font-size:48px;font-weight:700;line-height:1.2}
+/* vs */
+.vs{display:flex;gap:40px;align-items:flex-end;justify-content:center;margin-top:60px;height:640px}
+.col{display:flex;flex-direction:column;align-items:center;width:340px}
+.col .amt{font-size:72px;font-weight:700;margin-bottom:16px}
+.bar{width:220px;background:var(--c);border-radius:28px 28px 8px 8px}
+.col .nm{font-size:40px;font-weight:700;margin-top:24px}
 /* cta */
-.cta{justify-content:center;text-align:center;align-items:center}
-.cta h2{font-size:72px;margin-bottom:40px}
-.url{display:inline-block;background:var(--brand);color:#fff;font-weight:700;font-size:38px;padding:24px 40px;border-radius:999px}
-.cta .sm{font-size:32px;color:var(--muted);margin-top:44px;line-height:1.4}
-.disc{position:absolute;left:88px;right:88px;bottom:140px;text-align:center;font-size:24px;color:var(--muted)}
+.cta .pal{margin-bottom:40px}
+.url{display:inline-block;background:var(--brand);color:#fff;font-weight:700;font-size:42px;padding:26px 44px;border-radius:999px;margin-top:44px}
+.cta .follow{font-size:36px;font-weight:600;margin-top:44px;color:var(--muted)}
+.disc{position:absolute;left:80px;right:80px;bottom:130px;text-align:center;font-size:24px;color:var(--muted)}
 `;
 
-function slideHtml(post, s, i, n) {
-  let inner = '';
-  if (s.type === 'cover') {
-    inner = `<div class="page cover"><div class="pal">${pal(post.pal, 220)}</div><p class="k">${esc(s.kicker)}</p><h1>${esc(s.title)}</h1><p class="lead">${esc(s.lead)}</p><p class="swipe">Swipe →</p></div>`;
-  } else if (s.type === 'text') {
-    inner = `<div class="page" style="justify-content:center"><h2>${esc(s.title)}</h2><div class="body">${s.body.map(b => `<p>${esc(b)}</p>`).join('')}</div></div>`;
-  } else if (s.type === 'list') {
-    inner = `<div class="page"><h2>${esc(s.title)}</h2><div class="items">${s.items.map(([b, t]) => `<div class="item"><b>${esc(b)}</b><span>${esc(t)}</span></div>`).join('')}</div></div>`;
-  } else if (s.type === 'myth') {
-    inner = `<div class="page" style="justify-content:center"><div class="mythbox m"><span class="tag">Myth</span><p>“${esc(s.myth)}”</p></div><div class="mythbox f"><span class="tag">Fact</span><p>${esc(s.fact)}</p></div></div>`;
-  } else if (s.type === 'foods') {
-    const max = Math.max(100, ...s.rows.map(r => r[3]));
-    inner = `<div class="page"><h2>${esc(s.title)}</h2>${s.need ? `<span class="need">${esc(s.need)}</span>` : ''}
-      <div>${s.rows.map(([f, sv, a, dv]) => `<div class="row"><span class="n">${esc(f)}</span><span class="a">${esc(a)}</span><span class="s">${esc(sv)} · ${dv}% DV</span><div class="bar"><i style="width:${Math.max(2, dv / max * 100)}%"></i></div></div>`).join('')}</div>
-      <p class="dv">${esc(s.dvNote)}</p>
-      ${s.indian ? `<div class="ind"><h3>Indian kitchen picks</h3><div class="chips">${s.indian.map(c => `<span>${esc(c)}</span>`).join('')}</div></div>` : ''}</div>`;
-  } else if (s.type === 'table') {
-    inner = `<div class="page"><h2>${esc(s.title)}</h2><div>${s.rows.map(([a, b]) => `<div class="trow"><span>${esc(a)}</span><b>${esc(b)}</b></div>`).join('')}</div><p class="note">${esc(s.note)}</p></div>`;
-  } else if (s.type === 'cta') {
-    inner = `<div class="page cta"><div class="pal">${pal(post.pal, 150)}</div><h2>${esc(s.title)}</h2><span class="url">${esc(s.path)}</span><p class="sm">${esc(s.note || 'Free. No ads. Sources on every page.')}</p></div>
-      <p class="disc">Educational only, not medical advice. Ask your doctor before starting supplements.</p>`;
+function slide(post, s) {
+  const e = x => `<span class="e">${x}</span>`;
+  switch (s.type) {
+    case 'hook': return [true, `<div class="page hook">${s.pal ? `<div class="pal">${pal(post.pal, 300)}</div>` : `<div class="big e">${s.emoji}</div>`}<h1>${esc(s.title)}</h1></div><div class="swipe">Swipe →</div>`];
+    case 'grid': return [false, `<div class="page${s.small ? ' small' : ''}"><h2>${esc(s.title)}</h2>${s.sub ? `<p class="sub">${esc(s.sub)}</p>` : ''}
+      <div class="grid">${s.tiles.map(([em, nm, amt, sv]) => `<div class="tile${amt ? '' : ' label'}">${e(em)}${amt ? `<div class="amt">${esc(amt)}</div>` : ''}<div class="nm">${esc(nm)}</div>${sv ? `<div class="sv">${esc(sv)}</div>` : ''}</div>`).join('')}</div>
+      ${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div>`];
+    case 'mythfact': return [false, `<div class="page"><div class="mf m">${e('❌')}<p>${esc(s.myth)}</p></div><div class="mf f">${e('✅')}<p>${esc(s.fact)}</p></div></div>`];
+    case 'stat': return [false, `<div class="page stat">${e(s.emoji)}<div class="num">${esc(s.big)}</div><div class="lbl">${esc(s.label)}</div>${s.sub ? `<p class="sub">${esc(s.sub)}</p>` : ''}</div>`];
+    case 'tips': return [false, `<div class="page"><h2>${esc(s.title)}</h2><div class="rows">${s.rows.map(([em, t]) => `<div class="r">${e(em)}<span>${esc(t)}</span></div>`).join('')}</div></div>`];
+    case 'vs': {
+      const max = Math.max(...s.items.map(i => i[3]));
+      return [false, `<div class="page"><h2>${esc(s.title)}</h2><div class="vs">${s.items.map(([em, nm, amt, v]) => `<div class="col"><div class="amt">${esc(amt)}</div><div class="bar" style="height:${Math.max(30, v / max * 440)}px"></div><div class="nm">${esc(nm)}</div></div>`).join('')}</div>${s.note ? `<p class="note">${esc(s.note)}</p>` : ''}</div>`];
+    }
+    case 'cta': return [false, `<div class="page cta"><div class="pal">${pal(post.pal, 200)}</div><h2>${esc(s.title)}</h2><span class="url">${esc(s.path)}</span><p class="follow">Follow for more 1-second vitamin facts</p></div>
+      <p class="disc">Educational only, not medical advice. Ask your doctor before starting supplements.</p>`];
   }
-  return `<!doctype html><html><head><meta charset="utf-8"><style>${css(post.color)}</style></head><body><div class="band"></div>${inner}
-  <div class="foot"><span class="brand">Vita<b>Pals</b></span><span class="count">${i + 1} / ${n}</span></div></body></html>`;
+  throw new Error('Unknown slide type ' + s.type);
 }
 
 (async () => {
@@ -112,12 +111,15 @@ function slideHtml(post, s, i, n) {
   let count = 0;
   for (const post of posts) {
     const dir = path.join(OUT, post.id);
-    fs.rmSync(dir, { recursive: true, force: true });
     fs.mkdirSync(dir, { recursive: true });
+    for (const f of fs.readdirSync(dir)) if (f.endsWith('.png')) fs.unlinkSync(path.join(dir, f));
     for (const [i, s] of post.slides.entries()) {
-      fs.writeFileSync(tmp, slideHtml(post, s, i, post.slides.length));
+      if (s.title && words(s.title) > 8) console.warn(`LONG TITLE (${words(s.title)} words): ${post.id} slide ${i + 1}`);
+      const [colored, inner] = slide(post, s);
+      fs.writeFileSync(tmp, `<!doctype html><html><head><meta charset="utf-8"><style>${css(post)}</style></head><body class="${colored ? 'color' : ''}${post.dark ? ' dark-c' : ''}">${inner}
+        <div class="foot"><span class="brand">Vita<b>Pals</b></span><span class="count">${i + 1} / ${post.slides.length}</span></div></body></html>`);
       await p.goto('file://' + tmp);
-      await p.evaluate(async () => { await document.fonts.load('40px Emo', document.body.innerText + '☀️🩸'); await document.fonts.ready; });
+      await p.evaluate(async () => { await document.fonts.ready; });
       await p.waitForTimeout(100);
       const over = await p.evaluate(() => { const pg = document.querySelector('.page'); return pg.scrollHeight > pg.clientHeight + 1; });
       if (over) console.warn(`OVERFLOW: ${post.id} slide ${i + 1}`);
