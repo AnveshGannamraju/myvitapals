@@ -1,729 +1,146 @@
 [
   {
-    "id": "01-meet-vitapals",
-    "pal": "home",
-    "color": "#1e6b52",
-    "link": "myvitapals.com/tools/vitamin-check",
+    "id": "01-meet-vitapals", "pal": "home", "color": "#1e6b52",
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Vitamins, explained simply",
-        "title": "Know what your body actually needs",
-        "lead": "Food first. Honest answers. No hype."
-      },
-      {
-        "type": "list",
-        "title": "What you'll find here",
-        "items": [
-          [
-            "Daily needs, in real numbers",
-            "How much you need, and the upper limit where more starts to hurt."
-          ],
-          [
-            "Foods first",
-            "Everyday US foods and Indian staples like dal, palak, curd and amla."
-          ],
-          [
-            "Myths, checked",
-            "Popular claims, rated against the evidence."
-          ],
-          [
-            "Medicine interactions",
-            "Which pills and vitamins don't get along."
-          ]
-        ]
-      },
-      {
-        "type": "text",
-        "title": "Our rules",
-        "body": [
-          "Sources: NIH Office of Dietary Supplements and major medical guidelines.",
-          "No ads. No supplement brands. No tracking.",
-          "Educational only. We never diagnose, and we'll tell you when to ask your doctor."
-        ]
-      },
-      {
-        "type": "cta",
-        "title": "Start with the free 2-minute vitamin check",
-        "path": "myvitapals.com/tools/vitamin-check",
-        "note": "Follow for one plain-English vitamin fact at a time."
-      }
+      {"type": "hook", "pal": true, "title": "Vitamins, minus the hype."},
+      {"type": "grid", "title": "What you get", "tiles": [
+        ["📊", "Real numbers", "", ""],
+        ["🍛", "US + Indian foods", "", ""],
+        ["🔍", "Myths checked", "", ""],
+        ["🚫", "No ads, no brands", "", ""]
+      ]},
+      {"type": "cta", "title": "Free 2-minute vitamin check", "path": "myvitapals.com/tools/vitamin-check"}
     ]
   },
   {
-    "id": "02-vitamin-d-sunny",
-    "pal": "vitamin-d",
-    "color": "#00a6d6",
-    "link": "myvitapals.com/vitamin-d",
+    "id": "02-vitamin-d-sunny", "pal": "vitamin-d", "color": "#00a6d6",
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Vitamin D · Myth check",
-        "title": "Live somewhere sunny? You can still be low.",
-        "lead": "Swipe for why, and what to eat."
-      },
-      {
-        "type": "myth",
-        "myth": "Living somewhere sunny means you have enough vitamin D.",
-        "fact": "Many people in sunny places are low, due to indoor life, clothing, skin tone and pollution."
-      },
-      {
-        "type": "list",
-        "title": "Who's more likely to be low",
-        "items": [
-          [
-            "Older adults",
-            "Skin makes less and kidneys convert less."
-          ],
-          [
-            "People who get little sun",
-            "Indoor jobs, covered clothing or northern winters."
-          ],
-          [
-            "Darker skin tones",
-            "More melanin means less vitamin D from the same sun."
-          ],
-          [
-            "Obesity or gastric bypass",
-            "Vitamin D gets trapped in fat tissue or absorbed less."
-          ]
-        ]
-      },
-      {
-        "type": "foods",
-        "title": "Few foods have much",
-        "need": "Adults need 600–800 IU a day",
-        "rows": [
-          [
-            "Trout, farmed, cooked",
-            "3 oz",
-            "645 IU",
-            81
-          ],
-          [
-            "Mushrooms, UV-exposed",
-            "½ cup",
-            "366 IU",
-            46
-          ],
-          [
-            "Milk, 2%, fortified",
-            "1 cup",
-            "120 IU",
-            15
-          ],
-          [
-            "Egg, scrambled",
-            "1 large",
-            "44 IU",
-            6
-          ]
-        ],
-        "dvNote": "% of the 800 IU Daily Value",
-        "indian": [
-          "Eggs",
-          "Sardines & bangda",
-          "Fortified milk & oils",
-          "Sun-dried mushrooms"
-        ]
-      },
-      {
-        "type": "text",
-        "title": "More isn't better",
-        "body": [
-          "The upper limit for adults is 4,000 IU a day.",
-          "Too much raises blood calcium and can harm kidneys and heart.",
-          "In a risk group? Ask your doctor about a blood test. It helps decide the right dose."
-        ]
-      },
-      {
-        "type": "cta",
-        "title": "Foods, risks and medicine interactions",
-        "path": "myvitapals.com/vitamin-d"
-      }
+      {"type": "hook", "emoji": "☀️", "title": "Sunny city. Still low on vitamin D?"},
+      {"type": "mythfact", "myth": "Sunshine = enough vitamin D", "fact": "Indoor life, clothing, skin tone and smog all cut it"},
+      {"type": "grid", "title": "Best food sources", "sub": "Adults need 600–800 IU a day", "tiles": [
+        ["🐟", "Trout", "645 IU", "3 oz"],
+        ["🍄", "UV mushrooms", "366 IU", "½ cup"],
+        ["🥛", "Fortified milk", "120 IU", "1 cup"],
+        ["🥚", "Egg", "44 IU", "1 large"]
+      ]},
+      {"type": "stat", "emoji": "⚠️", "big": "4,000 IU", "label": "Daily upper limit", "sub": "More isn't better."},
+      {"type": "cta", "title": "Who's at risk? Full guide", "path": "myvitapals.com/vitamin-d"}
     ]
   },
   {
-    "id": "03-b12-vegetarians",
-    "pal": "vitamin-b12",
-    "color": "#7b6cd9",
-    "link": "myvitapals.com/vitamin-b12",
+    "id": "03-b12-vegetarians", "pal": "vitamin-b12", "color": "#7b6cd9",
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Vitamin B12 · For vegetarians",
-        "title": "Vegetarian? Read this about B12.",
-        "lead": "The one vitamin plants don't make."
-      },
-      {
-        "type": "text",
-        "title": "Plants don't make B12",
-        "body": [
-          "B12 is naturally found only in animal foods.",
-          "Spirulina, seaweed and fermented foods are NOT reliable sources.",
-          "Adults need just 2.4 mcg a day, but you need it every day."
-        ]
-      },
-      {
-        "type": "foods",
-        "title": "Where vegetarians get it",
-        "need": "Adults need 2.4 mcg a day",
-        "rows": [
-          [
-            "Nutritional yeast, fortified",
-            "1 serving",
-            "2.4 mcg",
-            100
-          ],
-          [
-            "Milk, low-fat",
-            "1 cup",
-            "1.2 mcg",
-            50
-          ],
-          [
-            "Yogurt, low-fat",
-            "8 oz",
-            "1.1 mcg",
-            46
-          ],
-          [
-            "Egg, hard boiled",
-            "1 large",
-            "0.5 mcg",
-            21
-          ]
-        ],
-        "dvNote": "% of the 2.4 mcg Daily Value",
-        "indian": [
-          "Milk, curd & buttermilk",
-          "Paneer",
-          "Eggs",
-          "Fortified cereals & plant milks"
-        ]
-      },
-      {
-        "type": "myth",
-        "myth": "Vegetarians get enough B12 from dairy.",
-        "fact": "Some do, but many don't. 2–3 servings of dairy a day helps. Getting tested is the only way to know."
-      },
-      {
-        "type": "list",
-        "title": "Also worth a test",
-        "items": [
-          [
-            "Adults over 50",
-            "Less stomach acid means less B12 absorbed from food."
-          ],
-          [
-            "Long-term metformin",
-            "The diabetes medicine lowers B12 over time."
-          ],
-          [
-            "Long-term acid reducers",
-            "PPIs like omeprazole and H2 blockers like famotidine."
-          ],
-          [
-            "Vegans",
-            "A supplement is strongly recommended."
-          ]
-        ]
-      },
-      {
-        "type": "cta",
-        "title": "The full B12 guide",
-        "path": "myvitapals.com/vitamin-b12"
-      }
+      {"type": "hook", "emoji": "🌱", "title": "Vegetarian? Plants don't make B12."},
+      {"type": "grid", "title": "Where to get it", "sub": "Adults need 2.4 mcg a day", "tiles": [
+        ["🥛", "Milk", "1.2 mcg", "1 cup"],
+        ["🥣", "Yogurt / curd", "1.1 mcg", "8 oz"],
+        ["🧀", "Swiss cheese", "0.9 mcg", "1 oz"],
+        ["🥚", "Egg", "0.5 mcg", "1 large"]
+      ]},
+      {"type": "tips", "title": "Ask about a B12 test if you're…", "rows": [
+        ["🌱", "Vegetarian or vegan"],
+        ["🧓", "Over 50"],
+        ["💊", "On metformin or acid reducers"]
+      ]},
+      {"type": "cta", "title": "The full B12 guide", "path": "myvitapals.com/vitamin-b12"}
     ]
   },
   {
-    "id": "04-iron-spinach",
-    "pal": "iron",
-    "color": "#b5443a",
-    "link": "myvitapals.com/iron",
+    "id": "04-iron-spinach", "pal": "iron", "color": "#b5443a",
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Iron · Myth check",
-        "title": "Spinach isn't the iron king.",
-        "lead": "Dal might be doing more for you."
-      },
-      {
-        "type": "myth",
-        "myth": "Spinach is the best iron food.",
-        "fact": "It has some (3 mg per ½ cup cooked), but plant iron is absorbed less. Dals, beans and fortified cereals give as much or more."
-      },
-      {
-        "type": "foods",
-        "title": "Good plant sources",
-        "need": "Adults need 8–18 mg a day",
-        "rows": [
-          [
-            "Breakfast cereal, fortified",
-            "1 serving",
-            "18 mg",
-            100
-          ],
-          [
-            "White beans, canned",
-            "1 cup",
-            "8 mg",
-            44
-          ],
-          [
-            "Lentils, boiled",
-            "½ cup",
-            "3 mg",
-            17
-          ],
-          [
-            "Tofu, firm",
-            "½ cup",
-            "3 mg",
-            17
-          ]
-        ],
-        "dvNote": "% of the 18 mg Daily Value",
-        "indian": [
-          "Rajma",
-          "Chana & kala chana",
-          "Masoor & moong dal",
-          "Bajra & ragi",
-          "Soya chunks",
-          "Til"
-        ]
-      },
-      {
-        "type": "list",
-        "title": "Absorb more of it",
-        "items": [
-          [
-            "Add vitamin C",
-            "Lemon on dal, or amla, guava or orange with the meal."
-          ],
-          [
-            "Move your chai",
-            "Have chai or coffee between meals, not with them."
-          ],
-          [
-            "Split your pills",
-            "Take calcium and iron supplements at different times."
-          ]
-        ]
-      },
-      {
-        "type": "myth",
-        "myth": "If you're tired, you need iron pills.",
-        "fact": "Tiredness has many causes, and extra iron can harm you. Get a blood test first."
-      },
-      {
-        "type": "cta",
-        "title": "Iron foods, needs and risks",
-        "path": "myvitapals.com/iron"
-      }
+      {"type": "hook", "emoji": "🥬", "title": "Spinach isn't the iron king."},
+      {"type": "grid", "title": "Iron per serving", "sub": "Plant iron absorbs less, so pair it well", "tiles": [
+        ["🥣", "Fortified cereal", "18 mg", "1 serving"],
+        ["🫘", "White beans", "8 mg", "1 cup"],
+        ["🍲", "Lentils", "3 mg", "½ cup"],
+        ["🥬", "Spinach", "3 mg", "½ cup"]
+      ]},
+      {"type": "tips", "title": "Absorb more", "rows": [
+        ["🍋", "Lemon on your dal"],
+        ["☕", "Chai between meals, not with"],
+        ["🩸", "Tired? Test before taking iron"]
+      ]},
+      {"type": "cta", "title": "Iron foods, needs and risks", "path": "myvitapals.com/iron"}
     ]
   },
   {
-    "id": "05-vitamin-c-colds",
-    "pal": "vitamin-c",
-    "color": "#e0a100",
-    "link": "myvitapals.com/vitamin-c",
+    "id": "05-vitamin-c-colds", "pal": "vitamin-c", "color": "#ffbe0b", "dark": true,
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Vitamin C · Myth check",
-        "title": "Does vitamin C stop colds?",
-        "lead": "Short answer: not really."
-      },
-      {
-        "type": "myth",
-        "myth": "Vitamin C prevents colds.",
-        "fact": "For most people it doesn't prevent colds, but regular intake may make them slightly shorter."
-      },
-      {
-        "type": "foods",
-        "title": "Easy to get from food",
-        "need": "Adults need 75–90 mg a day",
-        "rows": [
-          [
-            "Red bell pepper, raw",
-            "½ cup",
-            "95 mg",
-            106
-          ],
-          [
-            "Orange",
-            "1 medium",
-            "70 mg",
-            78
-          ],
-          [
-            "Kiwi",
-            "1 medium",
-            "64 mg",
-            71
-          ],
-          [
-            "Broccoli, cooked",
-            "½ cup",
-            "51 mg",
-            57
-          ]
-        ],
-        "dvNote": "% of the 90 mg Daily Value",
-        "indian": [
-          "Amla",
-          "Guava (amrood)",
-          "Mosambi",
-          "Nimbu",
-          "Shimla mirch",
-          "Papaya"
-        ]
-      },
-      {
-        "type": "list",
-        "title": "Kitchen tips",
-        "items": [
-          [
-            "Eat some of it raw",
-            "Heat and water destroy vitamin C."
-          ],
-          [
-            "Lemon goes on last",
-            "Squeeze it on dal or sabzi at the end of cooking."
-          ],
-          [
-            "Pair it with iron",
-            "Vitamin C helps you absorb iron from plant foods."
-          ]
-        ]
-      },
-      {
-        "type": "myth",
-        "myth": "Megadoses are harmless because extra is peed out.",
-        "fact": "Over 2,000 mg a day can cause diarrhea and raise kidney stone risk in some people."
-      },
-      {
-        "type": "cta",
-        "title": "Everything on vitamin C",
-        "path": "myvitapals.com/vitamin-c"
-      }
+      {"type": "hook", "emoji": "🤧", "title": "Does vitamin C stop colds?"},
+      {"type": "stat", "emoji": "🙅", "big": "Not really.", "label": "It may make colds slightly shorter", "sub": ""},
+      {"type": "grid", "title": "Easy from food", "sub": "Adults need 75–90 mg a day", "tiles": [
+        ["🫑", "Red pepper", "95 mg", "½ cup"],
+        ["🍊", "Orange", "70 mg", "1 medium"],
+        ["🥝", "Kiwi", "64 mg", "1 medium"],
+        ["🥦", "Broccoli", "51 mg", "½ cup"]
+      ], "note": "Also great: amla, guava, mosambi"},
+      {"type": "stat", "emoji": "⚠️", "big": "2,000 mg", "label": "Daily upper limit", "sub": "Megadoses can upset your stomach."},
+      {"type": "cta", "title": "Everything on vitamin C", "path": "myvitapals.com/vitamin-c"}
     ]
   },
   {
-    "id": "06-calcium-curd",
-    "pal": "calcium",
-    "color": "#5f6b80",
-    "link": "myvitapals.com/calcium",
+    "id": "06-calcium-curd", "pal": "calcium", "color": "#5f6b80",
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Calcium · Food first",
-        "title": "Curd + milk = over half your day",
-        "lead": "Calcium without a single pill."
-      },
-      {
-        "type": "foods",
-        "title": "Top calcium foods",
-        "need": "Adults need 1,000–1,200 mg a day",
-        "rows": [
-          [
-            "Yogurt / curd, plain, low fat",
-            "8 oz",
-            "415 mg",
-            32
-          ],
-          [
-            "Milk, nonfat",
-            "1 cup",
-            "299 mg",
-            23
-          ],
-          [
-            "Soy milk, calcium fortified",
-            "1 cup",
-            "299 mg",
-            23
-          ],
-          [
-            "Tofu, made with calcium sulfate",
-            "½ cup",
-            "253 mg",
-            19
-          ]
-        ],
-        "dvNote": "% of the 1,300 mg Daily Value",
-        "indian": [
-          "Curd & buttermilk",
-          "Paneer",
-          "Ragi",
-          "Til & til chikki",
-          "Sarson & methi",
-          "Small fish with bones"
-        ]
-      },
-      {
-        "type": "myth",
-        "myth": "Only dairy has calcium.",
-        "fact": "Fortified soy milk, calcium-set tofu, ragi, til, sardines with bones and greens like sarson all help."
-      },
-      {
-        "type": "list",
-        "title": "Get more from it",
-        "items": [
-          [
-            "Spread it out",
-            "Your body absorbs calcium best 500 mg or less at a time."
-          ],
-          [
-            "Team up with vitamin D",
-            "Vitamin D helps you absorb calcium."
-          ],
-          [
-            "Mind your thyroid pill",
-            "Take levothyroxine at least 4 hours apart from calcium."
-          ]
-        ]
-      },
-      {
-        "type": "myth",
-        "myth": "More calcium pills mean stronger bones.",
-        "fact": "Above your daily need, extra calcium doesn't build more bone, and high supplement doses may raise kidney stone risk for some people."
-      },
-      {
-        "type": "cta",
-        "title": "Calcium needs, foods and risks",
-        "path": "myvitapals.com/calcium"
-      }
+      {"type": "hook", "emoji": "🥣🥛", "title": "Curd + milk = over half your day."},
+      {"type": "grid", "title": "Calcium per serving", "sub": "Adults need 1,000–1,200 mg a day", "tiles": [
+        ["🥣", "Yogurt / curd", "415 mg", "8 oz"],
+        ["🧀", "Mozzarella", "333 mg", "1.5 oz"],
+        ["🐟", "Sardines, with bones", "325 mg", "3 oz"],
+        ["🥛", "Milk", "299 mg", "1 cup"]
+      ]},
+      {"type": "tips", "title": "Get more from it", "rows": [
+        ["⏱️", "500 mg or less at a time"],
+        ["☀️", "Vitamin D helps you absorb it"],
+        ["🌾", "No dairy? Ragi, til, calcium-set tofu"]
+      ]},
+      {"type": "cta", "title": "Calcium needs, foods and risks", "path": "myvitapals.com/calcium"}
     ]
   },
   {
-    "id": "07-upper-limits",
-    "pal": "home",
-    "color": "#1e6b52",
-    "link": "myvitapals.com",
+    "id": "07-upper-limits", "pal": "home", "color": "#1e6b52",
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Safety · Upper limits",
-        "title": "More isn't always better.",
-        "lead": "The daily upper limits most people never hear about."
-      },
-      {
-        "type": "table",
-        "title": "Daily upper limits for adults",
-        "rows": [
-          [
-            "Vitamin D",
-            "4,000 IU"
-          ],
-          [
-            "Vitamin C",
-            "2,000 mg"
-          ],
-          [
-            "Vitamin A (retinol)",
-            "3,000 mcg"
-          ],
-          [
-            "Vitamin B6",
-            "100 mg"
-          ],
-          [
-            "Iron",
-            "45 mg"
-          ],
-          [
-            "Zinc",
-            "40 mg"
-          ],
-          [
-            "Calcium",
-            "2,000–2,500 mg"
-          ]
-        ],
-        "note": "Upper limit = the most you can take daily without likely harm. It's a ceiling, not a target."
-      },
-      {
-        "type": "myth",
-        "myth": "Water-soluble vitamins can't hurt you.",
-        "fact": "Long-term high-dose B6 can cause numbness and nerve damage."
-      },
-      {
-        "type": "list",
-        "title": "What too much can do",
-        "items": [
-          [
-            "Vitamin D",
-            "Raises blood calcium; can harm kidneys and heart."
-          ],
-          [
-            "Iron",
-            "At the limit, often nausea and constipation."
-          ],
-          [
-            "Zinc",
-            "50 mg+ for long periods can cause copper deficiency."
-          ]
-        ]
-      },
-      {
-        "type": "text",
-        "title": "Before you stack pills",
-        "body": [
-          "Add up every source: multivitamin, single pills, fortified foods.",
-          "Doctors sometimes prescribe more for a short time. That's different from self-dosing.",
-          "Unsure? Take your bottles to your pharmacist."
-        ]
-      },
-      {
-        "type": "cta",
-        "title": "Every vitamin page lists its upper limit",
-        "path": "myvitapals.com"
-      }
+      {"type": "hook", "emoji": "💊⚠️", "title": "More isn't always better."},
+      {"type": "grid", "title": "Daily upper limits", "sub": "For adults, from all sources", "small": true, "tiles": [
+        ["☀️", "Vitamin D", "4,000 IU", ""],
+        ["🍊", "Vitamin C", "2,000 mg", ""],
+        ["🥕", "Vitamin A (retinol)", "3,000 mcg", ""],
+        ["⚡", "Vitamin B6", "100 mg", ""],
+        ["🩸", "Iron", "45 mg", ""],
+        ["🦴", "Calcium", "2,000–2,500 mg", ""]
+      ]},
+      {"type": "mythfact", "myth": "Water-soluble vitamins can't hurt you", "fact": "Long-term high-dose B6 can damage nerves"},
+      {"type": "cta", "title": "Every page lists its upper limit", "path": "myvitapals.com"}
     ]
   },
   {
-    "id": "08-medicine-interactions",
-    "pal": "home",
-    "color": "#1e6b52",
-    "link": "myvitapals.com",
+    "id": "08-medicine-interactions", "pal": "home", "color": "#1e6b52",
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Safety · Interactions",
-        "title": "Your medicine and your vitamins may not get along.",
-        "lead": "5 common pairs to know."
-      },
-      {
-        "type": "list",
-        "title": "Common pairs",
-        "items": [
-          [
-            "Metformin → B12",
-            "The diabetes medicine lowers B12 over time."
-          ],
-          [
-            "Acid reducers → B12 & iron",
-            "PPIs like omeprazole lower absorption of both."
-          ],
-          [
-            "Thyroid pill + iron or calcium",
-            "Take levothyroxine at least 4 hours apart from them."
-          ],
-          [
-            "Steroids → vitamin D",
-            "Medicines like prednisone lower vitamin D."
-          ],
-          [
-            "Some antibiotics + magnesium",
-            "Doxycycline or ciprofloxacin: take it 2 hours before or 4–6 hours after."
-          ]
-        ]
-      },
-      {
-        "type": "text",
-        "title": "What to do",
-        "body": [
-          "Don't stop or change any medicine on your own.",
-          "Tell your doctor and pharmacist about every supplement you take, including multivitamins.",
-          "Ask whether you need a B12 or vitamin D test if you've been on these for a long time."
-        ]
-      },
-      {
-        "type": "cta",
-        "title": "Each vitamin page lists its interactions",
-        "path": "myvitapals.com"
-      }
+      {"type": "hook", "emoji": "💊🥦", "title": "Your meds and vitamins may clash."},
+      {"type": "tips", "title": "4 common pairs", "rows": [
+        ["💊", "Metformin lowers B12"],
+        ["🔥", "Acid reducers lower B12 & iron"],
+        ["🦋", "Thyroid pill: 4 hrs from iron or calcium"],
+        ["☀️", "Steroids lower vitamin D"]
+      ]},
+      {"type": "stat", "emoji": "🗣️", "big": "Tell your pharmacist", "label": "every supplement you take", "sub": "Never change a medicine on your own."},
+      {"type": "cta", "title": "Each page lists its interactions", "path": "myvitapals.com"}
     ]
   },
   {
-    "id": "09-magnesium-rice",
-    "pal": "magnesium",
-    "color": "#4f772d",
-    "link": "myvitapals.com/magnesium",
+    "id": "09-magnesium-rice", "pal": "magnesium", "color": "#4f772d",
     "slides": [
-      {
-        "type": "cover",
-        "kicker": "Magnesium · Food first",
-        "title": "Brown rice has 4× the magnesium of white.",
-        "lead": "Refining strips most of it out."
-      },
-      {
-        "type": "foods",
-        "title": "Same ½ cup, cooked",
-        "need": "Adults need 310–420 mg a day",
-        "rows": [
-          [
-            "Brown rice",
-            "½ cup",
-            "42 mg",
-            10
-          ],
-          [
-            "White rice",
-            "½ cup",
-            "10 mg",
-            2
-          ]
-        ],
-        "dvNote": "% of the 420 mg Daily Value",
-        "indian": [
-          "Whole wheat atta",
-          "Bajra",
-          "Jowar",
-          "Millets"
-        ]
-      },
-      {
-        "type": "foods",
-        "title": "Small handful, big boost",
-        "need": "",
-        "rows": [
-          [
-            "Pumpkin seeds, roasted",
-            "1 oz",
-            "156 mg",
-            37
-          ],
-          [
-            "Chia seeds",
-            "1 oz",
-            "111 mg",
-            26
-          ],
-          [
-            "Almonds, dry roasted",
-            "1 oz",
-            "80 mg",
-            19
-          ],
-          [
-            "Spinach, boiled",
-            "½ cup",
-            "78 mg",
-            19
-          ]
-        ],
-        "dvNote": "% of the 420 mg Daily Value",
-        "indian": [
-          "Kaddu ke beej",
-          "Moongphali",
-          "Rajma & chana",
-          "Palak",
-          "Curd"
-        ]
-      },
-      {
-        "type": "myth",
-        "myth": "Magnesium is a proven sleep aid.",
-        "fact": "There isn't strong trial evidence. Getting enough from food is great; a supplement for sleep is a maybe at best."
-      },
-      {
-        "type": "cta",
-        "title": "Magnesium foods, needs and interactions",
-        "path": "myvitapals.com/magnesium"
-      }
+      {"type": "hook", "emoji": "🍚", "title": "Brown rice: 4× the magnesium of white."},
+      {"type": "vs", "title": "Same ½ cup, cooked", "items": [
+        ["🟤", "Brown rice", "42 mg", 42],
+        ["⚪", "White rice", "10 mg", 10]
+      ], "note": "Refining strips most of it out"},
+      {"type": "grid", "title": "Small handful, big boost", "sub": "Adults need 310–420 mg a day", "tiles": [
+        ["🎃", "Pumpkin seeds", "156 mg", "1 oz"],
+        ["🫘", "Black beans", "60 mg", "½ cup"],
+        ["🥬", "Spinach", "78 mg", "½ cup"],
+        ["🥜", "Peanuts", "63 mg", "¼ cup"]
+      ]},
+      {"type": "cta", "title": "Magnesium foods and needs", "path": "myvitapals.com/magnesium"}
     ]
   }
 ]
