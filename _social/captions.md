@@ -1,4 +1,4 @@
-# VitaPals Instagram: first 9 posts
+# VitaPals Instagram posts
 
 Post in this order, 2–3 a week. Each folder in _social/ is one carousel; upload the slides in number order.
 Bio link: myvitapals.com
@@ -161,6 +161,31 @@ Easy swaps 👇
 💬 Would you switch? Yes or no in the comments.
 
 #myvitapals #nutritionfacts #magnesium #wholegrains #healthyindianfood
+
+## 10-protein-new-target
+The US protein target went up. Here's what it means for your plate. 💪
+
+The 2025–2030 US Dietary Guidelines now aim for 1.2–1.6 g of protein per kg of body weight a day.
+The old RDA was 0.8 g per kg.
+
+For a 70 kg (154 lb) adult:
+📉 Old: about 56 g
+📈 New: 84–112 g
+
+Not every expert agrees everyone needs that much. Older and active adults benefit most.
+
+Easy ways to get there 👇
+🍳 Protein at breakfast, not just dinner
+🥣 Thicker dal + a bowl of curd
+🧀 Paneer or soya chunks in your sabzi
+🥜 Roasted chana instead of chips
+
+🩺 Kidney disease? Follow your doctor's protein plan.
+
+📌 Save this. Find your own number with the free calculator, link in bio.
+💬 Team paneer or team eggs?
+
+#myvitapals #nutritionfacts #protein #vegetarianprotein #healthyindianfood
 
 ---
 Every post is educational only, not medical advice. Numbers come from the matching VitaPals page (NIH ODS data).
