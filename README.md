@@ -13,3 +13,10 @@ Optionally, run `node _src/render.js` (needs Playwright; FONT_DIR points to @fon
 
 Interactive bits (search, food finder, vitamin check) are in `assets/app.js`. No tracking, and nothing is sent anywhere.
 Folders starting with `_` are not published by GitHub Pages.
+
+## Audit regression checks
+
+Run `python _src/build.py`, then `python _src/validate.py`.
+For interactive checks, install Playwright in your development environment and run a local static server on port 8765. Run `node _src/qa.cjs` (uses installed Edge); `BASE_URL` can point to a different local server. Checks cover diet filters, aliases, reproductive stages, consent-based local storage, protein unit conversion, mobile overflow and browser errors.
+
+Content-update dates do not certify clinical review. Qualified review of medication, pregnancy and dosing guidance remains outstanding. The audit's meal builder, supplement label decoder, weekly planner, multilingual content and new topic library are future product work, not implemented features. Full assistive-technology testing and claim-by-claim evidence appraisal also remain outstanding.

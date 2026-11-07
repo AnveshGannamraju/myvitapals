@@ -263,7 +263,7 @@
       ],
       [
         "hs-CRP (high-sensitivity CRP)",
-        "Picks up small rises and is sometimes used to fine-tune heart risk. Under 1 mg/L is lower risk, 1–3 average, over 3 higher. Over 10 usually means a short-term cause, like an infection, so it's retested."
+        "hs-CRP can help refine cardiovascular risk in selected patients. It cannot locate inflammation or explain nonspecific symptoms and is not a general screening panel."
       ],
       [
         "ESR (sed rate)",
@@ -443,7 +443,7 @@
     "termNote": "\"Hormonal imbalance\" isn't a medical diagnosis. It's a marketing umbrella, often used to sell tests, teas and \"hormone balancing\" programs. Symptoms like tiredness, weight gain, low mood and acne have many causes, and hormones are only some of them. A doctor's job is to find which one, if any.",
     "causesNav": "Real conditions",
     "causesTitle": "The real conditions behind the label",
-    "causesSub": "These are the conditions doctors can actually test for and treat. The two at the end are popular labels, not real diagnoses. Deep-dive pages on each are coming soon.",
+    "causesSub": "These are the conditions doctors can actually test for and treat. The two at the end are popular labels, not real diagnoses. Discuss persistent symptoms with a clinician.",
     "causes": [
       [
         "Underactive thyroid (hypothyroidism)",
@@ -618,7 +618,7 @@
         "Vitamin B6 (for PMS)",
         "w",
         "/vitamin-b6/",
-        "Often sold for PMS, but the evidence is thin. High doses taken for months can cause nerve damage. Upper limit: 100 mg a day, and some health agencies warn about lower doses."
+        "Often sold for PMS, but the evidence is thin. High doses taken for months can cause nerve damage. US adult upper limit: 100 mg/day; EFSA: 12 mg/day. These are not intake goals; supplemental B6 can cause neuropathy."
       ],
       [
         "Selenium",
@@ -693,7 +693,7 @@
     "tests": [
       [
         "TSH (thyroid-stimulating hormone)",
-        "Usually the first thyroid test. High suggests an underactive thyroid; low suggests overactive. Free T4 and thyroid antibodies may be added. Stop biotin at least 2 days before."
+        "Usually the first thyroid test. High suggests an underactive thyroid; low suggests overactive. Free T4 and thyroid antibodies may be added. Tell the clinician and laboratory about biotin; follow their instructions about pausing it."
       ],
       [
         "HbA1c and fasting glucose",
@@ -843,7 +843,7 @@
     },
     "short": [
       "\"Hormonal imbalance\" is a label, not a diagnosis. The usual real causes are thyroid problems, PCOS, perimenopause or blood sugar.",
-      "A few blood tests, starting with TSH for the thyroid, find most of them, and they're treatable.",
+      "Testing depends on symptoms, history and the suspected condition. Thyroid, metabolic and reproductive concerns require different evaluations.",
       "Food helps most through steady blood sugar and, if you carry extra weight, losing 5–10% of it.",
       "Skip \"hormone balancing\" teas, adrenal fatigue tests and testosterone boosters. Stop biotin 2 days before a thyroid test."
     ],

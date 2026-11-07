@@ -662,8 +662,8 @@
       ]
     ],
     "needShort": "1.3–1.7 mg a day",
-    "ul": "100 mg a day. Nerve damage has been reported with long-term high doses, and some health agencies now warn about lower doses too.",
-    "ulShort": "100 mg",
+    "ul": "The U.S. adult upper limit is 100 mg/day; EFSA uses 12 mg/day for adults, including pregnancy and breastfeeding. These are ceilings, not targets. Supplemental B6 can cause peripheral neuropathy; check combined products and seek care for tingling, burning or numbness.",
+    "ulShort": "US: 100 mg; EFSA: 12 mg",
     "top3": "Chickpeas, fish, potatoes",
     "dv": "1.7 mg",
     "table": [
@@ -762,6 +762,12 @@
       [
         "How do I know if I'm taking too much B6?",
         "Add up the B6 in every supplement you take. If you have tingling or numbness in your hands or feet, stop and see a doctor."
+      ]
+    ],
+    "auditSources": [
+      [
+        "NIH: US and EFSA limits and neuropathy",
+        "https://ods.od.nih.gov/factsheets/VitaminB6-HealthProfessional/"
       ]
     ]
   },
@@ -983,17 +989,13 @@
       [
         "Gut conditions",
         "Such as celiac disease or inflammatory bowel disease."
-      ],
-      [
-        "People with an MTHFR gene variant",
-        "A common variant that can lower folate levels a little."
       ]
     ],
     "lowNote": "Low folate can cause a type of anemia (large red blood cells). It looks a lot like B12 deficiency, so both are usually tested together.",
     "suppWhen": "Recommended for anyone who could become pregnant: 400 mcg of folic acid daily, starting at least a month before pregnancy. Most others can get enough from food.",
-    "suppPick": "Folic acid is well studied and well absorbed. L-methylfolate is an alternative. Ask your doctor which suits you.",
+    "suppPick": "Common MTHFR variants do not require avoiding folic acid or switching to methylfolate. CDC recommends 400 mcg folic acid daily for people who could become pregnant, including those with common MTHFR variants.",
     "interactions": [
-      "Methotrexate (for arthritis or cancer): don't take folic acid unless your doctor advises",
+      "Folic acid is commonly prescribed with low-dose methotrexate for inflammatory conditions to reduce side effects. Cancer regimens differ. Follow your prescriber’s dose and timing; do not start, stop or change either medicine yourself.",
       "Seizure medicines (phenytoin, carbamazepine, valproate) can lower folate",
       "Sulfasalazine (for ulcerative colitis) reduces folate absorption",
       "Large amounts of folic acid can hide a B12 deficiency"
@@ -1007,11 +1009,21 @@
     "faq": [
       [
         "Folic acid or methylfolate?",
-        "Both raise folate levels. Folic acid is what most research on preventing birth defects used. Ask your doctor if you have an MTHFR variant."
+        "Common MTHFR variants do not require avoiding folic acid or switching to methylfolate. CDC recommends 400 mcg folic acid daily for people who could become pregnant, including those with common MTHFR variants."
       ],
       [
         "Do men need folate?",
         "Yes, everyone needs 400 mcg a day for healthy cells and blood."
+      ]
+    ],
+    "auditSources": [
+      [
+        "CDC: common MTHFR variants and folic acid",
+        "https://www.cdc.gov/folic-acid/data-research/mthfr/index.html"
+      ],
+      [
+        "NHS: folic acid with methotrexate",
+        "https://www.nhs.uk/medicines/methotrexate/how-and-when-to-take-methotrexate/"
       ]
     ]
   },
@@ -1385,7 +1397,7 @@
       "Sun-dried or UV mushrooms"
     ],
     "tips": [
-      "Your skin makes vitamin D from sunlight on uncovered arms and legs, but glass and sunscreen block it. Short, sensible sun exposure helps. Avoid sunburn.",
+      "Skin produces vitamin D with UV exposure, but production varies widely. Prioritize food and fortification, and protect your skin; do not seek extra unprotected sun to meet vitamin D needs.",
       "Vitamin D is fat-soluble, so take supplements with a meal."
     ],
     "risk": [
@@ -1406,8 +1418,8 @@
         "Vitamin D gets trapped in fat tissue or absorbed less."
       ]
     ],
-    "lowNote": "Low vitamin D is common in many countries, even sunny ones like India. A blood test (25-hydroxyvitamin D) is the only way to know.",
-    "suppWhen": "Worth discussing with your doctor if you're in any risk group. A blood test helps decide the right dose.",
+    "lowNote": "Routine vitamin D blood testing is generally not recommended for otherwise healthy adults. A clinician may test when symptoms, bone disease, malabsorption or other clinical indications make the result useful.",
+    "suppWhen": "Use foods and fortified foods to help meet recommended intakes. Discuss supplementation when intake is inadequate or your circumstances warrant it. Testing is not routinely required for healthy adults.",
     "suppPick": "D3 raises blood levels more than D2. Take it with food that has some fat.",
     "interactions": [
       "Steroids like prednisone lower vitamin D",
@@ -1433,6 +1445,12 @@
       [
         "How much sun do I need?",
         "It depends on skin tone, season, location and time of day. There's no single safe number, so many experts suggest food and supplements over extra sun."
+      ]
+    ],
+    "auditSources": [
+      [
+        "Endocrine Society: routine testing guidance",
+        "https://www.endocrine.org/clinical-practice-guidelines/vitamin-d-for-prevention-of-disease"
       ]
     ]
   },
@@ -1984,7 +2002,7 @@
         6
       ]
     ],
-    "tableNote": "Tofu only counts if it's made with calcium sulfate (check the label).",
+    "tableNote": "Tofu only counts if it's made with calcium sulfate (check the label). Spinach has substantial calcium content but oxalates limit absorption: NIH estimates about 5%, compared with 27% from milk. Fortified products vary; check labels and shake fortified plant milks.",
     "indian": [
       "Curd (dahi) & buttermilk",
       "Paneer",

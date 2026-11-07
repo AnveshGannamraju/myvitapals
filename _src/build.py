@@ -16,10 +16,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "_src"
 SITE = "https://myvitapals.com"
-REVIEWED = "October 2026"
+REVIEWED = "November 5, 2026"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-ASSET_V = "12"
+ASSET_V = "13"
 
 V = json.loads((SRC / "vitamins.json").read_text(encoding="utf-8"))
 D = json.loads((SRC / "details.json").read_text(encoding="utf-8"))
@@ -40,7 +40,7 @@ suburl = lambda pv, s: f"{url(pv)}{s['slug']}/"
 gurl = lambda g: f"/guides/{g['slug']}/"
 turl = lambda t: f"/topics/{t['slug']}/"
 purl = lambda s=None: "/protein/" + (f"{s['slug']}/" if s else "")
-EV = {"g": ("🟢", "Strong evidence"), "y": ("🟡", "Some evidence"), "w": ("⚪", "Not enough evidence"), "r": ("🔴", "Myth")}
+EV = {"g": ("🟢", "Established guidance"), "y": ("🟡", "Limited evidence"), "w": ("⚪", "Not enough evidence"), "r": ("🔴", "Myth")}
 badge = lambda k, labels=None: f'<span class="ev ev-{k}"><i aria-hidden="true">{EV[k][0]}</i>{(labels or {}).get(k, EV[k][1])}</span>'
 txt = lambda v: v.get("text", "#fff")
 subpal = lambda s: {"id": s["label"], "color": s["color"], "text": txt(s), "prop": s["prop"]}
@@ -103,7 +103,7 @@ def head(title, desc, path, og="home", extra=""):
 
 
 def header(section="", vit=None, sub=None, psub=None):
-    links = [("vitamins", "/#vitamins", "Vitamins"), ("minerals", "/minerals/", "Minerals"), ("protein", "/protein/", "Protein"), ("topics", "/topics/", "Health topics"), ("guides", "/guides/", "Guides"),
+    links = [("vitamins", "/#nutrients", "Nutrients"), ("topics", "/topics/", "Health topics"), ("guides", "/guides/", "Guides"),
              ("finder", "/tools/food-finder/", "Food finder"), ("check", "/tools/vitamin-check/", "Vitamin check"),
              ("about", "/about/", "About")]
     nav = "".join(f'<a href="{h}"{" class=on" if section == k else ""}>{t}</a>' for k, h, t in links)
@@ -162,7 +162,7 @@ def footer(scripts=""):
     <div><h4>Tools</h4><a href="/tools/vitamin-check/">Vitamin check</a><a href="/tools/food-finder/">Food finder</a><h4 style="margin-top:14px">VitaPals</h4><a href="/about/">About &amp; how we write</a></div>
   </div>
   <p class="disc">VitaPals is written for adults aged 20 and over, for general education, not medical advice. Facts are based on the NIH Office of Dietary Supplements. Talk to a doctor, dietitian or pharmacist before starting a supplement, especially if you're pregnant, take medicines or have a health condition.</p>
-  <p class="disc">© {YEAR} VitaPals · Last reviewed {REVIEWED}</p>
+  <p class="disc">Clinical review has not been completed. Citing a source does not imply its endorsement. <a href="/about/#corrections">Report an error / contact</a> · <a href="/about/#privacy">Privacy</a> · <a href="/about/#history">Revision history</a></p><p class="disc">© {YEAR} VitaPals · Content updated {REVIEWED}</p>
 </div></footer>
 <script src="/assets/app.js?v={ASSET_V}" defer></script>{scripts}
 </body>
@@ -258,12 +258,16 @@ for x in PR["subs"]:
             continue
         _seen.add(f)
         FOODS.append({"f": f, "s": s, "a": a, "p": p, "v": "P", "n": "Protein", "u": purl(x), "c": PR["color"]})
+for food in FOODS:
+    if not food.get('in'):
+        assert food['s'] and food['a'], 'Quantified food requires a reference serving'
+        food['source'] = 'USDA FoodData Central / recipe estimate; see source page' if food['v'] == 'P' else 'NIH Office of Dietary Supplements; see nutrient page'
 write("assets/search.json", json.dumps(INDEX, ensure_ascii=False))
 write("assets/foods.json", json.dumps(FOODS, ensure_ascii=False))
 
 SEARCH = ('<div class="search" data-search><span class="ico" aria-hidden="true">🔍</span>'
           '<input type="search" placeholder="Search a vitamin, food or question… e.g. B12, spinach, tired" aria-label="Search VitaPals" autocomplete="off">'
-          '<ul class="results" role="listbox"></ul></div>')
+          '<ul class="results" aria-live="polite"></ul></div>')
 
 # ------------------------------------------------------------------ home
 ALLMYTHS = [(m, f, v["id"]) for v in V for m, f in D[v["id"]].get("myths", [])]
@@ -286,11 +290,11 @@ home = head("VitaPals — Vitamins Explained Simply, Food First",
             "/", "home") + header("home") + f"""
 <section class="hero-home"><div class="hero-grid"><div>
   <p class="eyebrow">Vitamins, explained simply</p>
-  <h1>Know what your body needs, and where to get it.</h1>
+  <h1>Eat better. Understand your nutrients.</h1>
   <p class="lede">What each vitamin does, the foods that have the most, how much you need, and when a supplement actually makes sense. Plain language, with real numbers from the NIH.</p>
   {SEARCH}
-  <div class="ctas"><a class="btn" href="/tools/vitamin-check/">Take the 2-minute vitamin check</a><a class="btn ghost" href="/tools/food-finder/">Find foods by vitamin</a></div>
-  <div class="trust"><span>Based on NIH fact sheets</span><span>Food first, supplements second</span><span>For adults 20+</span><span>US &amp; Indian foods</span><span>Reviewed {REVIEWED}</span></div>
+  <div class="ctas"><a class="btn" href="/tools/vitamin-check/">Explore my nutrition</a><a class="btn ghost" href="/tools/food-finder/">Find nutrients in foods</a><a href="/guides/supplements/">Understand supplements</a></div>
+  <div class="trust"><span>Based on NIH fact sheets</span><span>Food first, supplements second</span><span>For adults 20+</span><span>US &amp; Indian foods</span><span>Updated {REVIEWED}</span></div>
 </div><aside class="hero-aside" aria-label="Most read">
   <div class="squad" aria-hidden="true">{"".join(pal(x, 46, prop=False) for x in FAMILY)}</div>
   <h2 class="h3">Popular questions</h2>
@@ -304,13 +308,13 @@ home = head("VitaPals — Vitamins Explained Simply, Food First",
 </section>
 
 <section class="block">
-  <div class="head-row"><div><h2>Health topics</h2><p>Common health questions, with every claim rated by the strength of its evidence.</p></div></div>
+  <div class="head-row"><div><h2>Health topics</h2><p>Common health questions, with sources and the limits of current evidence.</p></div></div>
   <div class="cards">{"".join(f'<a class="card" href="{turl(t)}"><div class="ic" aria-hidden="true">{t["icon"]}</div><h3>{e(t["title"])}</h3><p>{e(t["card"])}</p><span class="go">Read →</span></a>' for t in T)}</div>
 </section>
 
-<section class="block" id="vitamins">
+<nav id="nutrients" class="jump" aria-label="Nutrients"><a href="#vitamins">Vitamins</a><a href="#minerals">Minerals</a><a href="/protein/">Protein &amp; calculator</a></nav><section class="block" id="vitamins">
   <div class="head-row"><div><h2>All 13 vitamins</h2><p>Tap any vitamin for foods, daily needs, who's at risk and supplement advice.</p></div></div>
-  <h3 style="margin:6px 0 10px"><span aria-hidden="true">💧</span> Water-soluble <small style="font-family:var(--sans);font-weight:400;color:var(--muted);font-size:15px">· your body doesn't store much, so you need them regularly</small></h3>
+  <h3 style="margin:6px 0 10px"><span aria-hidden="true">💧</span> Water-soluble <small style="font-family:var(--sans);font-weight:400;color:var(--muted);font-size:15px">· most have limited stores; B12 is an exception, with stores that can last years</small></h3>
   <div class="vlist">{"".join(vrow(v) for v in water)}</div>
   <h3 style="margin:22px 0 10px">🫒 Fat-soluble <small style="font-family:var(--sans);font-weight:400;color:var(--muted);font-size:15px">· stored in your body, so too much from supplements can build up</small></h3>
   <div class="vlist">{"".join(vrow(v) for v in fat)}</div>
@@ -334,7 +338,7 @@ home = head("VitaPals — Vitamins Explained Simply, Food First",
 </section>
 
 <section class="block band">
-  <div><h2>Not sure where to start?</h2><p>Answer 13 quick questions about what you eat and your lifestyle. We'll show which vitamins and minerals deserve a closer look, and the foods that help. Nothing is stored or sent anywhere.</p></div>
+  <div><h2>Not sure where to start?</h2><p>Answer 13 quick questions about what you eat and your lifestyle. We'll show which vitamins and minerals deserve a closer look, and the foods that help. Answers are not sent to a server; you can optionally save them on your device.</p></div>
   <div><a class="btn" href="/tools/vitamin-check/">Start the vitamin check →</a></div>
 </section>
 """ + footer('\n<script type="application/json" id="myths-data">' + json.dumps([{"m": m, "f": f, "v": i} for m, f, i in ALLMYTHS], ensure_ascii=False) + "</script>")
@@ -382,6 +386,8 @@ for i, v in enumerate(ALL):
   <h1>{e(vname(v))}</h1>
   <p class="lede">{e(v['job'])}</p>
 </div></div>
+<aside class="note"><h2>30-second summary</h2><p>{e(v['job'])} Start with foods, compare the reference intake for your life stage, and discuss supplements when needed.</p></aside>
+{('<p class="tnote">Updated guidance: ' + ' · '.join('<a href="'+e(u)+'">'+e(n)+'</a>' for n,u in d.get('auditSources', [])) + '</p>') if d.get('auditSources') else ''}
 <div class="glance" id="glance">
   <div><small>Daily need (adults)</small><strong>{e(d['needShort'])}</strong></div>
   <div><small>Upper limit</small><strong>{e(d['ulShort'])}</strong></div>
@@ -420,7 +426,7 @@ for i, v in enumerate(ALL):
 
 <section class="sec two" id="signs">
   <div><h2>Signs you might be low</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in v['low'])}</ul><p class="tnote">{e(d['lowNote'])}</p></div>
-  <div class="note"><h3>🩺 When to see a doctor</h3><p>These signs have many possible causes. If they last more than a couple of weeks, see a doctor. A simple blood test can often check your levels. Don't guess with high-dose supplements.</p></div>
+  <div class="note"><h3>🩺 When to see a doctor</h3><p>These signs have many possible causes. If they last more than a couple of weeks, see a doctor. Assessment depends on diet, symptoms and history; laboratory tests are useful for some nutrients. Don't guess with high-dose supplements.</p></div>
 </section>
 
 <section class="sec" id="supplements">
@@ -448,7 +454,7 @@ for i, v in enumerate(ALL):
   {"".join(f'<details class="faq"><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in d['faq'])}
 </section>
 """ + (f"""<section class="sec"><h2>Related guides</h2><div class="cards">{"".join(f'<a class="card" href="{gurl(g)}"><div class="ic">{g["icon"]}</div><h3>{e(g["title"])}</h3><p>{e(g["card"])}</p></a>' for g in related)}</div></section>""" if related else "") + topic_links_html(topics_for("vitamins", v["id"])) + f"""
-<p class="sources">Sources: <a href="{nih(v)}" rel="noopener">NIH Office of Dietary Supplements, {e(vname(v))} fact sheet for health professionals</a>. Daily needs are for healthy adults. Last reviewed {REVIEWED}. This page is for education, not medical advice.</p>
+<p class="sources">Sources: <a href="{nih(v)}" rel="noopener">NIH Office of Dietary Supplements, {e(vname(v))} fact sheet for health professionals</a>. Daily needs are for healthy adults. Content updated {REVIEWED}. This page is for education, not medical advice.</p>
 <div class="pager">
   {f'<a href="{url(prev)}"><small>← Previous</small>{e(vname(prev))}</a>' if prev else ('<a href="/minerals/"><small>← Back to</small>All minerals</a>' if mn else '<a href="/"><small>← Back</small>Home</a>')}
   {f'<a href="{url(nxt)}"><small>Next →</small>{e(vname(nxt))}</a>' if nxt else ('<a href="/#vitamins"><small>Next →</small>All 13 vitamins</a>' if mn else '<a href="/minerals/"><small>Next →</small>Minerals &amp; omega-3</a>')}
@@ -482,7 +488,7 @@ for i, v in enumerate(ALL):
   <div class="note warn"><h3>⚠️ Heads-up</h3><p>{e(s['warn'])}</p></div>
   <div class="note"><h3>📏 How much {e(vname(v))} do you need?</h3><p>{e(D[v['id']]['needShort'])} for most adults. Upper limit: {e(D[v['id']]['ulShort'])}.</p><p><a href="{url(v)}#foods">See top foods &amp; full details →</a></p></div>
 </section>
-<p class="sources">Sources: <a href="{nih(v)}" rel="noopener">NIH Office of Dietary Supplements, {e(vname(v))} fact sheet for health professionals</a>. Last reviewed {REVIEWED}.</p>
+<p class="sources">Sources: <a href="{nih(v)}" rel="noopener">NIH Office of Dietary Supplements, {e(vname(v))} fact sheet for health professionals</a>. Content updated {REVIEWED}.</p>
 <div class="pager">
   {f'<a href="{suburl(v, sp)}"><small>← Previous</small>{e(sp["tab"])}</a>' if sp else back}
   {f'<a href="{suburl(v, sn)}"><small>Next →</small>{e(sn["tab"])}</a>' if sn else back.replace("← Back to", "Back to →")}
@@ -528,7 +534,7 @@ mhub = head("Minerals & Omega-3: Iron, Calcium, Magnesium, Zinc & More | VitaPal
   <div class="note warn"><h3>⚠️ More isn't better</h3><p>Minerals have upper limits, and some build up. Iron, selenium and zinc pills can cause real harm in high doses. Test before you take, and keep iron away from children.</p></div>
 </section>
 {topic_links_html([t for t in T if any(x in t.get("related", {}).get("vitamins", []) for x in [m["id"] for m in M])])}
-<p class="sources">Sources: NIH Office of Dietary Supplements fact sheets: {", ".join(f'<a href="{nih(m)}" rel="noopener">{e(vname(m))}</a>' for m in M)}. Last reviewed {REVIEWED}.</p>
+<p class="sources">Sources: NIH Office of Dietary Supplements fact sheets: {", ".join(f'<a href="{nih(m)}" rel="noopener">{e(vname(m))}</a>' for m in M)}. Content updated {REVIEWED}.</p>
 """ + footer()
 write("minerals/index.html", mhub)
 
@@ -545,6 +551,9 @@ for gi_, g in enumerate(G):
         for x in D[k]["indian"][:2]:
             if not any(x.lower().split(" (")[0] in y.lower() or y.lower().split(" (")[0] in x.lower() for y in in_f):
                 in_f.append(x)
+    if g['slug'] == 'vegetarian':
+        us_f = ['Fortified plant milk (vegan; check B12 and calcium labels)', 'Beans and lentils', 'Leafy greens', 'Almonds', 'UV-exposed mushrooms', 'Milk or yogurt (eggless vegetarian only)', 'Eggs (ovo-vegetarian only)']
+        in_f = ['Dal', 'Chana', 'Rajma', 'Palak', 'Til', 'Milk or curd (eggless vegetarian only)', 'Calcium-set tofu']
     foods_block = f"""<section class="sec"><h2>Foods to lean on</h2><p class="sub">Food first. These cover the vitamins above.</p><div class="two">
   <div class="note"><h3>🛒 Everyday picks</h3><div class="chips">{"".join(f"<span>{e(x)}</span>" for x in us_f[:8])}</div></div>
   <div class="note"><h3>🇮🇳 In Indian kitchens</h3><div class="chips">{"".join(f"<span>{e(x)}</span>" for x in in_f[:8])}</div></div></div></section>"""
@@ -564,7 +573,7 @@ for gi_, g in enumerate(G):
   <div class="note"><h3>🩺 Talk to your doctor about</h3><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in g['doctor'])}</ul></div>
 </section>
 {topic_links_html(topics_for("guides", g["slug"]))}
-<p class="sources">Sources: NIH Office of Dietary Supplements fact sheets: {srcs}{('; <a href="' + g['extraSource'][1] + '" rel="noopener">' + e(g['extraSource'][0]) + '</a>') if g.get('extraSource') else ''}. Last reviewed {REVIEWED}. General education, not medical advice.</p>
+<p class="sources">Sources: NIH Office of Dietary Supplements fact sheets: {srcs}{('; <a href="' + g['extraSource'][1] + '" rel="noopener">' + e(g['extraSource'][0]) + '</a>') if g.get('extraSource') else ''}. Content updated {REVIEWED}. General education, not medical advice.</p>
 <div class="pager">
   {f'<a href="{gurl(gprev)}"><small>← Previous guide</small>{e(gprev["title"])}</a>' if gprev else '<a href="/guides/"><small>← Back to</small>All guides</a>'}
   {f'<a href="{gurl(gnext)}"><small>Next guide →</small>{e(gnext["title"])}</a>' if gnext else '<a href="/topics/"><small>Next →</small>Health topics</a>'}
@@ -676,7 +685,7 @@ for t in T:
 
 <section class="sources" id="sources"><details><summary><strong>Sources ({len(t['sources'])})</strong></summary>
 <ol>{"".join(f'<li><a href="{e(u)}" rel="noopener">{e(n)}</a></li>' for n, u in t['sources'])}</ol></details>
-<p>Last reviewed {REVIEWED}. This page is for general education, not medical advice. It hasn't been reviewed by a medical professional yet.</p></section>
+<p>Content updated {REVIEWED}. This page is for general education, not medical advice. It hasn't been reviewed by a medical professional yet.</p></section>
 <div class="pager"><a href="/topics/"><small>← Back to</small>Health topics</a><a href="/#vitamins"><small>Next →</small>All 13 vitamins</a></div>
 """ + footer()
     write(f"topics/{t['slug']}/index.html", tp)
@@ -697,7 +706,7 @@ def ptable(rows, note):
 
 
 PSRC = ('<section class="sources" id="sources"><details><summary><strong>Sources ({n})</strong></summary><ol>{items}</ol></details>'
-        '<p>Last reviewed {rev}. This page is for general education, not medical advice. It hasn\'t been reviewed by a medical professional yet.</p></section>')
+        '<p>Content updated {rev}. This page is for general education, not medical advice. It hasn\'t been reviewed by a medical professional yet.</p></section>')
 psources = PSRC.format(n=len(PR["sources"]), rev=REVIEWED, items="".join(f'<li><a href="{e(u)}" rel="noopener">{e(n)}</a></li>' for n, u in PR["sources"]))
 pguides = [g for g in G if g["slug"] in PR["guides"]]
 pfaq_ld = jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -706,10 +715,10 @@ CALC = """<div class="tool pcalc" id="pcalc" hidden>
   <h3>Your number</h3>
   <div class="pcalc-in"><label for="pc-w">Your weight</label><input id="pc-w" type="number" inputmode="decimal" min="30" max="300" placeholder="e.g. 65">
   <select id="pc-u" aria-label="Unit"><option value="kg">kg</option><option value="lb">lb</option></select></div>
-  <div id="pc-out" aria-live="polite"><p class="tnote">Enter your weight to see a daily range in grams. Nothing is stored or sent anywhere.</p></div>
+  <div id="pc-out" aria-live="polite"><p class="tnote">Enter your weight to see a daily range in grams. Answers are not sent to a server; you can optionally save them on your device.</p></div>
 </div>"""
 pp = head("Protein: How Much You Need & the Best Sources (US & Indian) | VitaPals",
-          fit("Protein for adults: how much you need (about 0.8 g per kg), the best US and Indian sources, protein powders, and myths checked with evidence."),
+          fit("Protein for adults: traditional RDA and current dietary targets, the best US and Indian sources, protein powders, and myths checked with evidence."),
           purl(), "protein", pfaq_ld) + header("protein") + f"""
 <p class="crumbs"><a href="/">Home</a> › Protein</p>
 <div class="vhead">{pal(PR, 64, decorative=False)}<div>
@@ -717,6 +726,8 @@ pp = head("Protein: How Much You Need & the Best Sources (US & Indian) | VitaPal
   <h1>Protein</h1>
   <p class="lede">{e(PR['job'])}</p>
 </div></div>
+<aside class="note"><h2>30-second summary</h2><p>{e(v['job'])} Start with foods, compare the reference intake for your life stage, and discuss supplements when needed.</p></aside>
+{('<p class="tnote">Updated guidance: ' + ' · '.join('<a href="'+e(u)+'">'+e(n)+'</a>' for n,u in d.get('auditSources', [])) + '</p>') if d.get('auditSources') else ''}
 <div class="glance" id="glance">{"".join(f"<div><small>{e(a)}</small><strong>{e(b)}</strong></div>" for a, b in PR['glance'])}</div>
 <nav class="jump" aria-label="On this page"><a href="#types">Sources</a><a href="#foods">Top foods</a><a href="#needs">How much</a><a href="#benefits">Benefits</a><a href="#risk">Who needs more</a><a href="#supplements">Powders</a><a href="#claims">Claims checked</a><a href="#doctor">Doctor</a><a href="#faq">FAQ</a></nav>
 
@@ -830,7 +841,7 @@ for j, x in enumerate(PR["subs"]):
 {f'<section class="sec">{indian}</section>' if indian and not table else ""}
 <section class="sec two">
   <div class="note warm"><h3>{"🏷️ Label decoder" if x['slug'] == "powders" else "💡 Easy win"}</h3><p>{e(x['tip'])}</p></div>
-  <div class="note"><h3>📏 How much protein do you need?</h3><p>About 0.8 g per kg of body weight a day for most adults: {e(PR['needShort'])}. More if you're over 65 or train hard.</p><p><a href="/protein/#needs">See daily needs &amp; your number →</a></p></div>
+  <div class="note"><h3>📏 How much protein do you need?</h3><p>Compare the traditional adult RDA (0.8 g/kg/day) with the 2025–2030 US dietary target (1.2–1.6 g/kg/day). Age, activity and medical circumstances affect individual advice.</p><p><a href="/protein/#needs">See daily needs &amp; your number →</a></p></div>
 </section>
 {psources}
 <div class="pager">
@@ -848,11 +859,12 @@ ff = head("Food Finder: Which Vitamins Are in Your Food? | VitaPals",
 <div style="max-width:760px"><h1>Food finder</h1><p class="lede">Type a food to see which vitamins it's rich in, and how much of your daily need one serving covers.</p></div>
 <div class="tool" style="margin-top:20px" id="food-finder">
   <div class="search"><span class="ico" aria-hidden="true">🔍</span><input id="ff-q" type="search" placeholder="Try spinach, eggs, milk, chickpeas, amla…" aria-label="Search foods" autocomplete="off"></div>
-  <div class="pop" id="ff-pop"></div>
+  <label for="ff-diet">Diet</label><select id="ff-diet"><option value="all">All foods</option><option value="veg">Eggless vegetarian</option><option value="ovo">Vegetarian with eggs</option><option value="vegan">Vegan</option><option value="pes">Pescatarian</option></select>
+  <label for="ff-servings">Reference servings</label><input id="ff-servings" type="number" min="0.25" max="10" step="0.25" value="1"><p class="tnote">Compare amounts using each food’s declared serving. Mixed dishes and packaged foods vary; check ingredient labels for your dietary needs and allergies.</p><div class="pop" id="ff-pop"></div>
   <div id="ff-out" aria-live="polite"></div>
   <noscript><p>The food finder needs JavaScript. You can still browse foods on each vitamin page.</p></noscript>
 </div>
-<p class="tnote" style="margin-top:12px">Amounts and % Daily Value come from NIH food tables. Foods marked "Indian kitchen" are good everyday sources without an exact NIH value.</p>
+<p class="tnote" style="margin-top:12px">Vitamin and mineral values use NIH food tables; protein values use USDA data or labeled recipe estimates on the linked source page. % Daily Value is a label reference, not your personal requirement. Indian kitchen suggestions without amounts are qualitative only.</p>
 """ + footer()
 write("tools/food-finder/index.html", ff)
 
@@ -860,19 +872,19 @@ vc = head("2-Minute Vitamin Check: Which Vitamins Should You Watch? | VitaPals",
           "Answer 13 quick questions about your diet and lifestyle to see which vitamins and minerals deserve a closer look. Free, private and educational.",
           "/tools/vitamin-check/") + header("check") + """
 <p class="crumbs"><a href="/">Home</a> › Vitamin check</p>
-<div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer 13 quick questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Your answers stay on your device.</p></div>
+<div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer 13 quick questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Answers are processed on your device. Saving is optional.</p></div>
 <form class="tool" id="vcheck" style="margin-top:20px">
   <fieldset class="q"><legend>1. How do you eat?</legend><div class="opts">
     <label><input type="radio" name="diet" value="omni" required> I eat meat or fish</label>
-    <label><input type="radio" name="diet" value="veg"> Vegetarian (dairy and/or eggs)</label>
-    <label><input type="radio" name="diet" value="vegan"> Vegan (no animal foods)</label></div></fieldset>
+    <label><input type="radio" name="diet" value="veg"> Eggless vegetarian (dairy allowed)</label>
+    <label><input type="radio" name="diet" value="ovo"> Vegetarian with eggs</label><label><input type="radio" name="diet" value="pes"> Pescatarian (fish, no meat)</label><label><input type="radio" name="diet" value="vegan"> Vegan (no animal foods)</label></div></fieldset>
   <fieldset class="q"><legend>2. Your age</legend><div class="opts">
     <label><input type="radio" name="age" value="u50" required> 20–49</label>
-    <label><input type="radio" name="age" value="50"> 50–70</label>
-    <label><input type="radio" name="age" value="71"> Over 70</label></div></fieldset>
+    <label><input type="radio" name="age" value="50"> 50</label>
+    <label><input type="radio" name="age" value="51"> 51–64</label><label><input type="radio" name="age" value="65"> 65–70</label><label><input type="radio" name="age" value="71"> 71+</label></div></fieldset>
   <fieldset class="q"><legend>3. Are you pregnant, breastfeeding or planning a pregnancy?</legend><div class="opts">
     <label><input type="radio" name="preg" value="no" required> No</label>
-    <label><input type="radio" name="preg" value="yes"> Yes</label></div></fieldset>
+    <label><input type="radio" name="preg" value="planning"> Planning pregnancy</label><label><input type="radio" name="preg" value="pregnant"> Pregnant</label><label><input type="radio" name="preg" value="breastfeeding"> Breastfeeding</label></div></fieldset>
   <fieldset class="q"><legend>4. How often are you outdoors in daylight (arms or face uncovered)?</legend><div class="opts">
     <label><input type="radio" name="sun" value="often" required> Most days</label>
     <label><input type="radio" name="sun" value="rare"> Rarely, or mostly covered up</label></div></fieldset>
@@ -904,14 +916,14 @@ vc = head("2-Minute Vitamin Check: Which Vitamins Should You Watch? | VitaPals",
   <fieldset class="q"><legend>13. Do you take any of these medicines regularly?</legend><div class="opts">
     <label><input type="checkbox" name="metformin"> Metformin (diabetes)</label>
     <label><input type="checkbox" name="acid"> Acid reducers (omeprazole, pantoprazole, famotidine…)</label>
-    <label><input type="checkbox" name="warfarin"> Warfarin or another blood thinner</label>
-    <label><input type="checkbox" name="seizure"> Seizure medicines</label></div></fieldset>
+    <label><input type="checkbox" name="warfarin"> Warfarin</label>
+    <label><input type="checkbox" name="otherblood"> Other blood thinner</label><label><input type="checkbox" name="supplements"> I take supplements</label><label><input type="checkbox" name="seizure"> Seizure medicines</label></div></fieldset>
   <p class="vprog" id="vcheck-prog" aria-live="polite">0 of 11 answered · questions 12 and 13 are optional</p>
-  <button class="btn" type="submit">See my results</button>
+  <label><input type="checkbox" name="remember"> Save my answers on this device (optional)</label><button type="button" id="forget-check">Clear saved answers</button><button class="btn" type="submit">See my next steps</button>
   <div class="res" id="vcheck-out" aria-live="polite"></div>
   <noscript><p>The vitamin check needs JavaScript.</p></noscript>
 </form>
-<p class="tnote" style="margin-top:12px">Designed for adults aged 20 and over. This is an educational tool, not a diagnosis. Only a doctor and a blood test can tell you if you're low.</p>
+<p class="tnote" style="margin-top:12px">Designed for adults aged 20 and over. This is an educational tool, not a diagnosis. Assessment may include diet, symptoms, medical history and appropriate laboratory testing.</p>
 """ + footer()
 write("tools/vitamin-check/index.html", vc)
 
@@ -923,10 +935,14 @@ about = head("About VitaPals & How We Write", "How VitaPals researches and write
 <h2>Who it's for</h2><p>VitaPals is written for adults aged 20 and over. Children and teens have different needs and safe limits, so please ask a pediatrician about them.</p>
 <h2>Food first</h2><p>Most people can get most vitamins from a varied diet. We show real foods, with real amounts, before we ever talk about supplements. We include everyday US and Indian foods, because that's how many of our readers eat.</p>
 <h2>Where our facts come from</h2><p>Daily needs, upper limits, food amounts and medicine interactions come from the <a href="https://ods.od.nih.gov/factsheets/list-VitaminsMinerals/" rel="noopener">NIH Office of Dietary Supplements</a> fact sheets for health professionals, which are based on the US Food and Nutrition Board. Every page links to its source.</p>
-<h2 id="evidence">How we rate evidence</h2><p>On health topic pages, every claim gets a badge:</p>
-<ul class="clean"><li>🟢 <strong>Strong evidence</strong>: backed by large randomized trials, meta-analyses or major medical guidelines.</li><li>🟡 <strong>Some evidence</strong>: promising or consistent studies, but smaller, mixed or mostly observational.</li><li>⚪ <strong>Not enough evidence</strong>: too little good research to say either way.</li><li>🔴 <strong>Myth</strong>: the evidence says no, or it isn't a recognized condition.</li></ul>
-<h2>How we keep it current</h2><p>Each page shows when it was last reviewed. We re-check facts against the latest NIH fact sheets when they're updated. Spotted something wrong? We want to know.</p>
-<h2>What we don't do</h2><p>We don't diagnose, and we don't recommend specific supplement brands. Our vitamin check is educational. It can point you toward questions to ask, but only a doctor and a blood test can tell you if you're low.</p>
+<h2 id="evidence">How we rate evidence</h2><p>Topic badges are editorial summaries, not a validated evidence-grading system or proof of causation. Read the underlying sources and context. Clinical review and a claim-by-claim evidence appraisal remain pending:</p>
+<ul class="clean"><li>🟢 <strong>Established guidance</strong>: summarizes guidance discussed in the page sources; this does not establish that every associated benefit is causal.</li><li>🟡 <strong>Limited evidence</strong>: promising or consistent studies, but smaller, mixed or mostly observational.</li><li>⚪ <strong>Not enough evidence</strong>: too little good research to say either way.</li><li>🔴 <strong>Myth</strong>: the evidence says no, or it isn't a recognized condition.</li></ul>
+<h2>How we keep it current</h2><p>Dates indicate content updates, not clinical review. No qualified clinical reviewer is currently credited. Medical and dietetic review remains pending, especially for pregnancy, supplement doses and medication interactions.</p>
+<h2>What we don't do</h2><p>We don't diagnose, and we don't recommend specific supplement brands. Our vitamin check is educational. It can point you toward questions to ask, but assessment may include diet, symptoms, medical history and appropriate laboratory testing.</p>
+<h2 id="corrections">Corrections and contact</h2><p><a href="https://github.com/AnveshGannamraju/myvitapals/issues/new">Report a content error or contact the project maintainer on GitHub</a> (account required). Include the page URL, the wording and a reliable source. Reports are public: do not include personal health information. Reports can be tracked in the repository issue list.</p>
+<h2 id="privacy">Privacy and disclosures</h2><p>Searches and tool answers are processed in your browser. Saving questionnaire answers is optional and uses this browser’s local storage; use Clear saved answers to remove them. The site does not add analytics or advertising trackers. The hosting provider may process ordinary request logs. External links follow the destination’s privacy policy. No supplement affiliate purchase links are used in these tools.</p>
+<h2>Editorial accountability</h2><p>Content is maintained by the VitaPals project. No clinical credentials or independent medical review are claimed. A content update is an edit; a fact-check verifies a specific claim against its source; medical review requires a qualified named professional and a documented scope.</p>
+<h2 id="history">Revision history</h2><p>November 5, 2026: corrected diet-specific recommendations, protein reference wording, vitamin D testing, B6 limits, folate/MTHFR and methotrexate context, calcium absorption and questionnaire privacy. Clinical review pending. <a href="https://github.com/AnveshGannamraju/myvitapals/commits">Published change history</a>.</p>
 <h2>Medical disclaimer</h2><p>VitaPals is for general education and isn't a substitute for professional medical advice. Talk to a doctor, registered dietitian or pharmacist before starting a supplement, especially if you're pregnant, breastfeeding, take medicines or have a health condition.</p>
 </div>
 """ + footer()
@@ -960,7 +976,7 @@ og_items = [("home", None), ("vitamin-b", B_HUB)] + [(slug(v), v) for v in ALL]
      "title": s["tab"], "color": s["color"], "lead": s["job"]}
     for v in V for s in v.get("subs", [])] + [
     {"name": "protein", "svg": pal(PR, 260), "kicker": "Macronutrient · amino acids", "title": "Protein",
-     "color": PR["color"], "lead": "Adults need about 0.8 g per kg a day. Best foods: dals, dairy, eggs, fish, soy."}] + [
+     "color": PR["color"], "lead": "Compare protein reference ranges by body weight. Explore dals, dairy, eggs, fish and soy."}] + [
     {"name": f"protein-{x['slug']}", "svg": pal(psubpal(x), 260, prop=False), "kicker": "Protein source", "title": x["tab"], "color": x["color"], "lead": x["job"]}
     for x in PR["subs"]] + [
     {"name": "minerals", "svg": "".join(pal(m, 110) for m in M[:6]), "kicker": "Minerals & omega-3", "title": "Iron, calcium & friends",

@@ -4,7 +4,7 @@
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
   var cache = {};
   function load(path) {
-    if (!cache[path]) cache[path] = fetch(path).then(function (r) { return r.json(); });
+    if (!cache[path]) cache[path] = fetch(path).then(function (r) { if (!r.ok) throw new Error("Could not load data"); return r.json(); });
     return cache[path];
   }
   var norm = function (s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); };
@@ -21,7 +21,7 @@
 
   /* ---------- Site search ---------- */
   var STOP = { a: 1, an: 1, the: 1, i: 1, my: 1, is: 1, are: 1, do: 1, does: 1, of: 1, "in": 1, "for": 1, to: 1, and: 1, or: 1, what: 1, which: 1, can: 1, should: 1, me: 1, much: 0 };
-  var SYN = { dose: "need", dosage: "need", amount: "need", fatigue: "tired", exhausted: "tired", energy: "tired", veg: "vegetarian", veggie: "vegetarian", pregnant: "pregnancy", hormones: "hormonal", hormone: "hormonal", thyroid: "thyroid", folic: "folate", sun: "sunshine", sunlight: "sunshine" };
+  var SYN = { dose: "need", dosage: "need", amount: "need", fatigue: "tired", exhausted: "tired", energy: "tired", veg: "vegetarian", veggie: "vegetarian", pregnant: "pregnancy", hormones: "hormonal", hormone: "hormonal", thyroid: "thyroid", folic: "folate", sun: "sunshine", sunlight: "sunshine", dahi: "curd", chana: "chickpeas", garbanzo: "chickpeas", palak: "spinach", yoghurt: "yogurt", protien: "protein", vitamine: "vitamin" };
   var POPULAR = [["Vitamin B12", "/vitamin-b12/"], ["Vitamin D", "/vitamin-d/"], ["Always tired?", "/guides/tired/"], ["Food finder", "/tools/food-finder/"]];
   var words = function (s) { return norm(s).split(/[^a-z0-9-]+/).filter(Boolean); };
   // A term matches a word if it is the word (short terms like "d" or "b12") or starts it (longer terms like "veget").
@@ -56,7 +56,7 @@
         var li = function (h) { return '<li><a href="' + h.u + '">' + esc(h.t) + "<small>" + esc(h.k) + "</small></a></li>"; };
         out.innerHTML = hits.length ? hits.slice(0, 6).map(li).join("") :
           '<li class="none">No exact match. Popular pages:</li>' + POPULAR.map(function (p) { return li({ t: p[0], u: p[1], k: "Popular" }); }).join("");
-      });
+      }).catch(function () { out.innerHTML = '<li>Search is unavailable. Please try again or browse the menu.</li>'; });
     };
     input.addEventListener("input", run);
     input.addEventListener("keydown", function (ev) {
@@ -77,6 +77,15 @@
     } catch (e) { /* keep the static myths */ }
   }
 
+  function foodAllowed(name, diet) {
+    if (diet === "all") return true;
+    var n = norm(name);
+    var meat = /\b(beef|chicken|turkey|pork|liver|lamb|mutton|meat|gelatin)\b/.test(n);
+    var fish = /\b(fish|salmon|tuna|sardines?|trout|shellfish|clams?|oysters?|shrimp|prawns?|mackerel|cod|rohu|hilsa|bangda|crab|herring|lobster)\b/.test(n);
+    var eggs = /\beggs?\b/.test(n);
+    var dairy = /\b(milk|curd|dahi|yogurt|yoghurt|paneer|cheese|cheddar|mozzarella|buttermilk|ghee|butter|whey|casein)\b/.test(n) && !/plant|soy|almond|peanut/.test(n);
+    return !meat && (diet === "pes" || !fish) && (diet !== "veg" && diet !== "vegan" || !eggs) && (diet !== "vegan" || !dairy);
+  }
   /* ---------- Food finder ---------- */
   var ff = document.getElementById("food-finder");
   if (ff) {
@@ -85,12 +94,14 @@
     pop.innerHTML = popular.map(function (p) { return '<button type="button">' + esc(p) + "</button>"; }).join("");
     pop.addEventListener("click", function (ev) { if (ev.target.tagName === "BUTTON") { q.value = ev.target.textContent; render(); } });
     var render = function () {
-      var term = norm(q.value.trim());
-      if (term.length < 2) { out.innerHTML = '<p class="tnote" style="margin-top:14px">Start typing, or tap a popular food above.</p>'; return; }
+      var term = norm(q.value.trim()); term = SYN[term] || term;
+      var servings = Number(document.getElementById("ff-servings").value);
+      if (!Number.isFinite(servings) || servings < 0.25 || servings > 10) { out.innerHTML = '<p>Enter a serving multiplier from 0.25 to 10.</p>'; return; }
+
       load("/assets/foods.json").then(function (foods) {
         var groups = {};
         foods.forEach(function (f) {
-          if (norm(f.f).indexOf(term) === -1) return;
+          if (norm(f.f).indexOf(term) === -1 || !foodAllowed(f.f, document.getElementById("ff-diet").value)) return;
           var key = f.f;
           (groups[key] = groups[key] || []).push(f);
         });
@@ -102,16 +113,19 @@
         if (!keys.length) { out.innerHTML = '<p style="margin-top:14px">No matches for "' + esc(q.value) + '". Try a simpler word, like "beans" or "milk".</p>'; return; }
         out.innerHTML = keys.slice(0, 25).map(function (k) {
           var rows = groups[k].sort(function (a, b) { return (b.p || 0) - (a.p || 0); }).map(function (f) {
+            var amount = f.a.replace(/^([0-9]+(?:\.[0-9]+)?)/, function(n){return String(Math.round(Number(n)*servings*100)/100);});
+            var reference = servings + " × " + f.s;
+            var pct = f.p == null ? null : Math.round(f.p * servings);
             var right = f.p != null
-              ? '<div class="dv"><div class="b"><span style="width:' + Math.min(f.p, 100) + '%"></span></div><em>' + f.p + "%</em></div><small style=\"color:var(--muted)\">" + esc(f.a) + " per " + esc(f.s) + "</small>"
-              : (f.in ? '<small style="color:var(--muted)">Good everyday source · Indian kitchen</small>' : '<small style="color:var(--muted)">' + esc(f.a) + " per " + esc(f.s) + "</small>");
-            return '<div class="ff-row"><a href="' + f.u + '#foods" style="color:' + "var(--brand)" + '">' + esc(f.n) + "</a><div>" + right + "</div></div>";
+              ? '<div class="dv"><div class="b"><span style="width:' + Math.min(pct, 100) + '%"></span></div><em>' + pct + "%</em></div><small style=\"color:var(--muted)\">" + esc(amount) + " per " + esc(reference) + " · approximate; varies by product/preparation</small>"
+              : (f.in ? '<small style="color:var(--muted)">Qualitative suggestion · Indian kitchen · quantity not verified</small>' : '<small style="color:var(--muted)">' + esc(amount) + " per " + esc(reference) + " · approximate; varies by product/preparation</small>");
+            return '<div class="ff-row"><a href="' + f.u + '#foods" style="color:' + "var(--brand)" + '">' + esc(f.n) + "</a><div>" + right + ' <a href="' + f.u + '#foods">Source &amp; serving notes</a>' + "</div></div>";
           }).join("");
           return '<div class="ff-group"><h3>' + esc(k) + "</h3>" + rows + "</div>";
         }).join("");
-      });
+      }).catch(function () { out.innerHTML = '<p>Food data could not load. Please try again or browse a nutrient page.</p>'; });
     };
-    q.addEventListener("input", render);
+    q.addEventListener("input", render); document.getElementById("ff-diet").addEventListener("change", render); document.getElementById("ff-servings").addEventListener("input", render);
     var startQ = new URLSearchParams(location.search).get("q");
     if (startQ) q.value = startQ;
     render();
@@ -120,7 +134,8 @@
   /* ---------- Vitamin check ---------- */
   var form = document.getElementById("vcheck");
   if (form) {
-    var KEY = "vitapals-check";
+    var KEY = "vitapals-check-v2"; try { localStorage.removeItem("vitapals-check"); } catch(e) {}
+    document.getElementById("forget-check").addEventListener("click", function () { try { localStorage.removeItem(KEY); } catch(e) {} form.reset(); document.getElementById("vcheck-out").innerHTML = ""; tally(); });
     try { var saved = JSON.parse(localStorage.getItem(KEY) || "null"); if (saved) Object.keys(saved).forEach(function (n) {
       var els = form.querySelectorAll('[name="' + n + '"]');
       els.forEach(function (el) { if (el.type === "radio") el.checked = el.value === saved[n]; else if (el.type === "checkbox") el.checked = !!saved[n]; });
@@ -137,19 +152,25 @@
       ev.preventDefault();
       var a = {};
       form.querySelectorAll("input").forEach(function (el) { if (el.type === "radio" && el.checked) a[el.name] = el.value; if (el.type === "checkbox") a[el.name] = el.checked; });
-      try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {}
+      try { if (a.remember) localStorage.setItem(KEY, JSON.stringify(a)); else localStorage.removeItem(KEY); } catch (e) {}
       var R = {};
       var add = function (v, lvl, why) { var w = { hi: 3, md: 2 }[lvl]; if (!R[v]) R[v] = { lvl: lvl, w: w, why: [] }; else if (w > R[v].w) { R[v].lvl = lvl; R[v].w = w; } R[v].why.push(why); };
       if (a.diet === "vegan") { add("B12", "hi", "B12 is only found naturally in animal foods. Vegans need fortified foods or a supplement."); add("D", "md", "Few plant foods contain vitamin D."); add("B2", "md", "Dairy is a main source of B2. Choose fortified plant milks."); }
-      if (a.diet === "veg") add("B12", "md", "Vegetarians often run low on B12, even with dairy.");
-      if (a.diet !== "omni") { add("Fe", "md", "Plant iron is absorbed less, so vegetarians need 1.8 times as much."); add("Zn", "md", "Zinc from beans and grains is absorbed less. Soaking and sprouting help."); }
+      if ((a.diet === "veg" || a.diet === "ovo")) add("B12", "md", "Vegetarians often run low on B12, even with dairy.");
+      if ((a.diet !== "omni" && a.diet !== "pes")) { add("Fe", "md", "Plant iron is absorbed less, so vegetarians need 1.8 times as much."); add("Zn", "md", "Zinc from beans and grains is absorbed less. Soaking and sprouting help."); }
       if (a.diet === "vegan") { add("Ca", "md", "Without dairy, choose fortified soy milk, calcium-set tofu, ragi and til."); add("I", "md", "Dairy, eggs and seafood are big iodine sources. Use iodized salt."); }
       if (a.dairy === "rare") add("Ca", "hi", "Dairy and fortified foods are the main calcium sources.");
       if (a.salt === "no") add("I", "hi", "Packaged foods rarely use iodized salt, so the salt you cook with matters.");
       if (a.periods === "heavy") add("Fe", "hi", "Heavy periods are a common reason for low iron. Ask about a ferritin test.");
-      if (a.age === "50" || a.age === "71") { add("B12", "md", "After 50, your body absorbs less B12 from food."); add("B6", "md", "B6 needs rise slightly after 50."); }
+      if (["50", "51", "65", "71"].indexOf(a.age) !== -1) { add("B12", "md", "After 50, your body absorbs less B12 from food."); if (a.age !== "50") add("B6", "md", "B6 needs rise at age 51."); }
       if (a.age === "71") { add("D", "hi", "After 70, you need more vitamin D (800 IU) and your skin makes less."); add("Ca", "md", "After 70, everyone needs 1,200 mg of calcium a day."); }
-      if (a.preg === "yes") { add("B9", "hi", "Folic acid (400 mcg daily) is recommended before and during early pregnancy."); add("A", "md", "Avoid high-dose retinol supplements during pregnancy."); if (a.diet !== "omni") add("B12", "hi", "B12 is vital for your baby's development."); add("Fe", "hi", "Iron needs rise to 27 mg a day in pregnancy."); add("I", "hi", "Iodine needs rise in pregnancy. Check that your prenatal has 150 mcg."); }
+      if (a.preg === "planning" || a.preg === "pregnant") {
+        add("B9", "hi", "People who could become pregnant are advised to get 400 mcg folic acid daily. Discuss prenatal needs with your clinician.");
+        add("A", "md", "Avoid high-dose retinol supplements in pregnancy.");
+        if (a.preg === "pregnant") add("Fe", "hi", "Pregnancy raises the iron reference intake to 27 mg/day; follow your prenatal care plan.");
+      }
+      if (a.preg === "breastfeeding") { add("I", "hi", "Breastfeeding iodine needs differ from pregnancy: review food and supplement intake with your clinician."); add("B12", "md", "Reliable B12 intake matters during breastfeeding, particularly with a vegan diet."); }
+      if (a.otherblood || a.supplements) add("E", "md", "Bring all supplement labels and medicines to a pharmacist for a combined-dose and interaction review.");
       if (a.sun === "rare") add("D", "hi", "Little daylight on your skin means less vitamin D made.");
       if (a.skin === "dark") add("D", "md", "Darker skin makes less vitamin D from the same sunlight.");
       if (a.greens === "rare") { add("B9", "hi", "Leafy greens, dals and beans are top folate sources."); add("K", "md", "Leafy greens are the main source of vitamin K."); add("A", "md", "Greens and orange veg supply beta-carotene."); }
@@ -158,7 +179,7 @@
       if (a.nuts === "rare") add("E", "md", "Nuts, seeds and their oils are the best vitamin E sources.");
       if (a.smoke) add("C", "hi", "Smokers need 35 mg more vitamin C a day.");
       if (a.alcohol) { add("B1", "hi", "Alcohol blocks B1 absorption."); add("B9", "md", "Alcohol lowers folate."); add("B6", "md", "Alcohol breaks down B6 faster."); }
-      if (a.metformin) add("B12", "hi", "Long-term metformin lowers B12. Ask about a yearly check.");
+      if (a.metformin) add("B12", "hi", "Long-term metformin lowers B12. Ask whether monitoring is appropriate for you.");
       if (a.acid) add("B12", "hi", "Acid reducers lower B12 absorption over time.");
       if (a.warfarin) { add("K", "md", "Keep vitamin K intake steady, not low. Your dose depends on it."); add("E", "md", "Avoid high-dose vitamin E with blood thinners."); }
       if (a.seizure) { add("B9", "md", "Some seizure medicines lower folate."); add("B6", "md", "Some seizure medicines lower B6."); add("B7", "md", "Some seizure medicines lower biotin."); }
@@ -166,13 +187,21 @@
       var nm = function (v) { return MIN[v] ? MIN[v][0] : "Vitamin " + v; }, lk = function (v) { return MIN[v] ? MIN[v][1] : "/vitamin-" + v.toLowerCase() + "/"; };
       var list = Object.keys(R).sort(function (x, y) { return R[y].w - R[x].w; });
       var out = document.getElementById("vcheck-out");
-      var html = "<h2 style=\"margin-bottom:6px\">Your results</h2>";
-      if (!list.length) html += '<div class="item"><span class="lvl ok">Looking good</span><div><strong>Nothing stands out.</strong><p style="margin:4px 0 0;color:var(--muted)">Your answers suggest a varied diet and lifestyle. Keep eating a mix of whole foods. Browse any vitamin to learn more.</p></div></div>';
-      list.forEach(function (v) {
-        var r = R[v], label = r.lvl === "hi" ? "Look closer" : "Worth watching";
-        html += '<div class="item"><span class="lvl ' + r.lvl + '">' + label + '</span><div><strong><a href="' + lk(v) + '">' + nm(v) + '</a></strong><ul class="clean" style="margin-top:4px">' +
-          r.why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + '</ul><a href="' + lk(v) + '#foods">See the best foods →</a></div></div>';
+      var foodIdeas = {B12:"B12-fortified foods; check the label. Vegans need a reliable fortified-food or supplement plan.", D:"Fortified plant milk and UV-exposed mushrooms; check the label.", B2:"Almonds, mushrooms and fortified plant milk.", B9:"Lentils, beans and leafy greens.", A:"Carrots, pumpkin and leafy greens.", Fe:"Lentils, beans and tofu with vitamin-C-rich foods.", Ca:"Calcium-fortified soy milk and calcium-set tofu; check labels.", I:"Iodized salt within your usual salt allowance; do not increase salt intake.", Zn:"Beans, seeds and whole grains.", C:"Guava, oranges and peppers.", E:"Sunflower seeds and almonds.", K:"Leafy greens; keep intake consistent if taking warfarin.", B6:"Chickpeas and potatoes.", B1:"Beans and whole grains.", B7:"Cooked legumes, seeds and nuts."};
+      var html = "<h2>Food sources to consider</h2><p>Up to three starting points from your answers. These are not validated risk scores and cannot establish deficiency or adequacy.</p>";
+      if (!list.length) html += '<div class="item"><span class="lvl ok">No suggestions triggered</span><div><strong>Nothing stands out.</strong><p style="margin:4px 0 0;color:var(--muted)">This short questionnaire cannot confirm nutrient adequacy. Review serving sizes and food variety, and seek advice for persistent symptoms.</p></div></div>';
+      list.slice(0, 3).forEach(function (v) {
+        var r = R[v], label = "Food focus";
+        html += '<div class="item"><span class="lvl ' + 'neutral' + '">' + label + '</span><div><strong><a href="' + lk(v) + '">' + nm(v) + '</a></strong><ul class="clean" style="margin-top:4px">' +
+          r.why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + '</ul><p>' + esc(foodIdeas[v] || 'Explore varied foods and serving sizes.') + '</p><a href="' + lk(v) + '#foods">See the best foods →</a></div></div>';
       });
+      var cautions = [];
+      if (a.warfarin) cautions.push("With warfarin, keep vitamin K intake consistent and discuss supplements with your anticoagulation team.");
+      if (a.preg === "pregnant" || a.preg === "planning") cautions.push("Review folic acid, iron, iodine and B12 with your prenatal clinician; avoid high-dose retinol.");
+      if (a.preg === "breastfeeding") cautions.push("Breastfeeding needs differ from pregnancy; review iodine and B12 intake.");
+      if (a.metformin || a.acid || a.seizure || a.otherblood || a.supplements) cautions.push("Ask a pharmacist to review all medicines and supplements together. This questionnaire is not a complete interaction checker.");
+      html += '<ul>' + cautions.map(function(c){return '<li>'+esc(c)+'</li>';}).join('') + '</ul>';
+      html += '<h2>Questions for a professional</h2><p>Would a review of my diet, symptoms, medicines or supplement labels help? Would any test change my care?</p><h2>Important cautions</h2><p>Do not change prescribed medicines or take high-dose supplements based on this check. Routine vitamin D screening is not recommended for otherwise healthy adults. Protect your skin from UV exposure.</p>';
       html += '<div class="note" style="margin-top:14px"><p><strong>Next step:</strong> share this with your doctor. They can decide whether a blood test makes sense. This is not a diagnosis. <a href="#" onclick="window.print();return false">Print or save as PDF</a></p></div>';
       out.innerHTML = html;
       out.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -185,16 +214,16 @@
     pc.hidden = false;
     var pw = document.getElementById("pc-w"), pu = document.getElementById("pc-u"), po = document.getElementById("pc-out");
     var pcRun = function () {
-      var w = parseFloat(pw.value);
+      var w = Number(pw.value);
       if (!(w > 0)) { po.innerHTML = '<p class="tnote">Enter your weight to see a daily range in grams. Nothing is stored or sent anywhere.</p>'; return; }
-      var kg = pu.value === "lb" ? w * 0.4536 : w;
+      var kg = pu.value === "lb" ? w * 0.45359237 : w;
       if (kg < 30 || kg > 250) { po.innerHTML = '<p class="tnote">Please check the weight and unit.</p>'; return; }
       var g = function (x) { return Math.round(kg * x); };
-      var rows = [["Basic need (0.8 g/kg)", g(0.8) + " g"], ["Over 65 (1.0–1.2 g/kg)", g(1.0) + "–" + g(1.2) + " g"], ["Hard training (1.2–1.6 g/kg)", g(1.2) + "–" + g(1.6) + " g"]];
+      var rows = [["Traditional adult RDA (0.8 g/kg)", g(0.8) + " g"], ["Older-adult expert reference (1.0–1.2 g/kg)", g(1.0) + "–" + g(1.2) + " g"], ["2025–2030 US dietary target (1.2–1.6 g/kg)", g(1.2) + "–" + g(1.6) + " g"]];
       po.innerHTML = '<ul class="pc-res">' + rows.map(function (r) { return "<li><span>" + r[0] + "</span><b>" + r[1] + " a day</b></li>"; }).join("") +
         '</ul><p class="tnote">A general guide for healthy adults. If you have kidney disease, follow your doctor\'s advice.</p>';
     };
-    pw.addEventListener("input", pcRun);
+    pcRun(); pw.addEventListener("input", pcRun);
     pu.addEventListener("change", pcRun);
   }
 })();

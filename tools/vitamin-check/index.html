@@ -22,13 +22,13 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=12">
+<link rel="stylesheet" href="/assets/style.css?v=13">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
   <div class="bar"><a class="logo" href="/" aria-label="VitaPals home"><svg viewBox="0 0 64 88" aria-hidden="true"><rect x="8" y="2" width="48" height="84" rx="24" fill="#1e6b52"/><path d="M8 44H56V62A24 24 0 0 1 8 62Z" fill="#7cc4a4"/></svg><span>Vita<b>Pals</b></span></a>
-  <nav class="nav" aria-label="Main"><a href="/#vitamins">Vitamins</a><a href="/minerals/">Minerals</a><a href="/protein/">Protein</a><a href="/topics/">Health topics</a><a href="/guides/">Guides</a><a href="/tools/food-finder/">Food finder</a><a href="/tools/vitamin-check/" class=on>Vitamin check</a><a href="/about/">About</a></nav><details class="menu"><summary>Menu</summary><div class="panel">
+  <nav class="nav" aria-label="Main"><a href="/#nutrients">Nutrients</a><a href="/topics/">Health topics</a><a href="/guides/">Guides</a><a href="/tools/food-finder/">Food finder</a><a href="/tools/vitamin-check/" class=on>Vitamin check</a><a href="/about/">About</a></nav><details class="menu"><summary>Menu</summary><div class="panel">
 <h4>Tools</h4><a href="/tools/vitamin-check/">🧭 2-minute vitamin check</a><a href="/tools/food-finder/">🔎 Food finder</a>
 <h4>Health topics</h4><a href="/topics/inflammation/">🔥 Inflammation</a><a href="/topics/hormonal-imbalance/">⚖️ Hormonal imbalance</a><a href="/topics/">All health topics</a>
 <h4>Guides</h4><a href="/guides/vegetarian/">Vegetarian or vegan</a><a href="/guides/20s-to-40s/">Your 20s to 40s</a><a href="/guides/over-50/">Over 50</a><a href="/guides/pregnancy/">Pregnant or planning</a><a href="/guides/active/">Active &amp; working out</a><a href="/guides/supplements/">Thinking about supplements</a><a href="/guides/tired/">Always tired?</a>
@@ -40,19 +40,19 @@
 </div></header>
 <main id="main"><div class="wrap">
 <p class="crumbs"><a href="/">Home</a> › Vitamin check</p>
-<div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer 13 quick questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Your answers stay on your device.</p></div>
+<div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer 13 quick questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Answers are processed on your device. Saving is optional.</p></div>
 <form class="tool" id="vcheck" style="margin-top:20px">
   <fieldset class="q"><legend>1. How do you eat?</legend><div class="opts">
     <label><input type="radio" name="diet" value="omni" required> I eat meat or fish</label>
-    <label><input type="radio" name="diet" value="veg"> Vegetarian (dairy and/or eggs)</label>
-    <label><input type="radio" name="diet" value="vegan"> Vegan (no animal foods)</label></div></fieldset>
+    <label><input type="radio" name="diet" value="veg"> Eggless vegetarian (dairy allowed)</label>
+    <label><input type="radio" name="diet" value="ovo"> Vegetarian with eggs</label><label><input type="radio" name="diet" value="pes"> Pescatarian (fish, no meat)</label><label><input type="radio" name="diet" value="vegan"> Vegan (no animal foods)</label></div></fieldset>
   <fieldset class="q"><legend>2. Your age</legend><div class="opts">
     <label><input type="radio" name="age" value="u50" required> 20–49</label>
-    <label><input type="radio" name="age" value="50"> 50–70</label>
-    <label><input type="radio" name="age" value="71"> Over 70</label></div></fieldset>
+    <label><input type="radio" name="age" value="50"> 50</label>
+    <label><input type="radio" name="age" value="51"> 51–64</label><label><input type="radio" name="age" value="65"> 65–70</label><label><input type="radio" name="age" value="71"> 71+</label></div></fieldset>
   <fieldset class="q"><legend>3. Are you pregnant, breastfeeding or planning a pregnancy?</legend><div class="opts">
     <label><input type="radio" name="preg" value="no" required> No</label>
-    <label><input type="radio" name="preg" value="yes"> Yes</label></div></fieldset>
+    <label><input type="radio" name="preg" value="planning"> Planning pregnancy</label><label><input type="radio" name="preg" value="pregnant"> Pregnant</label><label><input type="radio" name="preg" value="breastfeeding"> Breastfeeding</label></div></fieldset>
   <fieldset class="q"><legend>4. How often are you outdoors in daylight (arms or face uncovered)?</legend><div class="opts">
     <label><input type="radio" name="sun" value="often" required> Most days</label>
     <label><input type="radio" name="sun" value="rare"> Rarely, or mostly covered up</label></div></fieldset>
@@ -84,14 +84,14 @@
   <fieldset class="q"><legend>13. Do you take any of these medicines regularly?</legend><div class="opts">
     <label><input type="checkbox" name="metformin"> Metformin (diabetes)</label>
     <label><input type="checkbox" name="acid"> Acid reducers (omeprazole, pantoprazole, famotidine…)</label>
-    <label><input type="checkbox" name="warfarin"> Warfarin or another blood thinner</label>
-    <label><input type="checkbox" name="seizure"> Seizure medicines</label></div></fieldset>
+    <label><input type="checkbox" name="warfarin"> Warfarin</label>
+    <label><input type="checkbox" name="otherblood"> Other blood thinner</label><label><input type="checkbox" name="supplements"> I take supplements</label><label><input type="checkbox" name="seizure"> Seizure medicines</label></div></fieldset>
   <p class="vprog" id="vcheck-prog" aria-live="polite">0 of 11 answered · questions 12 and 13 are optional</p>
-  <button class="btn" type="submit">See my results</button>
+  <label><input type="checkbox" name="remember"> Save my answers on this device (optional)</label><button type="button" id="forget-check">Clear saved answers</button><button class="btn" type="submit">See my next steps</button>
   <div class="res" id="vcheck-out" aria-live="polite"></div>
   <noscript><p>The vitamin check needs JavaScript.</p></noscript>
 </form>
-<p class="tnote" style="margin-top:12px">Designed for adults aged 20 and over. This is an educational tool, not a diagnosis. Only a doctor and a blood test can tell you if you're low.</p>
+<p class="tnote" style="margin-top:12px">Designed for adults aged 20 and over. This is an educational tool, not a diagnosis. Assessment may include diet, symptoms, medical history and appropriate laboratory testing.</p>
 
 </div></main>
 <footer class="site"><div class="wrap">
@@ -102,8 +102,8 @@
     <div><h4>Tools</h4><a href="/tools/vitamin-check/">Vitamin check</a><a href="/tools/food-finder/">Food finder</a><h4 style="margin-top:14px">VitaPals</h4><a href="/about/">About &amp; how we write</a></div>
   </div>
   <p class="disc">VitaPals is written for adults aged 20 and over, for general education, not medical advice. Facts are based on the NIH Office of Dietary Supplements. Talk to a doctor, dietitian or pharmacist before starting a supplement, especially if you're pregnant, take medicines or have a health condition.</p>
-  <p class="disc">© 2026 VitaPals · Last reviewed October 2026</p>
+  <p class="disc">Clinical review has not been completed. Citing a source does not imply its endorsement. <a href="/about/#corrections">Report an error / contact</a> · <a href="/about/#privacy">Privacy</a> · <a href="/about/#history">Revision history</a></p><p class="disc">© 2026 VitaPals · Content updated November 5, 2026</p>
 </div></footer>
-<script src="/assets/app.js?v=12" defer></script>
+<script src="/assets/app.js?v=13" defer></script>
 </body>
 </html>

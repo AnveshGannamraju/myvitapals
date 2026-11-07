@@ -307,3 +307,12 @@ details.more .evlist,details.more .claimgrid{margin-top:0}
 .pc-res{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:6px}
 .pc-res li{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:6px;font-size:15px}
 .pc-res b{white-space:nowrap}
+
+/* Audit: keyboard, zoom and readable results. */
+:focus-visible { outline:3px solid #125f9b; outline-offset:4px; }
+input,select,button { font:inherit; } select,button,.opts label { min-height:44px; }
+.lvl.neutral { color:#174d3b;background:#e8f3ed; }
+.glance strong,.ff-row,.pc-res li { overflow-wrap:anywhere; }
+@media(max-width:600px){.glance{grid-template-columns:1fr 1fr}.ff-row{flex-wrap:wrap;gap:8px}.pc-res li{flex-wrap:wrap} .jump{position:static;flex-wrap:wrap} }
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+@media print { .site-header,footer.site,#vcheck>.q,#vcheck>button,#vcheck>label,.vprog {display:none!important} #vcheck-out{display:block;color:#000} }

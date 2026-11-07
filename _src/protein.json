@@ -18,12 +18,12 @@
   "fun": "Protein is made of 20 building blocks called amino acids. Your body can make 11 of them. The other 9 are \"essential\": you have to get them from food. A \"complete\" protein has all 9 in good amounts.",
   "glance": [
     [
-      "Daily need (adults)",
-      "0.8 g per kg body weight"
+      "US dietary target",
+      "1.2–1.6 g/kg/day"
     ],
     [
-      "In grams",
-      "About 46 g (women), 56 g (men)"
+      "Traditional adult RDA",
+      "0.8 g/kg/day"
     ],
     [
       "Upper limit",
@@ -36,11 +36,15 @@
   ],
   "needs": [
     [
-      "Women (US)",
+      "2025–2030 US dietary target",
+      "1.2–1.6 g/kg/day, individualized"
+    ],
+    [
+      "Women (traditional US RDA reference)",
       "46 g a day"
     ],
     [
-      "Men (US)",
+      "Men (traditional US RDA reference)",
       "56 g a day"
     ],
     [
@@ -75,7 +79,7 @@
   "needNote": "The US and Indian figures are the amounts that cover the basic needs of almost all healthy adults. The new 2025–2030 US Dietary Guidelines suggest more: 1.2–1.6 g per kg. Experts don't all agree on whether everyone needs that much, but higher amounts are widely seen as reasonable for older and active adults. Example: a 70 kg (154 lb) adult needs about 56 g at 0.8 g/kg, or 84–112 g at 1.2–1.6 g/kg.",
   "ul": "No upper limit has been set for protein. The US Food and Nutrition Board suggests protein make up 10–35% of your calories. If you have kidney disease, your doctor may advise less, so follow their plan.",
   "ulShort": "None set",
-  "needShort": "46–56 g a day",
+  "needShort": "Use body-weight guidance",
   "top3": "Yogurt, eggs, dals, chicken, tofu",
   "dv": "50 g",
   "table": [
@@ -360,7 +364,7 @@
   "faq": [
     [
       "How much protein do I need in grams?",
-      "A simple starting point is 0.8 g per kg of body weight. Multiply your weight in kg by 0.8. If you're over 65 or train hard, 1.0–1.6 g per kg is often suggested. Ask your doctor if you have kidney disease."
+      "The traditional adult RDA is 0.8 g/kg/day. The 2025–2030 US dietary target is 1.2–1.6 g/kg/day. Use the calculator to compare these references; age, activity, pregnancy and health conditions affect individual advice."
     ],
     [
       "Is dal and rice enough protein?",
@@ -457,6 +461,10 @@
     [
       "ICMR-NIN: Indian Food Composition Tables 2017 (Indian food values)",
       "https://www.nin.res.in/"
+    ],
+    [
+      "2025–2030 US Dietary Guidelines: protein target",
+      "https://realfood.gov/protein"
     ]
   ],
   "subs": [

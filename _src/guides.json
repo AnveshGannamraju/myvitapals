@@ -5,7 +5,7 @@
     "title": "Vegetarian or vegan",
     "card": "Which vitamins need extra attention when you skip meat, or all animal foods.",
     "seo": "Vitamins for Vegetarians and Vegans: What You Might Be Missing",
-    "intro": "A well-planned vegetarian diet can cover nearly all your vitamin needs. A few need extra attention, especially if you're vegan.",
+    "intro": "Choose the pattern that fits you: eggless vegetarian includes dairy; ovo-vegetarian includes eggs; vegan excludes all animal foods; pescatarian includes fish and is a separate diet. Vegans need a reliable B12 source from fortified foods or supplementation.",
     "key": [
       [
         "B12",
@@ -13,7 +13,7 @@
       ],
       [
         "D",
-        "Very few plant foods have vitamin D. Look for fortified plant milks, UV-exposed mushrooms and sensible sunshine."
+        "Very few plant foods have vitamin D. Look for fortified plant milks, UV-exposed mushrooms and sun safety; do not increase unprotected UV exposure."
       ],
       [
         "B2",
@@ -44,26 +44,26 @@
     "plate": [
       [
         "Breakfast",
-        "Fortified cereal or oats with milk or fortified plant milk"
+        "Oats with milk (eggless vegetarian) or calcium- and B12-fortified soy milk (vegan)."
       ],
       [
         "Lunch",
-        "Dal, palak sabzi, roti and a bowl of curd"
+        "Dal, palak sabzi and roti; choose curd for vegetarian meals or fortified soy yogurt for vegan meals."
       ],
       [
         "Snack",
-        "A handful of almonds and an orange or guava"
+        "Almonds and an orange or guava."
       ],
       [
         "Dinner",
-        "Chana masala, brown rice and a salad with lemon squeezed on top"
+        "Chana masala, brown rice and salad with lemon. Eggs are an optional ovo-vegetarian addition only."
       ]
     ],
-    "beyond": "Beyond vitamins, vegetarians should also watch iron, zinc, calcium, iodine and omega-3 fats. We'll cover these in upcoming mineral guides.",
+    "beyond": "Beyond vitamins, vegetarians should also watch iron, zinc, calcium, iodine and omega-3 fats. Explore the live mineral guides using the Minerals links below.",
     "doctor": [
-      "Ask for a B12 blood test, especially if you've been vegetarian or vegan for years.",
-      "Ask about vitamin D if you get little sun.",
-      "If you're planning a pregnancy, discuss B12 and folic acid early."
+      "Discuss B12 intake and whether assessment is appropriate for your diet and symptoms.",
+      "Routine vitamin D testing is not generally needed in healthy adults; discuss food, fortification and individual needs.",
+      "Discuss folic acid and B12 when planning pregnancy."
     ],
     "sources": [
       "B12",
@@ -131,7 +131,7 @@
         "A short walk outside at lunch"
       ]
     ],
-    "beyond": "Iron (especially for women who have periods) and calcium matter in these years too. Mineral guides are coming soon.",
+    "beyond": "Iron (especially for women who have periods) and calcium matter in these years too. Explore the live mineral guides using the Minerals links below.",
     "doctor": [
       "At your yearly checkup, ask whether a vitamin D or B12 test makes sense for you.",
       "Mention every supplement, including gummies, energy drinks and pre-workouts.",
@@ -193,7 +193,7 @@
         "Some time outdoors, when it's safe"
       ]
     ],
-    "beyond": "Calcium also matters more after 50 for bone health. A mineral guide is coming soon.",
+    "beyond": "Calcium also matters more after 50 for bone health. Explore the live mineral guides using the Minerals links below.",
     "doctor": [
       "Bring a list of every medicine and supplement to your next checkup. Metformin and acid reducers can lower B12.",
       "Ask whether a B12 or vitamin D test makes sense for you.",
