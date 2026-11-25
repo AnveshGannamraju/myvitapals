@@ -36,7 +36,7 @@ svg text{font-family:Fraunces,'Emo',sans-serif}
 ${it.name === 'home' || it.multi
   ? `<div class="home"><div class="multi">${it.svg}</div><h1>${it.title}</h1><p class="l">${it.lead}</p></div>`
   : `<div class="row">${it.svg}<div><p class="k">${it.kicker}</p><h1>${it.title}</h1><p class="l">${it.lead}</p></div></div>`}
-<div class="brand">Vita<b>Pals</b> · myvitapals.com</div>
+<div class="brand">MyVita<b>Pals</b> · myvitapals.com</div>
 </body></html>`;
 
 (async () => {
