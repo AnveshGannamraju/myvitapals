@@ -212,6 +212,24 @@
         "½ cup",
         "0.2 mg",
         17
+      ],
+      [
+        "Bread, whole wheat",
+        "1 slice",
+        "0.1 mg",
+        8
+      ],
+      [
+        "Sunflower seeds, toasted",
+        "1 oz",
+        "0.1 mg",
+        8
+      ],
+      [
+        "Rice, white, enriched, cooked",
+        "½ cup",
+        "0.1 mg",
+        8
       ]
     ],
     "indian": [
@@ -259,12 +277,38 @@
     ],
     "faq": [
       [
+        "What does vitamin B1 do?",
+        "It helps enzymes turn carbs and other nutrients into energy, and it's needed for healthy nerves and heart function."
+      ],
+      [
+        "Is vitamin B1 deficiency common?",
+        "Not in the US, where most people get enough. Risk is higher with heavy alcohol use, after weight-loss surgery, with diabetes and in older adults. Severe deficiency is a medical emergency."
+      ],
+      [
         "Can vegetarians get enough B1?",
         "Yes. Whole grains, beans, lentils, seeds and fortified cereals are all good sources."
       ],
       [
         "Why is white rice 'enriched'?",
         "Polishing rice removes the B1-rich outer layer. Enriched rice adds some back."
+      ]
+    ],
+    "seoTitle": [
+      "Vitamin B1 (Thiamine): Foods, Benefits & Daily Needs",
+      "Vitamin B1 (Thiamine): Foods & Daily Needs"
+    ],
+    "seoDesc": "Vitamin B1 (thiamine) turns carbs into energy and keeps nerves working. Adults need 1.1–1.2 mg a day. Best foods: whole grains, beans, dals and seeds. Who runs low and why.",
+    "answer": "Vitamin B1 (thiamine) helps your body turn food, especially carbs, into energy, and it keeps your nerves working. Women need 1.1 mg a day and men 1.2 mg. Whole grains, enriched grains, beans, lentils, pork and fish are good sources. Most people get enough; heavy drinkers and people who have had weight-loss surgery are most at risk.",
+    "veg": "Vegetarians do well with whole wheat atta, brown or parboiled rice, black beans, rajma, chana, peanuts and sunflower seeds. Polished white rice has much less B1 unless it's enriched, so mix in whole grains.",
+    "related": [
+      "B2",
+      "B3",
+      "B12"
+    ],
+    "auditSources": [
+      [
+        "NIH ODS: Thiamin fact sheet for consumers",
+        "https://ods.od.nih.gov/factsheets/Thiamin-Consumer/"
       ]
     ]
   },
@@ -599,6 +643,30 @@
         "1 large",
         "0.7 mg",
         14
+      ],
+      [
+        "Greek yogurt, nonfat",
+        "5.3 oz container",
+        "0.6 mg",
+        12
+      ],
+      [
+        "Peanuts, oil-roasted",
+        "¼ cup",
+        "0.5 mg",
+        10
+      ],
+      [
+        "Broccoli, boiled",
+        "½ cup",
+        "0.5 mg",
+        10
+      ],
+      [
+        "Chickpeas, canned",
+        "½ cup",
+        "0.4 mg",
+        8
       ]
     ],
     "indian": [
@@ -632,8 +700,34 @@
     ],
     "faq": [
       [
+        "What is vitamin B5 good for?",
+        "It helps make coenzyme A, which your body uses to release energy from carbs, fats and protein and to make fats and some hormones. Because nearly every food contains B5, extra from supplements isn't known to add benefits for healthy people."
+      ],
+      [
+        "Can vegetarians get enough vitamin B5?",
+        "Yes. Mushrooms, sunflower seeds, avocado, milk, curd, peanuts, chickpeas and whole grains all contain it, and 5 mg a day is easy to reach."
+      ],
+      [
         "Is panthenol in shampoo good for hair?",
         "It helps hair feel softer and look shinier, but it doesn't change your body's B5 levels."
+      ]
+    ],
+    "seoTitle": [
+      "Vitamin B5 (Pantothenic Acid): Uses, Foods & Daily Need",
+      "Vitamin B5 (Pantothenic Acid): Uses & Foods"
+    ],
+    "seoDesc": "Vitamin B5 (pantothenic acid) helps turn food into energy. Adults need 5 mg a day, and mushrooms, sunflower seeds, avocado, milk and whole grains supply it. Deficiency is rare.",
+    "answer": "Vitamin B5, also called pantothenic acid, helps your body make coenzyme A, a helper molecule it uses to turn food into energy and to build and break down fats. Adults need 5 mg a day. It's in almost every food, so deficiency is very rare and most people don't need a supplement.",
+    "veg": "Vegetarians get plenty of B5 from shiitake and white mushrooms, sunflower seeds, avocado, milk and curd, peanuts, broccoli, chickpeas (chana) and whole grains. Vegans can skip the dairy and still easily reach 5 mg.",
+    "related": [
+      "B1",
+      "B2",
+      "B7"
+    ],
+    "auditSources": [
+      [
+        "NIH ODS: Pantothenic acid fact sheet for consumers",
+        "https://ods.od.nih.gov/factsheets/PantothenicAcid-Consumer/"
       ]
     ]
   },
@@ -756,6 +850,10 @@
     ],
     "faq": [
       [
+        "What is the function of vitamin B6?",
+        "It acts as a helper (coenzyme) for more than 100 enzyme reactions, mostly involved in protein metabolism. It's also needed for brain development and immune function."
+      ],
+      [
         "Does B6 help with morning sickness?",
         "Doctors sometimes recommend B6 for nausea in pregnancy, but only take it on their advice."
       ],
@@ -768,7 +866,23 @@
       [
         "NIH: US and EFSA limits and neuropathy",
         "https://ods.od.nih.gov/factsheets/VitaminB6-HealthProfessional/"
+      ],
+      [
+        "NIH ODS: Vitamin B6 fact sheet for consumers",
+        "https://ods.od.nih.gov/factsheets/VitaminB6-Consumer/"
       ]
+    ],
+    "seoTitle": [
+      "Vitamin B6: Functions, Food Sources & Safe Limits",
+      "Vitamin B6: Functions & Food Sources"
+    ],
+    "seoDesc": "What vitamin B6 does: it helps more than 100 enzymes, mostly in protein metabolism, plus brain and immune function. Adults need 1.3–1.7 mg a day. Best foods, and why more isn't better.",
+    "answer": "Vitamin B6 helps more than 100 enzymes do their jobs, mostly in breaking down and using protein. It also helps make brain messengers such as serotonin, and supports immune function and red blood cells. Adults need 1.3 mg a day (1.5–1.7 mg after 50). Chickpeas, fish, potatoes and bananas are top sources. Long-term high doses from supplements can damage nerves.",
+    "veg": "Chickpeas are one of the best sources (chole, chana chaat or hummus), along with potatoes, bananas, peanuts and fortified cereal. Vegetarians and vegans can meet B6 needs from food.",
+    "related": [
+      "B12",
+      "B9",
+      "Mg"
     ]
   },
   "B7": {
@@ -834,6 +948,30 @@
         "½ cup",
         "0.4 mcg",
         1
+      ],
+      [
+        "Cheddar cheese",
+        "1 oz",
+        "0.4 mcg",
+        1
+      ],
+      [
+        "Milk, 2%",
+        "1 cup",
+        "0.3 mcg",
+        1
+      ],
+      [
+        "Plain yogurt (curd)",
+        "1 cup",
+        "0.2 mcg",
+        1
+      ],
+      [
+        "Oatmeal, cooked",
+        "1 cup",
+        "0.2 mcg",
+        1
       ]
     ],
     "tableNote": "Beef liver has about 31 mcg in 3 oz, roughly a whole day's worth.",
@@ -872,8 +1010,34 @@
     ],
     "faq": [
       [
+        "Does biotin help hair growth?",
+        "Only if you are truly deficient, which is rare. There's little evidence that biotin supplements help hair or nails in healthy people. Hair thinning has many causes, so see a doctor if it persists."
+      ],
+      [
+        "Can vegetarians get enough biotin?",
+        "Yes. Cooked eggs for egg-eaters, plus sunflower seeds, sweet potato, almonds and peanuts. Dairy and oats add a little."
+      ],
+      [
         "Should I stop biotin before a blood test?",
         "Tell your doctor you take it. They may ask you to pause it before certain tests."
+      ]
+    ],
+    "seoTitle": [
+      "Biotin (Vitamin B7): Foods, Hair Claims & Daily Needs",
+      "Biotin (Vitamin B7): Foods & Hair Claims"
+    ],
+    "seoDesc": "Biotin (vitamin B7) helps turn food into energy. Adults need 30 mcg a day from eggs, salmon, seeds and sweet potato. Do biotin pills help hair? Plus the blood-test warning.",
+    "answer": "Biotin (vitamin B7) helps enzymes break down fats, carbs and protein. Adults need 30 mcg a day, and cooked eggs, salmon, sunflower seeds, sweet potato and almonds supply it. Real deficiency is uncommon, and there's little evidence that biotin pills help hair or nails unless you're truly low. High doses can throw off some blood tests.",
+    "veg": "Egg-eating vegetarians get the most from cooked eggs (about 10 mcg each). Without eggs, lean on sunflower seeds, sweet potato, almonds and peanuts; milk, curd and oatmeal add small amounts.",
+    "related": [
+      "B5",
+      "B12",
+      "B9"
+    ],
+    "auditSources": [
+      [
+        "NIH ODS: Biotin fact sheet for consumers",
+        "https://ods.od.nih.gov/factsheets/Biotin-Consumer/"
       ]
     ]
   },
@@ -962,6 +1126,30 @@
         "½ cup",
         "46 mcg",
         12
+      ],
+      [
+        "Spaghetti, enriched, cooked",
+        "½ cup",
+        "74 mcg",
+        19
+      ],
+      [
+        "Spinach, raw",
+        "1 cup",
+        "58 mcg",
+        15
+      ],
+      [
+        "Orange",
+        "1 small",
+        "29 mcg",
+        7
+      ],
+      [
+        "Peanuts, dry roasted",
+        "1 oz",
+        "27 mcg",
+        7
       ]
     ],
     "indian": [
@@ -1008,6 +1196,14 @@
     ],
     "faq": [
       [
+        "What's the difference between folate and folic acid?",
+        "Folate is the natural form in food. Folic acid is the form in supplements and enriched grains, and your body absorbs it better, which is why amounts are counted in DFE. The 1,000 mcg upper limit applies only to folic acid, not to folate from food."
+      ],
+      [
+        "Which Indian foods are high in folate?",
+        "Leafy greens like palak and methi, and legumes like lobia, rajma, chana, moong and masoor dal. A daily bowl of dal plus some greens goes a long way."
+      ],
+      [
         "Folic acid or methylfolate?",
         "Common MTHFR variants do not require avoiding folic acid or switching to methylfolate. CDC recommends 400 mcg folic acid daily for people who could become pregnant, including those with common MTHFR variants."
       ],
@@ -1024,7 +1220,24 @@
       [
         "NHS: folic acid with methotrexate",
         "https://www.nhs.uk/medicines/methotrexate/how-and-when-to-take-methotrexate/"
+      ],
+      [
+        "NIH ODS: Folate fact sheet for consumers",
+        "https://ods.od.nih.gov/factsheets/Folate-Consumer/"
       ]
+    ],
+    "seoTitle": [
+      "Folate (Vitamin B9): Foods, Folic Acid & Daily Needs",
+      "Folate (Vitamin B9): Foods & Folic Acid"
+    ],
+    "seoDesc": "Folate (vitamin B9) helps make DNA and red blood cells. Adults need 400 mcg DFE a day. Best foods: spinach, beans, dals, asparagus. Plus folic acid before pregnancy, explained.",
+    "answer": "Folate (vitamin B9) helps your body make DNA and new cells, including red blood cells. Adults need 400 mcg DFE (dietary folate equivalents) a day. Leafy greens, beans, lentils and dals are the best foods. Anyone who could become pregnant is advised to take 400 mcg of folic acid daily, because it helps prevent birth defects of the brain and spine.",
+    "veg": "Folate is one nutrient vegetarians usually get plenty of: palak, methi, lobia, rajma, chana, moong and masoor dal, asparagus, avocado and oranges are all good sources. Cook greens briefly or steam them, because long boiling destroys folate.",
+    "tableNote": "Amounts are mcg DFE (dietary folate equivalents).",
+    "related": [
+      "B12",
+      "Fe",
+      "B6"
     ]
   },
   "B12": {
@@ -1439,19 +1652,47 @@
     ],
     "faq": [
       [
+        "Is vitamin D3 the same as vitamin D?",
+        "D3 (cholecalciferol) is one of the two main forms of vitamin D; the other is D2 (ergocalciferol). Both count toward your daily need. See our vitamin D3 page for D3 food sources and how it compares."
+      ],
+      [
         "D3 or D2?",
         "Both work, but D3 raises and keeps blood levels higher. D2 is the vegan option, though vegan D3 from lichen also exists."
       ],
       [
         "How much sun do I need?",
         "It depends on skin tone, season, location and time of day. There's no single safe number, so many experts suggest food and supplements over extra sun."
+      ],
+      [
+        "Can I get enough vitamin D from Indian food?",
+        "It's hard from food alone, especially for vegetarians. Fortified milk and oil (look for +F), eggs, fish like sardines and mackerel (bangda), and UV-exposed mushrooms help. Many people also depend on sun exposure or a supplement; ask your doctor what fits you."
       ]
     ],
     "auditSources": [
       [
         "Endocrine Society: routine testing guidance",
         "https://www.endocrine.org/clinical-practice-guidelines/vitamin-d-for-prevention-of-disease"
+      ],
+      [
+        "NIH ODS: Vitamin D fact sheet for consumers",
+        "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/"
+      ],
+      [
+        "FSSAI: fortified foods (+F) standards",
+        "https://www.fssai.gov.in/cms/fortified-food.php"
       ]
+    ],
+    "seoTitle": [
+      "Vitamin D: Foods, Daily Needs, D3 vs D2 & Supplements",
+      "Vitamin D: Foods, Daily Needs & Supplements"
+    ],
+    "seoDesc": "Vitamin D helps you absorb calcium for strong bones. Adults need 600–800 IU a day. Best foods (fish, eggs, fortified milk, UV mushrooms), vegetarian options and when supplements make sense.",
+    "answer": "Vitamin D helps your body absorb calcium, so it's essential for strong bones; your muscles, nerves and immune system need it too. Adults need 600 IU (15 mcg) a day, or 800 IU after 70. Few foods have much: fatty fish, egg yolks, fortified milk and UV-exposed mushrooms lead the list. Most people also rely on some sun or a supplement.",
+    "veg": "Eggless vegetarians and vegans have fewer food options: fortified milk or plant milk (about 100–144 IU a cup; check the label), UV-exposed mushrooms (vitamin D2) and fortified cereal. Eggs add about 44 IU each. In India, look for the +F logo on milk and cooking oil: FSSAI standards allow them to be fortified with vitamins A and D. Vegan supplements use D2 or lichen-based D3.",
+    "related": [
+      "Ca",
+      "K",
+      "Mg"
     ]
   },
   "E": {

@@ -4,7 +4,7 @@
 
 MyVitaPals is a free, static, ad-free educational website for adults aged 20 and over (not children). Pages are plain HTML. Daily needs (RDA/AI), upper limits (UL), food amounts and medicine interactions come from the NIH Office of Dietary Supplements health-professional fact sheets; % Daily Value uses US FDA label values; protein food values use USDA FoodData Central. Every page links its sources and shows when it was last updated. Health-topic pages rate claims with evidence badges (established guidance, limited evidence, not enough evidence, myth).
 
-Important: content is general education, not medical advice. It has not been clinically reviewed by a named dietitian or doctor. Content last updated November 5, 2026. When citing, please link the specific page.
+Important: content is general education, not medical advice. It has not been clinically reviewed by a named dietitian or doctor. Content last updated November 24, 2026. When citing, please link the specific page.
 
 ## Vitamins
 - [Vitamin A (Retinol & beta-carotene)](https://myvitapals.com/vitamin-a/): adults need 700–900 mcg a day; upper limit 3,000 mcg (retinol only); best foods: Sweet potato, spinach, carrots.

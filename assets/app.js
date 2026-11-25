@@ -1,6 +1,37 @@
-/* VitaPals — search, food finder, vitamin check, myth of the week. No tracking, nothing sent anywhere. */
+/* MyVitaPals — search, food finder, vitamin check, myth of the week, privacy-friendly counts.
+   Analytics: anonymous GoatCounter counts only (no cookies, no IDs). Never sends typed text, quiz answers, weights or results. */
 (function () {
   "use strict";
+  /* ---------- Privacy-friendly analytics (GoatCounter) ----------
+     To switch on: create a free site at goatcounter.com and put its code here, e.g. "myvitapals".
+     Leave "" to send nothing. Respects Do Not Track and Global Privacy Control; only runs on myvitapals.com. */
+  var GC_CODE = "";
+  var gcOn = !!GC_CODE && location.hostname === "myvitapals.com" && navigator.doNotTrack !== "1" && window.doNotTrack !== "1" && navigator.globalPrivacyControl !== true;
+  function track(name, title, isEvent) {
+    if (!gcOn) return;
+    var q = { p: name, t: title || "", e: isEvent ? "true" : "false", rnd: Math.random().toString(36).slice(2) };
+    if (!isEvent) {
+      q.s = [screen.width, screen.height, window.devicePixelRatio || 1].join(",");
+      try { var r = new URL(document.referrer); if (r.hostname !== location.hostname) q.r = r.origin + "/"; } catch (e) {}
+    }
+    var url = "https://" + GC_CODE + ".goatcounter.com/count?" + Object.keys(q).map(function (k) { return k + "=" + encodeURIComponent(q[k]); }).join("&");
+    try { if (navigator.sendBeacon && navigator.sendBeacon(url)) return; } catch (e) {}
+    new Image().src = url;
+  }
+  var event = function (name, title) { track(String(name).slice(0, 120), title, true); };
+  window.vpTrack = event;
+  // Page view: path only, never the query string (which can hold a typed food or search).
+  track(location.pathname, document.title, false);
+  // Navigation clicks: which area of the page and where the link goes, never anything typed.
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[href]");
+    if (!a) return;
+    var area = a.closest(".site-header") ? (a.closest(".menu") ? "menu" : "header") : a.closest("footer") ? "footer" : a.closest(".jump") ? "onpage" :
+      a.closest(".crumbs") ? "breadcrumb" : a.closest(".pager") ? "pager" : a.closest("#related,.cards") ? "related" : a.closest(".results") ? "search-result" : "content";
+    var u; try { u = new URL(a.href, location.href); } catch (e) { return; }
+    if (u.hostname !== location.hostname) event("outbound-" + u.hostname, a.textContent.trim().slice(0, 60));
+    else event("nav-" + area + ":" + u.pathname + (u.hash && u.pathname === location.pathname ? u.hash : ""), a.textContent.trim().slice(0, 60));
+  }, true);
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
   var cache = {};
   function load(path) {
@@ -93,6 +124,7 @@
     var popular = ["Spinach", "Eggs", "Milk", "Chickpeas", "Almonds", "Salmon", "Amla", "Banana", "Sweet potato", "Mushrooms", "Dal", "Broccoli"];
     pop.innerHTML = popular.map(function (p) { return '<button type="button">' + esc(p) + "</button>"; }).join("");
     pop.addEventListener("click", function (ev) { if (ev.target.tagName === "BUTTON") { q.value = ev.target.textContent; render(); } });
+    var ffTimer, ffLast = "";
     var render = function () {
       var term = norm(q.value.trim()); term = SYN[term] || term;
       var servings = Number(document.getElementById("ff-servings").value);
@@ -110,6 +142,13 @@
           var mb = Math.max.apply(null, groups[b].map(function (x) { return x.p || 0; }));
           return mb - ma;
         });
+        clearTimeout(ffTimer);
+        ffTimer = setTimeout(function () {
+          if (!term) return;
+          var top = keys.length ? keys[0] : "";
+          if (top && top !== ffLast) { ffLast = top; event("food-finder-search:" + top, "Food finder: matched food"); }
+          else if (!keys.length && ffLast !== "-none") { ffLast = "-none"; event("food-finder-no-match", "Food finder: no match"); }
+        }, 1500);
         if (!keys.length) { out.innerHTML = '<p style="margin-top:14px">No matches for "' + esc(q.value) + '". Try a simpler word, like "beans" or "milk".</p>'; return; }
         out.innerHTML = keys.slice(0, 25).map(function (k) {
           var rows = groups[k].sort(function (a, b) { return (b.p || 0) - (a.p || 0); }).map(function (f) {
@@ -125,7 +164,7 @@
         }).join("");
       }).catch(function () { out.innerHTML = '<p>Food data could not load. Please try again or browse a nutrient page.</p>'; });
     };
-    q.addEventListener("input", render); document.getElementById("ff-diet").addEventListener("change", render); document.getElementById("ff-servings").addEventListener("input", render);
+    q.addEventListener("input", render); document.getElementById("ff-diet").addEventListener("change", function () { event("food-finder-diet-filter", "Food finder: diet filter used"); render(); }); document.getElementById("ff-servings").addEventListener("input", render);
     var startQ = new URLSearchParams(location.search).get("q");
     if (startQ) q.value = startQ;
     render();
@@ -147,7 +186,9 @@
       var n = Object.keys(radios).filter(function (nm) { return form.querySelector('input[name="' + nm + '"]:checked'); }).length;
       if (prog) prog.textContent = n + " of " + total + " answered" + (n < total ? " · questions 12 and 13 are optional" : " · ready when you are");
     };
-    form.addEventListener("change", tally); tally();
+    var vcStarted = false;
+    form.addEventListener("change", function () { if (!vcStarted) { vcStarted = true; event("vitamin-check-start", "Vitamin check started"); } tally(); });
+    tally();
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       var a = {};
@@ -204,6 +245,7 @@
       html += '<h2>Questions for a professional</h2><p>Would a review of my diet, symptoms, medicines or supplement labels help? Would any test change my care?</p><h2>Important cautions</h2><p>Do not change prescribed medicines or take high-dose supplements based on this check. Routine vitamin D screening is not recommended for otherwise healthy adults. Protect your skin from UV exposure.</p>';
       html += '<div class="note" style="margin-top:14px"><p><strong>Next step:</strong> share this with your doctor. They can decide whether a blood test makes sense. This is not a diagnosis. <a href="#" onclick="window.print();return false">Print or save as PDF</a></p></div>';
       out.innerHTML = html;
+      event("vitamin-check-complete", "Vitamin check completed"); // no answers or results are sent
       out.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
