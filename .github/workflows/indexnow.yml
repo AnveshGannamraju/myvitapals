@@ -1,0 +1,26 @@
+# After GitHub Pages finishes publishing main, ping IndexNow with the pages that changed.
+# Run it by hand (Actions tab > IndexNow > Run workflow, all = true) once after the first deploy.
+name: IndexNow
+on:
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Submit every URL in sitemap.xml"
+        type: boolean
+        default: true
+permissions:
+  contents: read
+jobs:
+  ping:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Submit changed URLs
+        run: python3 _src/indexnow.py ${{ (github.event_name == 'workflow_dispatch' && inputs.all) && '--all' || '' }}

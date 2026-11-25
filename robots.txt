@@ -1,4 +1,35 @@
+# MyVitaPals (https://myvitapals.com) - Food First, Science Always
+# Everything public on this site is educational and may be crawled. Folders starting with "_" are build sources
+# and are not published by GitHub Pages; the Disallow lines below only matter if the site moves to another host.
+
+# Search engines and AI answer engines: index pages and link to them as sources.
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /_src/
+Disallow: /_social/
+
+# AI model training crawlers, kept separate from search. Blocking these does not remove the site from
+# ChatGPT search, Claude, Perplexity, Google or Bing results. Change Allow to Disallow to opt out of training.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+
+# Everyone else
 User-agent: *
 Allow: /
+Disallow: /_src/
+Disallow: /_social/
 
 Sitemap: https://myvitapals.com/sitemap.xml

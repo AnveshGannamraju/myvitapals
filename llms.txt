@@ -1,0 +1,74 @@
+# MyVitaPals
+
+> Science-backed nutrition education for adults in the US and India: vitamins, minerals, protein and healthy foods explained in plain language, food first, with numbers from the NIH Office of Dietary Supplements. Tagline: Food First, Science Always.
+
+MyVitaPals is a free, static, ad-free educational website for adults aged 20 and over (not children). Pages are plain HTML. Daily needs (RDA/AI), upper limits (UL), food amounts and medicine interactions come from the NIH Office of Dietary Supplements health-professional fact sheets; % Daily Value uses US FDA label values; protein food values use USDA FoodData Central. Every page links its sources and shows when it was last updated. Health-topic pages rate claims with evidence badges (established guidance, limited evidence, not enough evidence, myth).
+
+Important: content is general education, not medical advice. It has not been clinically reviewed by a named dietitian or doctor. Content last updated November 5, 2026. When citing, please link the specific page.
+
+## Vitamins
+- [Vitamin A (Retinol & beta-carotene)](https://myvitapals.com/vitamin-a/): adults need 700–900 mcg a day; upper limit 3,000 mcg (retinol only); best foods: Sweet potato, spinach, carrots.
+- [Vitamin B1 (Thiamine)](https://myvitapals.com/vitamin-b1/): adults need 1.1–1.2 mg a day; upper limit none set; best foods: Fortified cereal, beans, whole grains.
+- [Vitamin B2 (Riboflavin)](https://myvitapals.com/vitamin-b2/): adults need 1.1–1.3 mg a day; upper limit none set; best foods: Dairy, fortified oats, almonds.
+- [Vitamin B3 (Niacin)](https://myvitapals.com/vitamin-b3/): adults need 14–16 mg a day; upper limit 35 mg (supplements); best foods: Chicken, fish, peanuts.
+- [Vitamin B5 (Pantothenic acid)](https://myvitapals.com/vitamin-b5/): adults need 5 mg a day; upper limit none set; best foods: Mushrooms, sunflower seeds, chicken.
+- [Vitamin B6 (Pyridoxine)](https://myvitapals.com/vitamin-b6/): adults need 1.3–1.7 mg a day; upper limit US: 100 mg; EFSA: 12 mg; best foods: Chickpeas, fish, potatoes.
+- [Vitamin B7 (Biotin)](https://myvitapals.com/vitamin-b7/): adults need 30 mcg a day; upper limit none set; best foods: Eggs, salmon, sunflower seeds.
+- [Vitamin B9 (Folate)](https://myvitapals.com/vitamin-b9/): adults need 400 mcg a day; upper limit 1,000 mcg (folic acid); best foods: Spinach, beans, asparagus.
+- [Vitamin B12 (Cobalamin)](https://myvitapals.com/vitamin-b12/): adults need 2.4 mcg a day; upper limit none set; best foods: Fish, dairy, fortified foods.
+- [Vitamin C (Ascorbic acid)](https://myvitapals.com/vitamin-c/): adults need 75–90 mg a day; upper limit 2,000 mg; best foods: Bell peppers, oranges, kiwi.
+- [Vitamin D (Calciferol)](https://myvitapals.com/vitamin-d/): adults need 600–800 IU a day; upper limit 4,000 IU; best foods: Fatty fish, UV mushrooms, fortified milk.
+- [Vitamin E (Tocopherol)](https://myvitapals.com/vitamin-e/): adults need 15 mg a day; upper limit 1,000 mg (supplements); best foods: Sunflower seeds, almonds, plant oils.
+- [Vitamin K (Phylloquinone & menaquinone)](https://myvitapals.com/vitamin-k/): adults need 90–120 mcg a day; upper limit none set; best foods: Leafy greens, broccoli, soybeans.
+- [Retinol (Vitamin A)](https://myvitapals.com/vitamin-a/retinol/): Vitamin A that's ready to use the moment you eat it. It comes from animal foods.
+- [Carotenoids (Vitamin A)](https://myvitapals.com/vitamin-a/carotenoids/): Colorful plant pigments that your body turns into vitamin A only when it needs it.
+- [D3 (Vitamin D)](https://myvitapals.com/vitamin-d/d3/): The kind your skin makes from sunshine. It's also the most common kind in supplements.
+- [D2 (Vitamin D)](https://myvitapals.com/vitamin-d/d2/): The plant-and-fungus kind of vitamin D, made by mushrooms and yeast in UV light.
+- [Tocopherols (Vitamin E)](https://myvitapals.com/vitamin-e/tocopherols/): Four forms of vitamin E, and alpha-tocopherol is the one your body keeps.
+- [Tocotrienols (Vitamin E)](https://myvitapals.com/vitamin-e/tocotrienols/): Four lesser-known forms of vitamin E, found mainly in certain oils and grains.
+- [K1 (Vitamin K)](https://myvitapals.com/vitamin-k/k1/): The main kind of vitamin K in food, made by green plants.
+- [K2 (Vitamin K)](https://myvitapals.com/vitamin-k/k2/): A family of vitamin K forms made by bacteria. Find them in fermented foods and some animal foods.
+- [B vitamins hub](https://myvitapals.com/vitamin-b/): all 8 B vitamins compared: daily needs and best foods.
+
+## Minerals and omega-3
+- [Minerals overview](https://myvitapals.com/minerals/): iron, calcium, magnesium, zinc, iodine, selenium and omega-3 at a glance.
+- [Iron](https://myvitapals.com/iron/): adults need 8–18 mg a day; upper limit 45 mg; best foods: Fortified cereal, beans, lentils.
+- [Calcium](https://myvitapals.com/calcium/): adults need 1,000–1,200 mg a day; upper limit 2,000–2,500 mg; best foods: Yogurt, milk, fortified soy milk.
+- [Magnesium](https://myvitapals.com/magnesium/): adults need 310–420 mg a day; upper limit 350 mg (supplements); best foods: Pumpkin seeds, chia, almonds.
+- [Zinc](https://myvitapals.com/zinc/): adults need 8–11 mg a day; upper limit 40 mg; best foods: Oysters, beef, fortified cereal.
+- [Iodine](https://myvitapals.com/iodine/): adults need 150 mcg a day; upper limit 1,100 mcg; best foods: Iodized salt, dairy, fish.
+- [Selenium](https://myvitapals.com/selenium/): adults need 55 mcg a day; upper limit 400 mcg; best foods: Brazil nuts, tuna, sardines.
+- [Omega-3](https://myvitapals.com/omega-3/): adults need 1.1–1.6 g ALA a day; upper limit none set; best foods: Flaxseed, chia, salmon.
+
+## Protein
+- [Protein](https://myvitapals.com/protein/): how much adults need (Use body-weight guidance), best US and Indian sources, powders and myths.
+- [Dairy & eggs (protein)](https://myvitapals.com/protein/dairy-eggs/): Complete protein that's cheap, easy and vegetarian-friendly. Dairy brings calcium too.
+- [Meat & fish (protein)](https://myvitapals.com/protein/meat-fish/): The most protein per bite, plus well-absorbed iron, zinc and vitamin B12.
+- [Dals & beans (protein)](https://myvitapals.com/protein/dals-beans/): The backbone of vegetarian protein: cheap, filling and packed with fiber, iron and folate.
+- [Soy (protein)](https://myvitapals.com/protein/soy/): The plant protein that's complete: all 9 essential amino acids, just like eggs and dairy.
+- [Nuts & seeds (protein)](https://myvitapals.com/protein/nuts-seeds/): Protein with healthy fats. A great add-on, but calorie-dense, so think handful, not bag.
+- [Grains & millets (protein)](https://myvitapals.com/protein/grains/): Not protein stars on their own, but eaten every day, grains quietly add up.
+- [Protein powders (protein)](https://myvitapals.com/protein/powders/): Convenient protein when food falls short. Helpful for some, unnecessary for most.
+
+## Life-stage guides
+- [Vegetarian or vegan](https://myvitapals.com/guides/vegetarian/): Which vitamins need extra attention when you skip meat, or all animal foods.
+- [Your 20s to 40s](https://myvitapals.com/guides/20s-to-40s/): Indoor jobs, takeout, weekend drinks and trendy supplements: what to watch.
+- [Over 50](https://myvitapals.com/guides/over-50/): Your body absorbs some vitamins differently with age. Here's what changes.
+- [Pregnant or planning](https://myvitapals.com/guides/pregnancy/): Folic acid, B12, vitamin D, and what to avoid before and during pregnancy.
+- [Active & working out](https://myvitapals.com/guides/active/): Gym, running or sports: which vitamins matter, and why megadoses can backfire.
+- [Thinking about supplements](https://myvitapals.com/guides/supplements/): Who actually benefits, how to choose a good one, and red flags to avoid.
+- [Always tired?](https://myvitapals.com/guides/tired/): When low vitamins might be a cause, and what to ask your doctor.
+
+## Health topics (evidence-rated)
+- [Inflammation](https://myvitapals.com/topics/inflammation/): What chronic inflammation is, what drives it, and the food and lifestyle changes with real evidence behind them.
+- [Hormonal imbalance](https://myvitapals.com/topics/hormonal-imbalance/): "Hormonal imbalance" isn't a diagnosis. Here are the real conditions behind the label, the tests that find them, and what food can and can't do.
+
+## Tools
+- [Food finder](https://myvitapals.com/tools/food-finder/): search a food to see which nutrients it is rich in (needs JavaScript; the same data is on each nutrient page).
+- [2-minute vitamin check](https://myvitapals.com/tools/vitamin-check/): educational questionnaire; runs in the browser, nothing is sent to a server.
+
+## About
+- [About and how we write](https://myvitapals.com/about/): audience, sources, evidence ratings, corrections policy, privacy and medical disclaimer.
+
+## Optional
+- [Sitemap](https://myvitapals.com/sitemap.xml): every public page.
