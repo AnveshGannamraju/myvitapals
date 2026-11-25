@@ -42,8 +42,8 @@ img,svg{max-width:100%}
 .menu summary::-webkit-details-marker{display:none}
 .menu[open] summary{background:var(--ink);color:#fff;border-color:var(--ink)}
 .menu .panel{position:absolute;right:0;top:calc(100% + 8px);width:min(88vw,340px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;max-height:75vh;overflow:auto}
-.menu .panel h4{margin:10px 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.menu .panel h4:first-child{margin-top:0}
+.menu .panel h4,.menu .panel .nh{font-weight:700;margin:10px 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.menu .panel h4:first-child,.menu .panel .nh:first-child{margin-top:0}
 .menu .grid2{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px}
 .menu .panel a{display:block;padding:9px 4px;color:var(--ink);text-decoration:none;font-size:15px}
 .menu .panel a:hover{color:var(--brand)}
@@ -229,7 +229,7 @@ table.ul th{background:#f4efe6;font-size:13px;text-transform:uppercase;letter-sp
 
 footer.site{border-top:1px solid var(--line);background:#f3eee5;padding:36px 0 40px;font-size:15px;color:var(--muted)}
 footer.site .cols{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));margin-bottom:22px}
-footer.site h4{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);margin:0 0 8px}
+footer.site h4,footer.site .nh{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);margin:0 0 8px}
 footer.site a{display:block;color:var(--muted);text-decoration:none;padding:9px 0;line-height:1.4}
 footer.site a:hover{color:var(--brand)}
 footer.site .disc{font-size:14px;max-width:70ch}

@@ -19,7 +19,26 @@ SITE = "https://myvitapals.com"
 REVIEWED = "November 5, 2026"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-ASSET_V = "13"
+ASSET_V = "14"
+REVIEWED_ISO = datetime.datetime.strptime(REVIEWED, "%B %d, %Y").date().isoformat()
+
+# ---- brand & search settings (edit here; everything below is generated from these)
+BRAND = "MyVitaPals"
+BRAND_ALT = ["VitaPals", "myvitapals.com"]
+TAGLINE = "Food First, Science Always"
+BRAND_DESC = ("Science-backed nutrition education for adults in the US and India: vitamins, minerals, protein and "
+              "healthy foods explained in plain language, food first, with numbers from the NIH Office of Dietary Supplements.")
+# Search-engine verification tokens. Leave "" to skip. Google's token is already verified in Search Console.
+GOOGLE_VERIFY = "PWmqsbCTxIDBLfAWZAj158s1Cxm_8TM1bWkIVkYY31g"
+BING_VERIFY = ""  # paste the msvalidate.01 content from Bing Webmaster Tools, or import the site from Search Console instead
+# IndexNow (Bing, Yandex, Seznam, Naver...). The key is public by design: it is published at /<key>.txt.
+INDEXNOW_KEY = "0d6a130a6f6e14f262e2b09373a78da5"
+# AI training crawlers are controlled separately from search crawlers. "Allow" or "Disallow".
+AI_TRAINING = "Allow"
+SEARCH_BOTS = ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "Claude-SearchBot", "Claude-User",
+               "PerplexityBot", "Perplexity-User", "Applebot", "DuckDuckBot"]
+TRAINING_BOTS = ["GPTBot", "ClaudeBot", "Google-Extended", "Applebot-Extended", "CCBot"]
+PAGES = []  # (path, title, desc, noindex) for every HTML page written; feeds sitemap.xml and llms.txt
 
 V = json.loads((SRC / "vitamins.json").read_text(encoding="utf-8"))
 D = json.loads((SRC / "details.json").read_text(encoding="utf-8"))
@@ -71,7 +90,65 @@ LOGO = ('<svg viewBox="0 0 64 88" aria-hidden="true"><rect x="8" y="2" width="48
         '<path d="M8 44H56V62A24 24 0 0 1 8 62Z" fill="#7cc4a4"/></svg>')
 
 
-def head(title, desc, path, og="home", extra=""):
+ORG = {"@type": "Organization", "@id": f"{SITE}/#organization", "name": BRAND, "alternateName": BRAND_ALT, "url": f"{SITE}/",
+       "slogan": TAGLINE, "description": BRAND_DESC,
+       "logo": {"@type": "ImageObject", "url": f"{SITE}/apple-touch-icon.png", "width": 180, "height": 180},
+       "publishingPrinciples": f"{SITE}/about/", "correctionsPolicy": f"{SITE}/about/#corrections"}
+WEBSITE = {"@type": "WebSite", "@id": f"{SITE}/#website", "name": BRAND, "alternateName": BRAND_ALT, "url": f"{SITE}/",
+           "description": BRAND_DESC, "inLanguage": "en", "publisher": {"@id": f"{SITE}/#organization"}}
+DISCLAIMER = ("General nutrition education for adults, not medical advice. Content has not been clinically reviewed; "
+              "talk to a doctor, dietitian or pharmacist before starting a supplement.")
+
+
+def title_fit(*cands, n=65):
+    """First title candidate (brand suffix included) that fits n characters; else the shortest."""
+    full = [f"{c} | {BRAND}" for c in cands]
+    return next((c for c in full if len(c) <= n), min(full, key=len))
+
+
+def graph(path, title, desc, og, kind, crumbs, faq, cites, about):
+    """One JSON-LD @graph per page: Organization, WebSite, the page, optional Article, breadcrumbs and FAQ."""
+    page_url = f"{SITE}{path}"
+    nodes = [ORG, WEBSITE]
+    wp = {"@type": {"about": "AboutPage", "collection": "CollectionPage"}.get(kind, "WebPage"), "@id": f"{page_url}#webpage",
+          "url": page_url, "name": title, "description": desc, "inLanguage": "en", "isPartOf": {"@id": f"{SITE}/#website"},
+          "primaryImageOfPage": {"@type": "ImageObject", "url": f"{SITE}/og/{og}.png", "width": 1200, "height": 630},
+          "dateModified": REVIEWED_ISO}
+    if path == "/":
+        wp["about"] = {"@id": f"{SITE}/#organization"}
+    if crumbs:
+        wp["breadcrumb"] = {"@id": f"{page_url}#breadcrumb"}
+    nodes.append(wp)
+    if kind == "article":
+        art = {"@type": "Article", "@id": f"{page_url}#article", "headline": title.split(" | ")[0][:110], "description": desc,
+               "mainEntityOfPage": {"@id": f"{page_url}#webpage"}, "image": f"{SITE}/og/{og}.png", "inLanguage": "en",
+               "dateModified": REVIEWED_ISO, "author": {"@id": f"{SITE}/#organization"}, "publisher": {"@id": f"{SITE}/#organization"},
+               "isAccessibleForFree": True, "audience": {"@type": "PeopleAudience", "suggestedMinAge": 20},
+               "disambiguatingDescription": DISCLAIMER}
+        if about:
+            art["about"] = {"@type": "Thing", "name": about}
+        if cites:
+            art["citation"] = [{"@type": "CreativeWork", "name": n, "url": u} for n, u in cites]
+        nodes.append(art)
+    if crumbs:
+        trail = [("Home", "/")] + list(crumbs)
+        nodes.append({"@type": "BreadcrumbList", "@id": f"{page_url}#breadcrumb", "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": n, **({"item": f"{SITE}{u}"} if u else {})}
+            for i, (n, u) in enumerate(trail, 1)]})
+    if faq:
+        nodes.append({"@type": "FAQPage", "@id": f"{page_url}#faq", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]})
+    return jsonld({"@context": "https://schema.org", "@graph": nodes})
+
+
+def head(title, desc, path, og="home", extra="", kind="website", crumbs=None, faq=None, cites=None, about=None, noindex=False):
+    """kind: website | article | collection | about. crumbs: [(name, path or None for the current page)]."""
+    PAGES.append((path, title, desc, noindex))
+    ogtype = "article" if kind == "article" else "website"
+    verify = (f'<meta name="google-site-verification" content="{GOOGLE_VERIFY}">\n' if GOOGLE_VERIFY else "") + \
+             (f'<meta name="msvalidate.01" content="{BING_VERIFY}">\n' if BING_VERIFY else "")
+    robots = "noindex, follow" if noindex else "index, follow, max-image-preview:large, max-snippet:-1"
+    art = f'<meta property="article:modified_time" content="{REVIEWED_ISO}">\n' if kind == "article" else ""
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -79,19 +156,24 @@ def head(title, desc, path, og="home", extra=""):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
+<meta name="robots" content="{robots}">
 <link rel="canonical" href="{SITE}{path}">
 <meta name="theme-color" content="#faf7f2">
-<meta name="google-site-verification" content="PWmqsbCTxIDBLfAWZAj158s1Cxm_8TM1bWkIVkYY31g">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="VitaPals">
+{verify}<meta property="og:type" content="{ogtype}">
+<meta property="og:site_name" content="{BRAND}">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{SITE}{path}">
 <meta property="og:image" content="{SITE}/og/{og}.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:image:alt" content="{e(title.split(' | ')[0])}: {BRAND} illustration">
+{art}<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{e(title)}">
+<meta name="twitter:description" content="{e(desc)}">
+<meta name="twitter:image" content="{SITE}/og/{og}.png">
+{graph(path, title, desc, og, kind, crumbs, faq, cites, about) if not noindex else ""}<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -111,13 +193,13 @@ def header(section="", vit=None, sub=None, psub=None):
     guide_links = "".join(f'<a href="{gurl(g)}">{e(g["title"])}</a>' for g in G)
     topic_links = "".join(f'<a href="{turl(t)}">{t["icon"]} {e(t["title"])}</a>' for t in T)
     menu = f"""<details class="menu"><summary>Menu</summary><div class="panel">
-<h4>Tools</h4><a href="/tools/vitamin-check/">🧭 2-minute vitamin check</a><a href="/tools/food-finder/">🔎 Food finder</a>
-<h4>Health topics</h4>{topic_links}<a href="/topics/">All health topics</a>
-<h4>Guides</h4>{guide_links}
-<h4>Vitamins</h4><div class="grid2">{vit_links}</div>
-<h4>Minerals &amp; omega-3</h4><div class="grid2">{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}<a href="/minerals/">All minerals</a></div>
-<h4>Protein</h4><div class="grid2"><a href="/protein/">Protein overview</a>{"".join(f'<a href="{purl(x)}">{e(x["tab"])}</a>' for x in PR["subs"])}</div>
-<h4>More</h4><a href="/">Home</a><a href="/about/">About &amp; how we write</a></div></details>"""
+<p class="nh">Tools</p><a href="/tools/vitamin-check/">🧭 2-minute vitamin check</a><a href="/tools/food-finder/">🔎 Food finder</a>
+<p class="nh">Health topics</p>{topic_links}<a href="/topics/">All health topics</a>
+<p class="nh">Guides</p>{guide_links}
+<p class="nh">Vitamins</p><div class="grid2">{vit_links}</div>
+<p class="nh">Minerals &amp; omega-3</p><div class="grid2">{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}<a href="/minerals/">All minerals</a></div>
+<p class="nh">Protein</p><div class="grid2"><a href="/protein/">Protein overview</a>{"".join(f'<a href="{purl(x)}">{e(x["tab"])}</a>' for x in PR["subs"])}</div>
+<p class="nh">More</p><a href="/">Home</a><a href="/about/">About &amp; how we write</a></div></details>"""
     strip = ""
     if vit:
         cur = "B" if vit.startswith("B") else vit
@@ -156,13 +238,13 @@ def footer(scripts=""):
 </div></main>
 <footer class="site"><div class="wrap">
   <div class="cols">
-    <div><h4>Vitamins</h4>{vit}</div><div><h4>&nbsp;</h4>{vit2}</div>
-    <div><h4>Guides</h4>{gd}<h4 style="margin-top:14px">Health topics</h4>{"".join(f'<a href="{turl(t)}">{e(t["title"])}</a>' for t in T)}</div>
-    <div><h4>Minerals</h4>{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}<h4 style="margin-top:14px">Protein</h4><a href="/protein/">Protein &amp; its sources</a></div>
-    <div><h4>Tools</h4><a href="/tools/vitamin-check/">Vitamin check</a><a href="/tools/food-finder/">Food finder</a><h4 style="margin-top:14px">VitaPals</h4><a href="/about/">About &amp; how we write</a></div>
+    <div><p class="nh">Vitamins</p>{vit}</div><div><p class="nh">&nbsp;</p>{vit2}</div>
+    <div><p class="nh">Guides</p>{gd}<p class="nh" style="margin-top:14px">Health topics</p>{"".join(f'<a href="{turl(t)}">{e(t["title"])}</a>' for t in T)}</div>
+    <div><p class="nh">Minerals</p>{"".join(f'<a href="{url(m)}">{e(vname(m))}</a>' for m in M)}<p class="nh" style="margin-top:14px">Protein</p><a href="/protein/">Protein &amp; its sources</a></div>
+    <div><p class="nh">Tools</p><a href="/tools/vitamin-check/">Vitamin check</a><a href="/tools/food-finder/">Food finder</a><p class="nh" style="margin-top:14px">VitaPals</p><a href="/about/">About &amp; how we write</a></div>
   </div>
   <p class="disc">VitaPals is written for adults aged 20 and over, for general education, not medical advice. Facts are based on the NIH Office of Dietary Supplements. Talk to a doctor, dietitian or pharmacist before starting a supplement, especially if you're pregnant, take medicines or have a health condition.</p>
-  <p class="disc">Clinical review has not been completed. Citing a source does not imply its endorsement. <a href="/about/#corrections">Report an error / contact</a> · <a href="/about/#privacy">Privacy</a> · <a href="/about/#history">Revision history</a></p><p class="disc">© {YEAR} VitaPals · Content updated {REVIEWED}</p>
+  <p class="disc">Clinical review has not been completed. Citing a source does not imply its endorsement. <a href="/about/#corrections">Report an error / contact</a> · <a href="/about/#privacy">Privacy</a> · <a href="/about/#history">Revision history</a></p><p class="disc">© {YEAR} {BRAND} · {TAGLINE} · Content updated <time datetime="{REVIEWED_ISO}">{REVIEWED}</time></p>
 </div></footer>
 <script src="/assets/app.js?v={ASSET_V}" defer></script>{scripts}
 </body>
@@ -285,8 +367,8 @@ water = [v for v in V if v["type"] == "water"]
 fat = [v for v in V if v["type"] == "fat"]
 vrow = lambda v: (f'<a class="vtile" href="{url(v)}">{pal(v, 26, prop=False)}<div><strong>{e(vname(v))}</strong>'
                   f'<span>{e(v["name"].split(" (")[0])}</span><span class="dose">{e(D[v["id"]]["needShort"].replace(" a day", "/day"))}</span></div></a>')
-home = head("VitaPals — Vitamins Explained Simply, Food First",
-            "What each vitamin does, which foods have it, how much you need and whether you need a supplement. Plain language, real numbers from NIH.",
+home = head(f"{BRAND}: {TAGLINE} | Vitamins Explained",
+            "What each vitamin and mineral does, which US and Indian foods have it, how much adults need and when a supplement makes sense. Numbers from NIH.",
             "/", "home") + header("home") + f"""
 <section class="hero-home"><div class="hero-grid"><div>
   <p class="eyebrow">Vitamins, explained simply</p>
@@ -360,14 +442,16 @@ for i, v in enumerate(ALL):
     prev = grp[gi - 1] if gi > 0 else None
     nxt = grp[gi + 1] if gi < len(grp) - 1 else None
     subs = v.get("subs") or []
-    title = f"{vname(v)} ({v['name'].split(' (')[0]}): Foods, Daily Needs & Supplements | VitaPals"
+    short = v['name'].split(' (')[0]
+    title = title_fit(f"{vname(v)} ({short}): Foods, Daily Needs & Supplements", f"{vname(v)} ({short}): Foods, Needs & Supplements",
+                      f"{vname(v)}: Foods, Daily Needs & Supplements", f"{vname(v)} ({short}): Foods & Daily Needs", f"{vname(v)}: Foods & Daily Needs")
     desc = fit(f"{vname(v)}: adults need {d['needShort']}. {v['job']} Top foods, who's at risk and when a supplement helps.",
                f"{vname(v)}: adults need {d['needShort']}. Top foods (US & Indian), who's at risk, upper limits and when a supplement helps.",
                f"{vname(v)}: adults need {d['needShort']}. Top foods, who's at risk and when a supplement helps.")
     crumbs = '<a href="/">Home</a> › ' + ('<a href="/vitamin-b/">B vitamins</a> › ' if isb else "") + ('<a href="/minerals/">Minerals</a> › ' if mn else "") + e(vname(v))
     soluble = {"water": "Water-soluble", "fat": "Fat-soluble", "mineral": "Mineral", "omega": "Essential fats"}[v["type"]]
-    faq_ld = jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in d["faq"]]})
+    vcrumbs = ([("B vitamins", "/vitamin-b/")] if isb else []) + ([("Minerals", "/minerals/")] if mn else []) + [(vname(v), None)]
+    vcites = [(f"NIH Office of Dietary Supplements: {vname(v)} fact sheet for health professionals", nih(v))] + [tuple(x) for x in d.get("auditSources", [])]
     subpick = ""
     if subs:
         subpick = '<div class="subpick">' + "".join(
@@ -379,7 +463,7 @@ for i, v in enumerate(ALL):
         related = [g for g in G if g["slug"] in v["guides"]]
     if not related:
         related = [g for g in G if g["slug"] in ("over-50", "supplements")]
-    p = head(title, desc, url(v), slug(v), faq_ld) + header("minerals" if mn else "vitamins", None if mn else v["id"]) + f"""
+    p = head(title, desc, url(v), slug(v), kind="article", crumbs=vcrumbs, faq=d["faq"], cites=vcites, about=f"{vname(v)} ({v['name']})") + header("minerals" if mn else "vitamins", None if mn else v["id"]) + f"""
 <p class="crumbs">{crumbs}</p>
 <div class="vhead">{pal(v, 64, decorative=False)}<div>
   <p class="kicker">{e(v['name'])} · {soluble}</p>
@@ -465,11 +549,12 @@ for i, v in enumerate(ALL):
     for j, s in enumerate(subs):
         sp = subs[j - 1] if j > 0 else None
         sn = subs[j + 1] if j < len(subs) - 1 else None
-        stitle = (f"Vitamin {s['tab']} ({s['name']}): What It Is, Foods & Labels | VitaPals" if s["tab"].startswith(v["id"])
-                  else f"{s['tab']}, a Form of Vitamin {v['id']}: Foods & Labels | VitaPals")
+        stitle = (title_fit(f"Vitamin {s['tab']} ({s['name']}): What It Is, Foods & Labels", f"Vitamin {s['tab']} ({s['name']}): Foods & Labels", f"Vitamin {s['tab']}: What It Is, Foods & Labels")
+                  if s["tab"].startswith(v["id"]) else title_fit(f"{s['tab']}, a Form of Vitamin {v['id']}: Foods & Labels", f"{s['tab']} (Vitamin {v['id']}): Foods & Labels"))
         sdesc = fit(f"{s['tab']}: {s['job']} Where to find it and how to read supplement labels.", f"{s['tab']}: {s['job']}")
         back = f'<a href="{url(v)}"><small>← Back to</small>{e(vname(v))} overview</a>'
-        sp_html = head(stitle, sdesc, suburl(v, s), f"{slug(v)}-{s['slug']}") + header("vitamins", v["id"], s["slug"]) + f"""
+        sp_html = head(stitle, sdesc, suburl(v, s), f"{slug(v)}-{s['slug']}", kind="article", crumbs=[(vname(v), url(v)), (s["tab"], None)],
+                       cites=[(f"NIH Office of Dietary Supplements: {vname(v)} fact sheet for health professionals", nih(v))], about=f"{s['tab']} ({s['name']})") + header("vitamins", v["id"], s["slug"]) + f"""
 <p class="crumbs"><a href="/">Home</a> › <a href="{url(v)}">{e(vname(v))}</a> › {e(s['tab'])}</p>
 <div class="vhead">{pal(subpal(s), 64, decorative=False)}<div>
   <p class="kicker">{e(vname(v))} · {e(s['name'])}</p>
@@ -497,9 +582,10 @@ for i, v in enumerate(ALL):
         write(f"{slug(v)}/{s['slug']}/index.html", sp_html)
 
 # ------------------------------------------------------------------ B hub
-hub = head("B Vitamins: All 8 Explained — Foods, Needs & Who Needs More | VitaPals",
+hub = head(title_fit("B Vitamins: All 8 Explained, Foods & Daily Needs"),
            "The 8 B vitamins in one place: what each does, how much you need, the best foods, and who should pay attention.",
-           "/vitamin-b/", "vitamin-b") + header("vitamins", "B") + f"""
+           "/vitamin-b/", "vitamin-b", kind="article", crumbs=[("B vitamins", None)], about="B vitamins",
+           cites=[(f"NIH Office of Dietary Supplements: {vname(b)} fact sheet", nih(b)) for b in BS]) + header("vitamins", "B") + f"""
 <p class="crumbs"><a href="/">Home</a> › B vitamins</p>
 <div class="vhead">{pal(B_HUB, 64, decorative=False)}<div>
   <p class="kicker">8 vitamins · Water-soluble</p><h1>The B vitamins</h1>
@@ -519,9 +605,10 @@ hub = head("B Vitamins: All 8 Explained — Foods, Needs & Who Needs More | Vita
 write("vitamin-b/index.html", hub)
 
 # ------------------------------------------------------------------ minerals hub
-mhub = head("Minerals & Omega-3: Iron, Calcium, Magnesium, Zinc & More | VitaPals",
+mhub = head(title_fit("Minerals & Omega-3: Iron, Calcium, Magnesium, Zinc", "Minerals & Omega-3: Iron, Calcium, Zinc & More"),
             fit("Iron, calcium, magnesium, zinc, iodine, selenium and omega-3 in one place: how much adults need, the best US and Indian foods, and who should watch them."),
-            "/minerals/", "minerals") + header("minerals") + f"""
+            "/minerals/", "minerals", kind="article", crumbs=[("Minerals", None)], about="Dietary minerals and omega-3 fats",
+            cites=[(f"NIH Office of Dietary Supplements: {vname(m)} fact sheet", nih(m)) for m in M]) + header("minerals") + f"""
 <p class="crumbs"><a href="/">Home</a> › Minerals</p>
 <div style="max-width:760px"><h1>Minerals &amp; omega-3</h1>
 <p class="lede">Your body needs minerals in small amounts to build bones, carry oxygen and run your thyroid. These six, plus omega-3 fats, are the ones people ask about most.</p></div>
@@ -560,7 +647,9 @@ for gi_, g in enumerate(G):
     keys = "".join(
         f'<a href="{url(BYID[k])}">{pal(BYID[k], 34, prop=False)}<div><strong>{e(vname(BYID[k]))}</strong><span>{e(t)}</span></div></a>' for k, t in g["key"])
     srcs = ", ".join(f'<a href="{nih(BYID[k])}" rel="noopener">{e(vname(BYID[k]))}</a>' for k in g["sources"])
-    gp = head(g["seo"] + " | VitaPals", fit(g["card"] + " " + g["intro"].split(". ")[0] + ".", g["card"]), gurl(g)) + header("guides") + f"""
+    gcites = [(f"NIH Office of Dietary Supplements: {vname(BYID[k])} fact sheet", nih(BYID[k])) for k in g["sources"]] + ([tuple(g["extraSource"])] if g.get("extraSource") else [])
+    gp = head(title_fit(g["seo"], g["seo"].split(":")[0], g["title"]), fit(g["card"] + " " + g["intro"].split(". ")[0] + ".", g["card"]), gurl(g),
+              kind="article", crumbs=[("Guides", "/guides/"), (g["title"], None)], cites=gcites, about=g["title"]) + header("guides") + f"""
 <p class="crumbs"><a href="/">Home</a> › <a href="/guides/">Guides</a> › {e(g['title'])}</p>
 <div style="max-width:760px"><p class="kicker" style="font-size:36px;margin:0">{g['icon']}</p><h1>{e(g['title'])}</h1><p class="lede">{e(g['intro'])}</p></div>
 <section class="sec"><h2>The vitamins to focus on</h2><div class="gkey">{keys}</div></section>
@@ -581,7 +670,8 @@ for gi_, g in enumerate(G):
 """ + footer()
     write(f"guides/{g['slug']}/index.html", gp)
 
-gi = head("Vitamin Guides for Every Stage of Life | VitaPals", "Vitamin guides for adults: vegetarians, your 20s to 40s, over 50, pregnancy, active lifestyles, supplements and tiredness.", "/guides/") + header("guides") + f"""
+gi = head(title_fit("Vitamin Guides for Every Stage of Life"), "Vitamin guides for adults: vegetarians, your 20s to 40s, over 50, pregnancy, active lifestyles, supplements and tiredness.", "/guides/",
+          kind="collection", crumbs=[("Guides", None)]) + header("guides") + f"""
 <p class="crumbs"><a href="/">Home</a> › Guides</p><h1>Guides</h1><p class="lede">Practical vitamin advice for adults, for every stage of life.</p>
 <div class="cards" style="margin-top:22px">{"".join(f'<a class="card" href="{gurl(g)}"><div class="ic">{g["icon"]}</div><h3>{e(g["title"])}</h3><p>{e(g["card"])}</p><span class="go">Read guide →</span></a>' for g in G).replace("<h3>", '<h2 class="h3">').replace("</h3>", "</h2>")}</div>
 """ + footer()
@@ -616,9 +706,8 @@ def claims_html(cl, show=4):
 
 
 for t in T:
-    faq_ld = jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in t["faq"]]})
-    tp = head(t["seo"] + " | VitaPals", fit(t["card"], t["intro"]), turl(t), "home", faq_ld) + header("topics") + f"""
+    tp = head(title_fit(t["seo"], t["seo"].split(":")[0], t["title"]), fit(t["card"], t["intro"]), turl(t), "home", kind="article",
+              crumbs=[("Health topics", "/topics/"), (t["title"], None)], faq=t["faq"], cites=[tuple(x) for x in t["sources"]], about=t["title"]) + header("topics") + f"""
 <p class="crumbs"><a href="/">Home</a> › <a href="/topics/">Health topics</a> › {e(t['title'])}</p>
 <div style="max-width:760px"><p class="kicker" style="font-size:36px;margin:0" aria-hidden="true">{t['icon']}</p><p class="tkick">{e(t['kicker'])}</p><h1>{e(t['title'])}</h1><p class="lede">{e(t['intro'])}</p></div>
 <div class="note short"><h2 class="h3">The short answer</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in t['short'])}</ul></div>
@@ -690,7 +779,8 @@ for t in T:
 """ + footer()
     write(f"topics/{t['slug']}/index.html", tp)
 
-ti = head("Health Topics: Evidence-Rated Answers | VitaPals", "Common health questions like inflammation and hormonal imbalance, answered in plain language with every claim rated by the strength of its evidence.", "/topics/") + header("topics") + f"""
+ti = head(title_fit("Health Topics: Evidence-Rated Answers"), "Common health questions like inflammation and hormonal imbalance, answered in plain language with every claim rated by the strength of its evidence.", "/topics/",
+          kind="collection", crumbs=[("Health topics", None)]) + header("topics") + f"""
 <p class="crumbs"><a href="/">Home</a> › Health topics</p><h1>Health topics</h1><p class="lede">Plain answers to common health questions. Every claim gets a badge, so you can see how strong the evidence is.</p>
 <div style="margin-top:16px">{LEGEND}</div>
 <div class="cards" style="margin-top:18px">{"".join(f'<a class="card" href="{turl(t)}"><div class="ic">{t["icon"]}</div><h3>{e(t["title"])}</h3><p>{e(t["card"])}</p><span class="go">Read →</span></a>' for t in T).replace("<h3>", '<h2 class="h3">').replace("</h3>", "</h2>")}</div>
@@ -709,25 +799,22 @@ PSRC = ('<section class="sources" id="sources"><details><summary><strong>Sources
         '<p>Content updated {rev}. This page is for general education, not medical advice. It hasn\'t been reviewed by a medical professional yet.</p></section>')
 psources = PSRC.format(n=len(PR["sources"]), rev=REVIEWED, items="".join(f'<li><a href="{e(u)}" rel="noopener">{e(n)}</a></li>' for n, u in PR["sources"]))
 pguides = [g for g in G if g["slug"] in PR["guides"]]
-pfaq_ld = jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-    {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in PR["faq"]]})
 CALC = """<div class="tool pcalc" id="pcalc" hidden>
   <h3>Your number</h3>
   <div class="pcalc-in"><label for="pc-w">Your weight</label><input id="pc-w" type="number" inputmode="decimal" min="30" max="300" placeholder="e.g. 65">
   <select id="pc-u" aria-label="Unit"><option value="kg">kg</option><option value="lb">lb</option></select></div>
   <div id="pc-out" aria-live="polite"><p class="tnote">Enter your weight to see a daily range in grams. Answers are not sent to a server; you can optionally save them on your device.</p></div>
 </div>"""
-pp = head("Protein: How Much You Need & the Best Sources (US & Indian) | VitaPals",
+pp = head(title_fit("Protein: How Much You Need & the Best Sources (US & Indian)", "Protein: How Much You Need & the Best Sources"),
           fit("Protein for adults: traditional RDA and current dietary targets, the best US and Indian sources, protein powders, and myths checked with evidence."),
-          purl(), "protein", pfaq_ld) + header("protein") + f"""
+          purl(), "protein", kind="article", crumbs=[("Protein", None)], faq=PR["faq"], cites=[tuple(x) for x in PR["sources"]], about="Dietary protein") + header("protein") + f"""
 <p class="crumbs"><a href="/">Home</a> › Protein</p>
 <div class="vhead">{pal(PR, 64, decorative=False)}<div>
   <p class="kicker">Macronutrient · Made of amino acids</p>
   <h1>Protein</h1>
   <p class="lede">{e(PR['job'])}</p>
 </div></div>
-<aside class="note"><h2>30-second summary</h2><p>{e(v['job'])} Start with foods, compare the reference intake for your life stage, and discuss supplements when needed.</p></aside>
-{('<p class="tnote">Updated guidance: ' + ' · '.join('<a href="'+e(u)+'">'+e(n)+'</a>' for n,u in d.get('auditSources', [])) + '</p>') if d.get('auditSources') else ''}
+<aside class="note"><h2>30-second summary</h2><p>{e(PR['job'])} Start with foods, compare the reference intake for your life stage, and discuss supplements when needed.</p></aside>
 <div class="glance" id="glance">{"".join(f"<div><small>{e(a)}</small><strong>{e(b)}</strong></div>" for a, b in PR['glance'])}</div>
 <nav class="jump" aria-label="On this page"><a href="#types">Sources</a><a href="#foods">Top foods</a><a href="#needs">How much</a><a href="#benefits">Benefits</a><a href="#risk">Who needs more</a><a href="#supplements">Powders</a><a href="#claims">Claims checked</a><a href="#doctor">Doctor</a><a href="#faq">FAQ</a></nav>
 
@@ -820,9 +907,10 @@ for j, x in enumerate(PR["subs"]):
     indian = (f'<div class="note"><h3>🇮🇳 In Indian kitchens</h3><div class="chips">{"".join(f"<span>{e(i)}</span>" for i in x["indian"])}</div></div>' if x["indian"] else "")
     table = (f'<section class="sec" id="foods"><h2>How much protein?</h2><p class="sub">Per typical serving, with how much of the 50 g Daily Value it covers.</p>{ptable(x["table"], x["tableNote"])}<div style="margin-top:16px">{indian}</div></section>'
              if x["table"] else "")
-    xh = head(f"{x['tab']}: Protein, Best Picks & What to Watch | VitaPals",
+    xh = head(title_fit(f"{x['tab']}: Protein, Best Picks & What to Watch", f"{x['tab']}: Protein & Best Picks"),
               fit(f"{x['tab']} as a protein source: {x['job']} Grams per serving, US and Indian picks, and what to watch.", f"{x['tab']} as a protein source: {x['job']}"),
-              purl(x), f"protein-{x['slug']}") + header("protein", psub=x["slug"]) + f"""
+              purl(x), f"protein-{x['slug']}", kind="article", crumbs=[("Protein", "/protein/"), (x["tab"], None)],
+              cites=[tuple(y) for y in PR["sources"]], about=f"{x['tab']} as a protein source") + header("protein", psub=x["slug"]) + f"""
 <p class="crumbs"><a href="/">Home</a> › <a href="/protein/">Protein</a> › {e(x['tab'])}</p>
 <div class="vhead">{pal(psubpal(x), 64, decorative=False, prop=False)}<div>
   <p class="kicker">Protein source · {e(x['name'])}</p>
@@ -852,9 +940,9 @@ for j, x in enumerate(PR["subs"]):
     write(f"protein/{x['slug']}/index.html", xh)
 
 # ------------------------------------------------------------------ tools
-ff = head("Food Finder: Which Vitamins Are in Your Food? | VitaPals",
+ff = head(title_fit("Food Finder: Which Vitamins Are in Your Food?"),
           "Search any food, like spinach, eggs, milk or dal, to see which vitamins it's rich in and how much of your daily need it covers.",
-          "/tools/food-finder/") + header("finder") + """
+          "/tools/food-finder/", crumbs=[("Food finder", None)]) + header("finder") + """
 <p class="crumbs"><a href="/">Home</a> › Food finder</p>
 <div style="max-width:760px"><h1>Food finder</h1><p class="lede">Type a food to see which vitamins it's rich in, and how much of your daily need one serving covers.</p></div>
 <div class="tool" style="margin-top:20px" id="food-finder">
@@ -868,9 +956,9 @@ ff = head("Food Finder: Which Vitamins Are in Your Food? | VitaPals",
 """ + footer()
 write("tools/food-finder/index.html", ff)
 
-vc = head("2-Minute Vitamin Check: Which Vitamins Should You Watch? | VitaPals",
+vc = head(title_fit("2-Minute Vitamin Check: Which Vitamins to Watch?"),
           "Answer 13 quick questions about your diet and lifestyle to see which vitamins and minerals deserve a closer look. Free, private and educational.",
-          "/tools/vitamin-check/") + header("check") + """
+          "/tools/vitamin-check/", crumbs=[("Vitamin check", None)]) + header("check") + """
 <p class="crumbs"><a href="/">Home</a> › Vitamin check</p>
 <div style="max-width:760px"><h1>2-minute vitamin check</h1><p class="lede">Answer 13 quick questions about how you eat and live. We'll point out which vitamins deserve a closer look, and the foods that help. Answers are processed on your device. Saving is optional.</p></div>
 <form class="tool" id="vcheck" style="margin-top:20px">
@@ -928,12 +1016,13 @@ vc = head("2-Minute Vitamin Check: Which Vitamins Should You Watch? | VitaPals",
 write("tools/vitamin-check/index.html", vc)
 
 # ------------------------------------------------------------------ about
-about = head("About VitaPals & How We Write", "How VitaPals researches and writes about vitamins: who it's for, where the facts come from, how evidence is rated and what we never do.", "/about/") + header("about") + f"""
+about = head(title_fit("About Us & How We Write"), f"How {BRAND} researches and writes about nutrition: who it's for, where the facts come from, how evidence is rated and what we never do.", "/about/",
+             kind="about", crumbs=[("About", None)]) + header("about") + f"""
 <p class="crumbs"><a href="/">Home</a> › About</p>
 <div class="prose"><h1>About VitaPals</h1>
 <p class="lede">VitaPals explains vitamins in plain language, so you can make sense of what you eat and have better conversations with your doctor.</p>
 <h2>Who it's for</h2><p>VitaPals is written for adults aged 20 and over. Children and teens have different needs and safe limits, so please ask a pediatrician about them.</p>
-<h2>Food first</h2><p>Most people can get most vitamins from a varied diet. We show real foods, with real amounts, before we ever talk about supplements. We include everyday US and Indian foods, because that's how many of our readers eat.</p>
+<h2>Food first, science always</h2><p>Most people can get most vitamins from a varied diet. We show real foods, with real amounts, before we ever talk about supplements. We include everyday US and Indian foods, because that's how many of our readers eat.</p>
 <h2>Where our facts come from</h2><p>Daily needs, upper limits, food amounts and medicine interactions come from the <a href="https://ods.od.nih.gov/factsheets/list-VitaminsMinerals/" rel="noopener">NIH Office of Dietary Supplements</a> fact sheets for health professionals, which are based on the US Food and Nutrition Board. Every page links to its source.</p>
 <h2 id="evidence">How we rate evidence</h2><p>Topic badges are editorial summaries, not a validated evidence-grading system or proof of causation. Read the underlying sources and context. Clinical review and a claim-by-claim evidence appraisal remain pending:</p>
 <ul class="clean"><li>🟢 <strong>Established guidance</strong>: summarizes guidance discussed in the page sources; this does not establish that every associated benefit is causal.</li><li>🟡 <strong>Limited evidence</strong>: promising or consistent studies, but smaller, mixed or mostly observational.</li><li>⚪ <strong>Not enough evidence</strong>: too little good research to say either way.</li><li>🔴 <strong>Myth</strong>: the evidence says no, or it isn't a recognized condition.</li></ul>
@@ -948,19 +1037,70 @@ about = head("About VitaPals & How We Write", "How VitaPals researches and write
 """ + footer()
 write("about/index.html", about)
 
-nf = head("Page not found | VitaPals", "This page wandered off.", "/404.html") + header() + f"""
+nf = head(f"Page not found | {BRAND}", "This page wandered off.", "/404.html", noindex=True) + header() + f"""
 <div style="text-align:center;padding:40px 0">{pal(BYID['C'], 80)}<h1 style="margin-top:12px">This page wandered off</h1>
 <p class="lede" style="margin:12px auto 22px">Maybe it went to get some sunshine with vitamin D. Try searching instead:</p>
 <div style="display:flex;justify-content:center">{SEARCH}</div><p style="margin-top:22px"><a class="btn" href="/">Go home</a></p></div>
 """ + footer()
 write("404.html", nf)
 
-# ------------------------------------------------------------------ sitemap, robots, favicon, og
-paths = (["/", "/vitamin-b/"] + [p for v in V for p in [url(v)] + [suburl(v, s) for s in v.get("subs", [])]] + ["/minerals/"] + [url(m) for m in M] + [purl()] + [purl(x) for x in PR["subs"]]
-         + ["/guides/"] + [gurl(g) for g in G] + ["/topics/"] + [turl(t) for t in T] + ["/tools/food-finder/", "/tools/vitamin-check/", "/about/"])
+# ------------------------------------------------------------------ sitemap, robots, llms.txt, IndexNow, favicon, og
+# The sitemap is built from every page head() produced, so new pages are included automatically; noindex pages are left out.
+paths = [pth for pth, _, _, noidx in PAGES if not noidx]
+assert len(paths) == len(set(paths)), "duplicate page paths"
 write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-      "".join(f"  <url><loc>{SITE}{p}</loc><lastmod>{TODAY}</lastmod></url>\n" for p in paths) + "</urlset>\n")
-write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+      "".join(f"  <url><loc>{SITE}{p}</loc><lastmod>{REVIEWED_ISO}</lastmod></url>\n" for p in paths) + "</urlset>\n")
+
+ua = lambda bots: "".join(f"User-agent: {b}\n" for b in bots)
+write("robots.txt", f"""# {BRAND} ({SITE}) - {TAGLINE}
+# Everything public on this site is educational and may be crawled. Folders starting with "_" are build sources
+# and are not published by GitHub Pages; the Disallow lines below only matter if the site moves to another host.
+
+# Search engines and AI answer engines: index pages and link to them as sources.
+{ua(SEARCH_BOTS)}Allow: /
+Disallow: /_src/
+Disallow: /_social/
+
+# AI model training crawlers, kept separate from search. Blocking these does not remove the site from
+# ChatGPT search, Claude, Perplexity, Google or Bing results. Change Allow to Disallow to opt out of training.
+{ua(TRAINING_BOTS)}{AI_TRAINING}: /
+
+# Everyone else
+User-agent: *
+Allow: /
+Disallow: /_src/
+Disallow: /_social/
+
+Sitemap: {SITE}/sitemap.xml
+""")
+
+# llms.txt: an optional, plain-text map of the site for AI tools (not an indexing requirement).
+def llm_line(pth, label, note):
+    return f"- [{label}]({SITE}{pth}): {note}"
+nutrient_note = lambda v: f"adults need {D[v['id']]['needShort']}; upper limit {D[v['id']]['ulShort'].lower() if D[v['id']]['ulShort'] == 'None set' else D[v['id']]['ulShort']}; best foods: {D[v['id']]['top3']}."
+llms = [f"# {BRAND}", "", f"> {BRAND_DESC} Tagline: {TAGLINE}.", "",
+        f"{BRAND} is a free, static, ad-free educational website for adults aged 20 and over (not children). Pages are plain HTML. "
+        "Daily needs (RDA/AI), upper limits (UL), food amounts and medicine interactions come from the NIH Office of Dietary Supplements "
+        "health-professional fact sheets; % Daily Value uses US FDA label values; protein food values use USDA FoodData Central. "
+        "Every page links its sources and shows when it was last updated. Health-topic pages rate claims with evidence badges "
+        "(established guidance, limited evidence, not enough evidence, myth).", "",
+        f"Important: content is general education, not medical advice. It has not been clinically reviewed by a named dietitian or doctor. "
+        f"Content last updated {REVIEWED}. When citing, please link the specific page.", "",
+        "## Vitamins"] + [llm_line(url(v), f"{vname(v)} ({v['name'].split(' (')[0]})", nutrient_note(v)) for v in V] + \
+       [llm_line(suburl(v, x), f"{x['tab']} ({vname(v)})", x["job"]) for v in V for x in v.get("subs", [])] + \
+       [llm_line("/vitamin-b/", "B vitamins hub", "all 8 B vitamins compared: daily needs and best foods.")] + \
+       ["", "## Minerals and omega-3", llm_line("/minerals/", "Minerals overview", "iron, calcium, magnesium, zinc, iodine, selenium and omega-3 at a glance.")] + \
+       [llm_line(url(m), vname(m), nutrient_note(m)) for m in M] + \
+       ["", "## Protein", llm_line(purl(), "Protein", f"how much adults need ({PR['needShort']}), best US and Indian sources, powders and myths.")] + \
+       [llm_line(purl(x), f"{x['tab']} (protein)", x["job"]) for x in PR["subs"]] + \
+       ["", "## Life-stage guides"] + [llm_line(gurl(g), g["title"], g["card"]) for g in G] + \
+       ["", "## Health topics (evidence-rated)"] + [llm_line(turl(t), t["title"], t["card"]) for t in T] + \
+       ["", "## Tools", llm_line("/tools/food-finder/", "Food finder", "search a food to see which nutrients it is rich in (needs JavaScript; the same data is on each nutrient page)."),
+        llm_line("/tools/vitamin-check/", "2-minute vitamin check", "educational questionnaire; runs in the browser, nothing is sent to a server."),
+        "", "## About", llm_line("/about/", "About and how we write", "audience, sources, evidence ratings, corrections policy, privacy and medical disclaimer."),
+        "", "## Optional", llm_line("/sitemap.xml", "Sitemap", "every public page."), ""]
+write("llms.txt", "\n".join(llms))
+write(f"{INDEXNOW_KEY}.txt", INDEXNOW_KEY)
 write("favicon.svg", '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="16" y="2" width="32" height="60" rx="16" fill="#1e6b52"/><path d="M16 32H48V46A16 16 0 0 1 16 46Z" fill="#7cc4a4"/></svg>\n')
 
 og_items = [("home", None), ("vitamin-b", B_HUB)] + [(slug(v), v) for v in ALL]
@@ -982,4 +1122,4 @@ og_items = [("home", None), ("vitamin-b", B_HUB)] + [(slug(v), v) for v in ALL]
     {"name": "minerals", "svg": "".join(pal(m, 110) for m in M[:6]), "kicker": "Minerals & omega-3", "title": "Iron, calcium & friends",
      "color": "#1e6b52", "lead": "How much you need, the best US and Indian foods, and who should watch them.", "multi": 1}], ensure_ascii=False), encoding="utf-8")
 
-print(f"Built {len(paths)} pages + 404, sitemap, robots, favicon, search & food data.")
+print(f"Built {len(paths)} indexable pages + 404, sitemap, robots, llms.txt, IndexNow key, favicon, search & food data.")
