@@ -438,3 +438,5 @@ h1,h2,h3,p,li,a,legend,label,strong,td{overflow-wrap:break-word}
 /* Target size (WCAG 2.5.8): pad small stand-alone links; 24px checkboxes and radios */
 .opts input,.vc-actions .remember input{width:24px;height:24px;flex:0 0 24px}
 .ff-row a,.evlegend a,.myth .f a{display:inline-block;padding:4px 0;min-height:24px}
+/* Longer "MyVitaPals" logo: keep the header on one line on small phones */
+@media (max-width:389px){.logo{font-size:21px;gap:6px}.menu>summary .lbl{display:none}.menu>summary{padding:8px 12px}}

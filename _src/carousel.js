@@ -117,7 +117,7 @@ function slide(post, s) {
       if (s.title && words(s.title) > 8) console.warn(`LONG TITLE (${words(s.title)} words): ${post.id} slide ${i + 1}`);
       const [colored, inner] = slide(post, s);
       fs.writeFileSync(tmp, `<!doctype html><html><head><meta charset="utf-8"><style>${css(post)}</style></head><body class="${colored ? 'color' : ''}${post.dark ? ' dark-c' : ''}">${inner}
-        <div class="foot"><span class="brand">Vita<b>Pals</b></span><span class="count">${i + 1} / ${post.slides.length}</span></div></body></html>`);
+        <div class="foot"><span class="brand">MyVita<b>Pals</b></span><span class="count">${i + 1} / ${post.slides.length}</span></div></body></html>`);
       await p.goto('file://' + tmp);
       await p.evaluate(async () => { await document.fonts.ready; });
       await p.waitForTimeout(100);
