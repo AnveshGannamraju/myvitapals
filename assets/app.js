@@ -26,8 +26,9 @@
   document.addEventListener("click", function (ev) {
     var a = ev.target.closest && ev.target.closest("a[href]");
     if (!a) return;
-    var area = a.closest(".site-header") ? (a.closest(".menu") ? "menu" : "header") : a.closest("footer") ? "footer" : a.closest(".jump") ? "onpage" :
-      a.closest(".crumbs") ? "breadcrumb" : a.closest(".pager") ? "pager" : a.closest("#related,.cards") ? "related" : a.closest(".results") ? "search-result" : "content";
+    var area = a.closest(".results") ? "search-result" : a.closest(".site-header") ? (a.closest(".menu") ? "menu" : a.closest(".strip") ? "subnav" : "header") :
+      a.closest("footer") ? "footer" : a.closest(".jump") ? "onpage" : a.closest(".crumbs") ? "breadcrumb" : a.closest(".pager") ? "pager" :
+      a.closest(".cats") ? "home-category" : a.closest("#related,.cards") ? "related" : "content";
     var u; try { u = new URL(a.href, location.href); } catch (e) { return; }
     if (u.hostname !== location.hostname) event("outbound-" + u.hostname, a.textContent.trim().slice(0, 60));
     else event("nav-" + area + ":" + u.pathname + (u.hash && u.pathname === location.pathname ? u.hash : ""), a.textContent.trim().slice(0, 60));
@@ -45,6 +46,38 @@
   var setH = function () { if (hdr) document.documentElement.style.setProperty("--hh", hdr.offsetHeight + "px"); };
   setH(); window.addEventListener("resize", setH);
 
+  /* ---------- Menu and search panels: one open at a time; Escape, outside click or a link closes them ---------- */
+  var panels = [].slice.call(document.querySelectorAll("details[data-dismiss]"));
+  var closeAll = function (except, refocus) {
+    panels.forEach(function (d) { if (d !== except && d.open) { d.open = false; if (refocus) d.querySelector("summary").focus(); } });
+  };
+  panels.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (!d.open) return;
+      closeAll(d); setH();
+      if (d.classList.contains("hsearch")) { var i = d.querySelector("input"); if (i) setTimeout(function () { i.focus(); }, 0); }
+      if (d.classList.contains("menu")) event("menu-open", "Mobile menu opened");
+    });
+  });
+  document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") { var open = panels.filter(function (d) { return d.open; }); if (open.length) { ev.preventDefault(); closeAll(null, true); } } });
+  document.addEventListener("click", function (ev) {
+    panels.forEach(function (d) { if (d.open && (!d.contains(ev.target) || (ev.target.closest && ev.target.closest(".panel a, .results a")))) d.open = false; });
+  });
+  document.querySelectorAll(".menu .mg").forEach(function (g) {
+    g.addEventListener("toggle", function () { if (g.open) event("menu-expand:" + g.querySelector("summary").firstChild.textContent.trim(), "Menu category opened"); });
+  });
+  window.addEventListener("resize", function () { if (innerWidth >= 1000) panels.forEach(function (d) { if (d.classList.contains("menu")) d.open = false; }); });
+
+  /* ---------- Wide tables: make the scroll area reachable by keyboard only when it actually scrolls ---------- */
+  var tw = function () {
+    document.querySelectorAll(".tscroll").forEach(function (w) {
+      var t = w.querySelector("table"), scrolls = w.scrollWidth > w.clientWidth + 1;
+      if (scrolls) { w.tabIndex = 0; w.setAttribute("role", "region"); w.setAttribute("aria-label", (t && t.querySelector("th") ? "Table: " + t.querySelector("th").textContent : "Table") + " (scrolls sideways)"); }
+      else { w.removeAttribute("tabindex"); w.removeAttribute("role"); w.removeAttribute("aria-label"); }
+    });
+  };
+  tw(); window.addEventListener("resize", tw);
+
   /* ---------- Keep the active tab visible ---------- */
   document.querySelectorAll(".strip .on").forEach(function (a) {
     var s = a.parentNode; s.scrollLeft = a.offsetLeft - s.clientWidth / 2 + a.clientWidth / 2;
@@ -58,10 +91,11 @@
   // A term matches a word if it is the word (short terms like "d" or "b12") or starts it (longer terms like "veget").
   var hit = function (list, w) { for (var i = 0; i < list.length; i++) { var x = list[i]; if (x === w || (w.length >= 3 && x.indexOf(w) === 0)) return true; } return false; };
   document.querySelectorAll("[data-search]").forEach(function (box) {
-    var input = box.querySelector("input"), out = box.querySelector(".results");
+    var input = box.querySelector("input"), out = box.querySelector(".results"), status = box.querySelector("[aria-live]");
+    var say = function (t) { if (status) status.textContent = t; };
     var run = function () {
       var raw = input.value.trim();
-      if (raw.length < 2) { out.innerHTML = ""; return; }
+      if (raw.length < 2) { out.innerHTML = ""; say(""); return; }
       Promise.all([load("/assets/search.json"), load("/assets/foods.json")]).then(function (res) {
         var idx = res[0], foods = res[1], hits = [];
         var terms = words(raw).filter(function (w) { return !STOP[w]; });
@@ -87,11 +121,19 @@
         var li = function (h) { return '<li><a href="' + h.u + '">' + esc(h.t) + "<small>" + esc(h.k) + "</small></a></li>"; };
         out.innerHTML = hits.length ? hits.slice(0, 6).map(li).join("") :
           '<li class="none">No exact match. Popular pages:</li>' + POPULAR.map(function (p) { return li({ t: p[0], u: p[1], k: "Popular" }); }).join("");
+        say(hits.length ? Math.min(hits.length, 6) + " result" + (hits.length === 1 ? "" : "s") + ". Use the down arrow to browse." : "No exact match. Showing popular pages.");
       }).catch(function () { out.innerHTML = '<li>Search is unavailable. Please try again or browse the menu.</li>'; });
     };
     input.addEventListener("input", run);
     input.addEventListener("keydown", function (ev) {
       if (ev.key === "Enter") { var a = out.querySelector("a"); if (a) { ev.preventDefault(); location.href = a.href; } }
+      if (ev.key === "ArrowDown") { var f = out.querySelector("a"); if (f) { ev.preventDefault(); f.focus(); } }
+      if (ev.key === "Escape" && input.value) { ev.stopPropagation(); input.value = ""; out.innerHTML = ""; say(""); }
+    });
+    out.addEventListener("keydown", function (ev) {
+      var links = [].slice.call(out.querySelectorAll("a")), i = links.indexOf(document.activeElement);
+      if (ev.key === "ArrowDown" && i < links.length - 1) { ev.preventDefault(); links[i + 1].focus(); }
+      if (ev.key === "ArrowUp") { ev.preventDefault(); (i > 0 ? links[i - 1] : input).focus(); }
     });
   });
 
@@ -100,7 +142,8 @@
   if (mythData && mythBox) {
     try {
       var myths = JSON.parse(mythData.textContent), week = Math.floor(Date.now() / 6048e5), pick = [];
-      for (var i = 0; i < 3; i++) pick.push(myths[(week * 3 + i) % myths.length]);
+      var n = mythBox.children.length || 3;
+      for (var i = 0; i < n; i++) pick.push(myths[(week * n + i) % myths.length]);
       mythBox.innerHTML = pick.map(function (m) {
         return '<div class="myth"><div class="m"><b>Myth</b>' + esc(m.m) + '</div><div class="f"><b>Fact</b>' + esc(m.f) +
           ' <a href="/vitamin-' + m.v.toLowerCase() + '/#myths">Vitamin ' + esc(m.v) + " →</a></div></div>";
@@ -182,15 +225,42 @@
     var prog = document.getElementById("vcheck-prog");
     var radios = {}; form.querySelectorAll('input[type="radio"]').forEach(function (el) { radios[el.name] = 1; });
     var total = Object.keys(radios).length;
+    form.querySelectorAll("fieldset.q").forEach(function (fs) { var i = fs.querySelector("input"); if (i) fs.id = "q-" + i.name; });
+    var bar = document.getElementById("vcheck-bar"), errBox = document.getElementById("vcheck-errors");
+    var missing = function () { return Object.keys(radios).filter(function (nm) { return !form.querySelector('input[name="' + nm + '"]:checked'); }); };
     var tally = function () {
-      var n = Object.keys(radios).filter(function (nm) { return form.querySelector('input[name="' + nm + '"]:checked'); }).length;
-      if (prog) prog.textContent = n + " of " + total + " answered" + (n < total ? " · questions 12 and 13 are optional" : " · ready when you are");
+      var n = total - missing().length;
+      if (bar) bar.value = n;
+      if (prog) prog.textContent = n + " of " + total + " answered" + (n < total ? "" : " · ready when you are");
+      form.querySelectorAll("fieldset.invalid").forEach(function (fs) {
+        if (fs.querySelector("input:checked")) { fs.classList.remove("invalid"); var m = fs.querySelector(".q-err"); if (m) m.remove(); fs.querySelectorAll("input").forEach(function (x) { x.removeAttribute("aria-invalid"); }); }
+      });
+      if (errBox && !errBox.hidden && !missing().length) errBox.hidden = true;
     };
     var vcStarted = false;
+    if (errBox) errBox.addEventListener("click", function (ev) {
+      var l = ev.target.closest("a"); if (!l) return; ev.preventDefault();
+      var fs = document.querySelector(l.getAttribute("href")); fs.scrollIntoView({ block: "center" }); fs.querySelector("input").focus();
+    });
     form.addEventListener("change", function () { if (!vcStarted) { vcStarted = true; event("vitamin-check-start", "Vitamin check started"); } tally(); });
     tally();
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
+      var miss = missing();
+      if (miss.length) {
+        errBox.innerHTML = '<h2 class="h3">Please answer ' + miss.length + " more question" + (miss.length === 1 ? "" : "s") + "</h2><ul>" + miss.map(function (nm) {
+          var fs = document.getElementById("q-" + nm), lg = fs.querySelector("legend").textContent;
+          if (!fs.classList.contains("invalid")) {
+            fs.classList.add("invalid");
+            var m = document.createElement("p"); m.className = "q-err"; m.id = "err-" + nm; m.textContent = "Please choose an answer."; fs.querySelector("legend").after(m);
+            fs.querySelectorAll("input").forEach(function (x) { x.setAttribute("aria-invalid", "true"); x.setAttribute("aria-describedby", "err-" + nm); });
+          }
+          return '<li><a href="#q-' + nm + '">' + esc(lg) + "</a></li>";
+        }).join("") + "</ul>";
+        errBox.hidden = false; errBox.focus();
+        return;
+      }
+      if (errBox) errBox.hidden = true;
       var a = {};
       form.querySelectorAll("input").forEach(function (el) { if (el.type === "radio" && el.checked) a[el.name] = el.value; if (el.type === "checkbox") a[el.name] = el.checked; });
       try { if (a.remember) localStorage.setItem(KEY, JSON.stringify(a)); else localStorage.removeItem(KEY); } catch (e) {}
@@ -229,7 +299,7 @@
       var list = Object.keys(R).sort(function (x, y) { return R[y].w - R[x].w; });
       var out = document.getElementById("vcheck-out");
       var foodIdeas = {B12:"B12-fortified foods; check the label. Vegans need a reliable fortified-food or supplement plan.", D:"Fortified plant milk and UV-exposed mushrooms; check the label.", B2:"Almonds, mushrooms and fortified plant milk.", B9:"Lentils, beans and leafy greens.", A:"Carrots, pumpkin and leafy greens.", Fe:"Lentils, beans and tofu with vitamin-C-rich foods.", Ca:"Calcium-fortified soy milk and calcium-set tofu; check labels.", I:"Iodized salt within your usual salt allowance; do not increase salt intake.", Zn:"Beans, seeds and whole grains.", C:"Guava, oranges and peppers.", E:"Sunflower seeds and almonds.", K:"Leafy greens; keep intake consistent if taking warfarin.", B6:"Chickpeas and potatoes.", B1:"Beans and whole grains.", B7:"Cooked legumes, seeds and nuts."};
-      var html = "<h2>Food sources to consider</h2><p>Up to three starting points from your answers. These are not validated risk scores and cannot establish deficiency or adequacy.</p>";
+      var html = '<h2 id="vcheck-res-h" tabindex="-1">Your next steps</h2><h3>Food sources to consider</h3><p>Up to three starting points from your answers. These are not validated risk scores and cannot establish deficiency or adequacy.</p>';
       if (!list.length) html += '<div class="item"><span class="lvl ok">No suggestions triggered</span><div><strong>Nothing stands out.</strong><p style="margin:4px 0 0;color:var(--muted)">This short questionnaire cannot confirm nutrient adequacy. Review serving sizes and food variety, and seek advice for persistent symptoms.</p></div></div>';
       list.slice(0, 3).forEach(function (v) {
         var r = R[v], label = "Food focus";
@@ -242,11 +312,13 @@
       if (a.preg === "breastfeeding") cautions.push("Breastfeeding needs differ from pregnancy; review iodine and B12 intake.");
       if (a.metformin || a.acid || a.seizure || a.otherblood || a.supplements) cautions.push("Ask a pharmacist to review all medicines and supplements together. This questionnaire is not a complete interaction checker.");
       html += '<ul>' + cautions.map(function(c){return '<li>'+esc(c)+'</li>';}).join('') + '</ul>';
-      html += '<h2>Questions for a professional</h2><p>Would a review of my diet, symptoms, medicines or supplement labels help? Would any test change my care?</p><h2>Important cautions</h2><p>Do not change prescribed medicines or take high-dose supplements based on this check. Routine vitamin D screening is not recommended for otherwise healthy adults. Protect your skin from UV exposure.</p>';
+      html += '<h3>Questions for a professional</h3><p>Would a review of my diet, symptoms, medicines or supplement labels help? Would any test change my care?</p><h3>Important cautions</h3><p>Do not change prescribed medicines or take high-dose supplements based on this check. Routine vitamin D screening is not recommended for otherwise healthy adults. Protect your skin from UV exposure.</p>';
       html += '<div class="note" style="margin-top:14px"><p><strong>Next step:</strong> share this with your doctor. They can decide whether a blood test makes sense. This is not a diagnosis. <a href="#" onclick="window.print();return false">Print or save as PDF</a></p></div>';
       out.innerHTML = html;
       event("vitamin-check-complete", "Vitamin check completed"); // no answers or results are sent
-      out.scrollIntoView({ behavior: "smooth", block: "start" });
+      out.setAttribute("role", "region"); out.setAttribute("aria-labelledby", "vcheck-res-h");
+      var rh = document.getElementById("vcheck-res-h"); if (rh) rh.focus({ preventScroll: true });
+      out.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     });
   }
 

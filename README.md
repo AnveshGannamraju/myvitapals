@@ -31,3 +31,9 @@ Content-update dates do not certify clinical review. Qualified review of medicat
 - Per-page metadata: unique title and description, canonical, robots, Open Graph, Twitter cards and one JSON-LD `@graph` (Organization, WebSite, WebPage, Article with citations, BreadcrumbList, FAQPage only where the FAQ is visible). No ratings, reviews or reviewer credentials are claimed.
 
 Check with `python3 _src/seo_check.py` (titles, descriptions, canonicals, headings, links, anchors, structured data, sitemap, robots, llms.txt).
+
+## Design system notes (UI refresh, Nov 2026)
+- Edit `assets/style.css`. The build writes the minified `assets/style.min.css` that pages load; bump `ASSET_V` in `build.py` after CSS or JS changes.
+- The header, breadcrumbs, footer, mobile menu and global search are generated once in `header()` and `footer()` in `build.py`. Breadcrumbs come from the same `crumbs=` list as the BreadcrumbList JSON-LD, so the two always match.
+- The home page stays short; detail lives on hubs (`/vitamins/`, `/minerals/`, `/protein/`, `/topics/`, `/guides/`, `/tools/`).
+- UI regression: run `node _src/qa-ui.cjs`. It covers keyboard, menu dismissal, search, breadcrumbs, the vitamin check flow, and every page at 320–1440 px. Audit results and before/after screenshots are in `_audit/ui-2026-11/`.
