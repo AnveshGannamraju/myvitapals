@@ -47,10 +47,12 @@ LCP is about 0.05–0.1 s slower in this unzipped local test because the stylesh
 - **Every page at 6 widths:** no sideways scroll, and the header fits.
 - **Reflow:** 200 % text at 320 px.
 
+## Branding
+The logo, About page, footer, search labels, 39 share images and the Instagram carousel template now read **MyVitaPals**. "VitaPals" stays in structured data as an alternate name. Below 390 px the menu button shows only the ☰ icon (its accessible name is still "Menu"), so the header stays on one line.
+
 ## Remaining issues / next steps
 - **Screen readers:** the checks were automated (axe, roles, focus, live regions). Do a quick manual pass with VoiceOver on iPhone and TalkBack on Android before calling WCAG 2.2 AA "verified".
 - **Field data:** Lighthouse and CWV here are lab numbers. Check the Core Web Vitals report in Search Console after a few weeks of traffic.
 - **Long topic pages:** these are still long (about 13,000 px at 390 px). Collapsing "Claims we checked" or "Nutrients" further could help.
 - **Food finder:** lists foods on load (94 links) by design. Consider showing only popular chips until the user types.
-- **Brand:** the logo still reads "VitaPals" while metadata uses "MyVitaPals". The screen-reader label follows the visible text (WCAG 2.5.3).
 - **Medical review:** content still awaits clinical review (unchanged).

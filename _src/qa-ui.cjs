@@ -24,6 +24,8 @@ const locs = [...fs.readFileSync(path.join(__dirname, '..', 'sitemap.xml'), 'utf
   await page.keyboard.press('Tab'); assert.match(await active(), /#main/);
   await page.keyboard.press('Enter'); assert.match(await active(), /^main/i);
   await page.goto(base + '/vitamin-c/');
+  assert.equal(await page.locator('.logo').getAttribute('aria-label'), 'MyVitaPals home');
+  assert.match(await page.locator('.logo').innerText(), /^MyVitaPals$/, 'logo reads MyVitaPals');
   await page.locator('.menu > summary').focus(); await page.keyboard.press('Enter');
   assert.ok(await page.locator('.menu .panel').isVisible(), 'menu opens');
   assert.equal(await page.locator('.menu .mg[open] > summary').innerText().then(t => t.startsWith('Vitamins')), true, 'current section expanded');
@@ -83,9 +85,9 @@ const locs = [...fs.readFileSync(path.join(__dirname, '..', 'sitemap.xml'), 'utf
     await page.setViewportSize({ width: w, height: 800 });
     for (const u of locs.concat(['/404.html'])) {
       await page.goto(base + u);
-      const r = await page.evaluate(() => ({ ow: document.documentElement.scrollWidth > innerWidth + 1, bar: document.querySelector('.bar').scrollWidth <= document.querySelector('.bar').clientWidth + 1 }));
+      const r = await page.evaluate(() => ({ ow: document.documentElement.scrollWidth > innerWidth + 1, bar: new Set([...document.querySelectorAll('.bar > *')].filter(e => e.checkVisibility()).map(e => Math.round(e.getBoundingClientRect().top))).size === 1 }));
       assert.ok(!r.ow, `horizontal overflow at ${w}px on ${u}`);
-      assert.ok(r.bar, `header does not fit at ${w}px on ${u}`);
+      assert.ok(r.bar, `header wraps onto two lines at ${w}px on ${u}`);
     }
   }
   // Stricter than WCAG 1.4.10 (320 px at normal size, covered above): 320 px wide AND text doubled (1.4.4).

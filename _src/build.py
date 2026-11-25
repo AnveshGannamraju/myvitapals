@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""VitaPals static site builder.
+"""MyVitaPals static site builder.
 
 Content lives in:
   _src/vitamins.json  - names, forms, sub-types, fun facts
@@ -253,7 +253,7 @@ def header(section="", vit=None, sub=None, psub=None):
             for i, (n, u) in enumerate(items)) + "</ol></nav>")
     return f"""
 <header class="site-header"><div class="wrap">
-  <div class="bar"><a class="logo" href="/" aria-label="VitaPals home">{LOGO}<span>Vita<b>Pals</b></span></a>
+  <div class="bar"><a class="logo" href="/" aria-label="{BRAND} home">{LOGO}<span>MyVita<b>Pals</b></span></a>
   <nav class="nav" aria-label="Main">{nav}</nav>{srch}{menu}</div>
   {strip}
 </div></header>
@@ -379,10 +379,6 @@ for food in FOODS:
         food['source'] = 'USDA FoodData Central / recipe estimate; see source page' if food['v'] == 'P' else 'NIH Office of Dietary Supplements; see nutrient page'
 write("assets/search.json", json.dumps(INDEX, ensure_ascii=False))
 write("assets/foods.json", json.dumps(FOODS, ensure_ascii=False))
-
-SEARCH = ('<div class="search" data-search><span class="ico" aria-hidden="true">🔍</span>'
-          '<input type="search" placeholder="Search a vitamin, food or question… e.g. B12, spinach, tired" aria-label="Search VitaPals" autocomplete="off">'
-          '<ul class="results" aria-live="polite"></ul></div>')
 
 # ------------------------------------------------------------------ home
 ALLMYTHS = [(m, f, v["id"]) for v in V for m, f in D[v["id"]].get("myths", [])]
@@ -1118,9 +1114,9 @@ write("tools/vitamin-check/index.html", vc)
 # ------------------------------------------------------------------ about
 about = head(title_fit("About Us & How We Write"), f"How {BRAND} researches and writes about nutrition: who it's for, where the facts come from, how evidence is rated and what we never do.", "/about/",
              kind="about", crumbs=[("About", None)]) + header("about") + f"""
-<div class="prose"><h1>About VitaPals</h1>
-<p class="lede">VitaPals explains vitamins in plain language, so you can make sense of what you eat and have better conversations with your doctor.</p>
-<h2>Who it's for</h2><p>VitaPals is written for adults aged 20 and over. Children and teens have different needs and safe limits, so please ask a pediatrician about them.</p>
+<div class="prose"><h1>About {BRAND}</h1>
+<p class="lede">{BRAND} explains vitamins in plain language, so you can make sense of what you eat and have better conversations with your doctor.</p>
+<h2>Who it's for</h2><p>{BRAND} is written for adults aged 20 and over. Children and teens have different needs and safe limits, so please ask a pediatrician about them.</p>
 <h2>Food first, science always</h2><p>Most people can get most vitamins from a varied diet. We show real foods, with real amounts, before we ever talk about supplements. We include everyday US and Indian foods, because that's how many of our readers eat.</p>
 <h2>Where our facts come from</h2><p>Daily needs, upper limits, food amounts and medicine interactions come from the <a href="https://ods.od.nih.gov/factsheets/list-VitaminsMinerals/" rel="noopener">NIH Office of Dietary Supplements</a> fact sheets for health professionals, which are based on the US Food and Nutrition Board. Every page links to its source.</p>
 <h2 id="evidence">How we rate evidence</h2><p>Topic badges are editorial summaries, not a validated evidence-grading system or proof of causation. Read the underlying sources and context. Clinical review and a claim-by-claim evidence appraisal remain pending:</p>
@@ -1129,9 +1125,9 @@ about = head(title_fit("About Us & How We Write"), f"How {BRAND} researches and 
 <h2>What we don't do</h2><p>We don't diagnose, and we don't recommend specific supplement brands. Our vitamin check is educational. It can point you toward questions to ask, but assessment may include diet, symptoms, medical history and appropriate laboratory testing.</p>
 <h2 id="corrections">Corrections and contact</h2><p><a href="https://github.com/AnveshGannamraju/myvitapals/issues/new">Report a content error or contact the project maintainer on GitHub</a> (account required). Include the page URL, the wording and a reliable source. Reports are public: do not include personal health information. Reports can be tracked in the repository issue list.</p>
 <h2 id="privacy">Privacy and disclosures</h2><p>Searches and tool answers are processed in your browser. Saving questionnaire answers is optional and uses this browser’s local storage; use Clear saved answers to remove them. The site uses no advertising trackers and no cookies. To learn which pages help people, it counts visits with GoatCounter, a privacy-friendly analytics service: the page address (without anything after a "?"), the referring website, screen size, which links are clicked, the matched food from our list when the food finder is used, and whether the vitamin check was started and completed. It never records what you type, your vitamin check answers or results, your weight, or anything that identifies you, and it is switched off if your browser sends Do Not Track or Global Privacy Control. The hosting provider may process ordinary request logs. External links follow the destination’s privacy policy. No supplement affiliate purchase links are used in these tools.</p>
-<h2>Editorial accountability</h2><p>Content is maintained by the VitaPals project. No clinical credentials or independent medical review are claimed. A content update is an edit; a fact-check verifies a specific claim against its source; medical review requires a qualified named professional and a documented scope.</p>
+<h2>Editorial accountability</h2><p>Content is maintained by the {BRAND} project. No clinical credentials or independent medical review are claimed. A content update is an edit; a fact-check verifies a specific claim against its source; medical review requires a qualified named professional and a documented scope.</p>
 <h2 id="history">Revision history</h2><p>November 24, 2026: expanded the vitamin D3, B1, B5, B6, B7 and folate pages (quick answers, vegetarian and Indian sources, more NIH food-table entries, FAQs), added related-nutrient links and privacy-friendly visit counts. Clinical review pending.</p><p>November 5, 2026: corrected diet-specific recommendations, protein reference wording, vitamin D testing, B6 limits, folate/MTHFR and methotrexate context, calcium absorption and questionnaire privacy. Clinical review pending. <a href="https://github.com/AnveshGannamraju/myvitapals/commits">Published change history</a>.</p>
-<h2>Medical disclaimer</h2><p>VitaPals is for general education and isn't a substitute for professional medical advice. Talk to a doctor, registered dietitian or pharmacist before starting a supplement, especially if you're pregnant, breastfeeding, take medicines or have a health condition.</p>
+<h2>Medical disclaimer</h2><p>{BRAND} is for general education and isn't a substitute for professional medical advice. Talk to a doctor, registered dietitian or pharmacist before starting a supplement, especially if you're pregnant, breastfeeding, take medicines or have a health condition.</p>
 </div>
 """ + footer()
 write("about/index.html", about)
@@ -1139,7 +1135,7 @@ write("about/index.html", about)
 nf = head(f"Page not found | {BRAND}", "This page wandered off.", "/404.html", noindex=True) + header() + f"""
 <div style="text-align:center;padding:40px 0">{pal(BYID['C'], 80)}<h1 style="margin-top:12px">This page wandered off</h1>
 <p class="lede" style="margin:12px auto 22px">Maybe it went to get some sunshine with vitamin D. Try searching instead:</p>
-<div style="display:flex;justify-content:center">{SEARCH}</div><p style="margin-top:22px"><a class="btn" href="/">Go home</a></p></div>
+<div style="display:flex;justify-content:center">{search_box("nf-q")}</div><p style="margin-top:22px"><a class="btn" href="/">Go home</a></p></div>
 """ + footer()
 write("404.html", nf)
 
