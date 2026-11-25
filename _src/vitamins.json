@@ -914,7 +914,127 @@
     ],
     "labelTip": "Labels say 'vitamin D3' or 'cholecalciferol'. Most D3 is made from lanolin (the natural grease in sheep's wool). Looking for vegan? Find D3 made from lichen.",
     "fun": "Window glass blocks the UVB rays your skin needs, so sitting in a sunny window won't make vitamin D. Your skin also makes less in winter and as you get older.",
-    "warn": "Too much from supplements can raise the calcium in your blood. Don't skip sunscreen to chase vitamin D. Ask a doctor before taking high doses."
+    "warn": "Too much from supplements can raise the calcium in your blood. Don't skip sunscreen to chase vitamin D. Ask a doctor before taking high doses.",
+    "seoTitle": [
+     "Vitamin D3: Benefits, Best Food Sources & D3 vs D2",
+     "Vitamin D3: Benefits & Food Sources"
+    ],
+    "seoDesc": "What vitamin D3 is good for, the best food sources (fatty fish, eggs, fortified milk), vegetarian and vegan options, how much adults need, and how D3 compares with D2.",
+    "answer": "Vitamin D3 (cholecalciferol) is the form of vitamin D your skin makes in sunlight and the form found in animal foods. It helps you absorb calcium for strong bones, and your muscles, nerves and immune system need it too. The best food sources are fatty fish like trout and salmon, cod liver oil, egg yolks and fortified milk. Adults need 600 IU a day (800 IU after 70).",
+    "benefits": [
+     [
+      "Absorbs calcium for bones",
+      "Vitamin D helps your gut absorb calcium, one of the main building blocks of bone. Long-term shortfalls of vitamin D and calcium can lead to fragile bones (osteoporosis)."
+     ],
+     [
+      "Keeps muscles and nerves working",
+      "Your muscles need vitamin D to move, and your nerves need it to carry messages between your brain and body."
+     ],
+     [
+      "Supports the immune system",
+      "Your immune system uses vitamin D to fight off bacteria and viruses."
+     ],
+     [
+      "What it doesn't do",
+      "In VITAL, a large trial of nearly 26,000 adults, vitamin D supplements did not lower the risk of cancer or heart attacks and strokes. Getting enough matters; extra isn't a shield."
+     ]
+    ],
+    "table": [
+     [
+      "Cod liver oil",
+      "1 tbsp",
+      "1,360 IU",
+      170
+     ],
+     [
+      "Trout, farmed, cooked",
+      "3 oz",
+      "645 IU",
+      81
+     ],
+     [
+      "Salmon, sockeye, cooked",
+      "3 oz",
+      "570 IU",
+      71
+     ],
+     [
+      "Milk, 2%, fortified",
+      "1 cup",
+      "120 IU",
+      15
+     ],
+     [
+      "Sardines, canned in oil",
+      "2 fish",
+      "46 IU",
+      6
+     ],
+     [
+      "Egg, scrambled",
+      "1 large",
+      "44 IU",
+      6
+     ],
+     [
+      "Beef liver, braised",
+      "3 oz",
+      "42 IU",
+      5
+     ],
+     [
+      "Tuna, light, canned",
+      "3 oz",
+      "40 IU",
+      5
+     ]
+    ],
+    "tableNote": "Cod liver oil is also very high in vitamin A, so don't double up with other vitamin A supplements. Fortified foods may use D3 or D2; the label says which.",
+    "veg": "Eggs are the main natural D3 source for egg-eating vegetarians. Fortified milk adds about 120 IU a cup in the US; in India, look for the +F logo on milk and oil. Vegans can use fortified plant milks and UV-exposed mushrooms (these give D2), or a D3 supplement made from lichen instead of sheep's-wool lanolin.",
+    "faq": [
+     [
+      "Which foods are highest in vitamin D3?",
+      "Cod liver oil (about 1,360 IU per tablespoon) and fatty fish like farmed trout (645 IU per 3 oz) and sockeye salmon (570 IU) lead. Eggs, beef liver and canned tuna add smaller amounts, and fortified milk gives about 120 IU a cup."
+     ],
+     [
+      "Can vegetarians get vitamin D3 from food?",
+      "Egg-eaters can, from yolks, though one egg has only about 44 IU. Fortified milk helps. Plant foods don't naturally contain D3; vegans rely on fortified foods, UV mushrooms (D2) or lichen-based D3."
+     ],
+     [
+      "Is vitamin D3 better than D2?",
+      "Both raise vitamin D in your blood, but D3 may raise it higher and keep it up longer. D2 is always vegan; D3 usually isn't unless it's made from lichen."
+     ],
+     [
+      "Should I take vitamin D3 every day?",
+      "It depends on your diet, sun exposure, skin tone, age and health. Many adults can meet needs with food, fortified foods and some sun. Ask your doctor before starting, and don't exceed 4,000 IU a day unless a doctor prescribes it."
+     ],
+     [
+      "Do I need a vitamin D blood test?",
+      "Routine testing isn't recommended for otherwise healthy adults. Your doctor may test if you have symptoms, bone disease, trouble absorbing fat or other reasons."
+     ]
+    ],
+    "sources": [
+     [
+      "NIH ODS: Vitamin D fact sheet for health professionals",
+      "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/"
+     ],
+     [
+      "NIH ODS: Vitamin D fact sheet for consumers",
+      "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/"
+     ],
+     [
+      "VITAL trial (NEJM 2019): vitamin D and prevention of cancer and cardiovascular disease",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC6425757/"
+     ],
+     [
+      "Endocrine Society: vitamin D guideline (testing)",
+      "https://www.endocrine.org/clinical-practice-guidelines/vitamin-d-for-prevention-of-disease"
+     ],
+     [
+      "FSSAI: fortified foods (+F) standards",
+      "https://www.fssai.gov.in/cms/fortified-food.php"
+     ]
+    ]
    },
    {
     "slug": "d2",

@@ -11,7 +11,7 @@ Content lives in `_src/`:
 Then run `python3 _src/build.py` to regenerate every page, the sitemap and the search/food data.
 Optionally, run `node _src/render.js` (needs Playwright; FONT_DIR points to @fontsource fonts) to refresh share images in `og/`.
 
-Interactive bits (search, food finder, vitamin check) are in `assets/app.js`. No tracking, and nothing is sent anywhere.
+Interactive bits (search, food finder, vitamin check) are in `assets/app.js`. Analytics are privacy-friendly GoatCounter counts with no cookies, sent directly from `app.js` (no third-party script). Set `GC_CODE` at the top of `app.js` to switch them on. They cover page views, nav clicks, the matched food in the food finder, and vitamin-check start and completion. Typed text, answers, results and weights are never sent; Do Not Track and Global Privacy Control are respected.
 Folders starting with `_` are not published by GitHub Pages.
 
 ## Audit regression checks

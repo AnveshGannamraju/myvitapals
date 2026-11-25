@@ -16,10 +16,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "_src"
 SITE = "https://myvitapals.com"
-REVIEWED = "November 5, 2026"
+REVIEWED = "November 24, 2026"
 TODAY = datetime.date.today().isoformat()
 YEAR = datetime.date.today().year
-ASSET_V = "14"
+ASSET_V = "15"
 REVIEWED_ISO = datetime.datetime.strptime(REVIEWED, "%B %d, %Y").date().isoformat()
 
 # ---- brand & search settings (edit here; everything below is generated from these)
@@ -66,6 +66,12 @@ subpal = lambda s: {"id": s["label"], "color": s["color"], "text": txt(s), "prop
 psubpal = lambda x: {"id": x["prop"], "color": x["color"], "text": txt(x), "prop": x["prop"], "aria": x["tab"]}
 vname = lambda v: v.get("label") or f"Vitamin {v['id']}"
 ismin = lambda v: v["type"] in ("mineral", "omega")
+lname = lambda v: f"vitamin {v['id']}" if vname(v).startswith("Vitamin") else vname(v)[0].lower() + vname(v)[1:]
+cap = lambda t: t[0].upper() + t[1:]
+# Related nutrients shown at the bottom of each nutrient page (overridden by details.json "related")
+RELATED = {"A": ["D", "E", "Zn"], "B2": ["B1", "B3", "B6"], "B3": ["B1", "B2", "B6"], "B12": ["B9", "Fe", "B6"], "C": ["Fe", "E", "Zn"],
+           "E": ["C", "Se", "A"], "K": ["D", "Ca", "Mg"], "Fe": ["C", "B12", "B9"], "Ca": ["D", "Mg", "K"], "Mg": ["Ca", "D", "B6"],
+           "Zn": ["Fe", "C", "Se"], "I": ["Se", "Fe", "B12"], "Se": ["I", "E", "Zn"], "O3": ["D", "E", "B12"]}
 nih = lambda v: f"https://ods.od.nih.gov/factsheets/{v['nih'].replace('Consumer', 'HealthProfessional')}/"
 
 
@@ -428,6 +434,19 @@ write("index.html", home)
 
 
 # ------------------------------------------------------------------ vitamin pages
+def related_nutrients(v, d):
+    ids = [i for i in (d.get("related") or RELATED.get(v["id"]) or []) if i in BYID and i != v["id"]]
+    if v["id"].startswith("B") and not ismin(v):
+        extra = '<a class="card" href="/vitamin-b/"><div class="ic" aria-hidden="true">🐝</div><h3>All 8 B vitamins</h3><p>Compare daily needs and the best foods side by side.</p></a>'
+    else:
+        extra = '<a class="card" href="/minerals/"><div class="ic" aria-hidden="true">🧂</div><h3>Minerals &amp; omega-3</h3><p>Iron, calcium, magnesium, zinc and more at a glance.</p></a>'
+    if not ids:
+        return ""
+    return ('<section class="sec" id="related"><h2>Related nutrients</h2><div class="cards">' + "".join(
+        f'<a class="card" href="{url(BYID[i])}"><div class="ic" aria-hidden="true">{pal(BYID[i], 28, prop=False)}</div><h3>{e(vname(BYID[i]))}</h3><p>{e(BYID[i]["job"])}</p></a>'
+        for i in ids) + extra + "</div></section>")
+
+
 def forms_html(v):
     return ('<ul class="forms">' + "".join(
         f'<li><strong>{e(f[0])}</strong><span class="ftag t-{f[2].lower().replace(" ", "-")}">{e(f[2])}</span><p>{e(f[1])}</p></li>' for f in v["forms"]) + "</ul>")
@@ -443,9 +462,9 @@ for i, v in enumerate(ALL):
     nxt = grp[gi + 1] if gi < len(grp) - 1 else None
     subs = v.get("subs") or []
     short = v['name'].split(' (')[0]
-    title = title_fit(f"{vname(v)} ({short}): Foods, Daily Needs & Supplements", f"{vname(v)} ({short}): Foods, Needs & Supplements",
+    title = title_fit(*d["seoTitle"]) if d.get("seoTitle") else title_fit(f"{vname(v)} ({short}): Foods, Daily Needs & Supplements", f"{vname(v)} ({short}): Foods, Needs & Supplements",
                       f"{vname(v)}: Foods, Daily Needs & Supplements", f"{vname(v)} ({short}): Foods & Daily Needs", f"{vname(v)}: Foods & Daily Needs")
-    desc = fit(f"{vname(v)}: adults need {d['needShort']}. {v['job']} Top foods, who's at risk and when a supplement helps.",
+    desc = fit(d["seoDesc"]) if d.get("seoDesc") else fit(f"{vname(v)}: adults need {d['needShort']}. {v['job']} Top foods, who's at risk and when a supplement helps.",
                f"{vname(v)}: adults need {d['needShort']}. Top foods (US & Indian), who's at risk, upper limits and when a supplement helps.",
                f"{vname(v)}: adults need {d['needShort']}. Top foods, who's at risk and when a supplement helps.")
     crumbs = '<a href="/">Home</a> › ' + ('<a href="/vitamin-b/">B vitamins</a> › ' if isb else "") + ('<a href="/minerals/">Minerals</a> › ' if mn else "") + e(vname(v))
@@ -470,8 +489,8 @@ for i, v in enumerate(ALL):
   <h1>{e(vname(v))}</h1>
   <p class="lede">{e(v['job'])}</p>
 </div></div>
-<aside class="note"><h2>30-second summary</h2><p>{e(v['job'])} Start with foods, compare the reference intake for your life stage, and discuss supplements when needed.</p></aside>
-{('<p class="tnote">Updated guidance: ' + ' · '.join('<a href="'+e(u)+'">'+e(n)+'</a>' for n,u in d.get('auditSources', [])) + '</p>') if d.get('auditSources') else ''}
+<aside class="note"><h2>{e(vname(v))} in 30 seconds</h2><p>{e(d.get("answer") or (v["job"] + " Adults need " + d["needShort"] + ". Top foods: " + d["top3"].lower() + "; in Indian kitchens, " + ", ".join(d["indian"][:3]).lower() + ". Start with foods, and discuss supplements with your doctor when needed."))}</p></aside>
+{('<p class="tnote">Updated guidance: ' + ' · '.join('<a href="'+e(u)+'">'+e(n)+'</a>' for n,u in upd) + '</p>') if (upd := [x for x in d.get('auditSources', []) if not x[0].startswith(("NIH ODS:", "FSSAI"))]) else ''}
 <div class="glance" id="glance">
   <div><small>Daily need (adults)</small><strong>{e(d['needShort'])}</strong></div>
   <div><small>Upper limit</small><strong>{e(d['ulShort'])}</strong></div>
@@ -482,39 +501,41 @@ for i, v in enumerate(ALL):
 {subpick}
 
 <section class="sec two">
-  <div><h2>What it does</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in v['powers'])}</ul></div>
+  <div><h2>What does {e(lname(v))} do?</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in v['powers'])}</ul></div>
   <div class="note warm"><h3>🤓 Did you know?</h3><p>{e(v['fun'])}</p></div>
 </section>
 
 <section class="sec" id="foods">
-  <h2>Top food sources</h2>
+  <h2>Best food sources of {e(lname(v))}</h2>
   <p class="sub">{"Per typical serving, with how much of your daily need it covers." if d["dv"] else "Per typical serving, in grams. Plant foods give ALA; fish gives EPA and DHA."}</p>
   {food_table(d)}
   <div class="two" style="margin-top:16px">
     <div class="note"><h3>🇮🇳 Also great in Indian kitchens</h3><div class="chips">{"".join(f"<span>{e(x)}</span>" for x in d['indian'])}</div></div>
     <div class="note warm"><h3>👩‍🍳 Kitchen tips</h3><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in d['tips'])}</ul></div>
   </div>
+  {f'<div class="note" style="margin-top:14px" id="vegetarian"><h3>🌱 Vegetarian &amp; vegan sources</h3><p>{e(d["veg"])}</p></div>' if d.get("veg") else ""}
+  <p class="tnote" style="margin-top:10px"><a href="/tools/food-finder/">Look up any food in the food finder →</a></p>
 </section>
 
 <section class="sec two" id="needs">
-  <div><h2>How much do you need?</h2>
+  <div><h2>How much {e(lname(v))} do you need a day?</h2>
     <table class="needs">{"".join(f"<tr><td>{e(a)}</td><td>{e(b)}</td></tr>" for a, b in d['needs'])}</table>
     <p class="tnote">Recommended daily amounts for adults, from the US Food and Nutrition Board.</p></div>
   <div class="note {"warm" if d["ulShort"] == "None set" else "warn"}" style="align-self:start"><h3>{"ℹ️" if d["ulShort"] == "None set" else "⚠️"} Upper limit</h3><p>{e(d['ul'])}</p></div>
 </section>
 
 <section class="sec" id="risk">
-  <h2>Who's most at risk of running low?</h2>
+  <h2>Who might run low on {e(lname(v))}?</h2>
   <div class="risk" style="--c:{v['color']}">{"".join(f"<div><strong>{e(a)}</strong><span>{e(b)}</span></div>" for a, b in d['risk'])}</div>
 </section>
 
 <section class="sec two" id="signs">
-  <div><h2>Signs you might be low</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in v['low'])}</ul><p class="tnote">{e(d['lowNote'])}</p></div>
+  <div><h2>Signs of low {e(lname(v))}</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in v['low'])}</ul><p class="tnote">{e(d['lowNote'])}</p></div>
   <div class="note"><h3>🩺 When to see a doctor</h3><p>These signs have many possible causes. If they last more than a couple of weeks, see a doctor. Assessment depends on diet, symptoms and history; laboratory tests are useful for some nutrients. Don't guess with high-dose supplements.</p></div>
 </section>
 
 <section class="sec" id="supplements">
-  <h2>Supplements: do you need one?</h2>
+  <h2>Do you need a {e(lname(v))} supplement?</h2>
   <div class="two">
     <div class="note"><h3>When it helps</h3><p>{e(d['suppWhen'])}</p></div>
     <div class="note warm"><h3>Choosing one</h3><p>{e(d['suppPick'])}</p></div>
@@ -529,16 +550,16 @@ for i, v in enumerate(ALL):
 </section>
 
 <section class="sec" id="myths">
-  <h2>Myths vs facts</h2>
+  <h2>{e(vname(v))} myths vs facts</h2>
   <div class="mythgrid">{"".join(f'<div class="myth"><div class="m"><b>Myth</b>{e(m)}</div><div class="f"><b>Fact</b>{e(f)}</div></div>' for m, f in d['myths'])}</div>
 </section>
 
 <section class="sec" id="faq">
-  <h2>Frequently asked questions</h2>
+  <h2>{e(vname(v))}: frequently asked questions</h2>
   {"".join(f'<details class="faq"><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in d['faq'])}
 </section>
-""" + (f"""<section class="sec"><h2>Related guides</h2><div class="cards">{"".join(f'<a class="card" href="{gurl(g)}"><div class="ic">{g["icon"]}</div><h3>{e(g["title"])}</h3><p>{e(g["card"])}</p></a>' for g in related)}</div></section>""" if related else "") + topic_links_html(topics_for("vitamins", v["id"])) + f"""
-<p class="sources">Sources: <a href="{nih(v)}" rel="noopener">NIH Office of Dietary Supplements, {e(vname(v))} fact sheet for health professionals</a>. Daily needs are for healthy adults. Content updated {REVIEWED}. This page is for education, not medical advice.</p>
+""" + related_nutrients(v, d) + (f"""<section class="sec"><h2>Related guides</h2><div class="cards">{"".join(f'<a class="card" href="{gurl(g)}"><div class="ic">{g["icon"]}</div><h3>{e(g["title"])}</h3><p>{e(g["card"])}</p></a>' for g in related)}</div></section>""" if related else "") + topic_links_html(topics_for("vitamins", v["id"])) + f"""
+<p class="sources">Sources: {"; ".join(f'<a href="{e(u)}" rel="noopener">{e(n)}</a>' for n, u in vcites)}. Daily needs are for healthy adults. Content updated <time datetime="{REVIEWED_ISO}">{REVIEWED}</time>. This page is for education, not medical advice.</p>
 <div class="pager">
   {f'<a href="{url(prev)}"><small>← Previous</small>{e(vname(prev))}</a>' if prev else ('<a href="/minerals/"><small>← Back to</small>All minerals</a>' if mn else '<a href="/"><small>← Back</small>Home</a>')}
   {f'<a href="{url(nxt)}"><small>Next →</small>{e(vname(nxt))}</a>' if nxt else ('<a href="/#vitamins"><small>Next →</small>All 13 vitamins</a>' if mn else '<a href="/minerals/"><small>Next →</small>Minerals &amp; omega-3</a>')}
@@ -551,19 +572,61 @@ for i, v in enumerate(ALL):
         sn = subs[j + 1] if j < len(subs) - 1 else None
         stitle = (title_fit(f"Vitamin {s['tab']} ({s['name']}): What It Is, Foods & Labels", f"Vitamin {s['tab']} ({s['name']}): Foods & Labels", f"Vitamin {s['tab']}: What It Is, Foods & Labels")
                   if s["tab"].startswith(v["id"]) else title_fit(f"{s['tab']}, a Form of Vitamin {v['id']}: Foods & Labels", f"{s['tab']} (Vitamin {v['id']}): Foods & Labels"))
-        sdesc = fit(f"{s['tab']}: {s['job']} Where to find it and how to read supplement labels.", f"{s['tab']}: {s['job']}")
+        if s.get("seoTitle"):
+            stitle = title_fit(*s["seoTitle"])
+        sdesc = fit(s["seoDesc"]) if s.get("seoDesc") else fit(f"{s['tab']}: {s['job']} Where to find it and how to read supplement labels.", f"{s['tab']}: {s['job']}")
+        sname = f"Vitamin {s['tab']}" if s["tab"].startswith(v["id"]) else s["tab"]
+        slow = f"vitamin {s['tab']}" if s["tab"].startswith(v["id"]) else s["tab"].lower()
         back = f'<a href="{url(v)}"><small>← Back to</small>{e(vname(v))} overview</a>'
+        scites = [tuple(x) for x in s.get("sources", [])] or [(f"NIH Office of Dietary Supplements: {vname(v)} fact sheet for health professionals", nih(v))]
+        dd = D[v["id"]]
+        rich = ""
+        if s.get("answer"):
+            rich += f'<aside class="note"><h2>{e(sname)} in 30 seconds</h2><p>{e(s["answer"])}</p></aside>'
+        if s.get("benefits"):
+            rich += (f'<section class="sec" id="benefits"><h2>What is {e(slow)} good for?</h2><ul class="evlist">'
+                     + "".join(f'<li><div class="evh"><strong>{e(t)}</strong></div><p>{e(x)}</p></li>' for t, x in s["benefits"]) + "</ul></section>")
+        if s.get("table"):
+            rows = "".join(f'<tr><td>{e(f)}<small>{e(sv)}</small></td><td class="amt">{e(am)}</td><td>{dvbar(pc)}</td></tr>' for f, sv, am, pc in s["table"])
+            rich += (f'<section class="sec" id="foods"><h2>Best food sources of {e(slow)}</h2><p class="sub">Per typical serving, with how much of the {e(dd["dv"])} Daily Value it covers.</p>'
+                     f'<table class="foods"><thead><tr><th>Food</th><th>Amount</th><th>% Daily Value</th></tr></thead><tbody>{rows}</tbody></table>'
+                     f'<p class="tnote">% Daily Value is based on {e(dd["dv"])} for adults (US FDA). Data: NIH Office of Dietary Supplements. {e(s.get("tableNote", ""))}</p>'
+                     + (f'<div class="note" style="margin-top:14px" id="vegetarian"><h3>🌱 Vegetarian &amp; vegan sources of {e(slow)}</h3><p>{e(s["veg"])}</p></div>' if s.get("veg") else "")
+                     + f'<p class="tnote" style="margin-top:10px"><a href="/tools/food-finder/">Look up any food in the food finder →</a></p></section>')
+            rich += (f'<section class="sec two" id="needs"><div><h2>How much {e(slow)} do you need a day?</h2><table class="needs">'
+                     + "".join(f"<tr><td>{e(x)}</td><td>{e(y)}</td></tr>" for x, y in dd["needs"])
+                     + f'</table><p class="tnote">Recommended daily amounts for adults count all forms of {e(lname(v))}, from the US Food and Nutrition Board.</p></div>'
+                     f'<div class="note warn" style="align-self:start"><h3>⚠️ Upper limit</h3><p>{e(dd["ul"])}</p></div></section>')
+        others = [x for x in subs if x is not s]
+        vs = ""
+        if s.get("benefits") and others:
+            o = others[0]
+            vs = (f'<section class="sec" id="vs"><h2>{e(sname)} vs {e("Vitamin " + o["tab"] if o["tab"].startswith(v["id"]) else o["tab"])}</h2>'
+                  f'<div class="two"><div class="note"><h3>{e(sname)}</h3><p>{e(s["job"])}</p></div>'
+                  f'<div class="note warm"><h3><a href="{suburl(v, o)}">{e("Vitamin " + o["tab"] if o["tab"].startswith(v["id"]) else o["tab"])} →</a></h3><p>{e(o["job"])} {e(o["warn"])}</p></div></div></section>')
+        sfaq = s.get("faq") or None
+        faq_html = (f'<section class="sec" id="faq"><h2>{e(sname)}: frequently asked questions</h2>'
+                    + "".join(f'<details class="faq"><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in sfaq) + "</section>") if sfaq else ""
+        rel = ""
+        if s.get("benefits"):
+            rg = [g for g in G if g["slug"] in ("vegetarian", "over-50")]
+            rel = ('<section class="sec" id="related"><h2>Related reading</h2><div class="cards">'
+                   f'<a class="card" href="{url(v)}"><div class="ic" aria-hidden="true">{pal(v, 28, prop=False)}</div><h3>{e(vname(v))} overview</h3><p>{e(v["job"])}</p></a>'
+                   + "".join(f'<a class="card" href="{url(BYID[i])}"><div class="ic" aria-hidden="true">{pal(BYID[i], 28, prop=False)}</div><h3>{e(vname(BYID[i]))}</h3><p>{e(BYID[i]["job"])}</p></a>' for i in (dd.get("related") or [])[:1])
+                   + "".join(f'<a class="card" href="{gurl(g)}"><div class="ic" aria-hidden="true">{g["icon"]}</div><h3>{e(g["title"])}</h3><p>{e(g["card"])}</p></a>' for g in rg)
+                   + "</div></section>")
         sp_html = head(stitle, sdesc, suburl(v, s), f"{slug(v)}-{s['slug']}", kind="article", crumbs=[(vname(v), url(v)), (s["tab"], None)],
-                       cites=[(f"NIH Office of Dietary Supplements: {vname(v)} fact sheet for health professionals", nih(v))], about=f"{s['tab']} ({s['name']})") + header("vitamins", v["id"], s["slug"]) + f"""
+                       faq=sfaq, cites=scites, about=f"{sname} ({s['name']})") + header("vitamins", v["id"], s["slug"]) + f"""
 <p class="crumbs"><a href="/">Home</a> › <a href="{url(v)}">{e(vname(v))}</a> › {e(s['tab'])}</p>
 <div class="vhead">{pal(subpal(s), 64, decorative=False)}<div>
   <p class="kicker">{e(vname(v))} · {e(s['name'])}</p>
-  <h1>{e(s['tab'])}</h1>
+  <h1>{e(sname)}</h1>
   <p class="lede">{e(s['job'])}</p>
 </div></div>
+{rich}
 <section class="sec two">
-  <div><h2>What makes it special</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in s['what'])}</ul></div>
-  <div><h2>Where to find it</h2><div class="chips">{"".join(f'<span>{f[0]} {e(f[1])}</span>' for f in s['foods'])}</div></div>
+  <div><h2>What makes {e(slow)} special</h2><ul class="clean">{"".join(f"<li>{e(x)}</li>" for x in s['what'])}</ul></div>
+  <div><h2>Where to find {e(slow)}</h2><div class="chips">{"".join(f'<span>{f[0]} {e(f[1])}</span>' for f in s['foods'])}</div></div>
 </section>
 <section class="sec two">
   <div class="note"><h3>🏷️ Label decoder</h3><p>{e(s['labelTip'])}</p></div>
@@ -571,9 +634,10 @@ for i, v in enumerate(ALL):
 </section>
 <section class="sec two">
   <div class="note warn"><h3>⚠️ Heads-up</h3><p>{e(s['warn'])}</p></div>
-  <div class="note"><h3>📏 How much {e(vname(v))} do you need?</h3><p>{e(D[v['id']]['needShort'])} for most adults. Upper limit: {e(D[v['id']]['ulShort'])}.</p><p><a href="{url(v)}#foods">See top foods &amp; full details →</a></p></div>
+  <div class="note"><h3>📏 How much {e(lname(v))} do you need?</h3><p>{e(dd['needShort'])} for most adults. Upper limit: {e(dd['ulShort'])}.</p><p><a href="{url(v)}#foods">See top foods &amp; full details →</a></p></div>
 </section>
-<p class="sources">Sources: <a href="{nih(v)}" rel="noopener">NIH Office of Dietary Supplements, {e(vname(v))} fact sheet for health professionals</a>. Content updated {REVIEWED}.</p>
+{vs}{faq_html}{rel}
+<p class="sources">Sources: {"; ".join(f'<a href="{e(u)}" rel="noopener">{e(n)}</a>' for n, u in scites)}. Content updated <time datetime="{REVIEWED_ISO}">{REVIEWED}</time>. General education, not medical advice.</p>
 <div class="pager">
   {f'<a href="{suburl(v, sp)}"><small>← Previous</small>{e(sp["tab"])}</a>' if sp else back}
   {f'<a href="{suburl(v, sn)}"><small>Next →</small>{e(sn["tab"])}</a>' if sn else back.replace("← Back to", "Back to →")}
@@ -1029,9 +1093,9 @@ about = head(title_fit("About Us & How We Write"), f"How {BRAND} researches and 
 <h2>How we keep it current</h2><p>Dates indicate content updates, not clinical review. No qualified clinical reviewer is currently credited. Medical and dietetic review remains pending, especially for pregnancy, supplement doses and medication interactions.</p>
 <h2>What we don't do</h2><p>We don't diagnose, and we don't recommend specific supplement brands. Our vitamin check is educational. It can point you toward questions to ask, but assessment may include diet, symptoms, medical history and appropriate laboratory testing.</p>
 <h2 id="corrections">Corrections and contact</h2><p><a href="https://github.com/AnveshGannamraju/myvitapals/issues/new">Report a content error or contact the project maintainer on GitHub</a> (account required). Include the page URL, the wording and a reliable source. Reports are public: do not include personal health information. Reports can be tracked in the repository issue list.</p>
-<h2 id="privacy">Privacy and disclosures</h2><p>Searches and tool answers are processed in your browser. Saving questionnaire answers is optional and uses this browser’s local storage; use Clear saved answers to remove them. The site does not add analytics or advertising trackers. The hosting provider may process ordinary request logs. External links follow the destination’s privacy policy. No supplement affiliate purchase links are used in these tools.</p>
+<h2 id="privacy">Privacy and disclosures</h2><p>Searches and tool answers are processed in your browser. Saving questionnaire answers is optional and uses this browser’s local storage; use Clear saved answers to remove them. The site uses no advertising trackers and no cookies. To learn which pages help people, it counts visits with GoatCounter, a privacy-friendly analytics service: the page address (without anything after a "?"), the referring website, screen size, which links are clicked, the matched food from our list when the food finder is used, and whether the vitamin check was started and completed. It never records what you type, your vitamin check answers or results, your weight, or anything that identifies you, and it is switched off if your browser sends Do Not Track or Global Privacy Control. The hosting provider may process ordinary request logs. External links follow the destination’s privacy policy. No supplement affiliate purchase links are used in these tools.</p>
 <h2>Editorial accountability</h2><p>Content is maintained by the VitaPals project. No clinical credentials or independent medical review are claimed. A content update is an edit; a fact-check verifies a specific claim against its source; medical review requires a qualified named professional and a documented scope.</p>
-<h2 id="history">Revision history</h2><p>November 5, 2026: corrected diet-specific recommendations, protein reference wording, vitamin D testing, B6 limits, folate/MTHFR and methotrexate context, calcium absorption and questionnaire privacy. Clinical review pending. <a href="https://github.com/AnveshGannamraju/myvitapals/commits">Published change history</a>.</p>
+<h2 id="history">Revision history</h2><p>November 24, 2026: expanded the vitamin D3, B1, B5, B6, B7 and folate pages (quick answers, vegetarian and Indian sources, more NIH food-table entries, FAQs), added related-nutrient links and privacy-friendly visit counts. Clinical review pending.</p><p>November 5, 2026: corrected diet-specific recommendations, protein reference wording, vitamin D testing, B6 limits, folate/MTHFR and methotrexate context, calcium absorption and questionnaire privacy. Clinical review pending. <a href="https://github.com/AnveshGannamraju/myvitapals/commits">Published change history</a>.</p>
 <h2>Medical disclaimer</h2><p>VitaPals is for general education and isn't a substitute for professional medical advice. Talk to a doctor, registered dietitian or pharmacist before starting a supplement, especially if you're pregnant, breastfeeding, take medicines or have a health condition.</p>
 </div>
 """ + footer()
