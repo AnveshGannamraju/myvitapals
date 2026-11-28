@@ -142,5 +142,31 @@
       ]},
       {"type": "cta", "title": "Magnesium foods and needs", "path": "myvitapals.com/magnesium"}
     ]
+  },
+  {
+    "id": "10-protein-new-target", "pal": "protein", "color": "#b35c2e",
+    "slides": [
+      {"type": "hook", "emoji": "💪", "title": "The US protein target went up."},
+      {"type": "vs", "title": "Protein for a 70 kg adult", "items": [
+        ["", "Old RDA", "56 g", 56],
+        ["", "New target", "84–112 g", 112]
+      ], "note": "0.8 → 1.2–1.6 g per kg of body weight"},
+      {"type": "grid", "small": true, "title": "Protein per serving", "sub": "Mix and match across the day", "tiles": [
+        ["🍗", "Chicken breast", "26 g", "3 oz"],
+        ["🥣", "Greek yogurt", "24 g", "1 cup"],
+        ["🧀", "Paneer", "18 g", "100 g"],
+        ["🫘", "Soya chunks", "13 g", "25 g dry"],
+        ["🍲", "Bowl of dal", "11 g", "50 g dry"],
+        ["🥚", "Egg", "6 g", "1 large"]
+      ]},
+      {"type": "mythfact", "myth": "You can only absorb 30 g at a time", "fact": "Your body absorbs nearly all of it. Spreading it out is still smart."},
+      {"type": "tips", "title": "Easy upgrades", "rows": [
+        ["🍳", "Add protein to breakfast"],
+        ["🥣", "Thicker dal + a bowl of curd"],
+        ["🥜", "Roasted chana, not chips"],
+        ["🩺", "Kidney disease? Follow your doctor"]
+      ]},
+      {"type": "cta", "title": "Find your number", "path": "myvitapals.com/protein"}
+    ]
   }
 ]

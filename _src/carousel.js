@@ -40,7 +40,7 @@ h2{font-family:Fraunces,serif;font-weight:700;font-size:76px;line-height:1.05;le
 /* hook */
 .hook .big{font-size:340px;margin-bottom:60px}
 .hook .pal{margin-bottom:50px}
-.swipe{position:absolute;bottom:140px;left:0;right:0;font-size:32px;font-weight:700;opacity:.85}
+.swipe{position:absolute;bottom:140px;left:0;right:0;text-align:center;font-size:32px;font-weight:700;opacity:.85}
 /* grid */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%;margin-top:50px}
 .tile{background:#fff;border-radius:36px;padding:40px 20px 34px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;align-items:center}
